@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Chat Client</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/@aspnet/signalr@1.0.0/dist/browser/signalr.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const connection = new signalR.HubConnectionBuilder()
+                    .configureLogging(signalR.LogLevel.Trace)
+                    .withUrl("/chat")
+                    .build();
+
+            connection.on('broadcastMessage', (name, message) => {
+                console.log(message);
+                document.getElementById('output').innerHTML += `message from ${name}: ${message}<br />`;
+            });
+
+            connection.start().then(function () {
+                document.getElementById('sendButton').addEventListener('click', function () {
+                    let name = document.getElementById('name').value;
+                    let message = document.getElementById('message').value;
+
+                    connection.invoke('send', name, message);
+                });
+            });
+        });
+    </script>
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" />
+    <br />
+    <label for="message">Message:</label>
+    <input type="text" id="message" />
+    <br />
+    <input id="sendButton" type="button" value="send" />
+    <p>
+        <output id="output"></output>
+    </p>
+
+
+</body>
+</html>

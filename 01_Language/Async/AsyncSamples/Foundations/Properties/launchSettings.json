@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Foundations": {
+      "commandName": "Project",
+      "commandLineArgs": "-async"
+    }
+  }
+}

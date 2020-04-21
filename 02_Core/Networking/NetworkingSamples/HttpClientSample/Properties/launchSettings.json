@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "HttpClientSample": {
+      "commandName": "Project",
+      "commandLineArgs": "-m"
+    }
+  }
+}

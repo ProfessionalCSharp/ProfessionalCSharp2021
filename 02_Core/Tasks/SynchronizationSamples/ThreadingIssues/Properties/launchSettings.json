@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ThreadingIssues": {
+      "commandName": "Project",
+      "commandLineArgs": "-d"
+    }
+  }
+}
