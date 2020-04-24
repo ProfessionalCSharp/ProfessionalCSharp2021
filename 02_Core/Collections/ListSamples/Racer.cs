@@ -18,41 +18,30 @@ namespace ListSamples
         { }
 
         public int Id { get; }
-        public string FirstName { get; }
-        public string LastName { get; }
-        public string Country { get; }
+        public string? FirstName { get; }
+        public string? LastName { get; }
+        public string? Country { get; }
         public int Wins { get; set; }
 
         public override string ToString() => $"{FirstName} {LastName}";
 
-
-        public string ToString(string format, IFormatProvider formatProvider)
-        {
-            if (format == null) format = "N";
-            switch (format.ToUpper())
+        public string? ToString(string? format, IFormatProvider? formatProvider)
+            => format?.ToUpper() switch
             {
-                case null:
-                case "N": // name
-                    return ToString();
-                case "F": // first name
-                    return FirstName;
-                case "L": // last name
-                    return LastName;
-                case "W": // Wins
-                    return $"{ToString()}, Wins: {Wins}";
-                case "C": // Country
-                    return $"{ToString()}, Country: {Country}";
-                case "A": // All
-                    return $"{ToString()}, Country: {Country} Wins: {Wins}";
-                default:
-                    throw new FormatException(String.Format(formatProvider,
-                          "Format {0} is not supported", format));
-            }
-        }
+                null => ToString(),
+                "N" => ToString(),
+                "F" => FirstName,
+                "L" => LastName,
+                "W" => $"{ToString()}, Wins: {Wins}",
+                "C" => Country,
+                "A" => $"{ToString()}, Country: {Country}, Wins: {Wins}",
+                _ => throw new FormatException(string.Format(formatProvider,
+                          "Format {0} is not supported", format))
+            };
 
-        public string ToString(string format) => ToString(format, null);
+        public string? ToString(string format) => ToString(format, null);
 
-        public int CompareTo(Racer other)
+        public int CompareTo(Racer? other)
         {
             int compare = LastName?.CompareTo(other?.LastName) ?? -1;
             if (compare == 0)

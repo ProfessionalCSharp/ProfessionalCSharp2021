@@ -17,34 +17,31 @@ namespace ListSamples
         public RacerComparer(CompareType compareType) =>
           _compareType = compareType;
 
-        public int Compare(Racer x, Racer y)
+        public int Compare(Racer? x, Racer? y)
         {
             if (x == null && y == null) return 0;
             if (x == null) return -1;
             if (y == null) return 1;
 
-            int result;
-            switch (_compareType)
+            int CompareCountry(Racer x, Racer y)
             {
-                case CompareType.FirstName:
-                    result = string.Compare(x.FirstName, y.FirstName);
-                    break;
-                case CompareType.LastName:
+                int result = string.Compare(x.Country, y.Country);
+                if (result == 0)
+                {
                     result = string.Compare(x.LastName, y.LastName);
-                    break;
-                case CompareType.Country:
-                    result = string.Compare(x.Country, y.Country);
-                    if (result == 0)
-                    {
-                        result = string.Compare(x.LastName, y.LastName);
-                    }
-                    break;
-                case CompareType.Wins:
-                    result = x.Wins.CompareTo(y.Wins);
-                    break;
-                default:
-                    throw new ArgumentException("Invalid Compare Type");
+                }
+                return result;
             }
+
+            int result =
+                _compareType switch
+                {
+                    CompareType.FirstName => string.Compare(x.FirstName, y.FirstName),
+                    CompareType.LastName => string.Compare(x.LastName, y.LastName),
+                    CompareType.Country => CompareCountry(x, y),
+                    CompareType.Wins => x.Wins.CompareTo(y.Wins),
+                    _ => throw new ArgumentException("Invalid Compare Type")
+                };
             return result;
         }
     }
