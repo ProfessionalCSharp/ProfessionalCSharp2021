@@ -49,9 +49,7 @@ namespace ListSamples
 
             Console.WriteLine();
 
-
             // remove elements
-
             if (!racers.Remove(graham))
             {
                 Console.WriteLine("object not found in collection");

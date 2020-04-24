@@ -43,10 +43,9 @@ namespace Wrox.ProCSharp.Collections
                 userInput = userInput.ToUpper();
                 if (userInput == "X") break;
 
-                EmployeeId id;
                 try
                 {
-                    id = new EmployeeId(userInput);
+                    EmployeeId id = new EmployeeId(userInput);
 
                     if (!employees.TryGetValue(id, out Employee employee))
                     {

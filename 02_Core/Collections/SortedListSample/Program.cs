@@ -35,6 +35,10 @@ namespace Wrox.ProCSharp.Collections
                 {
                     Console.WriteLine($"{title} not found");
                 }
+                else
+                {
+                    Console.WriteLine($"isbn found: {isbn}");
+                }
             }
         }
     }

@@ -26,7 +26,6 @@ namespace SetSample
                 Console.WriteLine("companyTeams is a superset of traditionalTeams");
             }
 
-
             traditionalTeams.Add("Williams");
             if (privateTeams.Overlaps(traditionalTeams))
             {
