@@ -6,6 +6,6 @@
 
         private readonly string _country;
 
-        public bool FindCountryPredicate(Racer racer) => racer?.Country == _country;
+        public bool FindCountryPredicate(Racer racer) => racer.Country == _country;
     }
 }
