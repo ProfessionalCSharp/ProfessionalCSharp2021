@@ -35,26 +35,18 @@ namespace DataLib
 
         public string ToString(string format, IFormatProvider formatProvider)
         {
-            switch (format)
+            return format switch
             {
-                case null:
-                case "N":
-                    return ToString();
-                case "F":
-                    return FirstName;
-                case "L":
-                    return LastName;
-                case "C":
-                    return Country;
-                case "S":
-                    return Starts.ToString();
-                case "W":
-                    return Wins.ToString();
-                case "A":
-                    return $"{FirstName} {LastName}, country: {Country}; starts: {Starts}, wins: {Wins}";
-                default:
-                    throw new FormatException($"Format {format} not supported");
-            }
+                null => ToString(),
+                "N" => ToString(),
+                "F" => FirstName,
+                "L" => LastName,
+                "C" => Country,
+                "S" => Starts.ToString(),
+                "W" => Wins.ToString(),
+                "A" => $"{FirstName} {LastName}, country: {Country}, starts: {Starts}, wins: {Wins}",
+                _ => throw new FormatException($"Format {format} not supported")
+            };
         }
     }
 }
