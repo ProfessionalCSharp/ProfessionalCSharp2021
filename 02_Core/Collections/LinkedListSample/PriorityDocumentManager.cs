@@ -23,8 +23,6 @@ namespace LinkedListSample
 
         public void AddDocument(Document d)
         {
-            if (d is null) throw new ArgumentNullException(nameof(d));
-
             AddDocumentToPriorityNode(d, d.Priority);
         }
 
