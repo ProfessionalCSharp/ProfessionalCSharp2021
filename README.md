@@ -1,9 +1,9 @@
 
-# Professional C# 7 and .NET Core 2.0
+# Professional C# 9 and .NET 5
 
-Code samples for the Wrox Press book **Professional C# 7 and .NET Core 2.0**
+Code samples for the Wrox Press book **Professional C# 9 and .NET 5**
 
-To compile and run the samples, you need Visual Studio 2017, Visual Studio for Mac, or Visual Studio Code. 
+To compile and run the samples, you need Visual Studio 2019, Visual Studio for Mac, or Visual Studio Code. 
 
 You can download these tools here: [Visual Studio](https://www.visualstudio.com/).
 
