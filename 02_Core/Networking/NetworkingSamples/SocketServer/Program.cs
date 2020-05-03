@@ -61,7 +61,7 @@ namespace SocketServer
                         Console.WriteLine("not connected");
                         continue;
                     }
-                    Console.WriteLine($"client connected local address {((IPEndPoint)client.LocalEndPoint).Address} and port {((IPEndPoint)client.LocalEndPoint).Port}, remote address {((IPEndPoint)client.RemoteEndPoint).Address} and port {((IPEndPoint)client.RemoteEndPoint).Port}");
+                    Console.WriteLine($"client connected local address {((IPEndPoint?)client.LocalEndPoint)?.Address} and port {((IPEndPoint?)client.LocalEndPoint)?.Port}, remote address {((IPEndPoint?)client.RemoteEndPoint)?.Address} and port {((IPEndPoint?)client.RemoteEndPoint)?.Port}");
 
                     Task t = CommunicateWithClientUsingSocketAsync(client);
 
@@ -153,26 +153,24 @@ namespace SocketServer
         {
             try
             {
-                using (var stream = new NetworkStream(socket, ownsSocket: true))
-                using (var reader = new StreamReader(stream, Encoding.UTF8, false, 8192, leaveOpen: true))
-                using (var writer = new StreamWriter(stream, Encoding.UTF8, 8192, leaveOpen: true))
+                using var stream = new NetworkStream(socket, ownsSocket: true);
+                using var reader = new StreamReader(stream, Encoding.UTF8, false, 8192, leaveOpen: true);
+                using var writer = new StreamWriter(stream, Encoding.UTF8, 8192, leaveOpen: true);
+                writer.AutoFlush = true;
+
+                bool completed = false;
+                do
                 {
-                    writer.AutoFlush = true;
-
-                    bool completed = false;
-                    do
+                    string? fromClient = await reader.ReadLineAsync();
+                    Console.WriteLine($"read {fromClient}");
+                    if (string.Compare(fromClient, "shutdown", ignoreCase: true) == 0)
                     {
-                        string fromClient = await reader.ReadLineAsync();
-                        Console.WriteLine($"read {fromClient}");
-                        if (string.Compare(fromClient, "shutdown", ignoreCase: true) == 0)
-                        {
-                            completed = true;
-                        }
+                        completed = true;
+                    }
 
-                        await writer.WriteLineAsync($"echo {fromClient}");
+                    await writer.WriteLineAsync($"echo {fromClient}");
 
-                    } while (!completed);
-                }
+                } while (!completed);
                 Console.WriteLine("closed stream and client socket");
             }
             catch (Exception ex)

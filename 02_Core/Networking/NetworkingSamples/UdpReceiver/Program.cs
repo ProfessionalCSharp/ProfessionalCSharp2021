@@ -11,7 +11,7 @@ namespace UdpReceiver
     {
         static async Task Main(string[] args)
         {
-            if (!ParseCommandLine(args, out int port, out string groupAddress))
+            if (!ParseCommandLine(args, out int port, out string? groupAddress))
             {
                 ShowUsage();
                 return;
@@ -23,7 +23,7 @@ namespace UdpReceiver
         private static void ShowUsage() =>
             Console.WriteLine("Usage: UdpReceiver -p port  [-g groupaddress]");
 
-        private static bool ParseCommandLine(string[] args, out int port, out string groupAddress)
+        private static bool ParseCommandLine(string[] args, out int port, out string? groupAddress)
         {
             port = 0;
             groupAddress = string.Empty;
@@ -38,7 +38,7 @@ namespace UdpReceiver
             }
 
             // get port number
-            string port1 = GetValueForKey(args, "-p");
+            string? port1 = GetValueForKey(args, "-p");
             if (port1 == null || !int.TryParse(port1, out port))
             {
                 return false;
@@ -49,7 +49,7 @@ namespace UdpReceiver
             return true;
         }
 
-        private static string GetValueForKey(string[] args, string key)
+        private static string? GetValueForKey(string[] args, string key)
         {
             int? nextIndex = args.Select((a, i) => new { Arg = a, Index = i }).SingleOrDefault(a => a.Arg == key)?.Index + 1;
             if (!nextIndex.HasValue)
@@ -59,7 +59,7 @@ namespace UdpReceiver
             return args[nextIndex.Value];
         }
 
-        private static async Task ReaderAsync(int port, string groupAddress)
+        private static async Task ReaderAsync(int port, string? groupAddress)
         {
             using (var client = new UdpClient(port))
             {

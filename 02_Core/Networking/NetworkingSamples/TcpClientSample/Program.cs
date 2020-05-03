@@ -22,25 +22,23 @@ namespace TcpClientSample
             using (var client = new TcpClient())
             {
                 await client.ConnectAsync(Host, Port);
-                using (NetworkStream stream = client.GetStream())
-                using (var writer = new StreamWriter(stream, Encoding.ASCII, 1024, leaveOpen: true))
-                using (var reader = new StreamReader(stream, Encoding.ASCII, true, 1024, leaveOpen: true))
+                using NetworkStream stream = client.GetStream();
+                using var writer = new StreamWriter(stream, Encoding.ASCII, 1024, leaveOpen: true);
+                using var reader = new StreamReader(stream, Encoding.ASCII, true, 1024, leaveOpen: true);
+                writer.AutoFlush = true;
+                string? line = string.Empty;
+                do
                 {
-                    writer.AutoFlush = true;
-                    string line = string.Empty;
-                    do
-                    {
-                        Console.WriteLine("enter a string, bye to exit");
-                        line = Console.ReadLine();
-                        await writer.WriteLineAsync(line);
-                       
-                        string result = await reader.ReadLineAsync();
-                        Console.WriteLine($"received {result} from server");
-                    } while (line != "bye");
+                    Console.WriteLine("enter a string, bye to exit");
+                    line = Console.ReadLine();
+                    await writer.WriteLineAsync(line);
 
-                    Console.WriteLine("so long, and thanks for all the fish");
-                }
-            }            
+                    string? result = await reader.ReadLineAsync();
+                    Console.WriteLine($"received {result} from server");
+                } while (line != "bye");
+
+                Console.WriteLine("so long, and thanks for all the fish");
+            }
         }
     }
 }

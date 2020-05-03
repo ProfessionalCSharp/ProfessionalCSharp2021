@@ -10,9 +10,9 @@ namespace HttpClientSample
         private const string NorthwindUrl = "http://services.odata.org/Northwind/Northwind.svc/Regions";
         private const string IncorrectUrl = "http://services.odata.org/Northwind1/Northwind.svc/Regions";
 
-        private HttpClient _httpClient;
+        private HttpClient? _httpClient;
         public HttpClient HttpClient => _httpClient ?? (_httpClient = new HttpClient());
-        private HttpClient _httpClientWithMessageHandler;
+        private HttpClient? _httpClientWithMessageHandler;
         public HttpClient HttpClientWithMessageHandler => _httpClientWithMessageHandler ?? (_httpClientWithMessageHandler = new HttpClient(new SampleMessageHandler("error")));
 
         public async Task GetDataSimpleAsync()
@@ -21,7 +21,7 @@ namespace HttpClientSample
             if (response.IsSuccessStatusCode)
             {
                 Console.WriteLine($"Response Status Code: {(int)response.StatusCode} {response.ReasonPhrase}");
-                string responseBodyAsText = await response.Content.ReadAsStringAsync();
+                string responseBodyAsText = await (response.Content?.ReadAsStringAsync() ?? Task.FromResult(string.Empty));
                 Console.WriteLine($"Received payload of {responseBodyAsText.Length} characters");
                 Console.WriteLine();
                 Console.WriteLine(responseBodyAsText);
@@ -36,7 +36,7 @@ namespace HttpClientSample
             if (response.IsSuccessStatusCode)
             {
                 Console.WriteLine($"Response Status Code: {(int)response.StatusCode} {response.ReasonPhrase}");
-                string responseBodyAsText = await response.Content.ReadAsStringAsync();
+                string responseBodyAsText = await (response.Content?.ReadAsStringAsync() ?? Task.FromResult(string.Empty));
                 Console.WriteLine($"Received payload of {responseBodyAsText.Length} characters");
                 Console.WriteLine();
                 Console.WriteLine(responseBodyAsText);
@@ -55,7 +55,7 @@ namespace HttpClientSample
                 ShowHeaders("Response Headers:", response.Headers);
 
                 Console.WriteLine($"Response Status Code: {response.StatusCode} {response.ReasonPhrase}");
-                string responseBodyAsText = await response.Content.ReadAsStringAsync();
+                string responseBodyAsText = await (response.Content?.ReadAsStringAsync() ?? Task.FromResult(string.Empty));
                 Console.WriteLine($"Received payload of {responseBodyAsText.Length} characters");
                 Console.WriteLine();
                 Console.WriteLine(responseBodyAsText);
@@ -79,7 +79,7 @@ namespace HttpClientSample
                 ShowHeaders("Response Headers:", response.Headers);
 
                 Console.WriteLine($"Response Status Code: {(int)response.StatusCode} {response.ReasonPhrase}");
-                string responseBodyAsText = await response.Content.ReadAsStringAsync();
+                string responseBodyAsText = await (response.Content?.ReadAsStringAsync() ?? Task.FromResult(string.Empty));
                 Console.WriteLine($"Received payload of {responseBodyAsText.Length} characters");
                 Console.WriteLine();
                 Console.WriteLine(responseBodyAsText);
@@ -114,11 +114,10 @@ namespace HttpClientSample
                 ShowHeaders("Response Headers:", response.Headers);
 
                 Console.WriteLine($"Response Status Code: {(int)response.StatusCode} {response.ReasonPhrase}");
-                string responseBodyAsText = await response.Content.ReadAsStringAsync();
+                string responseBodyAsText = await (response.Content?.ReadAsStringAsync() ?? Task.FromResult(string.Empty));
                 Console.WriteLine($"Received payload of {responseBodyAsText.Length} characters");
                 Console.WriteLine();
                 Console.WriteLine(responseBodyAsText);
-
             }
             catch (Exception ex)
             {
@@ -128,7 +127,7 @@ namespace HttpClientSample
 
         public void Dispose()
         {
-            HttpClient?.Dispose();
+            HttpClient.Dispose();
             HttpClientWithMessageHandler?.Dispose();
         }
     }

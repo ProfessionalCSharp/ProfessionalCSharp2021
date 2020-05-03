@@ -6,7 +6,7 @@ namespace HttpClientSample
 {
     class Program
     {
-        private static Command[] s_Commands;
+        private static Command[]? s_Commands;
 
         static async Task Main(string[] args)
         {
@@ -37,6 +37,7 @@ namespace HttpClientSample
         {
             Console.WriteLine("Usage: HttpClientSample [options]");
             Console.WriteLine();
+            if (s_Commands == null) throw new InvalidOperationException();
             foreach (var command in s_Commands)
             {
                 Console.WriteLine($"{command.Option} {command.Text}");

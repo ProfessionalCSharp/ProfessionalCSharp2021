@@ -78,7 +78,7 @@ namespace TcpServer
                                 string request = Encoding.ASCII.GetString(readBuffer, 0, read);
                                 Console.WriteLine($"received {request}");
 
-                                byte[] writeBuffer = null;
+                                byte[]? writeBuffer = null;
                                 string response = string.Empty;
 
                                 ParseResponse resp = ParseRequest(request, out string sessionId, out string result);
@@ -186,7 +186,7 @@ namespace TcpServer
             return response;
         }
 
-        private void TimerSessionCleanup(object o) =>
+        private void TimerSessionCleanup(object? o) =>
             _sessionManager.CleanupAllSessions();
     }
 }

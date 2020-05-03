@@ -70,8 +70,8 @@ namespace SocketClient
             while (true)
             {
                 Console.WriteLine("enter a string to send, shutdown to exit");
-                string line = Console.ReadLine();
-                byte[] buffer = Encoding.UTF8.GetBytes($"{line}\r\n");
+                string? line = Console.ReadLine();
+                byte[] buffer = Encoding.UTF8.GetBytes($"{line}{Environment.NewLine}");
                 await stream.WriteAsync(buffer, 0, buffer.Length);
                 await stream.FlushAsync();
                 if (string.Compare(line, "shutdown", ignoreCase: true) == 0)

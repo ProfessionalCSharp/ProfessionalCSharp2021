@@ -6,7 +6,7 @@ namespace Utilities
 {
     class Program
     {
-        private static Command<string>[] s_Commands;
+        private static Command<string>[]? s_Commands;
 
         static void Main(string[] args)
         {
@@ -35,6 +35,7 @@ namespace Utilities
             Console.WriteLine("Usage: Utilities command\n");
             Console.WriteLine();
             Console.WriteLine("commands");
+            if (s_Commands == null) throw new InvalidOperationException();
             foreach (var command in s_Commands)
             {
                 Console.WriteLine($"{command.Option} {command.Text}");
@@ -44,8 +45,7 @@ namespace Utilities
 
         public static void IPAddressSample(string ipAddressString)
         {           
-            IPAddress address;
-            if (!IPAddress.TryParse(ipAddressString, out address))
+            if (!IPAddress.TryParse(ipAddressString, out IPAddress? address))
             {
                 Console.WriteLine($"cannot parse {ipAddressString}");
                 return;

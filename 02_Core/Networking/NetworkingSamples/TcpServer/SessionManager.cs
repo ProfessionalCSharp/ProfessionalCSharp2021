@@ -41,7 +41,7 @@ namespace TcpServer
 
         public void CleanupSession(string sessionId)
         {
-            if (_sessionData.TryRemove(sessionId, out Dictionary<string, string> removed))
+            if (_sessionData.TryRemove(sessionId, out Dictionary<string, string>? removed))
             {
                 Console.WriteLine($"removed {sessionId} from session data");
             }
@@ -53,7 +53,7 @@ namespace TcpServer
 
         public void SetSessionData(string sessionId, string key, string value)
         {
-            if (!_sessionData.TryGetValue(sessionId, out Dictionary<string, string> data))
+            if (!_sessionData.TryGetValue(sessionId, out Dictionary<string, string>? data))
             {
                 data = new Dictionary<string, string>();
                 data.Add(key, value);
@@ -61,8 +61,7 @@ namespace TcpServer
             }
             else
             {
-                string val;
-                if (data.TryGetValue(key, out val))
+                if (data.TryGetValue(key, out string? _))
                 {
                     data.Remove(key);
                 }
@@ -70,12 +69,11 @@ namespace TcpServer
             }
         }
 
-        public string GetSessionData(string sessionId, string key)
+        public string? GetSessionData(string sessionId, string key)
         {
-            if (_sessionData.TryGetValue(sessionId, out Dictionary<string, string> data))
+            if (_sessionData.TryGetValue(sessionId, out Dictionary<string, string>? data))
             {
-                string value;
-                if (data.TryGetValue(key, out value))
+                if (data.TryGetValue(key, out string? value))
                 {
                     return value;
                 }

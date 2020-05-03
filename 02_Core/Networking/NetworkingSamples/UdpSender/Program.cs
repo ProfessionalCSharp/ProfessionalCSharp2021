@@ -11,19 +11,19 @@ namespace UdpSender
     {
         static async Task Main(string[] args)
         {
-            if (!ParseCommandLine(args, out int port, out string hostname, out bool broadcast, out string groupAddress, out bool ipv6))
+            if (!ParseCommandLine(args, out int port, out string? hostname, out bool broadcast, out string? groupAddress, out bool ipv6))
             {
                 ShowUsage();
                 Console.ReadLine();
                 return;
             }
-            IPEndPoint endpoint = await GetIPEndPointAsync(port, hostname, broadcast, groupAddress, ipv6);
+            IPEndPoint? endpoint = await GetIPEndPointAsync(port, hostname, broadcast, groupAddress, ipv6);
             await SenderAsync(endpoint, broadcast, groupAddress);
             Console.WriteLine("Press return to exit...");
             Console.ReadLine();
         }
 
-        private static string GetValueForKey(string[] args, string key)
+        private static string? GetValueForKey(string[] args, string key)
         {
             int? nextIndex = args.Select((a, i) => new { Arg = a, Index = i }).SingleOrDefault(a => a.Arg == key)?.Index + 1;
             if (!nextIndex.HasValue)
@@ -33,7 +33,7 @@ namespace UdpSender
             return args[nextIndex.Value];
         }
 
-        private static bool ParseCommandLine(string[] args, out int port, out string hostname, out bool broadcast, out string groupAddress, out bool ipv6)
+        private static bool ParseCommandLine(string[] args, out int port, out string? hostname, out bool broadcast, out string? groupAddress, out bool ipv6)
         {
             port = 0;
             hostname = string.Empty;
@@ -57,7 +57,7 @@ namespace UdpSender
             }
 
             // get port number
-            string port1 = GetValueForKey(args, "-p");
+            string? port1 = GetValueForKey(args, "-p");
             if (port1 == null || !int.TryParse(port1, out port))
             {
                 return false;
@@ -84,9 +84,9 @@ namespace UdpSender
             Console.WriteLine("\t-h hostname\tUse the hostname option if the message should be sent to a single host");
         }
 
-        public static async Task<IPEndPoint> GetIPEndPointAsync(int port, string hostName, bool broadcast, string groupAddress, bool ipv6)
+        public static async Task<IPEndPoint?> GetIPEndPointAsync(int port, string? hostName, bool broadcast, string? groupAddress, bool ipv6)
         {
-            IPEndPoint endpoint = null;
+            IPEndPoint? endpoint = null;
             try
             {
                 if (broadcast)
@@ -96,7 +96,7 @@ namespace UdpSender
                 else if (hostName != null)
                 {
                     IPHostEntry hostEntry = await Dns.GetHostEntryAsync(hostName);
-                    IPAddress address = null;
+                    IPAddress? address = null;
                     if (ipv6)
                     {
                         address = hostEntry.AddressList.Where(a => a.AddressFamily == AddressFamily.InterNetworkV6).FirstOrDefault();
@@ -130,7 +130,7 @@ namespace UdpSender
             return endpoint;
         }
 
-        private static async Task SenderAsync(IPEndPoint endpoint, bool broadcast, string groupAddress)
+        private static async Task SenderAsync(IPEndPoint? endpoint, bool broadcast, string? groupAddress)
         {
             try
             {
@@ -147,7 +147,7 @@ namespace UdpSender
                     do
                     {
                         Console.WriteLine("Enter a message or bye to exit");
-                        string input = Console.ReadLine();
+                        string? input = Console.ReadLine();
                         Console.WriteLine();
                         completed = input == "bye";
 
