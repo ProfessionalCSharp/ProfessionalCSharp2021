@@ -2,7 +2,7 @@
 
 namespace DataLib
 {
-    public class Team
+    public record Team
     {
         public Team(string name, params int[] years)
         {

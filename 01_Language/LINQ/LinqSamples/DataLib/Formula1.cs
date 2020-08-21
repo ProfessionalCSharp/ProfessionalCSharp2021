@@ -4,7 +4,7 @@ namespace DataLib
 {
     public static class Formula1
     {
-        private static List<Racer> s_racers;
+        private static List<Racer>? s_racers;
 
         private static List<Racer> InitializeRacers() =>
             new List<Racer>
@@ -46,7 +46,7 @@ namespace DataLib
 
         public static IList<Racer> GetChampions() => s_racers ?? (s_racers = InitializeRacers());
 
-        private static List<Team> s_teams;
+        private static List<Team>? s_teams;
         public static IList<Team> GetConstructorChampions()         
         {
             if (s_teams == null)
@@ -73,7 +73,7 @@ namespace DataLib
             return s_teams;
         }
 
-        private static List<Championship> s_championships;
+        private static List<Championship>? s_championships;
         public static IEnumerable<Championship> GetChampionships()
         {
             if (s_championships == null)
@@ -155,7 +155,7 @@ namespace DataLib
             return s_championships;
         }
 
-        private static IList<Racer> _moreRacers;
+        private static IList<Racer>? _moreRacers;
         private static IList<Racer> GetMoreRacers()
         {
             if (_moreRacers == null)

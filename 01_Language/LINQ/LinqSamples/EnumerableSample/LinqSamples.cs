@@ -43,24 +43,9 @@ namespace EnumerableSample
         {
             var racers = Formula1.GetChampionships().SelectMany(cs => new List<RacerInfo>()
                {
-                 new RacerInfo {
-                   Year = cs.Year,
-                   Position = 1,
-                   FirstName = cs.First.FirstName(),
-                   LastName = cs.First.LastName()
-                 },
-                 new RacerInfo {
-                   Year = cs.Year,
-                   Position = 2,
-                   FirstName = cs.Second.FirstName(),
-                   LastName = cs.Second.LastName()
-                 },
-                 new RacerInfo {
-                   Year = cs.Year,
-                   Position = 3,
-                   FirstName = cs.Third.FirstName(),
-                   LastName = cs.Third.LastName()
-                 }
+                 new RacerInfo(cs.Year, 1, cs.First.FirstName(), cs.First.LastName()),
+                 new RacerInfo(cs.Year, 2, cs.Second.FirstName(), cs.Second.LastName()),
+                 new RacerInfo(cs.Year, 3, cs.Third.FirstName(), cs.Third.LastName())
                });
 
             var nonChampions = racers.Select(r =>
@@ -83,15 +68,18 @@ namespace EnumerableSample
 
         public static void ConvertWithCast()
         {
-            var list = new System.Collections.ArrayList(Formula1.GetChampions() as System.Collections.ICollection);
-
-            var query = from r in list.Cast<Racer>()
-                        where r.Country == "USA"
-                        orderby r.Wins descending
-                        select r;
-            foreach (var racer in query)
+            if (Formula1.GetChampions() is System.Collections.ICollection coll)
             {
-                Console.WriteLine($"{racer:A}");
+                var list = new System.Collections.ArrayList(coll);
+
+                var query = from r in list.Cast<Racer>()
+                            where r.Country == "USA"
+                            orderby r.Wins descending
+                            select r;
+                foreach (var racer in query)
+                {
+                    Console.WriteLine($"{racer:A}");
+                }
             }
         }
 

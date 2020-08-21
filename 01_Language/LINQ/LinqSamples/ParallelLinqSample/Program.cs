@@ -73,8 +73,8 @@ namespace ParallelLinqSample
 
             Console.WriteLine("query started");
             Console.Write("cancel? ");
-            string input = Console.ReadLine();
-            if (input.ToLower().Equals("y"))
+            string? input = Console.ReadLine();
+            if (input?.ToLower().Equals("y") == true)
             {
                 cts.Cancel();
             }

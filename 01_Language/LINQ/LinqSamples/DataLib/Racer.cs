@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace DataLib
 {
-    public class Racer : IComparable<Racer>, IFormattable
+    public record Racer : IComparable<Racer>, IFormattable
     {
 
-        public Racer(string firstName, string lastName, string country, int starts, int wins, IEnumerable<int> years, IEnumerable<string> cars)
+        public Racer(string firstName, string lastName, string country, int starts, int wins, IEnumerable<int>? years, IEnumerable<string>? cars)
         {
             FirstName = firstName;
             LastName = lastName;
@@ -29,13 +29,12 @@ namespace DataLib
 
         public override string ToString() => $"{FirstName} {LastName}";
 
-        public int CompareTo(Racer other) => LastName.CompareTo(other?.LastName);
+        public int CompareTo(Racer? other) => LastName.CompareTo(other?.LastName);
 
         public string ToString(string format) => ToString(format, null);
 
-        public string ToString(string format, IFormatProvider formatProvider)
-        {
-            return format switch
+        public string ToString(string? format, IFormatProvider? formatProvider) =>
+            format switch
             {
                 null => ToString(),
                 "N" => ToString(),
@@ -46,7 +45,6 @@ namespace DataLib
                 "W" => Wins.ToString(),
                 "A" => $"{FirstName} {LastName}, country: {Country}, starts: {Starts}, wins: {Wins}",
                 _ => throw new FormatException($"Format {format} not supported")
-            };
-        }
+            };        
     }
 }

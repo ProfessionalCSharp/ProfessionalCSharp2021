@@ -55,7 +55,10 @@ namespace ExpressionTreeSample
                 case ExpressionType.MemberAccess:
                     MemberExpression memberExpr = (MemberExpression)expression;
                     Console.WriteLine($"{output} Member Name: {memberExpr.Member.Name}, Type: {memberExpr.Type.Name}");
-                    DisplayTree(indent, "Member Expr", memberExpr.Expression);
+                    if (memberExpr.Expression != null)
+                    {
+                        DisplayTree(indent, "Member Expr", memberExpr.Expression);
+                    }
                     break;
                 default:
                     Console.WriteLine();
