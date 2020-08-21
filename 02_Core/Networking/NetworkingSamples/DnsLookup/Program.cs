@@ -11,8 +11,8 @@ namespace DnsLookup
             do
             {
                 Console.Write("Hostname:\t");
-                string hostname = Console.ReadLine();
-                if (hostname.CompareTo("exit") == 0)
+                string? hostname = Console.ReadLine();
+                if (hostname?.CompareTo("exit") == 0)
                 {
                     Console.WriteLine("bye!");
                     return;

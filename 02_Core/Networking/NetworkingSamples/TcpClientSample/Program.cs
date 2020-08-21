@@ -19,26 +19,24 @@ namespace TcpClientSample
 
         public static async Task SendAndReceiveAsync()
         {
-            using (var client = new TcpClient())
+            using var client = new TcpClient();
+            await client.ConnectAsync(Host, Port);
+            using NetworkStream stream = client.GetStream();
+            using var writer = new StreamWriter(stream, Encoding.ASCII, 1024, leaveOpen: true);
+            using var reader = new StreamReader(stream, Encoding.ASCII, true, 1024, leaveOpen: true);
+            writer.AutoFlush = true;
+            string? line = string.Empty;
+            do
             {
-                await client.ConnectAsync(Host, Port);
-                using NetworkStream stream = client.GetStream();
-                using var writer = new StreamWriter(stream, Encoding.ASCII, 1024, leaveOpen: true);
-                using var reader = new StreamReader(stream, Encoding.ASCII, true, 1024, leaveOpen: true);
-                writer.AutoFlush = true;
-                string? line = string.Empty;
-                do
-                {
-                    Console.WriteLine("enter a string, bye to exit");
-                    line = Console.ReadLine();
-                    await writer.WriteLineAsync(line);
+                Console.WriteLine("enter a string, bye to exit");
+                line = Console.ReadLine();
+                await writer.WriteLineAsync(line);
 
-                    string? result = await reader.ReadLineAsync();
-                    Console.WriteLine($"received {result} from server");
-                } while (line != "bye");
+                string? result = await reader.ReadLineAsync();
+                Console.WriteLine($"received {result} from server");
+            } while (line != "bye");
 
-                Console.WriteLine("so long, and thanks for all the fish");
-            }
+            Console.WriteLine("so long, and thanks for all the fish");
         }
     }
 }
