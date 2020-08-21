@@ -9,7 +9,6 @@ namespace MulticastDelegates
             Action<double> operations = MathOperations.MultiplyByTwo;
             operations += MathOperations.Square;
 
-
             ProcessAndDisplayNumber(operations, 2.0);
             ProcessAndDisplayNumber(operations, 7.94);
             ProcessAndDisplayNumber(operations, 1.414);

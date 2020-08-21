@@ -8,7 +8,7 @@ namespace Wrox.ProCSharp.Delegates
 
         public Consumer(string name) => _name = name;
 
-        public void NewCarIsHere(object sender, CarInfoEventArgs e) =>
+        public void NewCarIsHere(object? sender, CarInfoEventArgs e) =>
           Console.WriteLine($"{_name}: car {e.Car} is new");
     }
 }

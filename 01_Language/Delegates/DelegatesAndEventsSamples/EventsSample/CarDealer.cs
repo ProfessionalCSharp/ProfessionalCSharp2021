@@ -11,7 +11,7 @@ namespace Wrox.ProCSharp.Delegates
 
     public class CarDealer
     {
-        public event EventHandler<CarInfoEventArgs> NewCarInfo;
+        public event EventHandler<CarInfoEventArgs>? NewCarInfo;
 
         public void NewCar(string car)
         {

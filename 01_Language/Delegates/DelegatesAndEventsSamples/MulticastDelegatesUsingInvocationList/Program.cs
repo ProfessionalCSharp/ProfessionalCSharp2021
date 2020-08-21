@@ -15,7 +15,7 @@ namespace Wrox.ProCSharp.Delegates
             Console.WriteLine("Two");
         }
 
-        static void Main(string[] args)
+        static void Main()
         {
             Action d1 = One;
             d1 += Two;
