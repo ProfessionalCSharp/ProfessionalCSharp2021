@@ -99,7 +99,7 @@ namespace TaskSamples
             Console.WriteLine($"result from task: {t1.Result.Result} {t1.Result.Remainder}");
         }
 
-        private static (int Result, int Remainder) TaskWithResult(object division)
+        private static (int Result, int Remainder) TaskWithResult(object? division)
         {
             (int x, int y) = ((int x, int y))division;
             int result = x / y;
@@ -133,9 +133,9 @@ namespace TaskSamples
             t1.Start();
         }
 
-        public static void TaskMethod(object o)
+        public static void TaskMethod(object? o)
         {
-            Log(o?.ToString());
+            Log(o?.ToString() ?? string.Empty);
         }
 
         private static object s_logLock = new object();

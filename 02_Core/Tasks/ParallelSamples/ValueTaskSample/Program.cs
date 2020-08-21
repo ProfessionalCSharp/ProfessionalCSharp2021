@@ -7,7 +7,7 @@ namespace ValueTaskSample
 {
     class Program
     { 
-        static async Task Main(string[] args)
+        static async Task Main()
         {
             for (int i = 0; i < 20; i++)
             {
@@ -18,10 +18,10 @@ namespace ValueTaskSample
         }
 
         private static DateTime _retrieved;
-        private static IEnumerable<string> _cachedData;
+        private static IEnumerable<string>? _cachedData;
         public static async ValueTask<IEnumerable<string>> GetSomeDataAsync()
         {
-            if (_retrieved >= DateTime.Now.AddSeconds(-5))
+            if (_retrieved >= DateTime.Now.AddSeconds(-5) && _cachedData != null)
             {
                 Console.WriteLine("data from the cache");
                 return await new ValueTask<IEnumerable<string>>(_cachedData);

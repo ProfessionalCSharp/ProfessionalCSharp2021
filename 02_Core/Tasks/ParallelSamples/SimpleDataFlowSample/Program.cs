@@ -37,14 +37,14 @@ namespace SimpleDataFlowSample
             Task.WaitAll(t1, t2);
         }
 
-        private static BufferBlock<string> s_buffer = new BufferBlock<string>();
+        private static BufferBlock<string?> s_buffer = new();
 
         public static void Producer()
         {
             bool exit = false;
             while (!exit)
             {
-                string input = Console.ReadLine();
+                string? input = Console.ReadLine();
                 if (string.Compare(input, "exit", ignoreCase: true) == 0)
                 {
                     exit = true;
@@ -60,7 +60,7 @@ namespace SimpleDataFlowSample
         {
             while (true)
             {
-                string data = await s_buffer.ReceiveAsync();
+                string? data = await s_buffer.ReceiveAsync();
                 Console.WriteLine($"user input: {data}");
             }
         }
