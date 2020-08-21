@@ -7,12 +7,10 @@ namespace DIWithOptions
     {
         static void Main()
         {
-            using (var container = RegisterServices())
-            {
-                var controller = container.GetService<HomeController>();
-                string result = controller.Hello("Katharina");
-                Console.WriteLine(result);
-            }
+            using var container = RegisterServices();
+            var controller = container.GetRequiredService<HomeController>();
+            string result = controller.Hello("Katharina");
+            Console.WriteLine(result);
         }
 
         static ServiceProvider RegisterServices()

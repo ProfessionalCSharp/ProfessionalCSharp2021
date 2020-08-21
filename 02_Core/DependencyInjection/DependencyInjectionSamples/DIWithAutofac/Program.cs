@@ -10,13 +10,11 @@ namespace DIWithAutofac
     {
         static void Main()
         {
-            using (IContainer container = RegisterServices())
-            {
-                var controller = container.Resolve<HomeController>();
-                string result = controller.Hello("Katharina");
+            using IContainer container = RegisterServices();
+            var controller = container.Resolve<HomeController>();
+            string result = controller.Hello("Katharina");
                
-                Console.WriteLine(result);
-            }
+            Console.WriteLine(result);
         }
 
         static IContainer RegisterServices()

@@ -9,7 +9,7 @@ namespace DIWithConfiguration
             _from = options.Value.From;
         }
 
-        private string _from;
+        private string? _from;
 
         public string Greet(string name) => $"Hello, {name}! Greetings from {_from}";
     }

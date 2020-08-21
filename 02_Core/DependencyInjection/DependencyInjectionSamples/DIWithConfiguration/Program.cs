@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.Json;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.IO;
@@ -10,25 +9,29 @@ namespace DIWithConfiguration
     {
         static void Main()
         {
-            DefineConfiguration();
+            Configuration = GetConfiguration();
             var container = RegisterServices();
-            var controller = container.GetService<HomeController>();
+            var controller = container.GetRequiredService<HomeController>();
             string result = controller.Hello("Katharina");
             Console.WriteLine(result);
         }
 
-        static void DefineConfiguration()
+        static IConfiguration GetConfiguration()
         {
             IConfigurationBuilder configBuilder = new ConfigurationBuilder()
                  .SetBasePath(Directory.GetCurrentDirectory())
                  .AddJsonFile("appsettings.json");
-            Configuration = configBuilder.Build();
+            return  configBuilder.Build();
         }
 
-        public static IConfiguration Configuration { get; set; }
+        public static IConfiguration? Configuration { get; set; }
 
         static ServiceProvider RegisterServices()
         {
+            if (Configuration == null)
+            {
+                throw new InvalidOperationException("setup configuration first");
+            }
             var services = new ServiceCollection();
             services.AddOptions();
             services.AddSingleton<IGreetingService, GreetingService>();
