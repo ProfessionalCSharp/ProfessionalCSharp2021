@@ -44,7 +44,7 @@ namespace SocketServer
             var cts = new CancellationTokenSource();
 
             var tf = new TaskFactory(TaskCreationOptions.LongRunning, TaskContinuationOptions.None);
-            tf.StartNew(() =>  // listener task
+            tf.StartNew(async () =>  // listener task
             {
                 Console.WriteLine("listener task started");
                 while (true)
@@ -55,7 +55,7 @@ namespace SocketServer
                         break;
                     }
                     Console.WriteLine("waiting for accept");
-                    Socket client = listener.Accept();
+                    Socket client = await listener.AcceptAsync();
                     if (!client.Connected)
                     {
                         Console.WriteLine("not connected");
@@ -63,7 +63,7 @@ namespace SocketServer
                     }
                     Console.WriteLine($"client connected local address {((IPEndPoint?)client.LocalEndPoint)?.Address} and port {((IPEndPoint?)client.LocalEndPoint)?.Port}, remote address {((IPEndPoint?)client.RemoteEndPoint)?.Address} and port {((IPEndPoint?)client.RemoteEndPoint)?.Port}");
 
-                    Task t = CommunicateWithClientUsingSocketAsync(client);
+                    Task _ = CommunicateWithClientUsingSocketAsync(client);
 
                 }
                 listener.Dispose();

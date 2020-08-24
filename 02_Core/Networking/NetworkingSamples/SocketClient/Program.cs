@@ -90,11 +90,12 @@ namespace SocketClient
                 stream.ReadTimeout = 5000;
                 Console.WriteLine("Receiver task");
                 byte[] readBuffer = new byte[ReadBufferSize];
+                Memory<byte> memoryReadBuffer = new Memory<byte>(readBuffer);
                 while (true)
                 {
                     Array.Clear(readBuffer, 0, ReadBufferSize);
 
-                    int read = await stream.ReadAsync(readBuffer, 0, ReadBufferSize, token);
+                    int read = await stream.ReadAsync(memoryReadBuffer, token);
                     string receivedLine = Encoding.UTF8.GetString(readBuffer, 0, read);
                     Console.WriteLine($"received {receivedLine}");
                 }
