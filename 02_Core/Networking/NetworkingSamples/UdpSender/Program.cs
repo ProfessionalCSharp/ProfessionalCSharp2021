@@ -135,31 +135,29 @@ namespace UdpSender
             try
             {
                 string localhost = Dns.GetHostName();
-                using (var client = new UdpClient(new IPEndPoint(IPAddress.Parse("192.168.178.20"), 0)))
+                using var client = new UdpClient(new IPEndPoint(IPAddress.Parse("192.168.178.20"), 0));
+                client.EnableBroadcast = broadcast;
+                if (groupAddress != null)
                 {
-                    client.EnableBroadcast = broadcast;
-                    if (groupAddress != null)
-                    {
-                        client.JoinMulticastGroup(IPAddress.Parse(groupAddress));
-                    }
+                    client.JoinMulticastGroup(IPAddress.Parse(groupAddress));
+                }
 
-                    bool completed = false;
-                    do
-                    {
-                        Console.WriteLine("Enter a message or bye to exit");
-                        string? input = Console.ReadLine();
-                        Console.WriteLine();
-                        completed = input == "bye";
+                bool completed = false;
+                do
+                {
+                    Console.WriteLine("Enter a message or bye to exit");
+                    string? input = Console.ReadLine();
+                    Console.WriteLine();
+                    completed = input == "bye";
 
-                        byte[] datagram = Encoding.UTF8.GetBytes($"{input} from {localhost}");
-                        int sent = await client.SendAsync(datagram, datagram.Length, endpoint);
-                        Console.WriteLine($"Sent datagram using local EP {client.Client.LocalEndPoint} to {endpoint}");
-                    } while (!completed);
+                    byte[] datagram = Encoding.UTF8.GetBytes($"{input} from {localhost}");
+                    int sent = await client.SendAsync(datagram, datagram.Length, endpoint);
+                    Console.WriteLine($"Sent datagram using local EP {client.Client.LocalEndPoint} to {endpoint}");
+                } while (!completed);
 
-                    if (groupAddress != null)
-                    {
-                        client.DropMulticastGroup(IPAddress.Parse(groupAddress));
-                    }
+                if (groupAddress != null)
+                {
+                    client.DropMulticastGroup(IPAddress.Parse(groupAddress));
                 }
             }
             catch (SocketException ex)

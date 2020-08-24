@@ -3,6 +3,7 @@
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <LangVersion>preview</LangVersion>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProjectGuid>{ABF31C7A-A848-4D8C-BE81-2DC6DB959D27}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>

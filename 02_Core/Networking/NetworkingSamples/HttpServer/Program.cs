@@ -45,14 +45,12 @@ namespace HttpServer
 
                 do
                 {
-                    using (RequestContext context = await listener.AcceptAsync())
-                    {
-                        context.Response.Headers.Add("content-type", new string[] { "text/html" });
-                        context.Response.StatusCode = (int)HttpStatusCode.OK;
+                    using RequestContext context = await listener.AcceptAsync();
+                    context.Response.Headers.Add("content-type", new string[] { "text/html" });
+                    context.Response.StatusCode = (int)HttpStatusCode.OK;
 
-                        byte[] buffer = GetHtmlContent(context.Request);
-                        await context.Response.Body.WriteAsync(buffer, 0, buffer.Length);
-                    }
+                    byte[] buffer = GetHtmlContent(context.Request);
+                    await context.Response.Body.WriteAsync(buffer, 0, buffer.Length);
 
                 } while (true);
             }

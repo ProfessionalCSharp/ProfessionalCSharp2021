@@ -46,17 +46,15 @@ namespace SocketClient
                     return;
                 }
 
-                using (var client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp))
-                {
-                    client.Connect(ipAddress, port);
-                    Console.WriteLine("client successfully connected");
-                    var stream = new NetworkStream(client);
-                    var cts = new CancellationTokenSource();
+                using var client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                client.Connect(ipAddress, port);
+                Console.WriteLine("client successfully connected");
+                var stream = new NetworkStream(client);
+                var cts = new CancellationTokenSource();
 
-                    Task tSender = SenderAsync(stream, cts);
-                    Task tReceiver = Receiver(stream, cts.Token);
-                    await Task.WhenAll(tSender, tReceiver);
-                }
+                Task tSender = SenderAsync(stream, cts);
+                Task tReceiver = Receiver(stream, cts.Token);
+                await Task.WhenAll(tSender, tReceiver);
             }
             catch (SocketException ex)
             {

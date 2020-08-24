@@ -22,14 +22,12 @@ namespace WinAppHttpClient
         {
             try
             {
-                using (var client = new HttpClient())
-                {
-                    var request = new HttpRequestMessage(HttpMethod.Get, Url);
-                    HttpResponseMessage response = await client.SendAsync(request);
-                    Version = response.Version.ToString();
-                    response.EnsureSuccessStatusCode();
-                    Result = await response.Content.ReadAsStringAsync();
-                }
+                using var client = new HttpClient();
+                var request = new HttpRequestMessage(HttpMethod.Get, Url);
+                HttpResponseMessage response = await client.SendAsync(request);
+                Version = response.Version.ToString();
+                response.EnsureSuccessStatusCode();
+                Result = await response.Content.ReadAsStringAsync();
             }
             catch (Exception ex)
             {

@@ -101,12 +101,20 @@ namespace TaskSamples
 
         private static (int Result, int Remainder) TaskWithResult(object? division)
         {
-            (int x, int y) = ((int x, int y))division;
-            int result = x / y;
-            int remainder = x % y;
-            Console.WriteLine("task creates a result...");
+            if (division is ValueTuple<int, int> div)
+            {
+                (int x, int y) = div;
+                int result = x / y;
+                int remainder = x % y;
+                Console.WriteLine("task creates a result...");
 
-            return (result, remainder);
+                return (result, remainder);
+            }
+            else
+            {
+                throw new ArgumentException($"{nameof(division)} needs to be a ValueTuiple<int, int>");
+            }
+
         }
 
         public static void TasksUsingThreadPool()
