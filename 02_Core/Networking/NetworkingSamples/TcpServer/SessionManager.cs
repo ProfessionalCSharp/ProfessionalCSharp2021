@@ -13,8 +13,8 @@ namespace TcpServer
 
     public class SessionManager
     {
-        private readonly ConcurrentDictionary<string, Session> _sessions = new ConcurrentDictionary<string, Session>();
-        private readonly ConcurrentDictionary<string, Dictionary<string, string>> _sessionData = new ConcurrentDictionary<string, Dictionary<string, string>>();
+        private readonly ConcurrentDictionary<string, Session> _sessions = new();
+        private readonly ConcurrentDictionary<string, Dictionary<string, string>> _sessionData = new();
 
         public string CreateSession()
         {
