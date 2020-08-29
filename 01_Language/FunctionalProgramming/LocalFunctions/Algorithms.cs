@@ -6,7 +6,7 @@ namespace LocalFunctions
     {
         public static void QuickSort<T>(T[] elements) where T : IComparable<T>
         {
-            void Sort(int start, int end)
+            static void Sort(T[] elements, int start, int end)
             {
                 int i = start, j = end;
                 var pivot = elements[(start + end) / 2];
@@ -24,11 +24,11 @@ namespace LocalFunctions
                         j--;
                     }
                 }
-                if (start < j) Sort(start, j);
-                if (i < end) Sort(i, end);
+                if (start < j) Sort(elements, start, j);
+                if (i < end) Sort(elements, i, end);
             }
 
-            Sort(0, elements.Length - 1);
+            Sort(elements, 0, elements.Length - 1);
         }
 
         public static void WhenDoesItEnd()

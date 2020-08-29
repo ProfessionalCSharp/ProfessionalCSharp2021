@@ -7,10 +7,8 @@ namespace UsingStatic
         public static void Use<T>(this T item, Action<T> action)
             where T : IDisposable
         {
-            using (item)
-            {
-                action(item);
-            }
+            using var r = item;
+            action(r);
         }
 
         public static Func<T1, TResult> Compose<T1, T2, TResult>(Func<T1, T2> f1, 

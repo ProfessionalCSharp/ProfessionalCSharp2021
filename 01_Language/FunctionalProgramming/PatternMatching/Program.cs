@@ -11,7 +11,7 @@ namespace PatternMatching
             var p1 = new Person("Katharina", "Nagel");
             var p2 = new Person("Matthias", "Nagel");
             var p3 = new Person("Stephanie", "Nagel");
-            object[] data = { null, 42, "astring", p1, new Person[] { p2, p3 } };
+            object?[] data = { null, 42, "astring", p1, new Person[] { p2, p3 } };
 
             Console.WriteLine(nameof(IsOperator));
             foreach (var item in data)
@@ -28,7 +28,7 @@ namespace PatternMatching
             Console.WriteLine();
         }
 
-        static void IsOperator(object item)
+        static void IsOperator(object? item)
         {
             // const pattern
             if (item is null)
@@ -75,7 +75,7 @@ namespace PatternMatching
             }
         }
 
-        static void SwitchStatement(object item)
+        static void SwitchStatement(object? item)
         {
             switch (item)
             {
@@ -100,6 +100,22 @@ namespace PatternMatching
                     break;
                 default:
             }
+        }
+
+        static void SwitchExpression(object? item)
+        {
+            string result = item switch
+            {
+                null => "it's a const pattern",
+                42 => "it's a const pattern",
+                int i => $"it's a type pattern with int: {i}",
+                string s => $"it's a type pattern with string: {s}",
+                Person p when p.FirstName == "Katharina" => $"type pattern match with Person and when clause: {p}",
+                Person { FirstName: "Matthias" } p => $"type pattern match with Person and when clause: {p}",
+                Person p => $"type pattern match with Person: {p}",
+                var every => $"var pattern match {every?.GetType().Name}"
+            };
+            Console.WriteLine(result);
         }
     }
 }
