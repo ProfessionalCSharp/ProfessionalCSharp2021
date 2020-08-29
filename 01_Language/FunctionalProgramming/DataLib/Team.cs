@@ -2,14 +2,11 @@
 
 namespace DataLib
 {
-    public class Team
+    public record Team(string Name, IEnumerable<int> Years)
     {
         public Team(string name, params int[] years)
+            : this(name, (IEnumerable<int>)years ?? new List<int>())
         {
-            Name = name;
-            Years = years != null ? new List<int>(years) : new List<int>();
         }
-        public string Name { get; }
-        public IEnumerable<int> Years { get; }
     }
 }
