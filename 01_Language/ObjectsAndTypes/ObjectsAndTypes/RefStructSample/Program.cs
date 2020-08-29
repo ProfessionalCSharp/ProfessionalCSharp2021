@@ -2,7 +2,7 @@
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             ValueTypeOnly vt = new ValueTypeOnly(42);
             vt.AMethod();
