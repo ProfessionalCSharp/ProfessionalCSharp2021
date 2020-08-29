@@ -4,7 +4,7 @@ namespace InParameterSample
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             AValueType vt = new AValueType { Data = 42 };
             CantChange(vt);

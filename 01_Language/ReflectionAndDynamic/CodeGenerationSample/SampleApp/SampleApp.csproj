@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <Analyzer Include="..\CodeGenerationSample\bin\Debug\netstandard2.0\CodeGenerationSample.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CodeGenerationSample\CodeGenerationSample.csproj" />
+  </ItemGroup>
+
+</Project>

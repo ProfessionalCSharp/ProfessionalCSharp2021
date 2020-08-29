@@ -16,12 +16,12 @@ namespace EnumSample
         private static void UsingEnumClass()
         {
             Color red;
-            if (Enum.TryParse<Color>("Red", out red))
+            if (Enum.TryParse("Red", out red))
             {
                 Console.WriteLine($"successfully parsed {red}");
             }
 
-            string redtext = Enum.GetName(typeof(Color), red);
+            string? redtext = Enum.GetName(typeof(Color), red);
             Console.WriteLine(redtext);
 
             foreach (var day in Enum.GetNames(typeof(Color)))
