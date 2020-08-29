@@ -19,13 +19,15 @@ Compiling the Xamarin samples, you have different options using a Mac or a Windo
 * On the Mac, you can install Visual Studio for Mac to compile the Android and iOS samples.
 * On Windows 10, you can use Visual Studio 2017. To compile the iOS samples, you also need a Mac. Using only Windows 10, you can compile and run the Windows and Android code samples.
 
-* Visual Studio 2017 with the .NET Core workload
+* Visual Studio 2019 with the .NET Core workload
 
 Here's the list of chapters and the folders for the code samples:
 
+## Book 1 (The Language)
+
 * Chapter 1 - .NET Applications and Tools (HelloWorld)
 * Chapter 2 - Core C# (CoreCsharp)
-* Chapter 3 - Objects and Types (ObjectsAndTypes)
+* Chapter 3 - Classes, Structs, and Records (ObjectsAndTypes)
 * Chapter 4 - Object-Oriented Programming with C# (ObjectOrientation)
 * Chapter 5 - Generics (Generics)
 * Chapter 6 - Operators and Casts (OperatorsAndCasts)
@@ -40,7 +42,10 @@ Here's the list of chapters and the folders for the code samples:
 * Chapter 15 - Asynchronous Programming (Async)
 * Chapter 16 - Reflection, Metadata, and Dynamic Programming (ReflectionAndDynamic)
 * Chapter 17 - Managed and Umanaged Memory (Memory)
-* Chapter 18 - Visual Studio 2017 (VisualStudio)
+* Chapter 18 - Visual Studio 2019 (VisualStudio)
+
+## Book 2 (The Framework)
+
 * Chapter 19 - Libraries, Assemblies, Packages, and NuGet (Libraries)
 * Chapter 20 - Dependency Injection (DependencyInjection)
 * Chapter 21 - Tasks and Parallel Programming (Tasks)
@@ -52,24 +57,29 @@ Here's the list of chapters and the folders for the code samples:
 * Chapter 27 - Localization (Localization)
 * Chapter 28 - Testing (Tests)
 * Chapter 29 - Tracing, Logging, and Analytics (Diagnostics)
+* Chapter XX - Serialization (XMLandJSON)
+
+## Book 3 (Web)
+
 * Chapter 30 - ASP.NET Core (ASPNETCore)
+* Chapter xx - Blazor
 * Chapter 31 - ASP.NET Core MVC (MVC)
 * Chapter 32 - Web API (API)
+* Chapter xx - GRPC
+* Chapter xx - SignalR and WebHooks (SignalRAndWebHooks)
+* Chapter xx - Bots and Cognitive Services (BotAndCognitive)
+
+## Book 4 (Windows and Mobile)
+
 * Chapter 33 - Windows Apps (Windows)
 * Chapter 34 - Patterns with XAML Apps (Patterns and PatternsXamarinShared)
 * Chapter 35 - Styling Windows Apps (Styles)
 * Chapter 36 - Advanced Windows (AdvancedWindows)
-* Chapter 37 - Xamarin.Forms (Xamarin and PatternsXamarinShared)
-
-## Bonus Chapters
-
-* Bonus Chapter 1 - Composition (Composition)
-* Bonus Chapter 2 - XML and JSON (XMLandJSON)
-* Bonus Chapter 3 - SignalR and WebHooks (SignalRAndWebHooks)
-* Bonus Chapter 4 - Bots and Cognitive Services (BotAndCognitive)
 * Bonus Chapter 5 - More Windows Apps Features (MoreWindows)
+* Chapter 37 - MAUI (Xamarin and PatternsXamarinShared)
+* Chapter xx - Platform Uno
 
-In case you've some issues to compile and run the samples, create an issue in the [Professional C# 7 GitHub repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp7).
+In case you've some issues to compile and run the samples, create an issue in the [Professional C# 9 GitHub repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp9).
 
 > Have fun coding and enjoy the book!
 
