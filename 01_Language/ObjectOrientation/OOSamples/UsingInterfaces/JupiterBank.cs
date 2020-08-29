@@ -1,28 +1,26 @@
 ﻿using System;
 
-namespace Wrox.ProCSharp.JupiterBank
+namespace UsingInterfaces
 {
     public class GoldAccount : IBankAccount
     {
-        private decimal _balance;
-
-        public void PayIn(decimal amount) => _balance += amount;
+        public void PayIn(decimal amount) => Balance += amount;
 
         public bool Withdraw(decimal amount)
         {
-            if (_balance >= amount)
+            if (Balance >= amount)
             {
-                _balance -= amount;
+                Balance -= amount;
                 return true;
             }
             Console.WriteLine("Withdrawal attempt failed.");
             return false;
         }
 
-        public decimal Balance => _balance;
+        public decimal Balance { get; private set; }
 
         public override string ToString() =>
-            $"Venus Bank Saver: Balance = {_balance,6:C}";
+            $"Venus Bank Saver: Balance = {Balance,6:C}";
     }
 
     public class CurrentAccount : ITransferBankAccount

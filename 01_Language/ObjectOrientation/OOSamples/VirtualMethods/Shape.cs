@@ -16,18 +16,20 @@ namespace VirtualMethods
         public override string ToString() => $"Width: {Width}, Height: {Height}";
     }
 
-    public abstract class Shape
+    public abstract record Shape
     {
-        public Position Position { get; } = new Position();
-        public Size Size { get; } = new Size();
-
+        public Position? Position { get; init; }
+        public Size? Size { get; init; }
         public virtual void Draw() => WriteLine($"Shape with {Position} and {Size}");
 
         public virtual void Move(Position newPosition)
         {
-            Position.X = newPosition.X;
-            Position.Y = newPosition.Y;
-            WriteLine($"moves to {Position}");
+            if (Position != null)
+            {
+                Position.X = newPosition.X;
+                Position.Y = newPosition.Y;
+                WriteLine($"moves to {Position}");
+            }
         }
 
         public abstract void Resize(int width, int height);

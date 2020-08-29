@@ -2,7 +2,7 @@
 
 namespace VirtualMethods
 {
-    public class Rectangle : Shape
+    public record Rectangle : Shape
     {
         public override void Draw() =>
             Console.WriteLine($"Rectangle with {Position} and {Size}");
@@ -19,15 +19,15 @@ namespace VirtualMethods
         }
     }
 
-    public class Ellipse : Shape
+    public record Ellipse : Shape
     {
-        public Ellipse()
-            : base() { }
-
         public override void Resize(int width, int height)
         {
-            Size.Width = width;
-            Size.Height = height;
+            if (Size != null)
+            {
+                Size.Width = width;
+                Size.Height = height;
+            }
         }
     }
 }
