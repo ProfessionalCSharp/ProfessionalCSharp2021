@@ -60,10 +60,10 @@ namespace SpanSample
             Console.WriteLine(nameof(SpanOnTheHeap));
             Span<int> span1 = (new int[] { 1, 5, 11, 71, 22, 19, 21, 33 }).AsSpan();
 
-            span1.Slice(start: 4, length: 3).Fill(42);
+            // span1.Slice(start: 4, length: 3).Fill(42);
+            span1[4..7].Fill(42);
 
             Console.WriteLine(string.Join(", ", span1.ToArray()));
-
             Console.WriteLine();
         }
 
@@ -71,7 +71,8 @@ namespace SpanSample
         {
             Console.WriteLine(nameof(SpanExtensions));
             Span<int> span1 = (new int[] { 1, 5, 11, 71, 22, 19, 21, 33 }).AsSpan();
-            Span<int> span2 = span1.Slice(3, 4);
+            // Span<int> span2 = span1.Slice(3, 4);
+            Span<int> span2 = span1[3..7];
     
             bool overlaps = span1.Overlaps(span2);
             Console.WriteLine($"span1 overlaps span2: {overlaps}");
