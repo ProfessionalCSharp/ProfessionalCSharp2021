@@ -28,7 +28,16 @@ namespace PointerPlayground
             pZ = (double*)pX;
             Console.WriteLine($"x treated as a double = {*pZ}");
 
+            // use a function pointer
+            FunctionPointerSample.Calc(&Add);
+            FunctionPointerSample.Calc(&Subtract);
+
             Console.ReadLine();
         }
+
+        
+
+        static int Add(int x, int y) => x + y;
+        static int Subtract(int x, int y) => x - y;
     }
 }
