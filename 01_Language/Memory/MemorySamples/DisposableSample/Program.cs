@@ -4,10 +4,8 @@
     {
         static void Main()
         {
-            using (var resource = new SomeResource())
-            {
-                resource.Foo();
-            }
+            using var resource = new SomeResource();
+            resource.Foo();
         }
     }
 }
