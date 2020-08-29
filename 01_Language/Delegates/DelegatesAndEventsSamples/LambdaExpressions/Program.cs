@@ -12,7 +12,6 @@ namespace Wrox.ProCSharp.Delegates
             ClosureWithForEach();
         }
 
-
         static void SimpleDemos()
         {
             Console.WriteLine(nameof(SimpleDemos));
