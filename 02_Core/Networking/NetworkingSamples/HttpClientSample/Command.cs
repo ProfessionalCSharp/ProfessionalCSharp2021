@@ -3,13 +3,7 @@ using System.Threading.Tasks;
 
 namespace HttpClientSample
 {
-    internal class Command
+    internal record Command(string Option, string Text, Func<Task> ActionAsync)
     {
-        public Command(string option, string text, Func<Task> asyncAction)
-            => (Option, Text, ActionAsync) = (option, text, asyncAction);
-
-        public string Option { get; }
-        public string Text { get; }
-        public Func<Task> ActionAsync { get; }
     }
 }
