@@ -29,7 +29,7 @@ namespace DataFlowSample
                 using (FileStream stream = File.OpenRead(fileName))
                 {
                     var reader = new StreamReader(stream);
-                    string line = null;
+                    string? line = null;
                     while ((line = reader.ReadLine()) != null)
                     {
                         //WriteLine($"LoadLines {line}");
@@ -71,7 +71,6 @@ namespace DataFlowSample
                       Console.WriteLine(s);
                   }
               });
-
        
             fileNamesForPath.LinkTo(lines);
             lines.LinkTo(words);
