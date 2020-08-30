@@ -1,28 +1,21 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
+using DIWithOptions;
+using Microsoft.Extensions.Hosting;
 
-namespace DIWithOptions
-{
-    class Program
+using var host = Host.CreateDefaultBuilder()
+    .ConfigureServices(services =>
     {
-        static void Main()
+        // services.AddOptions(); // already added from host
+        services.AddGreetingService(options =>
         {
-            using var container = RegisterServices();
-            var controller = container.GetRequiredService<HomeController>();
-            string result = controller.Hello("Katharina");
-            Console.WriteLine(result);
-        }
+            options.From = "Christian";
+        });
+        services.AddSingleton<IGreetingService, GreetingService>();
+        services.AddTransient<HomeController>();
+    }).Build();
 
-        static ServiceProvider RegisterServices()
-        {
-            var services = new ServiceCollection();
-            services.AddOptions();
-            services.AddGreetingService(options =>
-            {
-                options.From = "Christian";
-            });
-            services.AddTransient<HomeController>();
-            return services.BuildServiceProvider();
-        }
-    }
-}
+var controller = host.Services.GetRequiredService<HomeController>();
+string result = controller.Hello("Katharina");
+Console.WriteLine(result);
+
