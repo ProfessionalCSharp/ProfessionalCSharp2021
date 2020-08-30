@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ServicesLifetime": {
+      "commandName": "Project",
+      "commandLineArgs": "--mode custom"
+    }
+  }
+}
