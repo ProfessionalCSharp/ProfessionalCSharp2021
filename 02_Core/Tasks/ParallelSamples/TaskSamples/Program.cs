@@ -17,7 +17,6 @@ namespace TaskSamples
             new Command("-pc", nameof(ParentAndChild), ParentAndChild),
         };
 
-
         static void Main(string[] args)
         {
             if (args.Length == 0 || args.Length > 1 || !s_commands.Select(c => c.Option).Contains(args[0]))
@@ -114,7 +113,6 @@ namespace TaskSamples
             {
                 throw new ArgumentException($"{nameof(division)} needs to be a ValueTuiple<int, int>");
             }
-
         }
 
         public static void TasksUsingThreadPool()

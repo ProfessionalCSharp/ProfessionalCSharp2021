@@ -128,7 +128,6 @@ namespace ParallelSamples
             });
         }
 
-
         public static void Log(string prefix) =>
             Console.WriteLine($"{prefix} task: {Task.CurrentId}, thread: {Thread.CurrentThread.ManagedThreadId}");
     }
