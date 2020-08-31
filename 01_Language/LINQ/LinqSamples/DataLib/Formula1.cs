@@ -44,7 +44,7 @@ namespace DataLib
                 new Racer("Nico", "Rosberg", "Germany", 207, 24, new int[] { 2016 }, new string[] { "Mercedes" })
             };
 
-        public static IList<Racer> GetChampions() => s_racers ?? (s_racers = InitializeRacers());
+        public static IList<Racer> GetChampions() => s_racers ??= InitializeRacers();
 
         private static List<Team>? s_teams;
         public static IList<Team> GetConstructorChampions()         
