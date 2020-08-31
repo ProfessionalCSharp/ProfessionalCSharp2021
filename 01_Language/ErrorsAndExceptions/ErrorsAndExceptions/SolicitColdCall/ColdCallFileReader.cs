@@ -5,8 +5,8 @@ namespace SolicitColdCall
 {
     public class ColdCallFileReader : IDisposable
     {
-        private FileStream _fs;
-        private StreamReader _sr;
+        private FileStream? _fs;
+        private StreamReader? _sr;
         private uint _nPeopleToRing;
         private bool _isDisposed = false;
         private bool _isOpen = false;
@@ -23,9 +23,12 @@ namespace SolicitColdCall
 
             try
             {
-                string firstLine = _sr.ReadLine();
-                _nPeopleToRing = uint.Parse(firstLine);
-                _isOpen = true;
+                string? firstLine = _sr.ReadLine();
+                if (firstLine != null)
+                {
+                    _nPeopleToRing = uint.Parse(firstLine);
+                    _isOpen = true;
+                }
             }
             catch (FormatException ex)
             {
@@ -49,7 +52,7 @@ namespace SolicitColdCall
 
             try
             {
-                string name = _sr.ReadLine();
+                string? name = _sr?.ReadLine();
                 if (name == null)
                 {
                     throw new ColdCallFileFormatException("Not enough names");

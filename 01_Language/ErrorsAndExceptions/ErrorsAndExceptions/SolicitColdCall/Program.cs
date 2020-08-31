@@ -9,46 +9,46 @@ namespace SolicitColdCall
         {
             Console.Write("Please type in the name of the file " +
                 "containing the names of the people to be cold called > ");
-            string fileName = Console.ReadLine();
-            ColdCallFileReaderLoop1(fileName);
-            Console.WriteLine();
-            ColdCallFileReaderLoop2(fileName);
-            Console.WriteLine();
+            string? fileName = Console.ReadLine();
+            if (fileName != null)
+            {
+                ColdCallFileReaderLoop1(fileName);
+                Console.WriteLine();
+                ColdCallFileReaderLoop2(fileName);
+                Console.WriteLine();
+            }
 
             Console.ReadLine();
         }
 
         private static void ColdCallFileReaderLoop2(string fileName)
         {
-            using (var peopleToRing = new ColdCallFileReader())
+            using var peopleToRing = new ColdCallFileReader();
+            try
             {
-
-                try
+                peopleToRing.Open(fileName);
+                for (int i = 0; i < peopleToRing.NPeopleToRing; i++)
                 {
-                    peopleToRing.Open(fileName);
-                    for (int i = 0; i < peopleToRing.NPeopleToRing; i++)
-                    {
-                        peopleToRing.ProcessNextPerson();
-                    }
-                    Console.WriteLine("All callers processed correctly");
+                    peopleToRing.ProcessNextPerson();
                 }
-                catch (FileNotFoundException)
+                Console.WriteLine("All callers processed correctly");
+            }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine($"The file {fileName} does not exist");
+            }
+            catch (ColdCallFileFormatException ex)
+            {
+                Console.WriteLine($"The file {fileName} appears to have been corrupted");
+                Console.WriteLine($"Details of problem are: {ex.Message}");
+                if (ex.InnerException != null)
                 {
-                    Console.WriteLine($"The file {fileName} does not exist");
+                    Console.WriteLine($"Inner exception was: {ex.InnerException.Message}");
                 }
-                catch (ColdCallFileFormatException ex)
-                {
-                    Console.WriteLine($"The file {fileName} appears to have been corrupted");
-                    Console.WriteLine($"Details of problem are: {ex.Message}");
-                    if (ex.InnerException != null)
-                    {
-                        Console.WriteLine($"Inner exception was: {ex.InnerException.Message}");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Exception occurred:\n{ex.Message}");
-                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception occurred:\n{ex.Message}");
             }
         }
 
