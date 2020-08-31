@@ -4,7 +4,7 @@ namespace OperatorsSample
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             PrefixAndPostfix();
             ConditionalOperator();
@@ -26,7 +26,7 @@ namespace OperatorsSample
 
         public void ShowPerson(Person p)
         {
-            string firstName = p?.FirstName;
+            string? firstName = p?.FirstName;
             int? age = p?.Age;
             int age1 = p?.Age ?? 0;
         }
@@ -35,7 +35,7 @@ namespace OperatorsSample
         {
             Person p = GetPerson();
 
-            string city = p?.WorkAddress?.City;
+            string? city = p?.WorkAddress?.City;
 
         }
 
@@ -59,8 +59,8 @@ namespace OperatorsSample
             Console.WriteLine(nameof(AsOperatorSample));
             object o1 = "Some String";
             object o2 = 5;
-            string s1 = o1 as string; // s1 = "Some String"
-            string s2 = o2 as string; // s2 = null
+            string? s1 = o1 as string; // s1 = "Some String"
+            string? s2 = o2 as string; // s2 = null
             Console.WriteLine($"o1 as string assigns a string to s1: {s1}");
             Console.WriteLine($"o2 as string assigns null to s2 because o2 is not a string: {s2}");
             Console.WriteLine();
@@ -89,7 +89,7 @@ namespace OperatorsSample
                 Console.WriteLine("i has the value 42");
             }
 
-            object o = null;
+            object? o = null;
             if (o is null)
             {
                 Console.WriteLine("o is null");
@@ -102,7 +102,9 @@ namespace OperatorsSample
         {
             Console.WriteLine(nameof(IsOperator));
             int i = 10;
+#pragma warning disable CS0183 // 'is' expression's given expression is always of the provided type
             if (i is object) // always an object
+#pragma warning restore CS0183 // 'is' expression's given expression is always of the provided type
             {
                 Console.WriteLine("i is an object");
             }

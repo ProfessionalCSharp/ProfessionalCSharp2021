@@ -2,7 +2,7 @@
 
 namespace OperatorOverloadingSample
 {
-    public struct Vector
+    public readonly struct Vector
     {
 
         public Vector(double x, double y, double z)
@@ -38,5 +38,4 @@ namespace OperatorOverloadingSample
           left.X * right.X + left.Y * right.Y + left.Z * right.Z;
 
     }
-
 }

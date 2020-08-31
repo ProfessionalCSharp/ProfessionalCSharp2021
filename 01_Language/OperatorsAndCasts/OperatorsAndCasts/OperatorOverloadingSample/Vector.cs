@@ -1,6 +1,6 @@
 ﻿namespace OperatorOverloadingSample
 {
-    struct Vector
+    public readonly struct Vector
     {
         public Vector(double x, double y, double z)
         {
