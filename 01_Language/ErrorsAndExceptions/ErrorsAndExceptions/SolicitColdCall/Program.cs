@@ -17,7 +17,6 @@ namespace SolicitColdCall
                 ColdCallFileReaderLoop2(fileName);
                 Console.WriteLine();
             }
-
             Console.ReadLine();
         }
 
