@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Wrox.ProCSharp.Generics
+﻿namespace Wrox.ProCSharp.Generics
 {
     public interface IAccount
     {
@@ -8,15 +6,7 @@ namespace Wrox.ProCSharp.Generics
         string Name { get; }
     }
 
-    public class Account : IAccount
+    public record Account(string Name, decimal Balance) : IAccount
     {
-        public string Name { get; }
-        public decimal Balance { get; }
-
-        public Account(string name, Decimal balance)
-        {
-            Name = name;
-            Balance = balance;
-        }
     }
 }

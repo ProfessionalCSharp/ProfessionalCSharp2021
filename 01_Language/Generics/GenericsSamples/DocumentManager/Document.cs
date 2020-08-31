@@ -7,15 +7,7 @@ namespace Wrox.ProCSharp.Generics
         string Content { get; }
     }
 
-    public class Document : IDocument
+    public record Document(string Title, string Content) : IDocument
     {
-        public Document(string title, string content)
-        {
-            Title = title;
-            Content = content;
-        }
-
-        public string Title { get; }
-        public string Content { get; }
     }
 }

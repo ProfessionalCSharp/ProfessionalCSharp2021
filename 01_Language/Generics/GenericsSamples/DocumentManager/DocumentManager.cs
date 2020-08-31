@@ -29,7 +29,7 @@ namespace Wrox.ProCSharp.Generics
 
         public TDocument GetDocument()
         {
-            TDocument doc = default(TDocument);
+            TDocument doc = default;
             lock (lockQueue)
             {
                 doc = documentQueue.Dequeue();

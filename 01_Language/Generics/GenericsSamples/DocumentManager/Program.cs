@@ -1,22 +1,14 @@
-﻿using static System.Console;
+﻿using System;
+using Wrox.ProCSharp.Generics;
 
-namespace Wrox.ProCSharp.Generics
+var dm = new DocumentManager<Document>();
+dm.AddDocument(new Document("Title A", "Sample A"));
+dm.AddDocument(new Document("Title B", "Sample B"));
+
+dm.DisplayAllDocuments();
+
+if (dm.IsDocumentAvailable)
 {
-    class Program
-    {
-        static void Main()
-        {
-            var dm = new DocumentManager<Document>();
-            dm.AddDocument(new Document("Title A", "Sample A"));
-            dm.AddDocument(new Document("Title B", "Sample B"));
-
-            dm.DisplayAllDocuments();
-
-            if (dm.IsDocumentAvailable)
-            {
-                Document d = dm.GetDocument();
-                WriteLine(d.Content);
-            }
-        }
-    }
+    Document d = dm.GetDocument();
+    Console.WriteLine(d.Content);
 }

@@ -28,9 +28,9 @@ namespace Wrox.ProCSharp.Generics
         }
 
         public static T2 Accumulate<T1, T2>(IEnumerable<T1> source, Func<T1, T2, T2> action)
+            where T2 : struct
         {
-            // TODO: update to C# 7.1 syntax
-            T2 sum = default(T2);
+            T2 sum = default;
             foreach (T1 item in source)
             {
                 sum = action(item, sum);

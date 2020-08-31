@@ -5,8 +5,8 @@ namespace Wrox.ProCSharp.Generics
 {
     public class LinkedList<T> : IEnumerable<T>
     {
-        public LinkedListNode<T> First { get; private set; }
-        public LinkedListNode<T> Last { get; private set; }
+        public LinkedListNode<T>? First { get; private set; }
+        public LinkedListNode<T>? Last { get; private set; }
 
         public LinkedListNode<T> AddLast(T node)
         {
@@ -18,7 +18,10 @@ namespace Wrox.ProCSharp.Generics
             }
             else
             {
-                Last.Next = newNode;
+                if (Last != null)
+                {
+                    Last.Next = newNode;
+                }
                 Last = newNode;
             }
             return newNode;
@@ -26,7 +29,7 @@ namespace Wrox.ProCSharp.Generics
 
         public IEnumerator<T> GetEnumerator()
         {
-            LinkedListNode<T> current = First;
+            LinkedListNode<T>? current = First;
 
             while (current != null)
             {

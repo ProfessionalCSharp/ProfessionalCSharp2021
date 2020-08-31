@@ -7,7 +7,7 @@ namespace Wrox.ProCSharp.Generics
             Value = value;
 
         public T Value { get; }
-        public LinkedListNode<T> Next { get; internal set; }
-        public LinkedListNode<T> Prev { get; internal set; }
+        public LinkedListNode<T>? Next { get; internal set; }
+        public LinkedListNode<T>? Prev { get; internal set; }
     }
 }
