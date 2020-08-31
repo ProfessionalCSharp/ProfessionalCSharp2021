@@ -1,6 +1,6 @@
-﻿using Microsoft.Net.Http.Server;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -33,11 +33,11 @@ namespace HttpServer
             try
             {
                 Console.WriteLine($"server starting at");
-                var listener = new WebListener();
-              
+                var listener = new HttpListener();
+                
                 foreach (var prefix in prefixes)
                 {
-                    listener.Settings.UrlPrefixes.Add(prefix);
+                    listener.Prefixes.Add(prefix);
                     Console.WriteLine($"\t{prefix}");
                 }
 
@@ -45,12 +45,12 @@ namespace HttpServer
 
                 do
                 {
-                    using RequestContext context = await listener.AcceptAsync();
-                    context.Response.Headers.Add("content-type", new string[] { "text/html" });
+                    HttpListenerContext context = await listener.GetContextAsync();
+                    context.Response.Headers.Add(HttpResponseHeader.ContentType, "text/html");
                     context.Response.StatusCode = (int)HttpStatusCode.OK;
 
                     byte[] buffer = GetHtmlContent(context.Request);
-                    await context.Response.Body.WriteAsync(buffer, 0, buffer.Length);
+                    await context.Response.OutputStream.WriteAsync(buffer, 0, buffer.Length);
 
                 } while (true);
             }
@@ -60,7 +60,7 @@ namespace HttpServer
             }
         }
 
-        private static byte[] GetHtmlContent(Request request)
+        private static byte[] GetHtmlContent(HttpListenerRequest request)
         {
             string title = "Sample WebListener";
 
@@ -74,10 +74,32 @@ namespace HttpServer
             return Encoding.UTF8.GetBytes(html);
         }
 
-        private static IEnumerable<string> GetRequestInfo(Request request) =>
-            request.GetType().GetProperties().Select(p => $"<div>{p.Name}: {p.GetValue(request)}</div>");
+        private static IEnumerable<string> GetRequestInfo(HttpListenerRequest request)
+        {
+            var properties = request.GetType().GetProperties();
+            var values = new List<(string Key, string Value)>();
+            foreach (var property in properties)
+            {
+                try
+                {
+                    string value = property.GetValue(request)?.ToString() ?? string.Empty;
+                    values.Add((property.Name, value));
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"{property.Name}: {ex.Message}");
+                    if (ex.InnerException != null)
+                    {
+                        Console.WriteLine($"\t{ex.InnerException.Message}");
+                    }
+                }
+            }
+            return values.Select(v => $"<div>{v.Key}: {v.Value}</div>");
+        }
 
-        private static IEnumerable<string> GetHeaderInfo(HeaderCollection headers) =>
-            headers.Keys.Select(key => $"<div>{key}: {string.Join(",", headers.GetValues(key))}</div>");
+        private static IEnumerable<string> GetHeaderInfo(NameValueCollection headers)
+        {           
+            return headers.Keys.Cast<string>().Select(key => $"<div>{key}: {string.Join(",", headers.GetValues(key) ?? new string[] { })}</div>");
+        }
     }
 }

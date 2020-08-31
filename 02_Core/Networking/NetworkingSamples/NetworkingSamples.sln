@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2024
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30420.98
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HTTP", "HTTP", "{62F9A8A8-8122-4671-B37E-A5F4BE8A97E6}"
 EndProject
@@ -40,6 +40,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinAppTcpClient", "WinAppTcpClient\WinAppTcpClient.csproj", "{991D6E1A-7DA6-4012-A19B-299FD5415DC6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFAppTcpClient", "WPFAppTcpClient\WPFAppTcpClient.csproj", "{108D5D89-61F8-461D-8841-800CC5BC52EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpKestrelServer", "HttpKestrelServer\HttpKestrelServer.csproj", "{45C00B5F-8999-4974-B71A-5B33242BCB16}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -289,6 +291,22 @@ Global
 		{108D5D89-61F8-461D-8841-800CC5BC52EA}.Release|x64.Build.0 = Release|Any CPU
 		{108D5D89-61F8-461D-8841-800CC5BC52EA}.Release|x86.ActiveCfg = Release|Any CPU
 		{108D5D89-61F8-461D-8841-800CC5BC52EA}.Release|x86.Build.0 = Release|Any CPU
+		{45C00B5F-8999-4974-B71A-5B33242BCB16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45C00B5F-8999-4974-B71A-5B33242BCB16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45C00B5F-8999-4974-B71A-5B33242BCB16}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{45C00B5F-8999-4974-B71A-5B33242BCB16}.Debug|ARM.Build.0 = Debug|Any CPU
+		{45C00B5F-8999-4974-B71A-5B33242BCB16}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{45C00B5F-8999-4974-B71A-5B33242BCB16}.Debug|x64.Build.0 = Debug|Any CPU
+		{45C00B5F-8999-4974-B71A-5B33242BCB16}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{45C00B5F-8999-4974-B71A-5B33242BCB16}.Debug|x86.Build.0 = Debug|Any CPU
+		{45C00B5F-8999-4974-B71A-5B33242BCB16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45C00B5F-8999-4974-B71A-5B33242BCB16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45C00B5F-8999-4974-B71A-5B33242BCB16}.Release|ARM.ActiveCfg = Release|Any CPU
+		{45C00B5F-8999-4974-B71A-5B33242BCB16}.Release|ARM.Build.0 = Release|Any CPU
+		{45C00B5F-8999-4974-B71A-5B33242BCB16}.Release|x64.ActiveCfg = Release|Any CPU
+		{45C00B5F-8999-4974-B71A-5B33242BCB16}.Release|x64.Build.0 = Release|Any CPU
+		{45C00B5F-8999-4974-B71A-5B33242BCB16}.Release|x86.ActiveCfg = Release|Any CPU
+		{45C00B5F-8999-4974-B71A-5B33242BCB16}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -306,6 +324,7 @@ Global
 		{0891BD03-3159-4791-BE8E-8E619B58AFB9} = {6F8E62B4-7D0C-4B94-98E1-918E25749857}
 		{991D6E1A-7DA6-4012-A19B-299FD5415DC6} = {6F8E62B4-7D0C-4B94-98E1-918E25749857}
 		{108D5D89-61F8-461D-8841-800CC5BC52EA} = {6F8E62B4-7D0C-4B94-98E1-918E25749857}
+		{45C00B5F-8999-4974-B71A-5B33242BCB16} = {62F9A8A8-8122-4671-B37E-A5F4BE8A97E6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0E570C56-EE7F-4622-8570-26AE3CDDA888}
