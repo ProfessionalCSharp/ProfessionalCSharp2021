@@ -36,7 +36,6 @@ namespace StringSample
             }
 
             Console.WriteLine("Encoded:\n" + greetingBuilder);
-
         }
 
         public static void SimpleStrings()

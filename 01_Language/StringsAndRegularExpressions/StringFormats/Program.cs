@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Globalization;
-using static System.FormattableString;
 
 namespace StringFormats
 {
@@ -38,7 +36,7 @@ namespace StringFormats
 
             var day = new DateTime(2025, 2, 14);
             Console.WriteLine($"{day:d}");
-            Console.WriteLine(Invariant($"{day:d}"));
+            Console.WriteLine(FormattableString.Invariant($"{day:d}"));
 
             string a1 = "a";
             int a2 = 3;
