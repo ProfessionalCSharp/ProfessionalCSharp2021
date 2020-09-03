@@ -28,7 +28,7 @@ namespace PipelineSample
                 using (FileStream stream = File.OpenRead(filename))
                 {
                     var reader = new StreamReader(stream);
-                    string line = null;
+                    string? line = null;
                     while ((line = await reader.ReadLineAsync()) != null)
                     {
                         output.Add(line);
@@ -105,7 +105,7 @@ namespace PipelineSample
             {
                 foreach (var item in input.GetConsumingEnumerable())
                 {
-                    ColoredConsole.WriteLine($"stage 6: {item}", item.Color);
+                    ColoredConsole.WriteLine($"stage 6: {item}", item.Color ?? "Black");
                 }
             }, TaskCreationOptions.LongRunning);
         }

@@ -10,7 +10,7 @@
 
         public string Word { get; }
         public int Count { get; }
-        public string Color { get; set; }
+        public string? Color { get; set; }
 
         public override string ToString() => $"{Count} times: {Word}";
     }

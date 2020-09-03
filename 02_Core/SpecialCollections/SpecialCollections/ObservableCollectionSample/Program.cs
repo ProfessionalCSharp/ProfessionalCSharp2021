@@ -21,7 +21,7 @@ namespace ObservableCollectionSample
             Console.ReadLine();
         }
 
-        public static void Data_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        public static void Data_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
         {
             Console.WriteLine($"action: {e.Action.ToString()}");
 
