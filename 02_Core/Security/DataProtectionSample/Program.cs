@@ -23,7 +23,6 @@ namespace DataProtectionSample
 
             MySafe safe = SetupDataProtection();
 
-
             switch (args[0])
             {
                 case writeOption:
@@ -48,7 +47,7 @@ namespace DataProtectionSample
             services.AddTransient<MySafe>();
           
             IServiceProvider provider = services.BuildServiceProvider();
-            return provider.GetService<MySafe>();
+            return provider.GetRequiredService<MySafe>();
         }
 
         public static void Read(MySafe safe, string fileName)
@@ -61,7 +60,8 @@ namespace DataProtectionSample
         public static void Write(MySafe safe, string fileName)
         {
             Console.WriteLine("enter content to write:");
-            string content = Console.ReadLine();
+            string? content = Console.ReadLine();
+            if (content == null) throw new InvalidOperationException("read null input");
             string encrypted = safe.Encrypt(content);
             File.WriteAllText(fileName, encrypted);
             Console.WriteLine($"content written to {fileName}");

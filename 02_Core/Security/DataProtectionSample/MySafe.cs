@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.DataProtection;
-using static System.Console;
 
 namespace DataProtectionSample
 {
