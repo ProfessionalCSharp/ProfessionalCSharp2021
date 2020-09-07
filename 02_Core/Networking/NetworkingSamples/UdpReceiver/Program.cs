@@ -62,6 +62,7 @@ namespace UdpReceiver
         private static async Task ReaderAsync(int port, string? groupAddress)
         {
             using var client = new UdpClient(port);
+
             if (groupAddress != null)
             {
                 client.JoinMulticastGroup(IPAddress.Parse(groupAddress));
