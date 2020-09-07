@@ -22,11 +22,10 @@ namespace WindowsPrincipalSample
             if (identity == null)
             {
                 Console.WriteLine("not a Windows Identity");
-                return null;
+                Environment.Exit(1);
             }
 
             identity.AddClaim(new Claim("Age", "25"));
-
 
             Console.WriteLine($"IdentityType: {identity}");
             Console.WriteLine($"Name: {identity.Name}");
@@ -45,7 +44,7 @@ namespace WindowsPrincipalSample
             if (principal == null)
             {
                 Console.WriteLine("not a Windows Principal");
-                return null;
+                Environment.Exit(1);
             }
             Console.WriteLine($"Users? {principal.IsInRole(WindowsBuiltInRole.User)}");
             Console.WriteLine($"Administrators? {principal.IsInRole(WindowsBuiltInRole.Administrator)}");
