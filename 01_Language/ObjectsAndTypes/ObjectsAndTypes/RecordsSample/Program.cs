@@ -5,7 +5,7 @@ namespace RecordsSample
     // positional record
     public record Book1(string Title, string Publisher) { }
 
-    // implements Equals, ==, != operators, GetHashCode
+    // implements Equals, ==, != operators, GetHashCode, properties with get/init, Deconstruct
 
     // nominal records - would be init-only properties, but this seems to have changed
     //public record Book2 { string Title; string Publisher; }
@@ -26,6 +26,7 @@ namespace RecordsSample
         {
             var b1 = new Book1("Professional C# 7", "Wrox Press");
             (string title, string publisher) = b1;
+            
             var b1b = b1 with { Title = "Professional C# 9" };
             Console.WriteLine(b1b);
 
@@ -34,6 +35,7 @@ namespace RecordsSample
                 Console.WriteLine("the books are the same");            
             
             var b2 = new Book2 { Title = "one", Publisher = "two" };
+            
             var b2b = b2 with { Title = "two" };
             var b2c = b2b with { Title = "one" };
             if (b2 == b2c) Console.WriteLine("the same");
