@@ -9,20 +9,19 @@ namespace FileAccessControl
     {
         static void Main(string[] args)
         {
-            string filename = null;
             if (args.Length == 0) return;
 
-            filename = args[0];
+            string filename = args[0];
 
-            using (FileStream stream = File.Open(filename, FileMode.Open))
+            using FileStream stream = File.Open(filename, FileMode.Open);
+            FileSecurity securityDescriptor = stream.GetAccessControl();
+            AuthorizationRuleCollection rules =
+                  securityDescriptor.GetAccessRules(true, true, typeof(NTAccount));
+
+            foreach (AuthorizationRule rule in rules)
             {
-                FileSecurity securityDescriptor = stream.GetAccessControl();
-                AuthorizationRuleCollection rules =
-                      securityDescriptor.GetAccessRules(true, true, typeof(NTAccount));
-
-                foreach (AuthorizationRule rule in rules)
+                if (rule is FileSystemAccessRule fileRule)
                 {
-                    var fileRule = rule as FileSystemAccessRule;
                     Console.WriteLine($"Access type: {fileRule.AccessControlType}");
                     Console.WriteLine($"Rights: {fileRule.FileSystemRights}");
                     Console.WriteLine($"Identity: {fileRule.IdentityReference.Value}");
