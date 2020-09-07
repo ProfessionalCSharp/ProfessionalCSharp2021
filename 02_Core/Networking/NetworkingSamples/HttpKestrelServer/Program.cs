@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Authentication;
 using System.Text;
 
 CreateHostBuilder(args).Build().Run();
@@ -15,8 +16,14 @@ static IHostBuilder CreateHostBuilder(string[] args) =>
         .ConfigureWebHostDefaults(webBuilder =>
         {
             webBuilder.UseStartup<Startup>()
-                .UseKestrel()
-                .UseUrls("https://localhost:5020", "http://localhost:5021");
+                .UseKestrel(kestrelOptions =>
+                {
+                    kestrelOptions.ConfigureHttpsDefaults(options =>
+                    {
+                        options.SslProtocols = SslProtocols.Tls12 | SslProtocols.Tls13;
+                    });
+                })
+                .UseUrls("https://localhost:5020", "http://localhost:5021");                
         });
 
 public class Startup
