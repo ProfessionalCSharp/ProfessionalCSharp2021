@@ -10,6 +10,25 @@ namespace UsingDependencyInjection
         private readonly BooksContext _booksContext;
         public BooksService(BooksContext context) => _booksContext = context;
 
+        public Task CreateDataaseAsync()
+        {
+            return _booksContext.Database.EnsureCreatedAsync();
+        }
+
+
+        public async Task DeleteDatabaseAsync()
+        {
+            Console.Write("Delete the database? ");
+            string? input = Console.ReadLine();
+            if (input?.ToLower() == "y")
+            {
+                bool deleted = await _booksContext.Database.EnsureDeletedAsync();
+                string deletionInfo = deleted ? "deleted" : "not deleted";
+                Console.WriteLine($"database {deletionInfo}");
+            }
+        }
+
+
         public async Task AddBooksAsync()
         {
             var b1 = new Book

@@ -3,16 +3,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Intro
 {
-    [Table("Books")]
+    // [Table("Books")]
     public class Book
     {
         public int BookId { get; set; }
 
-        [Required]
+        // [Required]
         [StringLength(50)]
-        public string Title { get; set; }
+        public string Title { get; set; } = string.Empty;
 
         [StringLength(30)]
-        public string Publisher { get; set; }
+        public string? Publisher { get; set; }
     }
 }
