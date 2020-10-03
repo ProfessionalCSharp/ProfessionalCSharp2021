@@ -17,12 +17,12 @@ namespace SpanSample
         {
             Console.WriteLine(nameof(SpanOnNativeMemory));
             const int nbytes = 100;
-            IntPtr p = Marshal.AllocHGlobal(nbytes);
+            nint p = Marshal.AllocHGlobal(nbytes);
             try
-            {              
-                int* p2 = (int*)p.ToPointer();
+            {
+                int* p2 = (int*)p;
                 
-                Span<int> span = new Span<int>(p2, nbytes >> 2);
+                var span = new Span<int>(p2, nbytes >> 2);
                 span.Fill(42);
 
                 int max = nbytes >> 2;
