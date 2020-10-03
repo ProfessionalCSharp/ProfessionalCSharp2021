@@ -6,9 +6,13 @@ namespace QuickArray
     {
         unsafe public static void Main()
         {
-            Console.Write($"How big an array do you want? {Environment.NewLine}>");
-            string userInput = Console.ReadLine();
-            int size = int.Parse(userInput);
+            string? userInput;
+            int size;
+            do
+            {
+                Console.Write($"How big an array do you want? {Environment.NewLine}>");
+                userInput = Console.ReadLine();
+            } while (!int.TryParse(userInput, out size));
 
             long* pArray = stackalloc long[size];
             for (int i = 0; i < size; i++)
