@@ -32,11 +32,18 @@ namespace PointerPlayground
             FunctionPointerSample.Calc(&Add);
             FunctionPointerSample.Calc(&Subtract);
 
+            //delegate* managed<int, int, int>[] arrayOfPointers = new delegate* managed<int, int, int>[3];
+            //arrayOfPointers[0] = &Add;
+            //arrayOfPointers[1] = &Subtract;
+            //delegate* managed<int, int, int> first = arrayOfPointers[0];
+            //int result = first(4, 3);
+            //Console.WriteLine(result);
+            //first += 1;
+
+
             Console.ReadLine();
         }
-
-        
-
+       
         static int Add(int x, int y) => x + y;
         static int Subtract(int x, int y) => x - y;
     }
