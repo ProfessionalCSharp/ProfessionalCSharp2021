@@ -23,59 +23,51 @@ Compiling the Xamarin samples, you have different options using a Mac or a Windo
 
 Here's the list of chapters and the folders for the code samples:
 
-## Book 1 (The Language and Libraries)
+## Part 1 (The Language)
 
 * Chapter 1 - .NET Applications and Tools (HelloWorld)
 * Chapter 2 - Core C# (CoreCsharp)
 * Chapter 3 - Classes, Structs, Tuples, and Records (ObjectsAndTypes)
 * Chapter 4 - Object-Oriented Programming with C# (ObjectOrientation)
-* Chapter 5 - Generics (Generics)
-* Chapter 6 - Operators and Casts (OperatorsAndCasts)
-* Chapter 7 - Arrays (Arrays)
-* Chapter 8 - Delegates, Lambdas, and Events (Delegates)
-* Chapter 9 - Strings and Regluar Expressions (StringsAndRegularExpressions)
-* Chapter 10 - Collections (Collections)
-* Chapter 11 - Language Integrated Query (LINQ)
-* Chapter 12 - Errors and Exceptions (ErrorsAndExceptions)
-* Chapter 13 - Tasks and Asynchronous Programming (Async)
-* Chapter 14 - Reflection, Metadata, and Code Generation (ReflectionAndDynamic)
-* Chapter 15 - Managed and Umanaged Memory (Memory)
-* Chapter 16 - Libraries, Assemblies, Packages, and NuGet (Libraries)
-* Chapter 17 - Dependency Injection and Configuration (DependencyInjection)
-* Chapter 18 - Diagnostics and Metrics (Diagnostics)
-* Chapter 19 - Parallel Programming (Parallel)
-* Chapter 20 - Files and Streams (FilesAndStreams)
-* Chapter 21 - Networking (Networking)
-* Chapter 22 - Security (Security)
-* Chapter 23 - ADO.NET and Transactions (ADONet)
-* Chapter 24 - Entity Framework Core (EFCore)
-* Chapter 25 - Localization (Localization)
-* Chapter 26 - Unit Tests (UnitTesting)
+* Chapter 5 - Operators and Casts (OperatorsAndCasts)
+* Chapter 6 - Arrays (Arrays)
+* Chapter 7 - Delegates, Lambdas, and Events (Delegates)
+* Chapter 8 - Collections (Collections)
+* Chapter 9 - Language Integrated Query (LINQ)
+* Chapter 10 - Errors and Exceptions (ErrorsAndExceptions)
+* Chapter 11 - Tasks and Asynchronous Programming (Async)
+* Chapter 12 - Reflection, Metadata, and Code Generation (ReflectionAndDynamic)
+* Chapter 13 - Managed and Umanaged Memory (Memory)
 
-## Book 3 (Apps and Services)
+## Part 2  (The Libraries)
 
-* Chapter 27 - Tools for Web Applications and Services
-* Chapter 28 - ASP.NET Core (Apps )
-* Chapter 29 - Razor Pages (Razor)
-* Chapter 30 - ASP.NET Core MVC (MVC)
-* Chapter 31 - Blazor
-* Chapter 32 - Web API (API)
-* Chapter 33 - GRPC
-* Chapter 34 - Security with Web Apps and Services
-* Chapter 35 - Localization with Web Apps
-* Chapter 36 - SignalR
-* Chapter 37 - Cognitive Services
-* Chapter 38 - Bot Framework
-* Chapter 39 - Visual Studio for Windows and Mobile Apps
-* Chapter 40 - Windows Apps
-* Chapter 41 - Patterns with XAML Apps
-* Chapter 42 - Styling Windows Apps
-* Chapter 43 - Advanced Windows Apps
-* Chapter 44 - Windows Forms and WPF
-* Chapter 45 - Maui
-* Chapter 46 - Platform Uno 
-* Chapter 47 - Localizing Apps
-* Chapter 48 - UI Testing
+* Chapter 14 - Libraries, Assemblies, Packages, and NuGet (Libraries)
+* Chapter 15 - Dependency Injection and Configuration (DependencyInjection)
+* Chapter 16 - Diagnostics and Metrics (Diagnostics)
+* Chapter 17 - Parallel Programming (Parallel)
+* Chapter 18 - Files and Streams (FilesAndStreams)
+* Chapter 19 - Networking (Networking)
+* Chapter 20 - Security (Security)
+* Chapter 21 - ADO.NET and Transactions (ADONet)
+* Chapter 22 - Entity Framework Core (EFCore)
+* Chapter 23 - Localization (Localization)
+* Chapter 24 - Unit Tests (UnitTesting)
+
+## Part 3 (Web Apps and Services)
+
+* Chapter 25 - ASP.NET Core (AspNetCore)
+* Chapter 26 - Services (API)
+* Chapter 27 - Razor Pages and MVC (RazorAndMVC)
+* Chapter 28 - Blazor (Blazor)
+* Chapter 29 - SignalR (SignalR)
+
+## Part 4 (Windows and Mobile)
+
+* Chapter 30 - Windows Apps (WinUI)
+* Chapter 31 - Patterns with XAML Apps
+* Chapter 32 - Styling Windows Apps (Styling)
+* Chapter 33 - Advanced Windows Apps (AdvancedWindows)
+* Chapter B1 - Maui (Maui)
 
 In case you've some issues to compile and run the samples, create an issue in the [Professional C# 9 GitHub repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp9).
 
