@@ -37,10 +37,10 @@ namespace DataLib
                 new Racer("Mika", "Hakkinen", "Finland", 160, 20, new int[] { 1998, 1999 }, new string[] { "McLaren" }),
                 new Racer("Michael", "Schumacher", "Germany", 287, 91, new int[] { 1994, 1995, 2000, 2001, 2002, 2003, 2004 }, new string[] { "Benetton", "Ferrari" }),
                 new Racer("Fernando", "Alonso", "Spain", 314, 32, new int[] { 2005, 2006 }, new string[] { "Renault" }),
-                new Racer("Kimi", "Räikkönen", "Finland", 311, 22 , new int[] { 2007 }, new string[] { "Ferrari" }),
-                new Racer("Lewis", "Hamilton", "UK", 249, 83, new int[] { 2008, 2014, 2015, 2017, 2018, 2019 }, new string[] { "McLaren", "Mercedes" }),
+                new Racer("Kimi", "Räikkönen", "Finland", 323, 21 , new int[] { 2007 }, new string[] { "Ferrari" }),
+                new Racer("Lewis", "Hamilton", "UK", 260, 91, new int[] { 2008, 2014, 2015, 2017, 2018, 2019 }, new string[] { "McLaren", "Mercedes" }),
                 new Racer("Jenson", "Button", "UK", 306, 16, new int[] { 2009 }, new string[] { "Brawn GP" }),
-                new Racer("Sebastian", "Vettel", "Germany", 240, 53, new int[] { 2010, 2011, 2012, 2013 }, new string[] { "Red Bull Racing" }),
+                new Racer("Sebastian", "Vettel", "Germany", 250, 53, new int[] { 2010, 2011, 2012, 2013 }, new string[] { "Red Bull Racing" }),
                 new Racer("Nico", "Rosberg", "Germany", 207, 24, new int[] { 2016 }, new string[] { "Mercedes" })
             };
 
@@ -156,45 +156,45 @@ namespace DataLib
         }
 
         private static IList<Racer>? _moreRacers;
-        private static IList<Racer> GetMoreRacers()
+        public static IList<Racer> GetMoreRacers()
         {
             if (_moreRacers == null)
             {
                 _moreRacers = new List<Racer>();
-                _moreRacers.Add(new Racer("Luigi", "Fagioli", "Italy", starts: 7, wins: 1));
-                _moreRacers.Add(new Racer("Jose Froilan", "Gonzalez", "Argentina", starts: 26, wins: 2));
-                _moreRacers.Add(new Racer("Piero", "Taruffi", "Italy", starts: 18, wins: 1));
-                _moreRacers.Add(new Racer("Stirling", "Moss", "UK", starts: 66, wins: 16));
-                _moreRacers.Add(new Racer("Eugenio", "Castellotti", "Italy", starts: 14, wins: 0));
-                _moreRacers.Add(new Racer("Peter", "Collins", "UK", starts: 32, wins: 3));
-                _moreRacers.Add(new Racer("Luigi", "Musso", "Italy", starts: 24, wins: 1));
-                _moreRacers.Add(new Racer("Tony", "Brooks", "UK", starts: 38, wins: 6));
-                _moreRacers.Add(new Racer("Bruce", "McLaren", "New Zealand", starts: 100, wins: 4));
-                _moreRacers.Add(new Racer("Wolfgang von", "Trips", "Germany", starts: 27, wins: 2));
-                _moreRacers.Add(new Racer("Richie", "Ginther", "USA", starts: 52, wins: 1));
-                _moreRacers.Add(new Racer("Jackie", "Ickx", "Belgium", starts: 116, wins: 8));
-                _moreRacers.Add(new Racer("Clay", "Regazzoni", "Switzerland", starts: 132, wins: 5));
-                _moreRacers.Add(new Racer("Ronnie", "Peterson", "Sweden", starts: 123, wins: 10));
-                _moreRacers.Add(new Racer("Francois", "Cevert", "France", starts: 46, wins: 1));
-                _moreRacers.Add(new Racer("Carlos", "Reutemann", "Argentina", starts: 146, wins: 12));
-                _moreRacers.Add(new Racer("Gilles", "Villeneuve", "Canada", starts: 67, wins: 6));
-                _moreRacers.Add(new Racer("Didier", "Pironi", "France", starts: 70, wins: 3));
-                _moreRacers.Add(new Racer("John", "Watson", "UK", starts: 152, wins: 5));
-                _moreRacers.Add(new Racer("Rene", "Arnoux", "France", starts: 149, wins: 7));
-                _moreRacers.Add(new Racer("Elio", "de Angelis", "Italy", starts: 108, wins: 2));
-                _moreRacers.Add(new Racer("Michele", "Alboreto", "Italy", starts: 194, wins: 5));
-                _moreRacers.Add(new Racer("Gerhard", "Berger", "Austria", starts: 210, wins: 10));
-                _moreRacers.Add(new Racer("Riccardo", "Patrese", "Italy", starts: 256, wins: 6));
-                _moreRacers.Add(new Racer("David", "Coulthard", "UK", starts: 246, wins: 13));
-                _moreRacers.Add(new Racer("Heinz-Harald", "Frentzen", "Germany", starts: 156, wins: 3));
-                _moreRacers.Add(new Racer("Eddie", "Irvine", "UK", starts: 147, wins: 4));
-                _moreRacers.Add(new Racer("Rubens", "Barrichello", "Brazil", starts: 322, wins: 11));
-                _moreRacers.Add(new Racer("Juan Pablo", "Montoya", "Columbia", starts: 94, wins: 7));
-                _moreRacers.Add(new Racer("Felipe", "Massa", "Brazil", starts: 269, wins: 11));
-                _moreRacers.Add(new Racer("Mark", "Webber", "Australia", starts: 215, wins: 9));
-                _moreRacers.Add(new Racer("Daniel", "Ricciardo", "Australia", starts: 170, wins: 7));
-                _moreRacers.Add(new Racer("Valtteri", "Bottas", "Finland", starts: 139, wins: 7));
-                _moreRacers.Add(new Racer("Max", "Verstappen", "Netherlands", starts: 101, wins: 8));
+                _moreRacers.Add(new Racer("Luigi", "Fagioli", "Italy", Starts: 7, Wins: 1));
+                _moreRacers.Add(new Racer("Jose Froilan", "Gonzalez", "Argentina", 26, 2));
+                _moreRacers.Add(new Racer("Piero", "Taruffi", "Italy", Starts: 18, Wins: 1));
+                _moreRacers.Add(new Racer("Stirling", "Moss", "UK", Starts: 66, Wins: 16));
+                _moreRacers.Add(new Racer("Eugenio", "Castellotti", "Italy", Starts: 14, Wins: 0));
+                _moreRacers.Add(new Racer("Peter", "Collins", "UK", Starts: 32, Wins: 3));
+                _moreRacers.Add(new Racer("Luigi", "Musso", "Italy", Starts: 24, Wins: 1));
+                _moreRacers.Add(new Racer("Tony", "Brooks", "UK", Starts: 38, Wins: 6));
+                _moreRacers.Add(new Racer("Bruce", "McLaren", "New Zealand", Starts: 100, Wins: 4));
+                _moreRacers.Add(new Racer("Wolfgang von", "Trips", "Germany", Starts: 27, Wins: 2));
+                _moreRacers.Add(new Racer("Richie", "Ginther", "USA", Starts: 52, Wins: 1));
+                _moreRacers.Add(new Racer("Jackie", "Ickx", "Belgium", Starts: 116, Wins: 8));
+                _moreRacers.Add(new Racer("Clay", "Regazzoni", "Switzerland", Starts: 132, Wins: 5));
+                _moreRacers.Add(new Racer("Ronnie", "Peterson", "Sweden", Starts: 123, Wins: 10));
+                _moreRacers.Add(new Racer("Francois", "Cevert", "France", Starts: 46, Wins: 1));
+                _moreRacers.Add(new Racer("Carlos", "Reutemann", "Argentina", Starts: 146, Wins: 12));
+                _moreRacers.Add(new Racer("Gilles", "Villeneuve", "Canada", Starts: 67, Wins: 6));
+                _moreRacers.Add(new Racer("Didier", "Pironi", "France", Starts: 70, Wins: 3));
+                _moreRacers.Add(new Racer("John", "Watson", "UK", Starts: 152, Wins: 5));
+                _moreRacers.Add(new Racer("Rene", "Arnoux", "France", Starts: 149, Wins: 7));
+                _moreRacers.Add(new Racer("Elio", "de Angelis", "Italy", Starts: 108, Wins: 2));
+                _moreRacers.Add(new Racer("Michele", "Alboreto", "Italy", Starts: 194, Wins: 5));
+                _moreRacers.Add(new Racer("Gerhard", "Berger", "Austria", Starts: 210, Wins: 10));
+                _moreRacers.Add(new Racer("Riccardo", "Patrese", "Italy", Starts: 256, Wins: 6));
+                _moreRacers.Add(new Racer("David", "Coulthard", "UK", Starts: 246, Wins: 13));
+                _moreRacers.Add(new Racer("Heinz-Harald", "Frentzen", "Germany", Starts: 156, Wins: 3));
+                _moreRacers.Add(new Racer("Eddie", "Irvine", "UK", Starts: 147, Wins: 4));
+                _moreRacers.Add(new Racer("Rubens", "Barrichello", "Brazil", Starts: 322, Wins: 11));
+                _moreRacers.Add(new Racer("Juan Pablo", "Montoya", "Columbia", Starts: 94, Wins: 7));
+                _moreRacers.Add(new Racer("Felipe", "Massa", "Brazil", Starts: 269, Wins: 11));
+                _moreRacers.Add(new Racer("Mark", "Webber", "Australia", Starts: 215, Wins: 9));
+                _moreRacers.Add(new Racer("Daniel", "Ricciardo", "Australia", Starts: 181, Wins: 7));
+                _moreRacers.Add(new Racer("Valtteri", "Bottas", "Finland", Starts: 149, Wins: 9));
+                _moreRacers.Add(new Racer("Max", "Verstappen", "Netherlands", Starts: 112, Wins: 9));
             }
             return _moreRacers;
         }
