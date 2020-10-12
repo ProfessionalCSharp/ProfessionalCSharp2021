@@ -10,40 +10,6 @@ namespace EnumerableSample
 {
     internal class LinqSamples
     {
-        internal static void Register(RootCommand command)
-        {
-            var linqSamplesCommand = new Command("linq");
-
-            MethodInfo[] methods = Assembly.GetExecutingAssembly()
-                .GetTypes()
-                .Where(t => t.Name == nameof(LinqSamples))
-                .Single()
-                .GetMethods()
-                .Where(m => m.IsPublic && m.IsStatic)
-                .ToArray();
-
-            foreach (var method in methods)
-            {
-                var option = new Option(method.Name, method.Name);
-                linqSamplesCommand.AddOption(option);
-
-                
-                //app.Command(method.Name.ToLower(), cmd =>
-                //{
-                //    cmd.Description = method.Name;
-                //    cmd.OnExecute(() => { method.Invoke(null, null); return 0; });
-                //});
-            }
-
-            linqSamplesCommand.Handler = CommandHandler.Create(() =>
-            {
-
-            });
-
-          
-            command.AddCommand(linqSamplesCommand);
-        }
-
         public static void GenerateRange()
         {
             var values = Enumerable.Range(1, 20);
@@ -56,6 +22,8 @@ namespace EnumerableSample
 
         public static void Except()
         {
+            Console.WriteLine("Show the list of Formula 1 drives that have been in the top 3 but never a world champion");
+
             var racers = Formula1.GetChampionships().SelectMany(cs => new List<RacerInfo>()
                {
                  new RacerInfo(cs.Year, 1, cs.First.FirstName(), cs.First.LastName()),
@@ -83,6 +51,8 @@ namespace EnumerableSample
 
         public static void ConvertWithCast()
         {
+            Console.WriteLine("Convert elements of a non-generic collections using Cast<T>");
+
             if (Formula1.GetChampions() is System.Collections.ICollection coll)
             {
                 var list = new System.Collections.ArrayList(coll);
@@ -100,6 +70,8 @@ namespace EnumerableSample
 
         public static void ZipOperation()
         {
+            Console.WriteLine("Use Zip to combine collections");
+
             var racerNames = from r in Formula1.GetChampions()
                              where r.Country == "Italy"
                              orderby r.Wins descending
@@ -126,6 +98,8 @@ namespace EnumerableSample
 
         public static void ToLookup()
         {
+            Console.WriteLine("Create a Lookup for racers by car");
+
             var racers = (from r in Formula1.GetChampions()
                           from c in r.Cars!
                           select new
@@ -145,6 +119,8 @@ namespace EnumerableSample
 
         public static void AggregateSum()
         {
+            Console.WriteLine("Use Sum() to aggregate all from champions by country");
+
             var countries = (from c in
                                  from r in Formula1.GetChampions()
                                  group r by r.Country into c

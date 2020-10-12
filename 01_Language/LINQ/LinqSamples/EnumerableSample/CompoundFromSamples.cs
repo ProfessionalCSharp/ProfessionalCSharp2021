@@ -1,35 +1,11 @@
 ﻿using DataLib;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace EnumerableSample
 {
     class CompoundFromSamples
     {
-        //internal static void Register(CommandLineApplication app)
-        //{
-        //    app.Command("compound", cmd =>
-        //    {
-        //        var methodOption = new CommandOption("-m", CommandOptionType.NoValue);
-        //        cmd.Options.AddRange(new[] { methodOption });
-        //        cmd.Description = "compound -[m]";
-        //        cmd.OnExecute(() =>
-        //        {
-        //            if (methodOption.HasValue())
-        //            {
-        //                CompoundFromWithMethods();
-        //            }
-        //            else
-        //            {
-        //                CompoundFrom();
-        //            }
-        //            return 0;
-        //        });
-        //    });
-        //}
-
         public static void CompoundFrom()
         {
             var ferrariDrivers = from r in Formula1.GetChampions()

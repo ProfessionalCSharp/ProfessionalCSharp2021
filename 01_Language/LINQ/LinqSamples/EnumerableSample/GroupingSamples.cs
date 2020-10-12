@@ -6,48 +6,6 @@ namespace EnumerableSample
 {
     class GroupingSamples
     {
-        //internal static void Register(CommandLineApplication app)
-        //{
-        //    app.Command("group", cmd =>
-        //    {
-        //        var methodOption = new CommandOption("-m", CommandOptionType.NoValue);
-        //        var variableOption = new CommandOption("-v", CommandOptionType.NoValue);
-        //        var anonymousOption = new CommandOption("-a", CommandOptionType.NoValue);
-        //        var nestedOption = new CommandOption("-n", CommandOptionType.NoValue);
-        //        var nestedMethodOption = new CommandOption("-nm", CommandOptionType.NoValue);
-        //        cmd.Options.AddRange(new[] { methodOption, variableOption, anonymousOption, nestedOption, nestedMethodOption });
-        //        cmd.Description = "group -[m|v|a|n|nm]";
-        //        cmd.OnExecute(() =>
-        //        {
-        //            if (methodOption.HasValue())
-        //            {
-        //                GroupingWithMethods();
-        //            }
-        //            else if (variableOption.HasValue())
-        //            {
-        //                GroupingWithVariables();
-        //            }
-        //            else if (anonymousOption.HasValue())
-        //            {
-        //                GroupingWithAnonymousTypes();
-        //            }
-        //            else if (nestedOption.HasValue())
-        //            {
-        //                GroupingAndNestedObjects();
-        //            }
-        //            else if (nestedMethodOption.HasValue())
-        //            {
-        //                GroupingAndNestedObjectsWithMethods();
-        //            }
-        //            else
-        //            {
-        //                Grouping();
-        //            }
-        //            return 0;
-        //        });
-        //    });
-        //}
-
         public static void Grouping()
         {
             var countries = from r in Formula1.GetChampions()

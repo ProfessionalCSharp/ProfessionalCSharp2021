@@ -1,59 +1,11 @@
 ﻿using DataLib;
 using System;
-using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.Linq;
 
 namespace EnumerableSample
 {
     public class FilteringSamples
     {
-        internal static void Register(RootCommand command)
-        {
-            var linqSamplesCommand = new Command("filter");
-
-
-            linqSamplesCommand.Handler = CommandHandler.Create(() =>
-            {
-
-            });
-
-
-            command.AddCommand(linqSamplesCommand);
-        }
-
-        //internal static void Register(CommandLineApplication app)
-        //{
-        //    app.Command("filter", cmd =>
-        //    {
-        //        var invokeMethodOption = new CommandOption("-m", CommandOptionType.NoValue);
-        //        var indexOption = new CommandOption("-i", CommandOptionType.NoValue);
-        //        var typeOption = new CommandOption("-t", CommandOptionType.NoValue);
-        //        cmd.Options.AddRange(new[] { invokeMethodOption, indexOption, typeOption });
-        //        cmd.Description = "filter -[m|i|t]";
-        //        cmd.OnExecute(() =>
-        //        {
-        //            if (invokeMethodOption.HasValue())
-        //            {
-        //                FilteringWithMethods();
-        //            }
-        //            else if (indexOption.HasValue())
-        //            {
-        //                FilteringWithIndex();
-        //            }
-        //            else if (typeOption.HasValue())
-        //            {
-        //                TypeFiltering();
-        //            }
-        //            else
-        //            {
-        //                Filtering();
-        //            }
-        //            return 0;
-        //        });
-        //    });
-        //}
-
         public static void Filtering()
         {
             var racers = from r in Formula1.GetChampions()
