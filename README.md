@@ -1,5 +1,5 @@
 
-# Professional C# 9 and .NET 5
+# Professional C# and .NET (2021 Edition)
 
 Code samples for the Wrox Press book **Professional C# and .NET (2021 Edition)**
 
@@ -56,7 +56,7 @@ Here's the list of chapters and the folders for the code samples:
 ## Part 3 (Web Apps and Services)
 
 * Chapter 25 - ASP.NET Core (AspNetCore)
-* Chapter 26 - Services (API)
+* Chapter 26 - Services (Services)
 * Chapter 27 - Razor Pages and MVC (RazorAndMVC)
 * Chapter 28 - Blazor (Blazor)
 * Chapter 29 - SignalR (SignalR)
@@ -67,9 +67,8 @@ Here's the list of chapters and the folders for the code samples:
 * Chapter 31 - Patterns with XAML Apps
 * Chapter 32 - Styling Windows Apps (Styling)
 * Chapter 33 - Advanced Windows Apps (AdvancedWindows)
-* Chapter B1 - Maui (Maui)
 
-In case you've some issues to compile and run the samples, create an issue in the [Professional C# 9 GitHub repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp9).
+In case you've some issues to compile and run the samples, create an issue in the [Professional C# and .NET (2021) GitHub repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021).
 
 > Have fun coding and enjoy the book!
 
