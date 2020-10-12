@@ -3,8 +3,14 @@ using System.Collections.Generic;
 
 namespace DataLib
 {
-    public record Racer(string FirstName, string LastName, string Country, int Starts, int Wins, IEnumerable<int>? Years = null, IEnumerable<string>? Cars = null) : IComparable<Racer>, IFormattable
+    public record Racer(string FirstName, string LastName, string Country, int Starts, int Wins, IEnumerable<int> Years, IEnumerable<string> Cars) : IComparable<Racer>, IFormattable
     {
+        public Racer(string FirstName, string LastName, string Country, int Starts, int Wins)
+            : this(FirstName, LastName, Country, Starts, Wins, new int[] { }, new string[] { })
+        {
+
+        }
+
         public override string ToString() => $"{FirstName} {LastName}";
 
         public int CompareTo(Racer? other) => LastName.CompareTo(other?.LastName);
