@@ -1,14 +1,6 @@
 ﻿using System;
 
-namespace StructsSample
-{
-    class Program
-    {
-        static void Main()
-        {
-            var point = new Dimensions(3, 6);
+var point = new Dimensions(3, 6);
+Console.WriteLine(point);
 
-            Console.ReadLine();
-        }
-    }
-}
+Console.ReadLine();
