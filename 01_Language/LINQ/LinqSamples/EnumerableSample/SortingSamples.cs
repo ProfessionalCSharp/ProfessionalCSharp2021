@@ -1,5 +1,4 @@
 ﻿using DataLib;
-using Microsoft.Extensions.CommandLineUtils;
 using System;
 using System.Linq;
 
@@ -7,37 +6,37 @@ namespace EnumerableSample
 {
     class SortingSamples
     {
-        internal static void Register(CommandLineApplication app)
-        {
-            app.Command("sort", cmd =>
-            {
-                var methodOption = new CommandOption("-m", CommandOptionType.NoValue);
-                var descendingOption = new CommandOption("-d", CommandOptionType.NoValue);
-                var descendingMethodOption = new CommandOption("-dm", CommandOptionType.NoValue);
-                cmd.Options.AddRange(new[] { methodOption, descendingOption, descendingMethodOption });
-                cmd.Description = "join -[m|v|a|n|nm]";
-                cmd.OnExecute(() =>
-                {
-                    if (methodOption.HasValue())
-                    {
-                        SortMultipleWithMethods();
-                    }
-                    else if (descendingOption.HasValue())
-                    {
-                        SortDescending();
-                    }
-                    else if (descendingMethodOption.HasValue())
-                    {
-                        SortDescendingWithMethods();
-                    }
-                    else
-                    {
-                        SortMultiple();
-                    }
-                    return 0;
-                });
-            });
-        }
+        //internal static void Register(CommandLineApplication app)
+        //{
+        //    app.Command("sort", cmd =>
+        //    {
+        //        var methodOption = new CommandOption("-m", CommandOptionType.NoValue);
+        //        var descendingOption = new CommandOption("-d", CommandOptionType.NoValue);
+        //        var descendingMethodOption = new CommandOption("-dm", CommandOptionType.NoValue);
+        //        cmd.Options.AddRange(new[] { methodOption, descendingOption, descendingMethodOption });
+        //        cmd.Description = "join -[m|v|a|n|nm]";
+        //        cmd.OnExecute(() =>
+        //        {
+        //            if (methodOption.HasValue())
+        //            {
+        //                SortMultipleWithMethods();
+        //            }
+        //            else if (descendingOption.HasValue())
+        //            {
+        //                SortDescending();
+        //            }
+        //            else if (descendingMethodOption.HasValue())
+        //            {
+        //                SortDescendingWithMethods();
+        //            }
+        //            else
+        //            {
+        //                SortMultiple();
+        //            }
+        //            return 0;
+        //        });
+        //    });
+        //}
 
         public static void SortMultiple()
         {

@@ -1,5 +1,4 @@
 ﻿using DataLib;
-using Microsoft.Extensions.CommandLineUtils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,47 +7,47 @@ namespace EnumerableSample
 {
     class JoinSamples
     {
-        internal static void Register(CommandLineApplication app)
-        {
-            app.Command("join", cmd =>
-            {
-                var methodOption = new CommandOption("-m", CommandOptionType.NoValue);
-                var groupJoinOption = new CommandOption("-gj", CommandOptionType.NoValue);
-                var groupJoinMethodOption = new CommandOption("-gjm", CommandOptionType.NoValue);
-                var leftOuterJoinOption = new CommandOption("-lo", CommandOptionType.NoValue);
-                var leftOuterJoinMethodOption = new CommandOption("-nm", CommandOptionType.NoValue);
-                cmd.Options.AddRange(new[] { methodOption, groupJoinOption, groupJoinMethodOption, leftOuterJoinOption, leftOuterJoinMethodOption });
-                cmd.Description = "join -[m|v|a|n|nm]";
-                cmd.OnExecute(() =>
-                {
-                    if (methodOption.HasValue())
-                    {
-                        InnerJoinWithMethods();
-                    }
-                    else if (groupJoinOption.HasValue())
-                    {
-                        GroupJoin();
-                    }
-                    else if (groupJoinMethodOption.HasValue())
-                    {
-                        GroupJoinWithMethods();
-                    }
-                    else if (leftOuterJoinOption.HasValue())
-                    {
-                        LeftOuterJoin();
-                    }
-                    else if (leftOuterJoinMethodOption.HasValue())
-                    {
-                        LeftOuterJoinWithMethods();
-                    }
-                    else
-                    {
-                        InnerJoin();
-                    }
-                    return 0;
-                });
-            });
-        }
+        //internal static void Register(CommandLineApplication app)
+        //{
+        //    app.Command("join", cmd =>
+        //    {
+        //        var methodOption = new CommandOption("-m", CommandOptionType.NoValue);
+        //        var groupJoinOption = new CommandOption("-gj", CommandOptionType.NoValue);
+        //        var groupJoinMethodOption = new CommandOption("-gjm", CommandOptionType.NoValue);
+        //        var leftOuterJoinOption = new CommandOption("-lo", CommandOptionType.NoValue);
+        //        var leftOuterJoinMethodOption = new CommandOption("-nm", CommandOptionType.NoValue);
+        //        cmd.Options.AddRange(new[] { methodOption, groupJoinOption, groupJoinMethodOption, leftOuterJoinOption, leftOuterJoinMethodOption });
+        //        cmd.Description = "join -[m|v|a|n|nm]";
+        //        cmd.OnExecute(() =>
+        //        {
+        //            if (methodOption.HasValue())
+        //            {
+        //                InnerJoinWithMethods();
+        //            }
+        //            else if (groupJoinOption.HasValue())
+        //            {
+        //                GroupJoin();
+        //            }
+        //            else if (groupJoinMethodOption.HasValue())
+        //            {
+        //                GroupJoinWithMethods();
+        //            }
+        //            else if (leftOuterJoinOption.HasValue())
+        //            {
+        //                LeftOuterJoin();
+        //            }
+        //            else if (leftOuterJoinMethodOption.HasValue())
+        //            {
+        //                LeftOuterJoinWithMethods();
+        //            }
+        //            else
+        //            {
+        //                InnerJoin();
+        //            }
+        //            return 0;
+        //        });
+        //    });
+        //}
 
         public static void InnerJoin()
         {

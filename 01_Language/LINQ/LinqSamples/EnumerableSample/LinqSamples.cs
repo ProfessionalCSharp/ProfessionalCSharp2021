@@ -1,7 +1,8 @@
 ﻿using DataLib;
-using Microsoft.Extensions.CommandLineUtils;
 using System;
 using System.Collections.Generic;
+using System.CommandLine;
+using System.CommandLine.Invocation;
 using System.Linq;
 using System.Reflection;
 
@@ -9,8 +10,10 @@ namespace EnumerableSample
 {
     internal class LinqSamples
     {
-        internal static void Register(CommandLineApplication app)
+        internal static void Register(RootCommand command)
         {
+            var linqSamplesCommand = new Command("linq");
+
             MethodInfo[] methods = Assembly.GetExecutingAssembly()
                 .GetTypes()
                 .Where(t => t.Name == nameof(LinqSamples))
@@ -21,12 +24,24 @@ namespace EnumerableSample
 
             foreach (var method in methods)
             {
-                app.Command(method.Name.ToLower(), cmd =>
-                {
-                    cmd.Description = method.Name;
-                    cmd.OnExecute(() => { method.Invoke(null, null); return 0; });
-                });
+                var option = new Option(method.Name, method.Name);
+                linqSamplesCommand.AddOption(option);
+
+                
+                //app.Command(method.Name.ToLower(), cmd =>
+                //{
+                //    cmd.Description = method.Name;
+                //    cmd.OnExecute(() => { method.Invoke(null, null); return 0; });
+                //});
             }
+
+            linqSamplesCommand.Handler = CommandHandler.Create(() =>
+            {
+
+            });
+
+          
+            command.AddCommand(linqSamplesCommand);
         }
 
         public static void GenerateRange()
@@ -112,7 +127,7 @@ namespace EnumerableSample
         public static void ToLookup()
         {
             var racers = (from r in Formula1.GetChampions()
-                          from c in r.Cars
+                          from c in r.Cars!
                           select new
                           {
                               Car = c,
@@ -151,12 +166,12 @@ namespace EnumerableSample
         public static void AggregateCount()
         {
             var query = from r in Formula1.GetChampions()
-                        let numberYears = r.Years.Count()
+                        let numberYears = r.Years?.Count()
                         where numberYears >= 3
                         orderby numberYears descending, r.LastName
                         select new
                         {
-                            Name = r.FirstName + " " + r.LastName,
+                            Name = $"{r.FirstName} {r.LastName}",
                             TimesChampion = numberYears
                         };
 
@@ -195,7 +210,7 @@ namespace EnumerableSample
         {
             IEnumerable<Racer> racersByCar(string car) =>
                 from r in Formula1.GetChampions()
-                from c in r.Cars
+                from c in r.Cars!
                 where c == car
                 orderby r.LastName
                 select r;

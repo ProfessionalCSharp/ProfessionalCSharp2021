@@ -1,5 +1,4 @@
 ﻿using DataLib;
-using Microsoft.Extensions.CommandLineUtils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,27 +8,27 @@ namespace EnumerableSample
 {
     class CompoundFromSamples
     {
-        internal static void Register(CommandLineApplication app)
-        {
-            app.Command("compound", cmd =>
-            {
-                var methodOption = new CommandOption("-m", CommandOptionType.NoValue);
-                cmd.Options.AddRange(new[] { methodOption });
-                cmd.Description = "compound -[m]";
-                cmd.OnExecute(() =>
-                {
-                    if (methodOption.HasValue())
-                    {
-                        CompoundFromWithMethods();
-                    }
-                    else
-                    {
-                        CompoundFrom();
-                    }
-                    return 0;
-                });
-            });
-        }
+        //internal static void Register(CommandLineApplication app)
+        //{
+        //    app.Command("compound", cmd =>
+        //    {
+        //        var methodOption = new CommandOption("-m", CommandOptionType.NoValue);
+        //        cmd.Options.AddRange(new[] { methodOption });
+        //        cmd.Description = "compound -[m]";
+        //        cmd.OnExecute(() =>
+        //        {
+        //            if (methodOption.HasValue())
+        //            {
+        //                CompoundFromWithMethods();
+        //            }
+        //            else
+        //            {
+        //                CompoundFrom();
+        //            }
+        //            return 0;
+        //        });
+        //    });
+        //}
 
         public static void CompoundFrom()
         {

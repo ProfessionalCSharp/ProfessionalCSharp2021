@@ -2,7 +2,7 @@
   "profiles": {
     "EnumerableSample": {
       "commandName": "Project",
-      "commandLineArgs": "join -lo"
+      "commandLineArgs": "filter"
     }
   }
 }
