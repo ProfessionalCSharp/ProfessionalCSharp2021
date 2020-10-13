@@ -1,10 +1,7 @@
 ﻿using DataLib;
 using System;
 using System.Collections.Generic;
-using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.Linq;
-using System.Reflection;
 
 namespace EnumerableSample
 {
@@ -12,6 +9,8 @@ namespace EnumerableSample
     {
         public static void GenerateRange()
         {
+            Console.WriteLine("Use the Range method to generate a list of values");
+
             var values = Enumerable.Range(1, 20);
             foreach (var item in values)
             {
@@ -98,7 +97,7 @@ namespace EnumerableSample
 
         public static void ToLookup()
         {
-            Console.WriteLine("Create a Lookup for racers by car");
+            Console.WriteLine("ToLookup: create a Lookup for racers by car");
 
             var racers = (from r in Formula1.GetChampions()
                           from c in r.Cars!
@@ -119,7 +118,7 @@ namespace EnumerableSample
 
         public static void AggregateSum()
         {
-            Console.WriteLine("Use Sum() to aggregate all from champions by country");
+            Console.WriteLine("Use Sum to aggregate all from champions by country");
 
             var countries = (from c in
                                  from r in Formula1.GetChampions()
@@ -141,6 +140,8 @@ namespace EnumerableSample
 
         public static void AggregateCount()
         {
+            Console.WriteLine("Use Count to sum the number of championships from a champion");
+
             var query = from r in Formula1.GetChampions()
                         let numberYears = r.Years?.Count()
                         where numberYears >= 3
@@ -159,6 +160,8 @@ namespace EnumerableSample
 
         public static void Partitioning()
         {
+            Console.WriteLine("split returned data from a query with Skip and Take methods");
+
             int pageSize = 5;
 
             int numberPages = (int)Math.Ceiling(Formula1.GetChampions().Count() /
@@ -191,7 +194,8 @@ namespace EnumerableSample
                 orderby r.LastName
                 select r;
 
-            Console.WriteLine("World champion with Ferrari and McLaren");
+            Console.WriteLine("Use intersect on two queries with a local function to return world champions both with Ferrari and McLaren");
+
             foreach (var racer in racersByCar("Ferrari").Intersect(racersByCar("McLaren")))
             {
                 Console.WriteLine(racer);
@@ -200,6 +204,8 @@ namespace EnumerableSample
 
         public static void ToList()
         {
+            Console.WriteLine("early evaluation to return a List<T>");
+
             List<Racer> racers = (from r in Formula1.GetChampions()
                                   where r.Starts > 200
                                   orderby r.Starts descending

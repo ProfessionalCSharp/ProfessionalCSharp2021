@@ -4,10 +4,11 @@ using System.Linq;
 
 namespace EnumerableSample
 {
-    class GroupingSamples
+    class GroupSamples
     {
         public static void Grouping()
         {
+            Console.WriteLine("LINQ query with group by into - retrieving countries of champions, and the number of champions from a country");
             var countries = from r in Formula1.GetChampions()
                             group r by r.Country into g
                             orderby g.Count() descending, g.Key
@@ -27,6 +28,8 @@ namespace EnumerableSample
 
         public static void GroupingWithMethods()
         {
+            Console.WriteLine("LINQ query with the GroupBy method - retrieving countries of champions, and the number of champions from a country");
+
             var countries = Formula1.GetChampions()
               .GroupBy(r => r.Country)
               .OrderByDescending(g => g.Count())
@@ -48,6 +51,8 @@ namespace EnumerableSample
 
         public static void GroupingWithVariables()
         {
+            Console.WriteLine("using a variable with a LINQ query");
+
             var countries = from r in Formula1.GetChampions()
                             group r by r.Country into g
                             let count = g.Count()
@@ -68,6 +73,8 @@ namespace EnumerableSample
 
         public static void GroupingWithAnonymousTypes()
         {
+            Console.WriteLine("returning an anonymous type from a query");
+
             var countries = Formula1.GetChampions()
               .GroupBy(r => r.Country)
               .Select(g => new { Group = g, Count = g.Count() })
@@ -86,8 +93,32 @@ namespace EnumerableSample
             }
         }
 
+        public static void GroupingWithTuples()
+        {
+            Console.WriteLine("returning a tuple from a query");
+
+            var countries = Formula1.GetChampions()
+              .GroupBy(r => r.Country)
+              .Select(g => new { Group = g, Count = g.Count() })
+              .OrderByDescending(g => g.Count)
+              .ThenBy(g => g.Group.Key)
+              .Where(g => g.Count >= 2)
+              .Select(g => 
+              (
+                  Country: g.Group.Key,
+                  Count: g.Count
+              ));
+
+            foreach (var item in countries)
+            {
+                Console.WriteLine($"{item.Country,-10} {item.Count}");
+            }
+        }
+
         public static void GroupingAndNestedObjects()
         {
+            Console.WriteLine("returning nested objects with a LINQ query");
+
             var countries = from r in Formula1.GetChampions()
                             group r by r.Country into g
                             let count = g.Count()
@@ -114,6 +145,8 @@ namespace EnumerableSample
 
         public static void GroupingAndNestedObjectsWithMethods()
         {
+            Console.WriteLine("Using method syntax to return nested objects");
+
             var countries = Formula1.GetChampions()
                 .GroupBy(r => r.Country)
                 .Select(g => new
