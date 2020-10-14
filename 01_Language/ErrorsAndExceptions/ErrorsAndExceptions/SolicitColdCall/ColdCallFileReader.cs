@@ -1,8 +1,6 @@
 ﻿using System;
 using System.IO;
 
-namespace SolicitColdCall
-{
     public class ColdCallFileReader : IDisposable
     {
         private FileStream? _fs;
@@ -105,4 +103,3 @@ namespace SolicitColdCall
             _fs = null;
         }
     }
-}
