@@ -8,4 +8,5 @@ Func<string, string> anonDel = delegate (string param)
     param += " and this was added to the string.";
     return param;
 };
+
 Console.WriteLine(anonDel("Start of string"));

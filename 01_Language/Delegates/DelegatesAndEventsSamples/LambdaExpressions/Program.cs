@@ -1,73 +1,66 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Wrox.ProCSharp.Delegates
+
+SimpleDemos();
+ClosureWithModification();
+ClosureWithForEach();
+
+
+void SimpleDemos()
 {
-    class Program
+    Console.WriteLine(nameof(SimpleDemos));
+    Func<string, string> oneParam = s => $"change uppercase {s.ToUpper()}";
+    Console.WriteLine(oneParam("test"));
+
+    Func<double, double, double> twoParams = (x, y) => x * y;
+    Console.WriteLine(twoParams(3, 2));
+
+    Func<double, double, double> twoParamsWithTypes = (double x, double y) =>
     {
-        static void Main()
-        {
-            SimpleDemos();
-            ClosureWithModification();
-            ClosureWithForEach();
-        }
+        return x * y;
+    };
+    Console.WriteLine(twoParamsWithTypes(4, 2));
 
-        static void SimpleDemos()
-        {
-            Console.WriteLine(nameof(SimpleDemos));
-            Func<string, string> oneParam = s => $"change uppercase {s.ToUpper()}";
-            Console.WriteLine(oneParam("test"));
+    Func<double, double> operations = x => x * 2;
+    operations += x => x * x;
 
-            Func<double, double, double> twoParams = (x, y) => x * y;
-            Console.WriteLine(twoParams(3, 2));
+    ProcessAndDisplayNumber(operations, 2.0);
+    ProcessAndDisplayNumber(operations, 7.94);
+    ProcessAndDisplayNumber(operations, 1.414);
+    Console.WriteLine();
+}
 
-            Func<double, double, double> twoParamsWithTypes = (double x, double y) =>
-            {
-                return x * y;
-            };
-            Console.WriteLine(twoParamsWithTypes(4, 2));
+void ProcessAndDisplayNumber(Func<double, double> action, double value)
+{
+    double result = action(value);
+    Console.WriteLine($"Value is {value}, result of operation is {result}");
+}
 
-            Func<double, double> operations = x => x * 2;
-            operations += x => x * x;
+void ClosureWithModification()
+{
+    Console.WriteLine(nameof(ClosureWithModification));
+    int someVal = 5;
+    Func<int, int> f = x => x + someVal;
 
-            ProcessAndDisplayNumber(operations, 2.0);
-            ProcessAndDisplayNumber(operations, 7.94);
-            ProcessAndDisplayNumber(operations, 1.414);
-            Console.WriteLine();
-        }
+    someVal = 7;
 
-        static void ProcessAndDisplayNumber(Func<double, double> action, double value)
-        {
-            double result = action(value);
-            Console.WriteLine($"Value is {value}, result of operation is {result}");
-        }
+    Console.WriteLine(f(3));
+    Console.WriteLine();
+}
 
-        static void ClosureWithModification()
-        {
-            Console.WriteLine(nameof(ClosureWithModification));
-            int someVal = 5;
-            Func<int, int> f = x => x + someVal;
-
-            someVal = 7;
-
-            Console.WriteLine(f(3));
-            Console.WriteLine();
-        }
-
-        static void ClosureWithForEach()
-        {
-            Console.WriteLine(nameof(ClosureWithForEach));
-            var values = new List<int>() { 10, 20, 30 };
-            var funcs = new List<Func<int>>();
-            foreach (var val in values)
-            {
-                funcs.Add(() => val);
-            }
-            foreach (var f in funcs)
-            {
-                Console.WriteLine(f());
-            }
-            Console.WriteLine();
-        }
+void ClosureWithForEach()
+{
+    Console.WriteLine(nameof(ClosureWithForEach));
+    var values = new List<int>() { 10, 20, 30 };
+    var funcs = new List<Func<int>>();
+    foreach (var val in values)
+    {
+        funcs.Add(() => val);
     }
+    foreach (var f in funcs)
+    {
+        Console.WriteLine(f());
+    }
+    Console.WriteLine();
 }
