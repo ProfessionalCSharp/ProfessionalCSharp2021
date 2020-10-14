@@ -67,9 +67,9 @@ namespace EnumerableSample
             }
         }
 
-        public static void ZipOperation()
+        public static void Zip()
         {
-            Console.WriteLine("Use Zip to combine collections");
+            Console.WriteLine("Use Zip to combine collections - names of Italian champions and a second list with number of starts from Italian champions");
 
             var racerNames = from r in Formula1.GetChampions()
                              where r.Country == "Italy"
