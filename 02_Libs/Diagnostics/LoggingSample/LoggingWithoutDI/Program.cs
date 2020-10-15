@@ -1,15 +1,15 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace LoggingWithoutDI
+class Program
 {
-    class Program
+    static void Main()
     {
-        static void Main(string[] args)
+        using var loggerFactory = LoggerFactory.Create(builder =>
         {
-            var loggerFactory = new LoggerFactory();
-            loggerFactory.AddConsole().AddDebug();
-            ILogger<Program> logger = loggerFactory.CreateLogger<Program>();
-            logger.LogInformation("Info Message");
-        }
+            builder.AddConsole().AddDebug();
+        });
+
+        ILogger<Program> logger = loggerFactory.CreateLogger<Program>();
+        logger.LogInformation("Info Message");
     }
 }
