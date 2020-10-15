@@ -1,6 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using System;
 using System.Threading.Tasks;
 
@@ -17,36 +16,19 @@ namespace LoggingConfigurationSample
                 s_url = args[0];
             }
 
-            var configurationBuilder = new ConfigurationBuilder();
-            configurationBuilder.AddJsonFile("appsettings.json");
-            IConfiguration configuration = configurationBuilder.Build();
-            RegisterServices(configuration);
-            await RunSampleAsync();
+            using var host = Host.CreateDefaultBuilder(args)
+                .ConfigureServices(services =>
+                {
+                    services.AddHttpClient<SampleController>(client =>
+                    {
+                        client.BaseAddress = new Uri("");
+                    }).AddTypedClient<SampleController>();
+                }).Build();
+
+            var controller = host.Services.GetRequiredService<SampleController>();
+            await controller.NetworkRequestSampleAsync(s_url);
             Console.WriteLine("Completed");
             Console.ReadLine();
         }
-
-        static async Task RunSampleAsync()
-        {
-            var controller = AppServices.GetService<SampleController>();
-            await controller.NetworkRequestSampleAsync(s_url);
-        }
-
-        static void RegisterServices(IConfiguration configuration)
-        {
-            var services = new ServiceCollection();
-            services.AddLogging(builder =>
-            {
-                builder.AddConfiguration(configuration.GetSection("Logging"))
-                .AddConsole();
-#if DEBUG
-                builder.AddDebug();
-#endif
-            });
-            services.AddScoped<SampleController>();
-            AppServices = services.BuildServiceProvider();
-        }
-
-        public static IServiceProvider AppServices { get; private set; }
     }
 }

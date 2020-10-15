@@ -8,8 +8,10 @@ namespace LoggingConfigurationSample
     class SampleController
     {
         private readonly ILogger<SampleController> _logger;
-        public SampleController(ILogger<SampleController> logger)
+        private readonly HttpClient _httpClient;
+        public SampleController(HttpClient httpClient, ILogger<SampleController> logger)
         {
+            _httpClient = httpClient;
             _logger = logger;
             _logger.LogTrace("ILogger injected into {0}", nameof(SampleController));
         }
@@ -19,9 +21,8 @@ namespace LoggingConfigurationSample
             try
             {
                 _logger.LogInformation(LoggingEvents.Networking, "NetworkRequestSampleAsync started with url {0}", url);
-                var client = new HttpClient();
 
-                string result = await client.GetStringAsync(url);
+                string result = await _httpClient.GetStringAsync(url);
                 _logger.LogInformation(LoggingEvents.Networking, "NetworkRequestSampleAsync completed, received {0} characters", result.Length);
             }
             catch (Exception ex)
