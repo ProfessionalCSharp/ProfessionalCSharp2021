@@ -6,13 +6,12 @@ using var host = Host.CreateDefaultBuilder(args)
     .ConfigureLogging(logging =>
     {
         // add a logger named "EventSource"
-        logging.AddEventSourceLogger();
+        // logging.AddEventSourceLogger();
     })
     .ConfigureServices(services =>
     {
         services.AddHttpClient<MainRunner>(client =>
         {
-
         }).AddTypedClient<MainRunner>();
         
     }).Build();

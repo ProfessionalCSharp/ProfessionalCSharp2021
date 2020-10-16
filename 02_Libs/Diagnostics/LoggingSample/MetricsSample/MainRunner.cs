@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MetricsSample;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -23,8 +24,22 @@ class MainRunner
             {
                 break;
             }
-            using var response = await _httpClient.GetAsync(uri);
-            response.EnsureSuccessStatusCode();
+            if (!string.IsNullOrEmpty(uri))
+            {
+                try
+                {
+                    var stopWatch = MainRunnerSource.Log.RequestStart("RunAsync", uri);
+                    using var response = await _httpClient.GetAsync(uri);
+                    response.EnsureSuccessStatusCode();
+                    MainRunnerSource.Log.RequestStop(stopWatch);
+                }
+                catch (Exception ex) when (ex is HttpRequestException || ex is InvalidOperationException)
+                {
+                    MainRunnerSource.Log.Error(ex);
+                    
+                }
+            }
+
         }
     }
 }
