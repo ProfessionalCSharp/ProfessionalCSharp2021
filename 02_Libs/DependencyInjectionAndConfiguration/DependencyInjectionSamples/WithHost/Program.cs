@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using WithHost;
 
 using var host = Host.CreateDefaultBuilder()
     .ConfigureServices(services =>
@@ -11,5 +10,5 @@ using var host = Host.CreateDefaultBuilder()
     }).Build();
 
 var controller = host.Services.GetRequiredService<HomeController>();
-string result = controller.Hello("Katharina");
+string result = controller.Hello("Matthias");
 Console.WriteLine(result);

@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
-using DIWithOptions;
 using Microsoft.Extensions.Hosting;
 
 using var host = Host.CreateDefaultBuilder()

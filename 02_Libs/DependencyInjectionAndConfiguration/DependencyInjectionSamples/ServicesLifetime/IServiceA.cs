@@ -1,7 +1,4 @@
-﻿namespace ServicesLifetime
-{
-    public interface IServiceA
+﻿    public interface IServiceA
     {
         void A();
     }
-}

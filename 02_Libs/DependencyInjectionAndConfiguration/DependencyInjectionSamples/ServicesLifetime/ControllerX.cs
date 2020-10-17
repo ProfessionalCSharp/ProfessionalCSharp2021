@@ -1,7 +1,5 @@
 ﻿using System;
 
-namespace ServicesLifetime
-{
     public class ControllerX : IDisposable
     {
         private readonly IServiceA _serviceA;
@@ -25,4 +23,3 @@ namespace ServicesLifetime
 
         public void Dispose() => Console.WriteLine($"disposing {nameof(ControllerX)}, {_n}");
     }
-}

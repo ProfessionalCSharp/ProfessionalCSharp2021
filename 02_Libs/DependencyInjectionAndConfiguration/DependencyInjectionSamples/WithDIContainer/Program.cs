@@ -1,10 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
-using WithDIContainer;
 
 using ServiceProvider container = RegisterServices();
 var controller = container.GetRequiredService<HomeController>();
-string result = controller.Hello("Katharina");
+string result = controller.Hello("Stephanie");
 Console.WriteLine(result);
 
 static ServiceProvider RegisterServices()

@@ -1,7 +1,4 @@
-﻿namespace WithHost
+﻿public interface IGreetingService
 {
-    public interface IGreetingService
-    {
-        string Greet(string name);
-    }
+    string Greet(string name);
 }

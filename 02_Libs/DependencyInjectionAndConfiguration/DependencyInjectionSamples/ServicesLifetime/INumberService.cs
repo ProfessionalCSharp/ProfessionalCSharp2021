@@ -1,7 +1,4 @@
-﻿namespace ServicesLifetime
-{
-    public interface INumberService
+﻿    public interface INumberService
     {
         int GetNumber();
     }
-}

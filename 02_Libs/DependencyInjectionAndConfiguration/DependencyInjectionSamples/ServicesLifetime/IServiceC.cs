@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ServicesLifetime
+﻿public interface IServiceC
 {
-    public interface IServiceC
-    {
-        void C();
-    }
+    void C();
 }

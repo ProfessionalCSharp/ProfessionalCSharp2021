@@ -2,128 +2,125 @@
 using Microsoft.Extensions.Hosting;
 using System;
 
-namespace ServicesLifetime
+class Program
 {
-    class Program 
+    static void Main(string mode)
     {
-        static void Main(string mode)
+        switch (mode)
         {
-            switch (mode)
+            case "singletonandtransient":
+                SingletonAndTransient();
+                break;
+            case "scoped":
+                UsingScoped();
+                break;
+            case "custom":
+                CustomFactories();
+                break;
+            default:
+                Usage();
+                break;
+        }
+    }
+
+    static void Usage()
+    {
+        Console.WriteLine("Invoke the application with --mode [singletonandtransient|scoped|custom]");
+        return;
+    }
+
+    private static void CustomFactories()
+    {
+        IServiceB CreateServiceBFactory(IServiceProvider provider) =>
+            new ServiceB(provider.GetRequiredService<INumberService>());
+
+        Console.WriteLine(nameof(CustomFactories));
+
+        using var host = Host.CreateDefaultBuilder()
+            .ConfigureServices(services =>
             {
-                case "singletonandtransient":
-                    SingletonAndTransient();
-                    break;
-                case "scoped":
-                    UsingScoped();
-                    break;
-                case "custom":
-                    CustomFactories();
-                    break;
-                default:
-                    Usage();
-                    break;
-            }
-        }
+                var numberService = new NumberService();
 
-        static void Usage()
-        {
-            Console.WriteLine("Invoke the application with --mode [singletonandtransient|scoped|custom]");
-            return;
-        }
-
-        private static void CustomFactories()
-        {
-            IServiceB CreateServiceBFactory(IServiceProvider provider) =>
-                new ServiceB(provider.GetRequiredService<INumberService>());
-
-            Console.WriteLine(nameof(CustomFactories));
-
-            using var host = Host.CreateDefaultBuilder()
-                .ConfigureServices(services =>
-                {
-                    var numberService = new NumberService();
-
-                    services.AddSingleton<INumberService>(numberService);  // add existing
+                services.AddSingleton<INumberService>(numberService);  // add existing
 
                     services.AddTransient<IServiceB>(CreateServiceBFactory);  // use a factory
                     services.AddSingleton<IServiceA, ServiceA>();
-                }).Build();
+            }).Build();
 
-            IServiceA a1 = host.Services.GetRequiredService<IServiceA>();
-            IServiceA a2 = host.Services.GetRequiredService<IServiceA>();
-            IServiceB b1 = host.Services.GetRequiredService<IServiceB>();
-            IServiceB b2 = host.Services.GetRequiredService<IServiceB>();
-            Console.WriteLine();
+        IServiceA a1 = host.Services.GetRequiredService<IServiceA>();
+        IServiceA a2 = host.Services.GetRequiredService<IServiceA>();
+        IServiceB b1 = host.Services.GetRequiredService<IServiceB>();
+        IServiceB b2 = host.Services.GetRequiredService<IServiceB>();
+        Console.WriteLine();
+    }
+
+    private static void UsingScoped()
+    {
+        Console.WriteLine(nameof(UsingScoped));
+
+        using var host = Host.CreateDefaultBuilder()
+            .ConfigureServices(services =>
+            {
+                services.AddSingleton<INumberService, NumberService>();
+                services.AddScoped<IServiceA, ServiceA>();
+                services.AddSingleton<IServiceB, ServiceB>();
+                services.AddTransient<IServiceC, ServiceC>();
+            }).Build();
+
+        using (IServiceScope scope1 = host.Services.CreateScope())
+        {
+            IServiceA a1 = scope1.ServiceProvider.GetRequiredService<IServiceA>();
+            a1.A();
+            IServiceA a2 = scope1.ServiceProvider.GetRequiredService<IServiceA>();
+            a2.A();
+            IServiceB b1 = scope1.ServiceProvider.GetRequiredService<IServiceB>();
+            b1.B();
+            IServiceC c1 = scope1.ServiceProvider.GetRequiredService<IServiceC>();
+            c1.C();
+            IServiceC c2 = scope1.ServiceProvider.GetRequiredService<IServiceC>();
+            c2.C();
         }
 
-        private static void UsingScoped()
+        Console.WriteLine("end of scope1");
+
+        using (IServiceScope scope2 = host.Services.CreateScope())
         {
-            Console.WriteLine(nameof(UsingScoped));
-
-            using var host = Host.CreateDefaultBuilder()
-                .ConfigureServices(services =>
-                {
-                    services.AddSingleton<INumberService, NumberService>();
-                    services.AddScoped<IServiceA, ServiceA>();
-                    services.AddSingleton<IServiceB, ServiceB>();
-                    services.AddTransient<IServiceC, ServiceC>();
-                }).Build();
-
-            using (IServiceScope scope1 = host.Services.CreateScope())
-            {
-                IServiceA a1 = scope1.ServiceProvider.GetRequiredService<IServiceA>();
-                a1.A();
-                IServiceA a2 = scope1.ServiceProvider.GetRequiredService<IServiceA>();
-                a2.A();
-                IServiceB b1 = scope1.ServiceProvider.GetRequiredService<IServiceB>();
-                b1.B();
-                IServiceC c1 = scope1.ServiceProvider.GetRequiredService<IServiceC>();
-                c1.C();
-                IServiceC c2 = scope1.ServiceProvider.GetRequiredService<IServiceC>();
-                c2.C();
-            }
-
-            Console.WriteLine("end of scope1");
-
-            using (IServiceScope scope2 = host.Services.CreateScope())
-            {
-                IServiceA a3 = scope2.ServiceProvider.GetRequiredService<IServiceA>();
-                a3.A();
-                IServiceB b2 = scope2.ServiceProvider.GetRequiredService<IServiceB>();
-                b2.B();
-                IServiceC c3 = scope2.ServiceProvider.GetRequiredService<IServiceC>();
-                c3.C();
-            }
-            Console.WriteLine("end of scope2");
-            Console.WriteLine();
+            IServiceA a3 = scope2.ServiceProvider.GetRequiredService<IServiceA>();
+            a3.A();
+            IServiceB b2 = scope2.ServiceProvider.GetRequiredService<IServiceB>();
+            b2.B();
+            IServiceC c3 = scope2.ServiceProvider.GetRequiredService<IServiceC>();
+            c3.C();
         }
+        Console.WriteLine("end of scope2");
+        Console.WriteLine();
+    }
 
-        private static void SingletonAndTransient()
-        {
-            Console.WriteLine(nameof(SingletonAndTransient));
+    private static void SingletonAndTransient()
+    {
+        Console.WriteLine(nameof(SingletonAndTransient));
 
-            using var host = Host.CreateDefaultBuilder()
-                .ConfigureServices(services =>
-                {
-                    services.AddSingleton<IServiceA, ServiceA>();
-                    services.AddTransient<IServiceB, ServiceB>();
+        using var host = Host.CreateDefaultBuilder()
+            .ConfigureServices(services =>
+            {
+                services.AddSingleton<IServiceA, ServiceA>();
+                services.AddTransient<IServiceB, ServiceB>();
                     // services.AddSingleton<ControllerX>();
                     services.Add(new ServiceDescriptor(typeof(ControllerX), typeof(ControllerX), ServiceLifetime.Transient));
-                    services.AddSingleton<INumberService, NumberService>();
-                }).Build();
+                services.AddSingleton<INumberService, NumberService>();
+            }).Build();
 
-            Console.WriteLine($"requesting {nameof(ControllerX)}");
+        Console.WriteLine($"requesting {nameof(ControllerX)}");
 
-            ControllerX x = host.Services.GetRequiredService<ControllerX>();
-            x.M();
-            x.M();
+        ControllerX x = host.Services.GetRequiredService<ControllerX>();
+        x.M();
+        x.M();
 
-            Console.WriteLine($"requesting {nameof(ControllerX)}");
+        Console.WriteLine($"requesting {nameof(ControllerX)}");
 
-            ControllerX x2 = host.Services.GetRequiredService<ControllerX>();
-            x2.M();
+        ControllerX x2 = host.Services.GetRequiredService<ControllerX>();
+        x2.M();
 
-            Console.WriteLine();
-        }
+        Console.WriteLine();
     }
 }
