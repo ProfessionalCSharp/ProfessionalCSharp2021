@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Hosting;
 using System;
 
-using var host = Host.CreateDefaultBuilder()
+using var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices(services =>
     {
         services.AddSingleton<IGreetingService, GreetingService>();

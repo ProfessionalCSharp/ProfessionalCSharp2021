@@ -1,11 +1,8 @@
-﻿using System;
-
-public class HomeController
+﻿public class HomeController
 {
     private readonly IGreetingService _greetingService;
-    public HomeController(IGreetingService greetingService)
-    {
-        _greetingService = greetingService ?? throw new ArgumentNullException(nameof(greetingService));
-    }
-    public string Hello(string name) => _greetingService.Greet(name);
+    public HomeController(IGreetingService greetingService) =>
+        _greetingService = greetingService;
+    
+    public string Hello(string name) => _greetingService.Greet(name).ToUpper();
 }

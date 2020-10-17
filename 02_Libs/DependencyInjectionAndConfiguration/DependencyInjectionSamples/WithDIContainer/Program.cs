@@ -1,12 +1,12 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
 
-using ServiceProvider container = RegisterServices();
+using ServiceProvider container = GetServiceProvider();
 var controller = container.GetRequiredService<HomeController>();
 string result = controller.Hello("Stephanie");
 Console.WriteLine(result);
 
-static ServiceProvider RegisterServices()
+static ServiceProvider GetServiceProvider()
 {
     var services = new ServiceCollection();
     services.AddSingleton<IGreetingService, GreetingService>();

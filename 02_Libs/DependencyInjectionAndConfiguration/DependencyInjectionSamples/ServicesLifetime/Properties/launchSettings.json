@@ -2,7 +2,7 @@
   "profiles": {
     "ServicesLifetime": {
       "commandName": "Project",
-      "commandLineArgs": "--mode custom"
+      "commandLineArgs": "--mode scoped"
     }
   }
 }

@@ -32,7 +32,7 @@ class Program
     private static void CustomFactories()
     {
         IServiceB CreateServiceBFactory(IServiceProvider provider) =>
-            new ServiceB(provider.GetRequiredService<INumberService>());
+            new ServiceB(provider.GetRequiredService<INumberService>(), null!);
 
         Console.WriteLine(nameof(CustomFactories));
 
@@ -43,8 +43,8 @@ class Program
 
                 services.AddSingleton<INumberService>(numberService);  // add existing
 
-                    services.AddTransient<IServiceB>(CreateServiceBFactory);  // use a factory
-                    services.AddSingleton<IServiceA, ServiceA>();
+                services.AddTransient<IServiceB>(CreateServiceBFactory);  // use a factory
+                services.AddSingleton<IServiceA, ServiceA>();
             }).Build();
 
         IServiceA a1 = host.Services.GetRequiredService<IServiceA>();
@@ -60,13 +60,17 @@ class Program
 
         using var host = Host.CreateDefaultBuilder()
             .ConfigureServices(services =>
-            {
+            {                
                 services.AddSingleton<INumberService, NumberService>();
+                services.Configure<ConfigurationA>(config => config.Mode = "scoped");
                 services.AddScoped<IServiceA, ServiceA>();
+                services.Configure<ConfigurationB>(config => config.Mode = "singleton");
                 services.AddSingleton<IServiceB, ServiceB>();
+                services.Configure<ConfigurationC>(config => config.Mode = "transient");
                 services.AddTransient<IServiceC, ServiceC>();
             }).Build();
 
+        // the using statement is used here to end scope1 early         
         using (IServiceScope scope1 = host.Services.CreateScope())
         {
             IServiceA a1 = scope1.ServiceProvider.GetRequiredService<IServiceA>();
@@ -80,7 +84,6 @@ class Program
             IServiceC c2 = scope1.ServiceProvider.GetRequiredService<IServiceC>();
             c2.C();
         }
-
         Console.WriteLine("end of scope1");
 
         using (IServiceScope scope2 = host.Services.CreateScope())
@@ -105,8 +108,7 @@ class Program
             {
                 services.AddSingleton<IServiceA, ServiceA>();
                 services.AddTransient<IServiceB, ServiceB>();
-                    // services.AddSingleton<ControllerX>();
-                    services.Add(new ServiceDescriptor(typeof(ControllerX), typeof(ControllerX), ServiceLifetime.Transient));
+                services.AddTransient<ControllerX>();
                 services.AddSingleton<INumberService, NumberService>();
             }).Build();
 

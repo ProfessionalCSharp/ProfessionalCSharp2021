@@ -1,4 +1,4 @@
-﻿    public interface INumberService
-    {
-        int GetNumber();
-    }
+﻿public interface INumberService
+{
+    int GetNumber();
+}

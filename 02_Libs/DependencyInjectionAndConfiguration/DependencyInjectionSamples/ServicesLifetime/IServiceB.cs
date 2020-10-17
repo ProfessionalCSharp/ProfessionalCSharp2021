@@ -1,4 +1,4 @@
-﻿    public interface IServiceB
-    {
-        void B();
-    }
+﻿public interface IServiceB
+{
+    void B();
+}
