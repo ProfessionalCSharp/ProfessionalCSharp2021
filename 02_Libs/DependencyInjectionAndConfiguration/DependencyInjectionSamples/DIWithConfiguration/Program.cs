@@ -14,4 +14,3 @@ using var host = Host.CreateDefaultBuilder()
 var controller = host.Services.GetRequiredService<HomeController>();
 string result = controller.Hello("Katharina");
 Console.WriteLine(result);
-
