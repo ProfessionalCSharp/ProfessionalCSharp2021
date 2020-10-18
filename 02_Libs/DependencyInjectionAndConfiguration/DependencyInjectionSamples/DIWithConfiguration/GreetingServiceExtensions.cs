@@ -4,12 +4,13 @@ using System;
 
 public static class GreetingServiceExtensions
 {
-    public static IServiceCollection AddGreetingService(this IServiceCollection collection, IConfiguration config)
+    public static IServiceCollection AddGreetingService(this IServiceCollection services, IConfiguration config)
     {
-        if (collection == null) throw new ArgumentNullException(nameof(collection));
+        if (services == null) throw new ArgumentNullException(nameof(services));
         if (config == null) throw new ArgumentNullException(nameof(config));
 
-        collection.Configure<GreetingServiceOptions>(config);
-        return collection.AddTransient<IGreetingService, GreetingService>();
+
+        services.Configure<GreetingServiceOptions>(config);
+        return services.AddTransient<IGreetingService, GreetingService>();
     }
 }

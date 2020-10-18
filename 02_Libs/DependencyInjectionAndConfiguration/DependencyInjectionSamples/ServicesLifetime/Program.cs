@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using System;
 
 class Program
@@ -32,7 +33,8 @@ class Program
     private static void CustomFactories()
     {
         IServiceB CreateServiceBFactory(IServiceProvider provider) =>
-            new ServiceB(provider.GetRequiredService<INumberService>(), null!);
+            new ServiceB(provider.GetRequiredService<INumberService>(), 
+                provider.GetRequiredService<IOptions<ConfigurationB>>());
 
         Console.WriteLine(nameof(CustomFactories));
 
@@ -42,8 +44,9 @@ class Program
                 var numberService = new NumberService();
 
                 services.AddSingleton<INumberService>(numberService);  // add existing
-
-                services.AddTransient<IServiceB>(CreateServiceBFactory);  // use a factory
+                services.Configure<ConfigurationB>(config => config.Mode = "factory");
+                services.AddTransient<IServiceB>(CreateServiceBFactory); // use a factory
+                services.Configure<ConfigurationA>(config => config.Mode = "singleton");
                 services.AddSingleton<IServiceA, ServiceA>();
             }).Build();
 
@@ -106,7 +109,9 @@ class Program
         using var host = Host.CreateDefaultBuilder()
             .ConfigureServices(services =>
             {
+                services.Configure<ConfigurationA>(config => config.Mode = "singleton");
                 services.AddSingleton<IServiceA, ServiceA>();
+                services.Configure<ConfigurationB>(config => config.Mode = "transient");
                 services.AddTransient<IServiceB, ServiceB>();
                 services.AddTransient<ControllerX>();
                 services.AddSingleton<INumberService, NumberService>();
