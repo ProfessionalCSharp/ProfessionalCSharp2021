@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net47</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net47;net50</TargetFrameworks>
     <Authors>Christian Nagel</Authors>
     <Company>CN innovation</Company>
     <Product>Professional C#</Product>
@@ -11,8 +11,12 @@
     <RepositoryUrl>https://github.com/ProfessionalCSharp</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageTags>CSharp; .NET Core; NuGet</PackageTags>
-    <PackageReleaseNotes>Sample for Professional C# 7</PackageReleaseNotes>
-    <Version>1.2.0</Version>
+    <PackageReleaseNotes>Sample for Professional C# and .NET 2021 Edition</PackageReleaseNotes>
+    <Version>2.0.0</Version>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)'=='net50'">
+    <DefineConstants>NET50</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
