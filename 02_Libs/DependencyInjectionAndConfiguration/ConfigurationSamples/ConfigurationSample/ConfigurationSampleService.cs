@@ -39,4 +39,32 @@ public class ConfigurationSampleService
         Console.WriteLine(value);
         Console.WriteLine();
     }
+
+    public void ShowDynamicValue()
+    {
+        Console.WriteLine(nameof(ShowDynamicValue));
+        bool exit = false;
+        do
+        {
+            Console.WriteLine("Press return for the next iteration, 'exit' to exit");
+            string? input = Console.ReadLine();
+            if (input?.ToLower() == "exit")
+            {
+                exit = true;
+            }
+            var value = _configuration["dynamicvalue"];
+            Console.WriteLine(value);
+        } while (!exit);
+    }
+
+    public void ShowDynamicChangedValue()
+    {
+        var changeToken = _configuration.GetReloadToken();
+        var d = changeToken.RegisterChangeCallback(o =>
+        {
+            Console.WriteLine($":value changed");
+            var value = _configuration["dynamicvalue"];
+            Console.WriteLine(value);
+        }, null);
+    }
 }
