@@ -7,9 +7,7 @@ namespace DataLib
     {
         public Racer(string FirstName, string LastName, string Country, int Starts, int Wins)
             : this(FirstName, LastName, Country, Starts, Wins, new int[] { }, new string[] { })
-        {
-
-        }
+        {  }
 
         public override string ToString() => $"{FirstName} {LastName}";
 
