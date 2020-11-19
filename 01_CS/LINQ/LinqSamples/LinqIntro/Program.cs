@@ -9,7 +9,7 @@ DeferredQuery();
 
 void DeferredQuery()
 {
-    var names = new List<string> { "Nino", "Alberto", "Juan", "Mike", "Phil" };
+    List<string> names = new() { "Nino", "Alberto", "Juan", "Mike", "Phil" };
 
     var namesWithJ = from n in names
                      where n.StartsWith("J")
@@ -38,8 +38,8 @@ void DeferredQuery()
 
 void ExtensionMethods()
 {
-    var champions = new List<Racer>(Formula1.GetChampions());
-    IEnumerable<Racer> brazilChampions =
+    List<Racer> champions = new(Formula1.GetChampions());
+    var brazilChampions =
         champions.Where(r => r.Country == "Brazil")
             .OrderByDescending(r => r.Wins)
             .Select(r => r);

@@ -26,6 +26,7 @@ namespace EnumerableSample
 
             var racers = Formula1.GetChampions()
                 .Where((r, index) => r.LastName.StartsWith("A") && index % 2 != 0);
+
             foreach (var r in racers)
             {
                 Console.WriteLine($"{r:A}");
@@ -51,6 +52,7 @@ namespace EnumerableSample
 
             object[] data = { "one", 2, 3, "four", "five", 6 };
             var query = data.OfType<string>();
+
             foreach (var s in query)
             {
                 Console.WriteLine(s);

@@ -3,10 +3,10 @@ using EnumerableSample;
 
 var rootCommand = new RootCommand("EnumerableSample");
 
-RegisterCommandHandler.Register(rootCommand, "linq", nameof(LinqSamples));
-RegisterCommandHandler.Register(rootCommand, "filter", nameof(FilterSamples));
-RegisterCommandHandler.Register(rootCommand, "grouping", nameof(GroupSamples));
-RegisterCommandHandler.Register(rootCommand, "compound", nameof(CompoundFromSamples));
-RegisterCommandHandler.Register(rootCommand, "join", nameof(JoinSamples));
-RegisterCommandHandler.Register(rootCommand, "sort", nameof(SortingSamples));
+RegisterCommands.Register(rootCommand, "linq", nameof(LinqSamples));
+RegisterCommands.Register(rootCommand, "filter", nameof(FilterSamples));
+RegisterCommands.Register(rootCommand, "grouping", nameof(GroupSamples));
+RegisterCommands.Register(rootCommand, "compound", nameof(CompoundFromSamples));
+RegisterCommands.Register(rootCommand, "join", nameof(JoinSamples));
+RegisterCommands.Register(rootCommand, "sort", nameof(SortingSamples));
 rootCommand.Invoke(args);

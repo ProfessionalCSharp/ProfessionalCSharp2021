@@ -132,6 +132,7 @@ namespace EnumerableSample
                                          orderby r1.LastName
                                          select r1.FirstName + " " + r1.LastName
                             };
+
             foreach (var item in countries)
             {
                 Console.WriteLine($"{item.Country,-10} {item.Count}");

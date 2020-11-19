@@ -5,23 +5,22 @@ using System.Reflection;
 
 namespace EnumerableSample
 {
-    public static class RegisterCommandHandler
+    public static class RegisterCommands
     {
         public static void Register(RootCommand rootCommand, string commandText, string className)
         {
-            var command = new Command(commandText);
+            Command command = new (commandText);
 
             MethodInfo[] methods = Assembly.GetExecutingAssembly()
                 .GetTypes()
-                .Where(t => t.Name == className)
-                .Single()
+                .Single(t => t.Name == className)
                 .GetMethods()
                 .Where(m => m.IsPublic && m.IsStatic)
                 .ToArray();
 
             foreach (var method in methods)
             {
-                command.AddCommand(new Command(method.Name.ToLower())
+                command.AddCommand(new (method.Name.ToLower())
                 {
                     Handler = CommandHandler.Create(() =>
                     {
