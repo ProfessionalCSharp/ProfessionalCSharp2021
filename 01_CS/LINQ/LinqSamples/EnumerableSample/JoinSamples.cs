@@ -9,7 +9,7 @@ namespace EnumerableSample
     {
         public static void InnerJoin()
         {
-            Console.WriteLine("Inner join with a LINQ query - combining driver and constructor champtionship based on the same year");
+            Console.WriteLine("Inner join with a LINQ query - combining driver and constructor championship based on the same year");
 
             var racers = from r in Formula1.GetChampions()
                          from y in r.Years
@@ -47,7 +47,7 @@ namespace EnumerableSample
 
         public static void InnerJoinWithMethods()
         {
-            Console.WriteLine("Inner join with method syntax - combining driver and constructor champtionship based on the same year");
+            Console.WriteLine("Inner join with method syntax - combining driver and constructor championship based on the same year");
 
             var racers = Formula1.GetChampions()
                 .SelectMany(r => r.Years, (r1, year) =>
