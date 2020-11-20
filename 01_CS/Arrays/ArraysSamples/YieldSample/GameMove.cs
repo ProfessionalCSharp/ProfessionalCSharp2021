@@ -1,42 +1,40 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 
-namespace Wrox.ProCSharp.Arrays
+public class GameMoves
 {
-    public class GameMoves
+    private IEnumerator _cross;
+    private IEnumerator _circle;
+
+    public GameMoves()
     {
-        private IEnumerator _cross;
-        private IEnumerator _circle;
+        _cross = Cross();
+        _circle = Circle();
+    }
 
-        public GameMoves()
+    private int _move = 0;
+    const int MaxMoves = 9;
+
+    public IEnumerator<IEnumerator> Cross()
+    {
+        while (true)
         {
-            _cross = Cross();
-            _circle = Circle();
+            Console.WriteLine($"Cross, move {_move}");
+            if (++_move >= MaxMoves)
+                yield break;
+            yield return _circle;
         }
+    }
 
-        private int _move = 0;
-        const int MaxMoves = 9;
-
-        public IEnumerator Cross()
+    public IEnumerator<IEnumerator> Circle()
+    {
+        while (true)
         {
-            while (true)
-            {
-                Console.WriteLine($"Cross, move {_move}");
-                if (++_move >= MaxMoves)
-                    yield break;
-                yield return _circle;
-            }
-        }
-
-        public IEnumerator Circle()
-        {
-            while (true)
-            {
-                Console.WriteLine($"Circle, move {_move}");
-                if (++_move >= MaxMoves)
-                    yield break;
-                yield return _cross;
-            }
+            Console.WriteLine($"Circle, move {_move}");
+            if (++_move >= MaxMoves)
+                yield break;
+            yield return _cross;
         }
     }
 }

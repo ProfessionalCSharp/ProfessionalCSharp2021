@@ -17,21 +17,18 @@ namespace Wrox.ProCSharp.Arrays
             _compareType = compareType;
 
         #region IComparer<Person> Members
-        public int Compare(Person x, Person y)
+        public int Compare(Person? x, Person? y)
         {
             if (x is null && y is null) return 0;
             if (x is null) return 1;
             if (y is null) return -1;
 
-            switch (_compareType)
+            return _compareType switch
             {
-                case PersonCompareType.FirstName:
-                    return x.FirstName.CompareTo(y.FirstName);
-                case PersonCompareType.LastName:
-                    return x.LastName.CompareTo(y.LastName);
-                default:
-                    throw new ArgumentException("unexpected compare type");
-            }
+                PersonCompareType.FirstName => x.FirstName.CompareTo(y.FirstName),
+                PersonCompareType.LastName => x.LastName.CompareTo(y.LastName)
+                _ => throw new ArgumentException("unexpected compare type");
+            };
         }
 
         #endregion

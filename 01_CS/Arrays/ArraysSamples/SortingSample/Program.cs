@@ -29,10 +29,10 @@ namespace Wrox.ProCSharp.Arrays
         static Person[] GetPersons()
         {
             return new Person[] {
-                new Person { FirstName="Damon", LastName="Hill" },
-                new Person { FirstName="Niki", LastName="Lauda" },
-                new Person { FirstName="Ayrton", LastName="Senna" },
-                new Person { FirstName="Graham", LastName="Hill" }
+                new ("Damon", "Hill"),
+                new ("Niki", "Lauda"),
+                new ("Ayrton", "Senna"),
+                new ("Graham", "Hill")
              };
         }
 

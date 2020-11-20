@@ -2,15 +2,9 @@
 
 namespace Wrox.ProCSharp.Arrays
 {
-    public class Person : IComparable<Person>
+    public record Person(string FirstName, string LastName) : IComparable<Person>
     {
-        public string FirstName { get; set; }
-
-        public string LastName { get; set; }
-
-        public override string ToString() => $"{FirstName} {LastName}";
-
-        public int CompareTo(Person other)
+        public int CompareTo(Person? other)
         {
             if (other == null) throw new ArgumentNullException("other");
 
@@ -22,5 +16,7 @@ namespace Wrox.ProCSharp.Arrays
 
             return result;
         }
+
+        public override string ToString() => $"{FirstName} {LastName}";
     }
 }

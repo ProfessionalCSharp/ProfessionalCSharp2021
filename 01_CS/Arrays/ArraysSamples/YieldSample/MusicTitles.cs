@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 
-namespace Wrox.ProCSharp.Arrays
-{
     public class MusicTitles
     {
         private string[] _names = {
@@ -32,4 +30,3 @@ namespace Wrox.ProCSharp.Arrays
             }
         }
     }
-}
