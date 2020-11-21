@@ -1,13 +1,11 @@
-﻿using Wrox.ProCSharp.Delegates;
+﻿CarDealer dealer = new();
 
-var dealer = new CarDealer();
-
-var sebastian = new Consumer("Sebastian");
+Consumer sebastian = new("Sebastian");
 dealer.NewCarInfo += sebastian.NewCarIsHere;
 
 dealer.NewCar("Williams");
 
-var max = new Consumer("Max");
+Consumer max = new("Max");
 dealer.NewCarInfo += max.NewCarIsHere;
 
 dealer.NewCar("Aston Martin");

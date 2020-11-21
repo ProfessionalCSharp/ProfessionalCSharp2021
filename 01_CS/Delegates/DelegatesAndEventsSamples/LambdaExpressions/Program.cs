@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-
 SimpleDemos();
 ClosureWithModification();
 ClosureWithForEach();
-
 
 void SimpleDemos()
 {
