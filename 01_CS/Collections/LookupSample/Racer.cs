@@ -26,7 +26,7 @@ namespace LookupSample
         public override string ToString() => $"{FirstName} {LastName}";
 
 
-        public string ToString(string format, IFormatProvider formatProvider)
+        public string ToString(string? format, IFormatProvider? formatProvider)
         {
             if (format == null) format = "N";
             switch (format.ToUpper())
@@ -50,9 +50,9 @@ namespace LookupSample
             }
         }
 
-        public string ToString(string format) => ToString(format, null);
+        public string ToString(string? format) => ToString(format, null);
 
-        public int CompareTo(Racer other)
+        public int CompareTo(Racer? other)
         {
             if (other == null) return -1;
             int compare = string.Compare(LastName, other.LastName);

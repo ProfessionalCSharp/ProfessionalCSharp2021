@@ -31,7 +31,7 @@ namespace Wrox.ProCSharp.Collections
 
             {
                 string title = "Professional C# 8";
-                if (!books.TryGetValue(title, out string isbn))
+                if (!books.TryGetValue(title, out string? isbn))
                 {
                     Console.WriteLine($"{title} not found");
                 }

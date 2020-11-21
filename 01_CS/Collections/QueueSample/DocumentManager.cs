@@ -18,7 +18,7 @@ namespace QueueSample
 
         public Document GetDocument()
         {
-            Document doc = null;
+            Document? doc = null;
             lock (_syncQueue)
             {
                 doc = _documentQueue.Dequeue();
