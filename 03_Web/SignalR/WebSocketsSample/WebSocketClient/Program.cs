@@ -4,25 +4,25 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-
 Console.WriteLine("Client - wait for server");
 Console.ReadLine();
-await InitiateWebSocketCommunication("ws://localhost:2858/samplesockets");
+await RunAsync("wss://localhost:5001/samplesockets");
 Console.WriteLine("Program end");
 Console.ReadLine();
 
 
-async Task InitiateWebSocketCommunication(string address)
+async Task RunAsync(string address)
 {
     try
     {
-        var webSocket = new ClientWebSocket();
+        ClientWebSocket webSocket = new();
         await webSocket.ConnectAsync(new Uri(address), CancellationToken.None);
 
         await SendAndReceiveAsync(webSocket, "A");
         await SendAndReceiveAsync(webSocket, "B");
         await webSocket.SendAsync(new ArraySegment<byte>(Encoding.UTF8.GetBytes("SERVERCLOSE")), WebSocketMessageType.Text, endOfMessage: true, CancellationToken.None);
         var buffer = new byte[4096];
+        
         var result = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
 
         Console.WriteLine($"received for close: {result.CloseStatus} {result.CloseStatusDescription} {Encoding.UTF8.GetString(buffer, 0, result.Count)}");
@@ -35,7 +35,7 @@ async Task InitiateWebSocketCommunication(string address)
     }
 }
 
-static async Task SendAndReceiveAsync(WebSocket webSocket, string term)
+async Task SendAndReceiveAsync(WebSocket webSocket, string term)
 {
     byte[] data = Encoding.UTF8.GetBytes($"REQUESTMESSAGES:{term}");
     var buffer = new byte[4096];

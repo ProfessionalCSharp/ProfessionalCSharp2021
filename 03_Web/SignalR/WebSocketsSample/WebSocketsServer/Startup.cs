@@ -27,11 +27,11 @@ namespace WebSocketsServer
 
             // configure keep alive interval, receive buffer size
             app.UseWebSockets();
+            app.UseRouting();
 
-            app.Map("/samplesockets", app2 =>
+            app.UseEndpoints(endpoints =>
             {
-                // middleware to handle websocket request
-                app2.Use(async (context, next) =>
+                endpoints.MapGet("/samplesockets", async context =>
                 {
                     if (context.WebSockets.IsWebSocketRequest)
                     {
@@ -40,15 +40,16 @@ namespace WebSocketsServer
                     }
                     else
                     {
-                        await next();
+                        await context.Response.WriteAsync("<h1>Not a WebSocket request</h1>");
                     }
-                }); 
+
+                });
+                endpoints.MapGet("/", async context =>
+                {
+                    await context.Response.WriteAsync("<h1>Web Sockets Sample</h1>");
+                });
             });
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Web Sockets sample");
-            });
         }
 
         private async Task SendMessagesAsync(HttpContext context, WebSocket webSocket, ILogger logger)
