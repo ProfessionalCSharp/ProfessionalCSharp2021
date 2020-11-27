@@ -49,6 +49,7 @@ namespace WebSocketsServer
                     await context.Response.WriteAsync("<h1>Web Sockets Sample</h1>");
                 });
             });
+
         }
 
         private async Task SendMessagesAsync(HttpContext context, WebSocket webSocket, ILogger logger)
