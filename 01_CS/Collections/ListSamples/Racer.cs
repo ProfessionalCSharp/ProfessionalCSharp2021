@@ -8,8 +8,8 @@ public record Racer(int id, string FirstName, string LastName, string Country, i
 
     public override string ToString() => $"{FirstName} {LastName}";
 
-    public string ToString(string? format, IFormatProvider? formatProvider)
-        => format?.ToUpper() switch
+    public string ToString(string? format, IFormatProvider? formatProvider) =>
+        format?.ToUpper() switch
         {
             null => ToString(),
             "N" => ToString(),

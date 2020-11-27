@@ -17,9 +17,9 @@ public class RacerComparer : IComparer<Racer>
 
     public int Compare(Racer? x, Racer? y)
     {
-        if (x == null && y == null) return 0;
-        if (x == null) return -1;
-        if (y == null) return 1;
+        if (x is null && y is null) return 0;
+        if (x is null) return -1;
+        if (y is null) return 1;
 
         int CompareCountry(Racer x, Racer y)
         {
@@ -31,8 +31,7 @@ public class RacerComparer : IComparer<Racer>
             return result;
         }
 
-        int result =
-            _compareType switch
+        return _compareType switch
             {
                 CompareType.FirstName => string.Compare(x.FirstName, y.FirstName),
                 CompareType.LastName => string.Compare(x.LastName, y.LastName),
@@ -40,6 +39,5 @@ public class RacerComparer : IComparer<Racer>
                 CompareType.Wins => x.Wins.CompareTo(y.Wins),
                 _ => throw new ArgumentException("Invalid Compare Type")
             };
-        return result;
     }
 }
