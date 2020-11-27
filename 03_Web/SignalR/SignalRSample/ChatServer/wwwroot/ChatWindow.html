@@ -5,13 +5,14 @@
     <title>Chat Client</title>
 </head>
 <body>
-    <script src="https://cdn.jsdelivr.net/npm/@aspnet/signalr@1.0.0/dist/browser/signalr.js"></script>
+
+    <script src="lib/signalr/dist/browser/signalr.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const connection = new signalR.HubConnectionBuilder()
-                    .configureLogging(signalR.LogLevel.Trace)
-                    .withUrl("/chat")
-                    .build();
+                .configureLogging(signalR.LogLevel.Trace)
+                .withUrl("/chat")
+                .build();
 
             connection.on('broadcastMessage', (name, message) => {
                 console.log(message);
@@ -39,7 +40,6 @@
     <p>
         <output id="output"></output>
     </p>
-
 
 </body>
 </html>
