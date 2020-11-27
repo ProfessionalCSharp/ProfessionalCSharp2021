@@ -12,6 +12,15 @@ using System.Threading.Tasks;
 
 namespace WebSocketsServer
 {
+    public class Messages
+    {
+        public const string REQUEST = "REQUESTMESSAGES:";
+        public const string MESSAGE = "MESSAGE:";
+        public const string EOS = "EOS";
+        public const string SERVERCLOSE = "SERVERCLOSE";
+        public const string SERVERABORT = "SERVERABORT";
+    }
+
     public class Startup
     {
         public void ConfigureServices(IServiceCollection services)
@@ -35,7 +44,8 @@ namespace WebSocketsServer
                 {
                     if (context.WebSockets.IsWebSocketRequest)
                     {
-                        var webSocket = await context.WebSockets.AcceptWebSocketAsync();
+                        var webSocket = await context.WebSockets.AcceptWebSocketAsync("procsharp1.0");
+                        
                         await SendMessagesAsync(context, webSocket, loggerFactory.CreateLogger("SendMessages"));
                     }
                     else
@@ -55,42 +65,44 @@ namespace WebSocketsServer
         private async Task SendMessagesAsync(HttpContext context, WebSocket webSocket, ILogger logger)
         {
             var buffer = new byte[4096];
-            WebSocketReceiveResult result = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
-            while (!result.CloseStatus.HasValue)
+            ValueWebSocketReceiveResult result = await webSocket.ReceiveAsync(buffer.AsMemory(), CancellationToken.None);
+            
+            while (result.MessageType != WebSocketMessageType.Close)
             {
                 if (result.MessageType == WebSocketMessageType.Text)
                 {
-                    string content = Encoding.UTF8.GetString(buffer, 0, result.Count);
-                    if (content.StartsWith("REQUESTMESSAGES:"))
+                    string content = Encoding.UTF8.GetString(buffer[..result.Count]);
+                    logger.LogInformation($"server received {content}");
+                    if (content.StartsWith(Messages.REQUEST))
                     {
-                        string message = content.Substring("REQUESTMESSAGES:".Length);
+                        string message = content[Messages.REQUEST.Length..];
                         for (int i = 0; i < 10; i++)
                         {
-                            string messageToSend = $"MESSAGE:{message} - {i}";
+                            string messageToSend = $"{Messages.MESSAGE}{message} - {i}";
                             if (i == 9)
                             {
-                                messageToSend += "\r\nEOS"; // send end of sequence to not let the client wait for another message
+                                messageToSend += $"\r\n{Messages.EOS}"; // send end of sequence to not let the client wait for another message
                             }
                             byte[] sendBuffer = Encoding.UTF8.GetBytes(messageToSend);
-                            await webSocket.SendAsync(new ArraySegment<byte>(sendBuffer), WebSocketMessageType.Text, endOfMessage: true, CancellationToken.None);
-                            logger.LogDebug("sent message {0}", messageToSend);
+                            await webSocket.SendAsync(sendBuffer.AsMemory(), WebSocketMessageType.Text, endOfMessage: true, CancellationToken.None);
+                            logger.LogDebug("sent message {messageToSend}", messageToSend);
                             await Task.Delay(1000);
                         }
                     }
 
-                    if (content.Equals("SERVERCLOSE"))
+                    if (content.Equals(Messages.SERVERCLOSE))
                     {
                         await webSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, "Bye for now", CancellationToken.None);
                         logger.LogDebug("client sent close request, socket closing");
                         return;
                     }
-                    else if (content.Equals("SERVERABORT"))
+                    else if (content.Equals(Messages.SERVERABORT))
                     {
                         context.Abort();
                     }
                 }
 
-                result = await webSocket.ReceiveAsync(buffer, CancellationToken.None);
+                result = await webSocket.ReceiveAsync(buffer.AsMemory(), CancellationToken.None);
             }
         }
     }

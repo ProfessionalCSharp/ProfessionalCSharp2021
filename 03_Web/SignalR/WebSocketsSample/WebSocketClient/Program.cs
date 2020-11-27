@@ -15,18 +15,20 @@ async Task RunAsync(string address)
 {
     try
     {
+        CancellationTokenSource cts = new();
         ClientWebSocket webSocket = new();
+        webSocket.Options.AddSubProtocol("procsharp1.0");
+        
         await webSocket.ConnectAsync(new Uri(address), CancellationToken.None);
 
-        await SendAndReceiveAsync(webSocket, "A");
-        await SendAndReceiveAsync(webSocket, "B");
-        await webSocket.SendAsync(new ArraySegment<byte>(Encoding.UTF8.GetBytes("SERVERCLOSE")), WebSocketMessageType.Text, endOfMessage: true, CancellationToken.None);
-        var buffer = new byte[4096];
-        
-        var result = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
+        await SendAndReceiveAsync(webSocket, "A", cts.Token);
+        await SendAndReceiveAsync(webSocket, "B", cts.Token);
+        await webSocket.SendAsync(Encoding.UTF8.GetBytes("SERVERCLOSE").AsMemory(), WebSocketMessageType.Text, endOfMessage: true, cts.Token);
+        byte[] buffer = new byte[4096];
 
-        Console.WriteLine($"received for close: {result.CloseStatus} {result.CloseStatusDescription} {Encoding.UTF8.GetString(buffer, 0, result.Count)}");
-        await webSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, "Bye", CancellationToken.None);
+        var result = await webSocket.ReceiveAsync(buffer.AsMemory(), cts.Token);
+        Console.WriteLine($"received for close: {result.MessageType} {result.EndOfMessage} {Encoding.UTF8.GetString(buffer[..result.Count])}");
+        await webSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, "Bye", cts.Token);
 
     }
     catch (Exception ex)
@@ -35,18 +37,18 @@ async Task RunAsync(string address)
     }
 }
 
-async Task SendAndReceiveAsync(WebSocket webSocket, string term)
+async Task SendAndReceiveAsync(WebSocket webSocket, string term, CancellationToken token)
 {
     byte[] data = Encoding.UTF8.GetBytes($"REQUESTMESSAGES:{term}");
     var buffer = new byte[4096];
 
-    await webSocket.SendAsync(new ArraySegment<byte>(data), WebSocketMessageType.Text, endOfMessage: true, CancellationToken.None);
-    WebSocketReceiveResult result;
+    await webSocket.SendAsync(data.AsMemory(), WebSocketMessageType.Text, endOfMessage: true, CancellationToken.None);
+    ValueWebSocketReceiveResult result;
     bool sequenceEnd = false;
     do
     {
-        result = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);
-        string[] dataReceived = Encoding.UTF8.GetString(buffer, 0, result.Count).Split(Environment.NewLine);
+        result = await webSocket.ReceiveAsync(buffer.AsMemory(), token);
+        string[] dataReceived = Encoding.UTF8.GetString(buffer[0..result.Count]).Split(Environment.NewLine);
         foreach (var line in dataReceived)
         {
             Console.WriteLine($"received {line}");
@@ -57,5 +59,5 @@ async Task SendAndReceiveAsync(WebSocket webSocket, string term)
             }
         }
 
-    } while (!(result?.CloseStatus.HasValue ?? false) && !sequenceEnd);
+    } while (!sequenceEnd || result.MessageType == WebSocketMessageType.Close);
 }
