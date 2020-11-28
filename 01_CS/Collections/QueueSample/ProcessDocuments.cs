@@ -1,28 +1,38 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
-namespace QueueSample
+
+public class ProcessDocuments
 {
-    public class ProcessDocuments
+    public static Task StartAsync(DocumentManager dm) =>
+        Task.Run(new ProcessDocuments(dm).RunAsync);
+
+    protected ProcessDocuments(DocumentManager dm) => 
+        _documentManager = dm ?? throw new ArgumentNullException(nameof(dm));
+
+    private readonly DocumentManager _documentManager;
+
+    protected async Task RunAsync()
     {
-        public static Task StartAsync(DocumentManager dm) =>
-            Task.Run(new ProcessDocuments(dm).Run);
-
-        protected ProcessDocuments(DocumentManager dm) =>
-            _documentManager = dm ?? throw new ArgumentNullException(nameof(dm));
-
-        private DocumentManager _documentManager;
-
-        protected async Task Run()
+        Random random = new();
+        Stopwatch stopwatch = new();
+        stopwatch.Start();
+        bool stop = false;
+        do
         {
-            while (true)
+            if (stopwatch.Elapsed >= TimeSpan.FromSeconds(2))
             {
-                if (_documentManager.IsDocumentAvailable)
-                {
-                    Document doc = _documentManager.GetDocument();
-                    Console.WriteLine($"Processing document {doc.Title}");
-                }
-                await Task.Delay(new Random().Next(20));
+                stop = true;
             }
-        }
+            if (_documentManager.IsDocumentAvailable)
+            {
+                stopwatch.Reset();
+                stopwatch.Start();
+                Document doc = _documentManager.GetDocument();
+                Console.WriteLine($"Processing document {doc.Title}");
+            }
+            await Task.Delay(random.Next(20));  // wait a random time before processing the next document
+        } while (!stop) ;
+        Console.WriteLine("stopped reading documents");
     }
 }

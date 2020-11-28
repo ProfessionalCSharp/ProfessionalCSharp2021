@@ -1,31 +1,27 @@
 ﻿using System.Collections.Generic;
 
-namespace QueueSample
+public class DocumentManager
 {
-    public class DocumentManager
+    private readonly object _syncQueue = new object();
+
+    private readonly Queue<Document> _documentQueue = new();
+
+    public int AddDocument(Document doc)
     {
-        private readonly object _syncQueue = new object();
-
-        private readonly Queue<Document> _documentQueue = new Queue<Document>();
-
-        public void AddDocument(Document doc)
+        lock (_syncQueue)
         {
-            lock (_syncQueue)
-            {
-                _documentQueue.Enqueue(doc);
-            }
+            _documentQueue.Enqueue(doc);
+            return _documentQueue.Count;
         }
-
-        public Document GetDocument()
-        {
-            Document? doc = null;
-            lock (_syncQueue)
-            {
-                doc = _documentQueue.Dequeue();
-            }
-            return doc;
-        }
-
-        public bool IsDocumentAvailable => _documentQueue.Count > 0;
     }
+
+    public Document GetDocument()
+    {
+        lock (_syncQueue)
+        {
+            return _documentQueue.Dequeue();
+        }
+    }
+
+    public bool IsDocumentAvailable => _documentQueue.Count > 0;
 }
