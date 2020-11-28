@@ -32,8 +32,7 @@ foreach (var r in racers)
 
 // searching
 int index1 = racers.IndexOf(mario);
-int index2 = racers.FindIndex(new FindCountry("Finland").FindCountryPredicate);
-int index3 = racers.FindIndex(r => r.Country == "Finland");
+int index2 = racers.FindIndex(r => r.Country == "Finland");
 Racer? racer = racers.Find(r => r.FirstName == "Niki");
 Console.WriteLine($"found: {racer?.LastName}");
 List<Racer> bigWinners = racers.FindAll(r => r.Wins > 20);
