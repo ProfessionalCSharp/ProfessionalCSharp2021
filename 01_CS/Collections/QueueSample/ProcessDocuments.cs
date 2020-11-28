@@ -20,14 +20,13 @@ public class ProcessDocuments
         bool stop = false;
         do
         {
-            if (stopwatch.Elapsed >= TimeSpan.FromSeconds(2))
+            if (stopwatch.Elapsed >= TimeSpan.FromSeconds(5))
             {
                 stop = true;
             }
             if (_documentManager.IsDocumentAvailable)
             {
-                stopwatch.Reset();
-                stopwatch.Start();
+                stopwatch.Restart();
                 Document doc = _documentManager.GetDocument();
                 Console.WriteLine($"Processing document {doc.Title}");
             }

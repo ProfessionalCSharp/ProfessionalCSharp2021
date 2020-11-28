@@ -10,7 +10,7 @@ for (int i = 0; i < 1000; i++)
 {
     var doc = new Document($"Doc {i}", "content");
     int queueSize = dm.AddDocument(doc);
-    Console.WriteLine($"Added document {doc.Title}, current queue size: {queueSize}");
+    Console.WriteLine($"Added document {doc.Title}, queue size: {queueSize}");
     await Task.Delay(new Random().Next(20));
 }
 Console.WriteLine($"finished adding documents");
