@@ -2,11 +2,11 @@
 using System;
 
 SortedList<string, string> books = new();
-books.Add("Professional WPF Programming", "978–0–470–04180–2");
-books.Add("Professional ASP.NET MVC 5", "978–1–118-79475–3");
+books.Add("Front-end Development with ASP.NET Core", "978-1-119-18140-8");
+books.Add("Beginning C# 7 Programming", "978-1-119-45866-1");
 
-books["Beginning C# 6 Programming"] = "978-1-119-09668-9";
-books["Professional C# 6 and .NET Core 1.0"] = "978-1-119-09660-3";
+books["Enterprise Services"] = "978-0321246738";
+books["Professional C# 7 and .NET Core 2.1"] = "978-1-119-44926-3";
 
 foreach (KeyValuePair<string, string> book in books)
 {
@@ -24,7 +24,7 @@ foreach (string title in books.Keys)
 }
 
 {
-    string title = "Professional C# 8";
+    string title = "Professional C# 10";
     if (!books.TryGetValue(title, out string? isbn))
     {
         Console.WriteLine($"{title} not found");
