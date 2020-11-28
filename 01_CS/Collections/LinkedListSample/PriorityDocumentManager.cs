@@ -30,7 +30,8 @@ public class PriorityDocumentManager
                  // add the new document to the end
             {
                 _documentList.AddLast(doc);
-                _priorityNodes[doc.Priority] = _documentList.Last!; // just added one document, so there's a last one
+                LinkedListNode<Document> last = _documentList.Last!;  // just added one document, so there's a last one
+                _priorityNodes[doc.Priority] = last;
             }
             return;
         }
