@@ -1,28 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 
-EmployeeId idJimmie = new("C48");
-Employee jimmie = new(idJimmie, "Jimmie Johnson", 150926.00m);
+EmployeeId idKyle = new("J18");
+Employee kyle = new Employee(idKyle, "Kyle Bush", 138_000.00m );
 
-EmployeeId idJoey = new("F22");
-Employee joey = new (idJoey, "Joey Logano", 45125.00m);
+EmployeeId idMartin = new("J19");
+Employee martin = new(idMartin, "Martin Truex Jr", 73_000.00m);
 
-EmployeeId idKyle = new("T18");
-Employee kyle = new (idKyle, "Kyle Bush", 78728.00m);
+EmployeeId idKevin = new("S4");
+Employee kevin = new(idKevin, "Kevin Harvick", 116_000.00m);
 
-EmployeeId idCarl = new("T19");
-Employee carl = new (idCarl, "Carl Edwards", 80473.00m);
+EmployeeId idDenny = new EmployeeId("J11");
+Employee denny = new Employee(idDenny, "Denny Hamlin", 127_000.00m);
 
-EmployeeId idMatt = new("T20");
-Employee matt = new (idMatt, "Matt Kenseth", 113970.00m);
+EmployeeId idJoey = new("T22");
+Employee joey = new(idJoey, "Joey Logano", 96_000.00m);
+
+EmployeeId idKyleL = new ("C42");
+Employee kyleL = new (idKyleL, "Kyle Larson", 80_000.00m);
+
 
 Dictionary<EmployeeId, Employee> employees = new (31)
 {
-    [idJimmie] = jimmie,
-    [idJoey] = joey,
     [idKyle] = kyle,
-    [idCarl] = carl,
-    [idMatt] = matt
+    [idMartin] = martin,
+    [idKevin] = kevin,
+    [idDenny] = denny,
+    [idJoey] = joey,
 };
 
 foreach (var employee in employees.Values)

@@ -15,10 +15,10 @@ public struct EmployeeId : IEquatable<EmployeeId>
         if (id == null) throw new ArgumentNullException(nameof(id));
 
         _prefix = (id.ToUpper())[0];
-        int numLength = id.Length - 1;
+        int last = id.Length > 6 ? 6 : id.Length;
         try
         {
-            _number = int.Parse(id.Substring(1, numLength > 6 ? 6 : numLength));
+            _number = int.Parse(id[1..last]);
         }
         catch (FormatException)
         {
