@@ -7,7 +7,6 @@ namespace WorkingWithFilesAndDirectories
 {
     public class Program
     {
-
         const string Sample1FileName = "Sample1.md";
         const string Sample2FileName = "Sample2.md";
 

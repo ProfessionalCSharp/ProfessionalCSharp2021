@@ -5,7 +5,7 @@ namespace FileMonitor
 {
     public class Program
     {
-        private static FileSystemWatcher s_watcher;
+        private static FileSystemWatcher? s_watcher;
 
         public static void Main(string[] args)
         {
