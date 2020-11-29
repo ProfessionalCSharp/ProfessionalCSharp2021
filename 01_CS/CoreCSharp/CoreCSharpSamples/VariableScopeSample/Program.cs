@@ -1,25 +1,13 @@
 ﻿using System;
 
-namespace VariableScopeSample
+for (int i = 0; i < 10; i++)
 {
-    class Program
-    {
-        private int j;
+    Console.WriteLine(i);
+}  // i goes out of scope here
 
-        static int Main()
-        {
-            for (int i = 0; i < 10; i++)
-            {
-                Console.WriteLine(i);
-            }  // i goes out of scope here
-
-            // We can declare a variable named i again, because
-            // there's no other variable with that name in scope
-            for (int i = 9; i >= 0; i--)
-            {
-                Console.WriteLine(i);
-            }  // i goes out of scope here.
-            return 0;
-        }
-    }
-}
+// We can declare a variable named i again, because
+// there's no other variable with that name in scope
+for (int i = 9; i >= 0; i--)
+{
+    Console.WriteLine(i);
+}  // i goes out of scope here.

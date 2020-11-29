@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "ArgumentsSample": {
+    "CommandLineArgs": {
       "commandName": "Project",
       "commandLineArgs": "one two three"
     }
