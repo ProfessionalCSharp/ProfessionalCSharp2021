@@ -8,9 +8,9 @@ namespace AnonymousPipes
 {
     public class Program
     {
-        private string _pipeHandle;
-        private ManualResetEventSlim _pipeHandleSet;
-        
+        private string? _pipeHandle;
+        private ManualResetEventSlim _pipeHandleSet = new ManualResetEventSlim(initialState: false);
+
         public static void Main()
         {
             var p = new Program();
@@ -20,8 +20,6 @@ namespace AnonymousPipes
 
         public void Run()
         {
-            _pipeHandleSet = new ManualResetEventSlim(initialState: false);
-
             Task.Run(() => Reader());
             Task.Run(() => Writer());
         }
@@ -30,18 +28,18 @@ namespace AnonymousPipes
             Console.WriteLine("anonymous pipe writer");
             _pipeHandleSet.Wait();
 
-            var pipeWriter = new AnonymousPipeClientStream(PipeDirection.Out, _pipeHandle);
-            using (var writer = new StreamWriter(pipeWriter))
+            AnonymousPipeClientStream pipeWriter = new(PipeDirection.Out, _pipeHandle);
+            using StreamWriter writer = new(pipeWriter);
+
+            writer.AutoFlush = true;
+            Console.WriteLine("starting writer");
+            for (int i = 0; i < 5; i++)
             {
-                writer.AutoFlush = true;
-                Console.WriteLine("starting writer");
-                for (int i = 0; i < 5; i++)
-                {
-                    writer.WriteLine($"Message {i}");
-                    Task.Delay(500).Wait();
-                }
-                writer.WriteLine("end");
+                writer.WriteLine($"Message {i}");
+                Task.Delay(500).Wait();
             }
+            writer.WriteLine("end");
+
         }
 
         private void Reader()
@@ -50,20 +48,19 @@ namespace AnonymousPipes
             {
                 Console.WriteLine("anonymous pipe reader");
                 var pipeReader = new AnonymousPipeServerStream(PipeDirection.In, HandleInheritability.None);
-                using (var reader = new StreamReader(pipeReader))
+                using var reader = new StreamReader(pipeReader);
+
+                _pipeHandle = pipeReader.GetClientHandleAsString();
+                Console.WriteLine($"pipe handle: {_pipeHandle}");
+                _pipeHandleSet.Set();
+                bool end = false;
+                while (!end)
                 {
-                    _pipeHandle = pipeReader.GetClientHandleAsString();
-                    Console.WriteLine($"pipe handle: {_pipeHandle}");
-                    _pipeHandleSet.Set();
-                    bool end = false;
-                    while (!end)
-                    {
-                        string line = reader.ReadLine();
-                        Console.WriteLine(line);
-                        if (line == "end") end = true;
-                    }
-                    Console.WriteLine("finished reading");
+                    string? line = reader.ReadLine();
+                    Console.WriteLine(line);
+                    if (line == "end") end = true;
                 }
+                Console.WriteLine("finished reading");
             }
             catch (Exception ex)
             {

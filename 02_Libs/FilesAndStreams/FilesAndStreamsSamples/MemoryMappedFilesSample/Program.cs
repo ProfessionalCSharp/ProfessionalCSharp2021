@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace MemoryMappedFilesSample
 {
+    // Windows only!
     public class Program
     {
         private ManualResetEventSlim _mapCreated = new ManualResetEventSlim(initialState: false);
@@ -164,7 +165,7 @@ namespace MemoryMappedFilesSample
                         for (int i = 0; i < 100; i++)
                         {
                             long pos = stream.Position;
-                            string s = await reader.ReadLineAsync();
+                            string? s = await reader.ReadLineAsync();
                             Console.WriteLine($"read {s} from {pos}");
                         }
                     }

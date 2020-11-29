@@ -21,7 +21,7 @@ namespace StreamSamples
             else if (args.Length == 1 && args[0] == "-w")
             {
                 WriteTextFile();
-            } 
+            }
             else if (args.Length == 3 && args[0] == "-cs")
             {
                 CopyUsingStreams(args[1], args[2]);
@@ -81,32 +81,33 @@ namespace StreamSamples
         {
             try
             {
-                using (FileStream stream = File.OpenRead(SampleFileDataPath))
-                {
-                    byte[] buffer = new byte[RECORDSIZE];
-                    do
-                    {
-                        try
-                        {
-                            Console.Write("record number (or 'bye' to end): ");
-                            string line = Console.ReadLine();
-                            if (line.ToUpper().CompareTo("BYE") == 0) break;
+                using FileStream stream = File.OpenRead(SampleFileDataPath);
 
-                            if (int.TryParse(line, out int record))
-                            {
-                                stream.Seek((record - 1) * RECORDSIZE, SeekOrigin.Begin);
-                                stream.Read(buffer, 0, RECORDSIZE);
-                                string s = Encoding.UTF8.GetString(buffer);
-                                Console.WriteLine($"record: {s}");
-                            }
-                        }
-                        catch (Exception ex)
+                byte[] buffer = new byte[RECORDSIZE];
+                do
+                {
+                    try
+                    {
+                        Console.Write("record number (or 'bye' to end): ");
+                        string? line = Console.ReadLine();
+                        if (line == null) throw new InvalidOperationException();
+                        if (line.ToUpper().CompareTo("BYE") == 0) break;
+
+                        if (int.TryParse(line, out int record))
                         {
-                            Console.WriteLine(ex.Message);
+                            stream.Seek((record - 1) * RECORDSIZE, SeekOrigin.Begin);
+                            stream.Read(buffer, 0, RECORDSIZE);
+                            string s = Encoding.UTF8.GetString(buffer);
+                            Console.WriteLine($"record: {s}");
                         }
-                    } while (true);
-                    Console.WriteLine("finished");
-                }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                } while (true);
+                Console.WriteLine("finished");
+
             }
             catch (FileNotFoundException)
             {
@@ -116,79 +117,79 @@ namespace StreamSamples
 
         public static async Task CreateSampleFileAsync(int nRecords)
         {
-            using (FileStream stream = File.Create(SampleFileDataPath))   
-            using (var writer = new StreamWriter(stream))
+            using FileStream stream = File.Create(SampleFileDataPath);
+            using StreamWriter writer = new(stream);
+
+            var r = new Random();
+
+            var records = Enumerable.Range(1, nRecords).Select(x => new
             {
-                var r = new Random();
+                Number = x,
+                Text = $"Sample text {r.Next(200)}",
+                Date = new DateTime(Math.Abs((long)((r.NextDouble() * 2 - 1) * DateTime.MaxValue.Ticks)))
+            });
 
-                var records = Enumerable.Range(1, nRecords).Select(x => new
-                {
-                    Number = x,
-                    Text = $"Sample text {r.Next(200)}",
-                    Date = new DateTime(Math.Abs((long)((r.NextDouble() * 2 - 1) * DateTime.MaxValue.Ticks)))
-                });
-
-                foreach (var rec in records)
-                {
-                    string date = rec.Date.ToString("d", CultureInfo.InvariantCulture);
-                    string s = $"#{rec.Number,8};{rec.Text,-20};{date}#{Environment.NewLine}";
-                    await writer.WriteAsync(s);
-                }
+            foreach (var rec in records)
+            {
+                string date = rec.Date.ToString("d", CultureInfo.InvariantCulture);
+                string s = $"#{rec.Number,8};{rec.Text,-20};{date}#{Environment.NewLine}";
+                await writer.WriteAsync(s);
             }
+
         }
 
         public static void CopyUsingStreams(string inputFile, string outputFile)
         {
             const int BUFFERSIZE = 4096;
-            using (var inputStream = File.OpenRead(inputFile))
-            using (var outputStream = File.OpenWrite(outputFile))
+            using var inputStream = File.OpenRead(inputFile);
+            using var outputStream = File.OpenWrite(outputFile);
+
+            byte[] buffer = new byte[BUFFERSIZE];
+            bool completed = false;
+            do
             {
-                byte[] buffer = new byte[BUFFERSIZE];
-                bool completed = false;
-                do
-                {
-                    int nRead = inputStream.Read(buffer, 0, BUFFERSIZE);
-                    if (nRead == 0) completed = true;
-                    outputStream.Write(buffer, 0, nRead);
-                } while (!completed);
-            }
+                int nRead = inputStream.Read(buffer, 0, BUFFERSIZE);
+                if (nRead == 0) completed = true;
+                outputStream.Write(buffer, 0, nRead);
+            } while (!completed);
+
         }
 
         public static void CopyUsingStreams2(string inputFile, string outputFile)
         {
-            using (var inputStream = File.OpenRead(inputFile))
-            using (var outputStream = File.OpenWrite(outputFile))
-            {
-                inputStream.CopyTo(outputStream);
-            }
+            using var inputStream = File.OpenRead(inputFile);
+            using var outputStream = File.OpenWrite(outputFile);
+
+            inputStream.CopyTo(outputStream);
+
         }
 
         public static void ReadFileUsingFileStream(string fileName)
         {
             const int BUFFERSIZE = 4096;
-            using (var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
+            using var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
+
+            ShowStreamInformation(stream);
+            Encoding encoding = GetEncoding(stream);
+
+
+            byte[] buffer = new byte[BUFFERSIZE];
+
+            bool completed = false;
+            do
             {
-                ShowStreamInformation(stream);
-                Encoding encoding = GetEncoding(stream);
-
-
-                byte[] buffer = new byte[BUFFERSIZE];
-
-                bool completed = false;
-                do
+                int nread = stream.Read(buffer, 0, BUFFERSIZE);
+                if (nread == 0) completed = true;
+                if (nread < BUFFERSIZE)
                 {
-                    int nread = stream.Read(buffer, 0, BUFFERSIZE);
-                    if (nread == 0) completed = true;
-                    if (nread < BUFFERSIZE)
-                    {
-                        Array.Clear(buffer, nread, BUFFERSIZE - nread);
-                    }
+                    Array.Clear(buffer, nread, BUFFERSIZE - nread);
+                }
 
-                    string s = encoding.GetString(buffer, 0, nread);
-                    Console.WriteLine($"read {nread} bytes");
-                    Console.WriteLine(s);
-                } while (!completed);
-            }
+                string s = encoding.GetString(buffer, 0, nread);
+                Console.WriteLine($"read {nread} bytes");
+                Console.WriteLine(s);
+            } while (!completed);
+
         }
 
         public static void ShowStreamInformation(Stream stream)

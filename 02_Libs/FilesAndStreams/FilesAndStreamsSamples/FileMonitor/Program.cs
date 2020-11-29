@@ -5,9 +5,9 @@ namespace FileMonitor
 {
     public class Program
     {
-        private static FileSystemWatcher s_watcher;
+        private static FileSystemWatcher? s_watcher;
 
-        public static void Main(string[] args)
+        public static void Main()
         {
             WatchFiles(".", "*.txt");
             Console.ReadLine();
@@ -31,6 +31,8 @@ namespace FileMonitor
 
         public static void UnWatchFiles()
         {
+            if (s_watcher == null) throw new InvalidOperationException();
+
             s_watcher.Created -= OnFileChanged;
             s_watcher.Changed -= OnFileChanged;
             s_watcher.Deleted -= OnFileChanged;

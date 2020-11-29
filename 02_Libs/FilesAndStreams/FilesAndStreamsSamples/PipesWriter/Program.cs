@@ -27,36 +27,36 @@ namespace PipesWriter
         {
             Console.WriteLine("using anonymous pipe");
             Console.Write("pipe handle: ");
-            string pipeHandle = Console.ReadLine();
-            using (var pipeWriter = new AnonymousPipeClientStream(PipeDirection.Out, pipeHandle))
-            using (var writer = new StreamWriter(pipeWriter))
+            string? pipeHandle = Console.ReadLine();
+            if (pipeHandle == null) throw new InvalidOperationException();
+            using AnonymousPipeClientStream pipeWriter = new(PipeDirection.Out, pipeHandle);
+            using StreamWriter writer = new(pipeWriter);
+
+            for (int i = 0; i < 100; i++)
             {
-                for (int i = 0; i < 100; i++)
-                {
-                    writer.WriteLine($"Message {i}");
-                    Task.Delay(500).Wait();
-                }
+                writer.WriteLine($"Message {i}");
+                Task.Delay(500).Wait();
             }
         }
 
         private static void PipesWriter2(string serverName, string pipeName)
         {
             var pipeWriter = new NamedPipeClientStream(serverName, pipeName, PipeDirection.Out);
-            using (var writer = new StreamWriter(pipeWriter))
+            using StreamWriter writer = new(pipeWriter);
+
+            pipeWriter.Connect();
+            Console.WriteLine("writer connected");
+
+            bool completed = false;
+            while (!completed)
             {
-                pipeWriter.Connect();
-                Console.WriteLine("writer connected");
+                string? input = Console.ReadLine();
+                if (input == "bye") completed = true;
 
-                bool completed = false;
-                while (!completed)
-                {
-                    string input = Console.ReadLine();
-                    if (input == "bye") completed = true;
-
-                    writer.WriteLine(input);
-                    writer.Flush();
-                }
+                writer.WriteLine(input);
+                writer.Flush();
             }
+
             Console.WriteLine("completed writing");
         }
 
@@ -64,21 +64,22 @@ namespace PipesWriter
         {
             try
             {
-                using (var pipeWriter = new NamedPipeClientStream(serverName, pipeName, PipeDirection.Out))
+                using NamedPipeClientStream pipeWriter = new(serverName, pipeName, PipeDirection.Out);
+
+                pipeWriter.Connect();
+                Console.WriteLine("writer connected");
+
+                bool completed = false;
+                while (!completed)
                 {
-                    pipeWriter.Connect();
-                    Console.WriteLine("writer connected");
+                    string? input = Console.ReadLine();
+                    if (input == "bye") completed = true;
+                    if (input == null) throw new InvalidOperationException();
 
-                    bool completed = false;
-                    while (!completed)
-                    {
-                        string input = Console.ReadLine();
-                        if (input == "bye") completed = true;
-
-                        byte[] buffer = Encoding.UTF8.GetBytes(input);
-                        pipeWriter.Write(buffer, 0, buffer.Length);
-                    }
+                    byte[] buffer = Encoding.UTF8.GetBytes(input);
+                    pipeWriter.Write(buffer, 0, buffer.Length);
                 }
+
                 Console.WriteLine("completed writing");
             }
             catch (Exception ex)
