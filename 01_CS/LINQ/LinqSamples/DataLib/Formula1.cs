@@ -37,10 +37,10 @@ namespace DataLib
             new ("Mika", "Hakkinen", "Finland", 160, 20, new int[] { 1998, 1999 }, new string[] { "McLaren" }),
             new ("Michael", "Schumacher", "Germany", 287, 91, new int[] { 1994, 1995, 2000, 2001, 2002, 2003, 2004 }, new string[] { "Benetton", "Ferrari" }),
             new ("Fernando", "Alonso", "Spain", 314, 32, new int[] { 2005, 2006 }, new string[] { "Renault" }),
-            new ("Kimi", "Räikkönen", "Finland", 325, 21 , new int[] { 2007 }, new string[] { "Ferrari" }),
-            new ("Lewis", "Hamilton", "UK", 262, 93, new int[] { 2008, 2014, 2015, 2017, 2018, 2019, 2020 }, new string[] { "McLaren", "Mercedes" }),
+            new ("Kimi", "Räikkönen", "Finland", 330, 21 , new int[] { 2007 }, new string[] { "Ferrari" }),
+            new ("Lewis", "Hamilton", "UK", 266, 95, new int[] { 2008, 2014, 2015, 2017, 2018, 2019, 2020 }, new string[] { "McLaren", "Mercedes" }),
             new ("Jenson", "Button", "UK", 306, 16, new int[] { 2009 }, new string[] { "Brawn GP" }),
-            new ("Sebastian", "Vettel", "Germany", 252, 53, new int[] { 2010, 2011, 2012, 2013 }, new string[] { "Red Bull Racing" }),
+            new ("Sebastian", "Vettel", "Germany", 257, 53, new int[] { 2010, 2011, 2012, 2013 }, new string[] { "Red Bull Racing" }),
             new ("Nico", "Rosberg", "Germany", 207, 24, new int[] { 2016 }, new string[] { "Mercedes" })
         };
 
@@ -175,9 +175,9 @@ namespace DataLib
             new Racer("Juan Pablo", "Montoya", "Columbia", Starts: 94, Wins: 7),
             new Racer("Felipe", "Massa", "Brazil", Starts: 269, Wins: 11),
             new Racer("Mark", "Webber", "Australia", Starts: 215, Wins: 9),
-            new Racer("Daniel", "Ricciardo", "Australia", Starts: 183, Wins: 7),
-            new Racer("Valtteri", "Bottas", "Finland", Starts: 151, Wins: 9),
-            new Racer("Max", "Verstappen", "Netherlands", Starts: 114, Wins: 9)
+            new Racer("Daniel", "Ricciardo", "Australia", Starts: 188, Wins: 7),
+            new Racer("Valtteri", "Bottas", "Finland", Starts: 156, Wins: 9),
+            new Racer("Max", "Verstappen", "Netherlands", Starts: 119, Wins: 10)
         };        
     }
 }
