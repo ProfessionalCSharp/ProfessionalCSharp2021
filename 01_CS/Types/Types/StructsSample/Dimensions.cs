@@ -1,6 +1,6 @@
 ﻿using System;
 
-public struct Dimensions
+public readonly struct Dimensions
 {
     public double Length { get; }
     public double Width { get; }
@@ -13,5 +13,4 @@ public struct Dimensions
 
     public double Diagonal => Math.Sqrt(Length * Length + Width * Width);
     public override string ToString() => $"Length: {Length}, Width: {Width}";
-
 }

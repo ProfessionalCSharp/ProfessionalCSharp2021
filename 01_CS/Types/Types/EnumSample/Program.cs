@@ -1,7 +1,8 @@
 ﻿using System;
 
-DaysOfWeekSamples();
 ColorSamples();
+DaysOfWeekSamples();
+
 UsingEnumClass();
 
 Console.ReadLine();
@@ -50,5 +51,5 @@ void ColorSamples()
 
     Color c2 = (Color)2;
     Console.WriteLine(c2);
-    Console.WriteLine((short)c2);
+    Console.WriteLine((short)c2);   
 }
