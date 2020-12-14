@@ -23,7 +23,7 @@ void ArrayClass()
     Array intArray1 = Array.CreateInstance(typeof(int), 5);
     for (int i = 0; i < 5; i++)
     {
-        intArray1.SetValue(33, i);
+        intArray1.SetValue(3 * i, i);
     }
     for (int i = 0; i < 5; i++)
     {
@@ -48,10 +48,12 @@ void ArrayClass()
 
 void Jagged()
 {
-    int[][] jagged = new int[3][];
-    jagged[0] = new int[2] { 1, 2 };
-    jagged[1] = new int[6] { 3, 4, 5, 6, 7, 8 };
-    jagged[2] = new int[3] { 9, 10, 11 };
+    int[][] jagged =
+    {
+        new[] { 1, 2 },
+        new[] { 3, 4, 5, 6, 7, 8 },
+        new[] { 9, 10, 11 }
+    };
 
     for (int row = 0; row < jagged.Length; row++)
     {
@@ -60,6 +62,15 @@ void Jagged()
         {
             Console.WriteLine(
                $"row: {row}, element: {element}, value: {jagged[row][element]}");
+        }
+    }
+
+    // foreach version
+    foreach (var row in jagged)
+    {
+        foreach (var item in row)
+        {
+            Console.WriteLine(item);
         }
     }
 }
@@ -94,12 +105,12 @@ void SimpleArrays()
 {
     var myPersons = new Person[2];
 
-    myPersons[0] = new Person("Ayrton", "Senna");
+    myPersons[0] = new("Ayrton", "Senna");
     myPersons[1] = new("Michael", "Schumacher");
 
     Person[] myPersons2 =
     {
-        new ("Ayrton", "Senna"),
-        new ("Michael", "Schumacher")
+        new("Ayrton", "Senna"),
+        new("Michael", "Schumacher")
     };
 }

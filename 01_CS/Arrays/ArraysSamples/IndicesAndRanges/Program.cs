@@ -52,8 +52,8 @@ Console.WriteLine($"value in array: {data[3]}, value from slice: {sliceToSpan[0]
 
 MyCollection coll = new();
 int n = coll[^20];
-Console.WriteLine("item from teh collection: {n}");
-ShowRange("using custom collection", coll[45..^40]);
+Console.WriteLine($"Item from the collection: {n}");
+ShowRange("Using custom collection", coll[45..^40]);
 
 
 

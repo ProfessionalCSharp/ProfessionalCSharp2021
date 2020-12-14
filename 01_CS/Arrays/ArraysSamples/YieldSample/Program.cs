@@ -39,7 +39,7 @@ void MusicTitles()
 
 void HelloWorld()
 {
-    var helloCollection = new HelloCollection();
+    HelloCollection helloCollection = new();
     foreach (string s in helloCollection)
     {
         Console.WriteLine(s);
