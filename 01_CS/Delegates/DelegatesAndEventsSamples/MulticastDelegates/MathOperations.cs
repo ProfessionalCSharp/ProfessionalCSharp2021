@@ -1,6 +1,6 @@
 ﻿using System;
 
-class MathOperations
+public static class MathOperations
 {
     public static void MultiplyByTwo(double value) =>
         Console.WriteLine($"Multiplying by 2: {value} gives {value * 2}");

@@ -1,15 +1,15 @@
 ﻿CarDealer dealer = new();
 
 Consumer sebastian = new("Sebastian");
-dealer.NewCarInfo += sebastian.NewCarIsHere;
+dealer.NewCarCreated += sebastian.NewCarIsHere;
 
-dealer.NewCar("Williams");
+dealer.CreateANewCar("Williams");
 
 Consumer max = new("Max");
-dealer.NewCarInfo += max.NewCarIsHere;
+dealer.NewCarCreated += max.NewCarIsHere;
 
-dealer.NewCar("Aston Martin");
+dealer.CreateANewCar("Aston Martin");
 
-dealer.NewCarInfo -= sebastian.NewCarIsHere;
+dealer.NewCarCreated -= sebastian.NewCarIsHere;
 
-dealer.NewCar("Ferrari");
+dealer.CreateANewCar("Ferrari");

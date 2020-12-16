@@ -5,7 +5,7 @@ GetAString firstStringMethod = new GetAString(x.ToString);
 Console.WriteLine($"String is {firstStringMethod()}");
 // With firstStringMethod initialized to x.ToString(),
 // the above statement is equivalent to saying
-// Console.WriteLine("String is {0}", x.ToString());
+// Console.WriteLine($"String is {x.ToString()}");
 
 var balance = new Currency(34, 50);
 

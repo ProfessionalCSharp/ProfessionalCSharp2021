@@ -3,7 +3,7 @@
 static void One()
 {
     Console.WriteLine("One");
-    throw new Exception("Error in one");
+    throw new Exception("Error in One");
 }
 
 static void Two()

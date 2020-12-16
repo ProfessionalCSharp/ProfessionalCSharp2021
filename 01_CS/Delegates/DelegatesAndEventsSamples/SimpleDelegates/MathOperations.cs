@@ -1,4 +1,4 @@
-﻿class MathOperations
+﻿public static class MathOperations
 {
     public static double MultiplyByTwo(double value) => value * 2;
 
