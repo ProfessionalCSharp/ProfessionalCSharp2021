@@ -1,5 +1,22 @@
 ﻿using System;
 
+class A
+{
+    internal void Foo() { }
+    class B
+    {
+
+    }
+}
+class B
+{
+    void Bar()
+    {
+        var x = new A();
+        x.Foo();
+    }
+}
+
 public class Position
 {
     public Position(int x, int y) => (X, Y) = (x, y);
