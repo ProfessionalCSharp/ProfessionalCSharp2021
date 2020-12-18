@@ -1,33 +1,44 @@
 ﻿using System;
 
-namespace VirtualMethods
+public class Rectangle : Shape
 {
-    public record Rectangle : Shape
+    protected override void DisplayShape()
     {
-        public override void Draw() =>
-            Console.WriteLine($"Rectangle with {Position} and {Size}");
-
-        public override void Move(Position newPosition)
-        {
-            Console.Write("Rectangle ");
-            base.Move(newPosition);
-        }
-
-        public override void Resize(int width, int height)
-        {
-            throw new NotImplementedException();
-        }
+        Console.WriteLine($"Rectangle at position {Position} with size {Size}");
     }
 
-    public record Ellipse : Shape
+    public override void Move(Position newPosition)
     {
-        public override void Resize(int width, int height)
-        {
-            if (Size != null)
-            {
-                Size.Width = width;
-                Size.Height = height;
-            }
-        }
+        Console.Write("Rectangle ");
+        base.Move(newPosition);
     }
+
+    public override Rectangle Clone()
+    {
+        Rectangle r = new();
+        r.Position.X = Position.X;
+        r.Position.Y = Position.Y;
+        r.Size.Width = Size.Width;
+        r.Size.Height = Size.Width;
+        return r;
+    }
+}
+
+public class Ellipse : Shape
+{
+    protected override void DisplayShape()
+    {
+        Console.WriteLine($"Ellipse at position {Position} with size {Size}");
+    }
+
+    public override Ellipse Clone()
+    {
+        Ellipse e = new();
+        e.Position.X = Position.X;
+        e.Position.Y = Position.Y;
+        e.Size.Width = Size.Width;
+        e.Size.Height = Size.Width;
+        return e;
+    }
+
 }
