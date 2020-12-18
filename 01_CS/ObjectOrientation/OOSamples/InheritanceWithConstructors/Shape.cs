@@ -1,39 +1,42 @@
 ﻿using System;
 
-namespace InheritanceWithConstructors
+public class Position
 {
-    public class Position
+    public Position(int x, int y) => (X, Y) = (x, y);
+
+    public int X { get; }
+    public int Y { get; }
+
+    public override string ToString() => $"X: {X}, Y: {Y}";
+}
+
+public class Size
+{
+    public Size(int width, int height) => (Width, Height) = (width, height);
+
+    public int Width { get; }
+    public int Height { get; }
+
+    public override string ToString() => $"Width: {Width}, Height: {Height}";
+}
+
+public abstract class Shape
+{
+    public Shape(int x, int y, int width, int height)
     {
-        public int X { get; set; }
-        public int Y { get; set; }
-        public override string ToString() => $"X: {X}, Y: {Y}";
+        Position = new Position(x, y);
+        Size = new Size(width, height);
     }
 
-    public class Size
+    public Position Position { get; }
+    public virtual Size Size { get; }
+
+    public void Draw() => DisplayShape();
+
+    protected virtual void DisplayShape()
     {
-        public int Width { get; set; }
-        public int Height { get; set; }
-        public override string ToString() => $"Width: {Width}, Height: {Height}";
+        Console.WriteLine($"Shape with {Position} and {Size}");
     }
 
-    public class Shape
-    {
-        public Shape(int width, int height, int x, int y)
-        {
-            Size = new Size { Width = width, Height = height };
-            Position = new Position { X = x, Y = y };
-        }
-
-        public Position Position { get; }
-        public Size Size { get; }
-
-        public virtual void Draw() => Console.WriteLine($"Shape with {Position} and {Size}");
-
-        public virtual void Move(Position newPosition)
-        {
-            Position.X = newPosition.X;
-            Position.Y = newPosition.Y;
-            Console.WriteLine($"moves to {Position}");
-        }
-    }
+    public abstract Shape Clone();
 }

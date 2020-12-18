@@ -16,7 +16,7 @@ public class Size
     public override string ToString() => $"Width: {Width}, Height: {Height}";
 }
 
-public class Shape
+public abstract class Shape
 {
     public Position Position { get; } = new Position();
     public virtual Size Size { get; } = new Size();
@@ -35,6 +35,6 @@ public class Shape
         Console.WriteLine($"moves to {Position}");
     }
 
-    public virtual Shape Clone() => throw new NotImplementedException(); 
+    public abstract Shape Clone();
 }
 

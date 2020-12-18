@@ -1,31 +1,27 @@
 ﻿using System;
 
-namespace InheritanceWithConstructors
+public class Rectangle : Shape
 {
-    public class Rectangle : Shape
+    public Rectangle(int x, int y, int width, int height)
+        : base(x, y, width, height) { }
+
+    protected override void DisplayShape()
     {
-        public Rectangle(int width, int height, int x, int y)
-            : base(width, height, x, y) { }
-
-        public Rectangle()
-            : base(width: 0, height: 0, x: 0, y: 0) { }
-
-        public override void Draw() =>
-            Console.WriteLine($"Rectangle with {Position} and {Size}");
-
-        public override void Move(Position newPosition)
-        {
-            Console.Write("Rectangle ");
-            base.Move(newPosition);
-        }
+        Console.WriteLine($"Rectangle at position {Position} with size {Size}");
     }
 
-    public class Ellipse : Shape
-    {
-        public Ellipse(int width, int height, int x, int y)
-            : base(width, height, x, y) { }
+    public override Rectangle Clone() => new(Position.X, Position.Y, Size.Width, Size.Height);
+}
 
-        public Ellipse()
-            : base(width: 0, height: 0, x: 0, y: 0) { }
+public class Ellipse : Shape
+{
+    public Ellipse(int x, int y, int width, int height)
+    : base(x, y, width, height) { }
+
+    protected override void DisplayShape()
+    {
+        Console.WriteLine($"Ellipse at position {Position} with size {Size}");
     }
+
+    public override Ellipse Clone() => new(Position.X, Position.Y, Size.Width, Size.Height);
 }

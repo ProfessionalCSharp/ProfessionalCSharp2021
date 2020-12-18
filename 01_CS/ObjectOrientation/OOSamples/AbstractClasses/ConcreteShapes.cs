@@ -46,5 +46,4 @@ public class Ellipse : Shape
         e.Size.Height = Size.Width;
         return e;
     }
-
 }

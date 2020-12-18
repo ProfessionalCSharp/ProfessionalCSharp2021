@@ -1,17 +1,2 @@
-﻿using InheritanceWithConstructors;
-
-var r = new Rectangle();
-r.Position.X = 33;
-r.Position.Y = 22;
-r.Size.Width = 200;
-r.Size.Height = 100;
-r.Draw();
-DrawShape(r);
-
-r.Move(new Position { X = 120, Y = 40 });
-r.Draw();
-
-Shape s1 = new Ellipse();
-DrawShape(s1);
-
-static void DrawShape(Shape shape) => shape.Draw();
+﻿Shape s1 = new Ellipse(120, 100, 30, 10);
+s1.Draw();
