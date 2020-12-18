@@ -15,8 +15,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecordsInheritance", "..\Re
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyInjectionSample", "..\DependencyInjectionSample\DependencyInjectionSample.csproj", "{7E91A7FC-57F3-4FBC-9CAB-AE0E010A3BFF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03_Interfaces", "..\03_Interfaces\03_Interfaces.csproj", "{BBDEDD59-DFE6-4D33-8CB2-E70620514F42}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbstractClasses", "AbstractClasses\AbstractClasses.csproj", "{AB34B1E1-0EB7-4067-98F5-2311EC12970D}"
 EndProject
 Global
@@ -49,10 +47,6 @@ Global
 		{7E91A7FC-57F3-4FBC-9CAB-AE0E010A3BFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E91A7FC-57F3-4FBC-9CAB-AE0E010A3BFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E91A7FC-57F3-4FBC-9CAB-AE0E010A3BFF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BBDEDD59-DFE6-4D33-8CB2-E70620514F42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BBDEDD59-DFE6-4D33-8CB2-E70620514F42}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BBDEDD59-DFE6-4D33-8CB2-E70620514F42}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BBDEDD59-DFE6-4D33-8CB2-E70620514F42}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AB34B1E1-0EB7-4067-98F5-2311EC12970D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AB34B1E1-0EB7-4067-98F5-2311EC12970D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB34B1E1-0EB7-4067-98F5-2311EC12970D}.Release|Any CPU.ActiveCfg = Release|Any CPU

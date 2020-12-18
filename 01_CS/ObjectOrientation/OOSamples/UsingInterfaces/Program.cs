@@ -1,14 +1,25 @@
 ﻿using System;
-using UsingInterfaces;
 
-IBankAccount venusAccount = new SaverAccount();
-IBankAccount jupiterAccount = new GoldAccount();
+SortWithIComparable();
+DependencyInjection();
 
-venusAccount.PayIn(200);
-venusAccount.Withdraw(100);
-Console.WriteLine(venusAccount.ToString());
 
-jupiterAccount.PayIn(500);
-jupiterAccount.Withdraw(600);
-jupiterAccount.Withdraw(100);
-Console.WriteLine(jupiterAccount.ToString());
+void SortWithIComparable()
+{
+    Person p1 = new("Jackie", "Stewart");
+    Person p2 = new("Graham", "Hill");
+    Person p3 = new("Damon", "Hill");
+
+    Person[] people = { p1, p2, p3 };
+    Array.Sort(people);
+    foreach (var p in people)
+    {
+        Console.WriteLine(p);
+    }
+}
+
+void DependencyInjection()
+{
+    Rectangle r1 = new(new ConsoleLogger()) { Position = new(20, 30), Size = new(100, 120) };
+    r1.Draw();
+}
