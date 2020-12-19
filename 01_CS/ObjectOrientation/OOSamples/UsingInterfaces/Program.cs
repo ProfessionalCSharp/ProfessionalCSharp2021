@@ -3,7 +3,6 @@
 SortWithIComparable();
 DependencyInjection();
 
-
 void SortWithIComparable()
 {
     Person p1 = new("Jackie", "Stewart");
