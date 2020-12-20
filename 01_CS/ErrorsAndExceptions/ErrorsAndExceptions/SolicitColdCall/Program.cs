@@ -9,15 +9,16 @@ if (fileName != null)
 {
     ColdCallFileReaderLoop1(fileName);
     Console.WriteLine();
-    ColdCallFileReaderLoop2(fileName);
-    Console.WriteLine();
+    //ColdCallFileReaderLoop2(fileName);
+    //Console.WriteLine();
 }
 Console.ReadLine();
 
 
+// with using declaration instead of try/finally
 void ColdCallFileReaderLoop2(string fileName)
 {
-    using var peopleToRing = new ColdCallFileReader();
+    using ColdCallFileReader peopleToRing = new();
     try
     {
         peopleToRing.Open(fileName);
@@ -48,7 +49,7 @@ void ColdCallFileReaderLoop2(string fileName)
 
 void ColdCallFileReaderLoop1(string fileName)
 {
-    var peopleToRing = new ColdCallFileReader();
+    ColdCallFileReader peopleToRing = new();
 
     try
     {

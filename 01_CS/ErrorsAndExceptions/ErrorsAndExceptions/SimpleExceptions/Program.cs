@@ -27,7 +27,7 @@ while (true)
     }
     catch (Exception ex)
     {
-        Console.WriteLine($"An exception was thrown. Message was: {ex.Message}");
+        Console.WriteLine($"An exception was thrown. Exception type: {ex.GetType().Name}, Message: {ex.Message}");
     }
     finally
     {

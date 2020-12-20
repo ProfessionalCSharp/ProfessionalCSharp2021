@@ -1,10 +1,8 @@
 ﻿using System;
-using ExceptionFilters;
 
 try
 {
     ThrowWithErrorCode(405);
-
 }
 catch (MyCustomException ex) when (ex.ErrorCode == 405)
 {
@@ -17,7 +15,7 @@ catch (MyCustomException ex)
 
 Console.ReadLine();
 
-static void ThrowWithErrorCode(int code)
+void ThrowWithErrorCode(int code)
 {
     throw new MyCustomException("Error in Foo") { ErrorCode = code };
 }
