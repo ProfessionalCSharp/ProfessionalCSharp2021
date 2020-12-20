@@ -52,7 +52,7 @@ namespace ErrorHandling
 
         private static async void ShowAggregatedException()
         {
-            Task taskResult = null;
+            Task? taskResult = null;
             try
             {
                 Task t1 = ThrowAfter(2000, "first");
@@ -63,19 +63,21 @@ namespace ErrorHandling
             {
                 // just display the exception information of the first task that is awaited within WhenAll
                 Console.WriteLine($"handled {ex.Message}");
-                foreach (var ex1 in taskResult.Exception.InnerExceptions)
+                if (taskResult?.Exception?.InnerException is not null)
                 {
-                    Console.WriteLine($"inner exception {ex1.Message} from task {ex1.Source}");
+                    foreach (var ex1 in taskResult.Exception.InnerExceptions)
+                    {
+                        Console.WriteLine($"inner exception {ex1.Message} from task {ex1.Source}");
+                    }
                 }
             }
         }
 
         private async static void StartTwoTasksParallel()
         {
-            Task t1 = null;
             try
             {
-                t1 = ThrowAfter(2000, "first");
+                Task t1 = ThrowAfter(2000, "first");
                 Task t2 = ThrowAfter(1000, "second");
                 await Task.WhenAll(t1, t2);
             }

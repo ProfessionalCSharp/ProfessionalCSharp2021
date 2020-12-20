@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 
 namespace AsyncHistory
 {
-
     class Program
     {
         private const string url = "http://www.cninnovation.com";
