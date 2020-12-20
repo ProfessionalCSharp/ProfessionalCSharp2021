@@ -4,7 +4,6 @@ This chapter contains the following code samples:
 
 * GetAStringDemo (declaring a *delegate* to a simple method)
 * SimpleDelegates (declaring and instantiating delegates)
-* BubbleSorter (Sort method using a Func<T> delegate)
 * MulticastDelegates (invoking multiple methods with a single delegate)
 * LambdaExpressions (creating lambda expressions)
 * AnonymousMethods (using the *delegate* keyword to declare an anonymous method)
