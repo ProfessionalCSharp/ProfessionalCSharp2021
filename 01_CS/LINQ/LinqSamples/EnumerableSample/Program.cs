@@ -1,7 +1,7 @@
 ﻿using System.CommandLine;
 using EnumerableSample;
 
-var rootCommand = new RootCommand("EnumerableSample");
+RootCommand rootCommand = new("EnumerableSample");
 
 RegisterCommands.Register(rootCommand, "linq", nameof(LinqSamples));
 RegisterCommands.Register(rootCommand, "filter", nameof(FilterSamples));

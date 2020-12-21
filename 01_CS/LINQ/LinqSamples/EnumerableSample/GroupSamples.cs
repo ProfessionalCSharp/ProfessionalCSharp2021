@@ -23,7 +23,6 @@ namespace EnumerableSample
             {
                 Console.WriteLine($"{item.Country,-10} {item.Count}");
             }
-
         }
 
         public static void GroupingWithMethods()
@@ -41,12 +40,10 @@ namespace EnumerableSample
                   Count = g.Count()
               });
 
-
             foreach (var item in countries)
             {
                 Console.WriteLine($"{item.Country,-10} {item.Count}");
             }
-
         }
 
         public static void GroupingWithVariables()
@@ -68,7 +65,6 @@ namespace EnumerableSample
             {
                 Console.WriteLine($"{item.Country,-10} {item.Count}");
             }
-
         }
 
         public static void GroupingWithAnonymousTypes()

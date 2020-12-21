@@ -9,7 +9,7 @@ namespace EnumerableSample
     {
         public static void Register(RootCommand rootCommand, string commandText, string className)
         {
-            Command command = new (commandText);
+            Command command = new(commandText);
 
             MethodInfo[] methods = Assembly.GetExecutingAssembly()
                 .GetTypes()
@@ -20,7 +20,7 @@ namespace EnumerableSample
 
             foreach (var method in methods)
             {
-                command.AddCommand(new (method.Name.ToLower())
+                command.AddCommand(new(method.Name.ToLower())
                 {
                     Handler = CommandHandler.Create(() =>
                     {
