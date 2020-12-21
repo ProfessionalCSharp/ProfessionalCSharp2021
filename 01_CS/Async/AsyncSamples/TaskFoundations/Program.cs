@@ -7,12 +7,13 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 
+record Command(string Option, string Text, Action Action);
+
 class Program
 {
     private static readonly Command[] commands =
     {
         new("-async", nameof(CallerWithAsync), CallerWithAsync),
-        new("-async2", nameof(CallerWithAsync2), CallerWithAsync2),
         new("-awaiter", nameof(CallerWithAwaiter), CallerWithAwaiter),
         new("-cont", nameof(CallerWithContinuationTask), CallerWithContinuationTask),
         new("-masync", nameof(MultipleAsyncMethods), MultipleAsyncMethods),
@@ -134,13 +135,6 @@ class Program
         TraceThreadAndTask($"ended {nameof(CallerWithAsync)}");
     }
 
-    private static async void CallerWithAsync2()
-    {
-        TraceThreadAndTask($"started {nameof(CallerWithAsync2)}");
-        Console.WriteLine(await GreetingAsync("Stephanie"));
-        TraceThreadAndTask($"ended {nameof(CallerWithAsync2)}");
-    }
-
     static Task<string> GreetingAsync(string name) =>
         Task.Run(() =>
         {
@@ -148,7 +142,7 @@ class Program
             return Greeting(name);
         });
 
-    private readonly static Dictionary<string, string> names = new Dictionary<string, string>();
+    private readonly static Dictionary<string, string> names = new();
 
     static async ValueTask<string> GreetingValueTaskAsync(string name)
     {

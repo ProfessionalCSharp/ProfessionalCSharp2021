@@ -1,23 +1,29 @@
-# Readme - Code Samples for Chapter 15, Asynchronous Programming
+# Readme - Code Samples for Chapter 11, Tasks and Asynchronous Programming
 
 This chapter contains these samples:
 
-* AsyncHistory
-* Foundations (changing synchronous methods to async, continuation)
+* TaskBasedAsyncPattern
+* TaskFoundations
 * ErrorHandling (error handling with async methods)
-* AsyncWindowsApp (synchronous .vs. asynchronous, using the asynchronous pattern, event-based async pattern, and task-based async pattern)
+* TaskCancellation (using TaskCancellationToken)
+* AsyncStreams
+* AsyncWindowsDesktopApp (Windows app using the asynchronous pattern, ConfigureAwait, deadlock, IAsyncOperation)
 
 To build and run the .NET Core samples, please install one of these tools:
 
-* Visual Studio 2017 Update 5 with the .NET Core workload and the Universal Windows Platform development workload
+* Visual Studio 2019 (at least 16.8.3)
 * Visual Studio for Mac
 * Visual Studio Code
-
-The AsyncWindowsApp requires Windows 10 and Visual Studio 2017 with the Universal Windows Platform development workload. The other samples run on other platforms as well.
+* or just install .NET 5.0+ (https://dotnet.microsoft.com/download) and use any editor
 
 Please download and install the tools from [.NET Core downloads](https://www.microsoft.com/net/core).
+
+The **AsyncWindowsDesktopApp** is currently built with WinUI 3 Preview 3. Check for updates as newer versions are available!
+
+[Install WinUI 3 Preview 3](https://docs.microsoft.com/en-us/windows/apps/winui/winui3/#install-winui-3-preview-3)
+
  
-For code comments and issues please check [Professional C#'s GitHub Repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp7)
+For code comments and issues please check [Professional C#'s GitHub Repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021)
 
 Please check my blog [csharp.christiannagel.com](https://csharp.christiannagel.com "csharp.christiannagel.com") for additional information for topics covered in the book.
 

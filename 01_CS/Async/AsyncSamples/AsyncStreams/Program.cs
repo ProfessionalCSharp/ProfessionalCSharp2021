@@ -1,12 +1,18 @@
 ﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 
-namespace AsyncStreams
+CancellationTokenSource cancellation = new(TimeSpan.FromSeconds(5));
+
+ADevice aDevice = new();
+try
 {
-    class Program
+    await foreach (var data in aDevice.GetSensorData().WithCancellation(cancellation.Token))
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello World!");
-        }
+        Console.WriteLine($"{data.Value1} {data.Value2}");
     }
+}
+catch (OperationCanceledException ex)
+{
+    Console.WriteLine(ex.Message);
 }

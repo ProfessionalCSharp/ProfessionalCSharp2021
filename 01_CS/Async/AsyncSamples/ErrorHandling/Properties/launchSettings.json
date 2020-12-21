@@ -1,8 +1,8 @@
 {
   "profiles": {
-    "Foundations": {
+    "ErrorHandling": {
       "commandName": "Project",
-      "commandLineArgs": "-async"
+      "commandLineArgs": "-twop"
     }
   }
 }

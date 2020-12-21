@@ -1,18 +1,7 @@
 ﻿using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading;
 using System.Threading.Tasks;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Core;
 using Windows.UI.Popups;
 
@@ -54,7 +43,7 @@ namespace AsyncWindowsDesktopApp
             {
                 string result = $"\nasync function: {GetThread()}\n";
                 await Task.Delay(1000).ConfigureAwait(continueOnCapturedContext: false);
-                result += $"\nasync function after await : {GetThread()}";
+                result += $"\nasync function after await : {GetThread()}; ";
 
                 try
                 {
@@ -63,9 +52,10 @@ namespace AsyncWindowsDesktopApp
                 }
                 catch (Exception ex) when (ex.HResult == -2147417842)
                 {
+                    result += $"exception: {ex.Message}";
                     return result;
-                    // we know it's the wrong thread, so don't access
-                    // UI elements from the previous try block
+                    // we know it's the wrong thread
+                    // don't access UI elements from the previous try block
                 }
             }
         }
@@ -95,7 +85,7 @@ namespace AsyncWindowsDesktopApp
 
         private async void OnIAsyncOperation(object sender, RoutedEventArgs e)
         {
-            var dlg = new MessageDialog("Select One, Two, Or Three", "Sample");
+            MessageDialog dlg = new("Select One, Two, Or Three", "Sample");
 
             dlg.Commands.Add(new UICommand("One", null, 1));
             dlg.Commands.Add(new UICommand("Two", null, 2));
@@ -108,14 +98,17 @@ namespace AsyncWindowsDesktopApp
 
         private void OnStartDeadlock(object sender, RoutedEventArgs e)
         {
+            // invoke DelayAsync and block the UI thread until completed
             DelayAsync().Wait();
 
             async Task DelayAsync()
             {
-                await Task.Delay(1000);
+                // DelayAsync is started, Task.Delay returns the task - now start the blocking Wait above and wait until it is completed
+                await Task.Delay(1000); // .ConfigureAwait(false);  deadlock without ConfigureAwait
+                // the UI thread cannot continue here, because it is waiting above
             }
         }
 
-        private string GetThread() => $"thread: {Environment.CurrentManagedThreadId}";
+        private string GetThread() => $"thread: {Thread.CurrentThread.ManagedThreadId}";
     }
 }

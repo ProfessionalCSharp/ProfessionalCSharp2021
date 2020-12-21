@@ -9,7 +9,7 @@
 
     <StackPanel>
         <Button Content="Start Async" Click="OnStartAsync" Margin="4" />
-        <Button Content="Start Async with Config" Click="OnStartAsyncConfigureAwait" Margin="4" />
+        <Button Content="Start Async with ConfigureAwait" Click="OnStartAsyncConfigureAwait" Margin="4" />
         <Button Content="Start Async with Thread Switch" Click="OnStartAsyncWithThreadSwitch" Margin="4" />
         <Button Content="Use IAsyncOperation" Click="OnIAsyncOperation" Margin="4" />
         <Button Content="Deadlock" Click="OnStartDeadlock" Margin="4" />
