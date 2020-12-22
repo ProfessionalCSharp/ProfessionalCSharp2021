@@ -10,8 +10,8 @@ namespace MemoryMappedFilesSample
     // Windows only!
     public class Program
     {
-        private ManualResetEventSlim _mapCreated = new ManualResetEventSlim(initialState: false);
-        private ManualResetEventSlim _dataWrittenEvent = new ManualResetEventSlim(initialState: false);
+        private ManualResetEventSlim _mapCreated = new(initialState: false);
+        private ManualResetEventSlim _dataWrittenEvent = new(initialState: false);
         private const string MAPNAME = "SampleMap";
         private static readonly string[] options = { "-f", "-s" };
 

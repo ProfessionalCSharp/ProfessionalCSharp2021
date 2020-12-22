@@ -60,21 +60,20 @@ namespace StreamSamples
         public static void WriteTextFile()
         {
             string tempTextFileName = Path.ChangeExtension(Path.GetTempFileName(), "txt");
-            using (FileStream stream = File.OpenWrite(tempTextFileName))
-            {
-                //// write BOM
-                //stream.WriteByte(0xef);
-                //stream.WriteByte(0xbb);
-                //stream.WriteByte(0xbf);
+            using FileStream stream = File.OpenWrite(tempTextFileName);
 
-                byte[] preamble = Encoding.UTF8.GetPreamble();
-                stream.Write(preamble, 0, preamble.Length);
+            //// write BOM
+            //stream.WriteByte(0xef);
+            //stream.WriteByte(0xbb);
+            //stream.WriteByte(0xbf);
 
-                string hello = "Hello, World!";
-                byte[] buffer = Encoding.UTF8.GetBytes(hello);
-                stream.Write(buffer, 0, buffer.Length);
-                Console.WriteLine($"file {stream.Name} written");
-            }
+            byte[] preamble = Encoding.UTF8.GetPreamble();
+            stream.Write(preamble, 0, preamble.Length);
+
+            string hello = "Hello, World!";
+            byte[] buffer = Encoding.UTF8.GetBytes(hello);
+            stream.Write(buffer, 0, buffer.Length);
+            Console.WriteLine($"file {stream.Name} written");
         }
 
         public static void RandomAccessSample()
@@ -135,7 +134,6 @@ namespace StreamSamples
                 string s = $"#{rec.Number,8};{rec.Text,-20};{date}#{Environment.NewLine}";
                 await writer.WriteAsync(s);
             }
-
         }
 
         public static void CopyUsingStreams(string inputFile, string outputFile)
@@ -161,7 +159,6 @@ namespace StreamSamples
             using var outputStream = File.OpenWrite(outputFile);
 
             inputStream.CopyTo(outputStream);
-
         }
 
         public static void ReadFileUsingFileStream(string fileName)
@@ -172,20 +169,23 @@ namespace StreamSamples
             ShowStreamInformation(stream);
             Encoding encoding = GetEncoding(stream);
 
-
             byte[] buffer = new byte[BUFFERSIZE];
+            Span<byte> bufferSpan = buffer.AsSpan();
 
             bool completed = false;
             do
-            {
-                int nread = stream.Read(buffer, 0, BUFFERSIZE);
+            {                
+                int nread = stream.Read(bufferSpan);
                 if (nread == 0) completed = true;
-                if (nread < BUFFERSIZE)
+                if (nread < bufferSpan.Length)
                 {
-                    Array.Clear(buffer, nread, BUFFERSIZE - nread);
+                    // bufferSpan.Slice(nread).Clear();
+                    bufferSpan[nread..].Clear();
+                    // Array.Clear(buffer, nread, BUFFERSIZE - nread);
                 }
 
-                string s = encoding.GetString(buffer, 0, nread);
+                // string s = encoding.GetString(buffer, 0, nread);
+                string s = encoding.GetString(bufferSpan[..nread]);
                 Console.WriteLine($"read {nread} bytes");
                 Console.WriteLine(s);
             } while (!completed);
