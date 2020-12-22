@@ -1,6 +1,1 @@
-﻿namespace OperatorsSample
-{
-    public record Address(string Country, string City)
-    {
-    }
-}
+﻿public record Address(string Country, string City);
