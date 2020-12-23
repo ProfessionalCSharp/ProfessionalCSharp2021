@@ -24,7 +24,4 @@
 
     public static Vector operator *(Vector left, double right) =>
         right * left;
-
-    //public static double operator *(Vector left, Vector right) =>
-    //    left.X * right.X + left.Y * right.Y + left.Z * right.Z;
 }

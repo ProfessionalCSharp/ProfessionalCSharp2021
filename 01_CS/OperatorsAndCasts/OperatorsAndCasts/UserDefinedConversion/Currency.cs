@@ -6,11 +6,7 @@ public readonly struct Currency
     public readonly uint Dollars;
     public readonly ushort Cents;
 
-    public Currency(uint dollars, ushort cents)
-    {
-        Dollars = dollars;
-        Cents = cents;
-    }
+    public Currency(uint dollars, ushort cents) => (Dollars, Cents) = (dollars, cents);
 
     public override string ToString() => $"${Dollars}.{Cents,-2:00}";
 
@@ -19,14 +15,14 @@ public readonly struct Currency
 
     public static explicit operator Currency(float value)
     {
-        //// version 1
+        // version 1
         //uint dollars = (uint)value;
         //ushort cents = (ushort)((value - dollars) * 100);
         //return new Currency(dollars, cents);
 
+        // version 2
         try
         {
-            // version 2
             checked
             {
                 uint dollars = (uint)value;

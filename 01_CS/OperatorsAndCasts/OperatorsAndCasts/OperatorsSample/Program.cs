@@ -14,28 +14,7 @@ catch (OverflowException ex)
 
 IsOperator();
 IsOperatorWithConstPattern();
-IsOperatorWithTypePattern();
-AsOperatorSample();
 SizeofSample();
-
-
-void ShowPerson(Person p)
-{
-    string? firstName = p?.FirstName;
-    int? age = p?.Age;
-    int age1 = p?.Age ?? 0;
-}
-
-void UsePerson()
-{
-    Person p = GetPerson();
-
-    string? city = p?.WorkAddress?.City;
-
-}
-
-Person GetPerson() =>
-    new Person("Christian", "Nagel", 52, new Address("Austria", "Vienna"));
 
 void SizeofSample()
 {
@@ -59,19 +38,6 @@ void AsOperatorSample()
     Console.WriteLine($"o1 as string assigns a string to s1: {s1}");
     Console.WriteLine($"o2 as string assigns null to s2 because o2 is not a string: {s2}");
     Console.WriteLine();
-}
-
-void IsOperatorWithTypePattern()
-{
-    AMethodUsingPatternMatching(new Person("Katharina", "Nagel"));
-}
-
-void AMethodUsingPatternMatching(object o)
-{
-    if (o is Person p)
-    {
-        Console.WriteLine($"o is a Person with firstname {p.FirstName}");
-    }
 }
 
 
@@ -136,9 +102,9 @@ void PrefixAndPostfix()
     {
         Console.WriteLine("This will execute");
     }
-    if (x++ == 7) // false – x is incremented to 7 after the evaluation
+    if (x++ == 6) // true – x is incremented to 7 after the evaluation
     {
-        Console.WriteLine("This won’t");
+        Console.WriteLine($"The value of x is: {x}"); // x has the value 7
     }
     Console.WriteLine();
 }

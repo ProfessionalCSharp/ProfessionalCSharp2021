@@ -1,5 +1,10 @@
 ﻿using System;
 
+long myLongNumber = 333333423;
+object myObject = (object)myLongNumber;
+int myIntNumber = (int)(long)myObject;
+
+
 SimpleCalculations();
 ShiftingBits();
 SignedNumbers();
