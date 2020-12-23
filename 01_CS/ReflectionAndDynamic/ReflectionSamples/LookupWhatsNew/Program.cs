@@ -9,13 +9,13 @@ namespace LookupWhatsNew
 {
     class Program
     {
-        private static readonly StringBuilder outputText = new StringBuilder(1000);
-        private static DateTime backDateTo = new DateTime(2017, 2, 1);
+        private static readonly StringBuilder outputText = new(1000);
+        private static DateTime backDateTo = new(2019, 2, 1);
 
         static void Main()
         {
             Assembly theAssembly = Assembly.Load(new AssemblyName("VectorClass"));
-            Attribute supportsAttribute = theAssembly.GetCustomAttribute(typeof(SupportsWhatsNewAttribute));
+            Attribute? supportsAttribute = theAssembly.GetCustomAttribute(typeof(SupportsWhatsNewAttribute));
 
             AddToOutput($"Assembly: {theAssembly.FullName}");
 

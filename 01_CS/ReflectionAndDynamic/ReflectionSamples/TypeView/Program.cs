@@ -6,7 +6,7 @@ namespace TypeView
 {
     class Program
     {
-        private static StringBuilder OutputText = new StringBuilder();
+        private static StringBuilder OutputText = new();
 
         static void Main()
         {
@@ -27,7 +27,7 @@ namespace TypeView
             AddToOutput($"Full Name: {t.FullName}");
             AddToOutput($"Namespace: {t.Namespace}");
 
-            Type tBase = typeInfo.BaseType;
+            Type? tBase = typeInfo.BaseType;
 
             if (tBase != null)
             {

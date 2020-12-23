@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Dynamic;
 using System.IO;
 using System.Linq;
@@ -9,14 +10,14 @@ namespace DynamicFileReader
     {
         public IEnumerable<dynamic> ParseFile(string fileName)
         {
-            var retList = new List<dynamic>();
-            var fileStream = OpenFile(fileName);
-            if (fileStream != null)
+            List<dynamic> retList = new();
+            StreamReader? reader = OpenFile(fileName);
+            if (reader != null)
             {
-                string[] headerLine = fileStream.ReadLine().Split(',').Select(s => s.Trim()).ToArray();
-                while (fileStream.Peek() > 0)
+                string[] headerLine = reader.ReadLine()?.Split(',').Select(s => s.Trim()).ToArray() ?? throw new InvalidOperationException("reader.ReadLine returned null");
+                while (reader.Peek() > 0)
                 {
-                    string[] dataLine = fileStream.ReadLine().Split(',');
+                    string[] dataLine = reader.ReadLine()?.Split(',') ?? throw new InvalidOperationException("reader.Readline returned null");
                     dynamic dynamicEntity = new ExpandoObject();
                     for (int i = 0; i < headerLine.Length; i++)
                     {
@@ -28,7 +29,7 @@ namespace DynamicFileReader
             return retList;
         }
 
-        private StreamReader OpenFile(string fileName)
+        private StreamReader? OpenFile(string fileName)
         {
             if (File.Exists(fileName))
             {

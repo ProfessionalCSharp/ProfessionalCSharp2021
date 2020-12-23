@@ -31,7 +31,7 @@ namespace ClientApp
         {
             double x = 3;
             double y = 4;
-            dynamic calc = GetCalculator(addinPath);
+            dynamic calc = GetCalculator(addinPath) ?? throw new InvalidOperationException("GetCalculator returned null");
             double result = calc.Add(x, y);
             Console.WriteLine($"the result of {x} and {y} is {result}");
 
@@ -49,13 +49,13 @@ namespace ClientApp
         {
             double x = 3;
             double y = 4;
-            object calc = GetCalculator(addinPath);
+            object calc = GetCalculator(addinPath) ?? throw new InvalidOperationException("GetCalculator returned null");
 
-            object result = calc.GetType().GetMethod("Add").Invoke(calc, new object[] { x, y });
+            object? result = calc.GetType().GetMethod("Add")?.Invoke(calc, new object[] { x, y }) ?? throw new InvalidOperationException("Add method not found");
             Console.WriteLine($"the result of {x} and {y} is {result}");
         }
 
-        private static object GetCalculator(string addinPath)
+        private static object? GetCalculator(string addinPath)
         {
             Assembly assembly = Assembly.LoadFile(addinPath);
             return assembly.CreateInstance(CalculatorTypeName);

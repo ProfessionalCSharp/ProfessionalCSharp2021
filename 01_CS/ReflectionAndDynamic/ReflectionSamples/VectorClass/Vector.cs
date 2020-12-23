@@ -7,6 +7,7 @@ using WhatsNewAttributes;
 
 namespace VectorClass
 {
+    [LastModified("19 Dec 2020", "updated for C# 9 and .NET 5")]
     [LastModified("19 Jul 2017", "updated for C# 7 and .NET Core 2")]
     [LastModified("6 Jun 2015", "updated for C# 6 and .NET Core")]
     [LastModified("14 Dec 2010", "IEnumerable interface implemented: " +
@@ -15,46 +16,41 @@ namespace VectorClass
         "Vector accepts N and VE format specifiers")]
     public class Vector : IFormattable, IEnumerable<double>
     {
-        public Vector(double x, double y, double z)
-        {
-            X = x;
-
-            Y = y;
-            Z = z;
-        }
+        [LastModified("19 Dec 2020", "changed to deconstruction syntax")]
+        public Vector(double x, double y, double z) => (X, Y, Z) = (x, y, z);
 
         [LastModified("19 Jul 2017", "Reduced the number of code lines")]
         public Vector(Vector vector)
             : this (vector.X, vector.Y, vector.Z) { }
 
-        public double X { get;  }
+        public double X { get; }
         public double Y { get; }
         public double Z { get; }
 
-        public override bool Equals(object obj) => this == obj as Vector;
+        public override bool Equals(object? obj) => this == obj as Vector;
 
         public override int GetHashCode() =>  (int)X | (int)Y | (int)Z;
 
+        [LastModified("19 Dec 2020",
+            "changed to use switch expression")]
+        [LastModified("19 Dec 2020",
+            "changed with nullability annotations")]
         [LastModified("19 Jul 2017",
               "changed ijk format from StringBuilder to format string")]
-        public string ToString(string format, IFormatProvider formatProvider)
+        public string ToString(string? format, IFormatProvider? formatProvider)
         {
             if (format == null)
             {
                 return ToString();
             }
 
-            switch (format.ToUpper())
+            return format.ToUpper() switch
             {
-                case "N":
-                    return "|| " + Norm().ToString() + " ||";
-                case "VE":
-                    return $"( {X:E}, {Y:E}, {Z:E} )";
-                case "IJK":
-                    return $"{X} i + {Y} j + {Z} k";
-                default:
-                    return ToString();
-            }
+                "N" => "|| " + Norm().ToString() + " ||",
+                "VE" => $"( {X:E}, {Y:E}, {Z:E} )",
+                "IJK" => $"{X} i + {Y} j + {Z} k",
+                _ => ToString()
+            };
         }
 
         [LastModified("6 Jun 2015", "added to implement IEnumerable<T>")]
@@ -64,23 +60,18 @@ namespace VectorClass
 
         public override string ToString() => $"({X} , {Y}, {Z}";
 
+        [LastModified("19 Dec 2020",
+            "changed to switch expression")]
         public double this[uint i]
         {
-            get
-            {
-                switch (i)
+            get => 
+                i switch
                 {
-                    case 0:
-                        return X;
-                    case 1:
-                        return Y;
-                    case 2:
-                        return Z;
-                    default:
-                        throw new IndexOutOfRangeException(
-                            "Attempt to retrieve Vector element" + i);
-                }
-            }
+                    0 => X,
+                    1 => Y,
+                    2 => Z,
+                    _ => throw new IndexOutOfRangeException("Attempt to retrieve Vector element" + i)
+                };
         }
 
         public static bool operator == (Vector left, Vector right) =>
@@ -89,16 +80,16 @@ namespace VectorClass
             Math.Abs(left.Z - right.Z) < double.Epsilon;
     
 
-        public static bool operator != (Vector left, Vector right) => !(left == right);
+        public static bool operator!= (Vector left, Vector right) => !(left == right);
 
-        public static Vector operator + (Vector left, Vector right) =>  new Vector(left.X + right.X, left.Y + right.Y, left.Z + right.Z);
+        public static Vector operator+ (Vector left, Vector right) =>  new Vector(left.X + right.X, left.Y + right.Y, left.Z + right.Z);
 
-        public static Vector operator * (double left, Vector right) =>
+        public static Vector operator* (double left, Vector right) =>
             new Vector(left * right.X, left * right.Y, left * right.Z);
 
-        public static Vector operator * (Vector left, double right) => left * right;
+        public static Vector operator* (Vector left, double right) => left * right;
 
-        public static double operator * (Vector left, Vector right) =>
+        public static double operator* (Vector left, Vector right) =>
             left.X * right.X + left.Y + right.Y + left.Z * right.Z;
 
         public double Norm() => X * X + Y * Y + Z * Z;
@@ -137,10 +128,8 @@ namespace VectorClass
                 }
             }
 
-            public void Reset()
-            {
-                _location = -1;
-            }
+            [LastModified("19 Dec 2020", "Changet to use Lambda")]
+            public void Reset() => _location = -1;
 
             public void Dispose()
             {

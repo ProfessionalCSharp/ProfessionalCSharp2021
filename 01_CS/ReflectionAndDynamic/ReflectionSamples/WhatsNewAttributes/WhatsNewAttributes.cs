@@ -2,7 +2,7 @@
 
 namespace WhatsNewAttributes
 {
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method | AttributeTargets.Constructor, AllowMultiple = true, Inherited = false)]
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method | AttributeTargets.Property | AttributeTargets.Constructor, AllowMultiple = true, Inherited = false)]
     public class LastModifiedAttribute : Attribute
     {
         private readonly DateTime _dateModified;
@@ -18,7 +18,7 @@ namespace WhatsNewAttributes
 
         public string Changes => _changes;
 
-        public string Issues { get; set; }
+        public string? Issues { get; set; }
     }
 
     [AttributeUsage(AttributeTargets.Assembly)]

@@ -6,7 +6,7 @@ namespace DynamicFileReader
     {
         static void Main()
         {
-            var helper = new DynamicFileHelper();
+            DynamicFileHelper helper = new();
             var employeeList = helper.ParseFile("EmployeeList.txt");
             foreach (var employee in employeeList)
             {
