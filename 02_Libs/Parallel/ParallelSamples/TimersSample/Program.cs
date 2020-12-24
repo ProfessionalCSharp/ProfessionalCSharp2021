@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 void TimeAction(object? o) =>
     Console.WriteLine($"System.Threading.Timer {DateTime.Now:T}");
 
-using var t1 = new Timer(
+using Timer t1 = new(
     TimeAction, 
     null, 
     dueTime: TimeSpan.FromSeconds(2),

@@ -91,7 +91,7 @@ namespace TaskSamples
 
         public static void TaskWithResultDemo()
         {
-            var t1 = new Task<(int Result, int Remainder)>(TaskWithResult, (8, 3));
+            Task<(int Result, int Remainder)> t1 = new(TaskWithResult, (8, 3));
             t1.Start();
             Console.WriteLine(t1.Result);
             t1.Wait();
@@ -117,7 +117,7 @@ namespace TaskSamples
 
         public static void TasksUsingThreadPool()
         {
-            var tf = new TaskFactory();
+            TaskFactory tf = new();
             Task t1 = tf.StartNew(TaskMethod, "using a task factory");
             Task t2 = Task.Factory.StartNew(TaskMethod, "factory via a task");
             var t3 = new Task(TaskMethod, "using a task constructor and Start");

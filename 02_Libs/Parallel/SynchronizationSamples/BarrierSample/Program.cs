@@ -21,7 +21,7 @@ namespace BarrierSample
                 data[i] = new List<string>(FillData(partitionSize * numberTasks));
             }
 
-            var barrier = new Barrier(1);
+            Barrier barrier = new(1);
             LogBarrierInformation("initial participants in barrier", barrier);
 
             for (int i = 0; i < numberTasks; i++)
@@ -65,13 +65,13 @@ namespace BarrierSample
 
         public static IEnumerable<string> FillData(int size)
         {
-            var r = new Random();
+            Random r = new();
             return Enumerable.Range(0, size).Select(x => GetString(r));
         }
 
         private static string GetString(Random r)
         {
-            var sb = new StringBuilder(6);
+            StringBuilder sb = new(6);
             for (int i = 0; i < 6; i++)
             {
                 sb.Append((char)(r.Next(26) + 97));
@@ -110,11 +110,9 @@ namespace BarrierSample
             LogBarrierInformation("finished task, removed participant", barrier);
         }
 
-
         private static void LogBarrierInformation(string info, Barrier barrier)
         {
             Console.WriteLine($"Task {Task.CurrentId}: {info}. {barrier.ParticipantCount} current and {barrier.ParticipantsRemaining} remaining participants, phase {barrier.CurrentPhaseNumber}");
         }
-
     }
 }

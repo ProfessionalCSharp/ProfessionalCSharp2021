@@ -40,7 +40,7 @@ namespace ThreadingIssues
 
         public static void RaceConditions()
         {
-            var state = new StateObject();
+            StateObject state = new();
             for (int i = 0; i < 2; i++)
             {
                 Task.Run(() => new SampleTask().RaceCondition(state));
@@ -49,8 +49,8 @@ namespace ThreadingIssues
 
         public static void Deadlock()
         {
-            var s1 = new StateObject();
-            var s2 = new StateObject();
+            StateObject s1 = new();
+            StateObject s2 = new();
             Task.Run(() => new SampleTask(s1, s2).Deadlock1());
             Task.Run(() => new SampleTask(s1, s2).Deadlock2());
 

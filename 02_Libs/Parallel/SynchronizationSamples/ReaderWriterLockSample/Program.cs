@@ -11,7 +11,7 @@ namespace ReaderWriterLockSample
         private static ReaderWriterLockSlim _rwl =
           new ReaderWriterLockSlim(LockRecursionPolicy.SupportsRecursion);
 
-        public static void ReaderMethod(object reader)
+        public static void ReaderMethod(object? reader)
         {
             try
             {
@@ -29,7 +29,7 @@ namespace ReaderWriterLockSample
             }
         }
 
-        public static void WriterMethod(object writer)
+        public static void WriterMethod(object? writer)
         {
             try
             {
@@ -54,9 +54,9 @@ namespace ReaderWriterLockSample
 
         static void Main()
         {
-            var taskFactory = new TaskFactory(TaskCreationOptions.LongRunning,
+            TaskFactory taskFactory = new(TaskCreationOptions.LongRunning,
               TaskContinuationOptions.None);
-            var tasks = new Task[6];
+            Task[] tasks = new Task[6];
             tasks[0] = taskFactory.StartNew(WriterMethod, 1);
             tasks[1] = taskFactory.StartNew(ReaderMethod, 1);
             tasks[2] = taskFactory.StartNew(ReaderMethod, 2);

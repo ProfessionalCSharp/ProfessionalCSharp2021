@@ -40,21 +40,26 @@ namespace ThreadingIssues
         }
 
         public void RaceCondition(object o)
-        {
-            Trace.Assert(o is StateObject, "o must be of type StateObject");
-            StateObject state = o as StateObject;
-            Console.WriteLine("starting RaceCondition - when does the issue occur?");
-
-            int i = 0;
-            while (true)
+        {            
+            if (o is StateObject state)
             {
-                // lock (state) // no race condition with this lock
+                Console.WriteLine("starting RaceCondition - when does the issue occur?");
+
+                int i = 0;
+                while (true)
                 {
-                    if (!state.ChangeState(i++))
+                    // lock (state) // no race condition with this lock
                     {
-                        i = 0;
+                        if (!state.ChangeState(i++))
+                        {
+                            i = 0;
+                        }
                     }
                 }
+            }
+            else
+            {
+                throw new ArgumentException("o must be StateObject");
             }
         }
 

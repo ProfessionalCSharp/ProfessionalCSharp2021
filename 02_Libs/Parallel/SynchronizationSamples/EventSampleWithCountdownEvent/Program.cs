@@ -10,8 +10,8 @@ namespace EventSample
         {
             const int taskCount = 4;
 
-            var cEvent = new CountdownEvent(taskCount);
-            var calcs = new Calculator[taskCount];
+            CountdownEvent cEvent = new(taskCount);
+            Calculator[] calcs = new Calculator[taskCount];
 
             for (int i = 0; i < taskCount; i++)
             {

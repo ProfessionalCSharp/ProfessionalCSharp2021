@@ -108,7 +108,7 @@ namespace ParallelSamples
 
         public static void ParallelForWithInit()
         {
-            Parallel.For<string>(0, 100, () =>
+            Parallel.For(0, 100, () =>
             {
                 // invoked once for each thread
                 Log("init thread");

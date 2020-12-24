@@ -10,8 +10,8 @@ namespace SemaphoreSample
         {
             int taskCount = 6;
             int semaphoreCount = 3;
-            var semaphore = new SemaphoreSlim(semaphoreCount, semaphoreCount);
-            var tasks = new Task[taskCount];
+            SemaphoreSlim semaphore = new(semaphoreCount, semaphoreCount);
+            Task[] tasks = new Task[taskCount];
 
             for (int i = 0; i < taskCount; i++)
             {

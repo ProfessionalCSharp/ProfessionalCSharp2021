@@ -4,5 +4,4 @@
     {
         public int State { get; set; }
     }
-
 }

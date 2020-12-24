@@ -10,9 +10,9 @@ namespace EventSample
         {
             const int taskCount = 4;
 
-            var mEvents = new ManualResetEventSlim[taskCount];
-            var waitHandles = new WaitHandle[taskCount];
-            var calcs = new Calculator[taskCount];
+            ManualResetEventSlim[] mEvents = new ManualResetEventSlim[taskCount];
+            WaitHandle[] waitHandles = new WaitHandle[taskCount];
+            Calculator[] calcs = new Calculator[taskCount];
 
             for (int i = 0; i < taskCount; i++)
             {

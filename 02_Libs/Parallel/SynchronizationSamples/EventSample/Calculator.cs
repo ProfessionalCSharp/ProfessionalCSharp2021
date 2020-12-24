@@ -10,10 +10,7 @@ namespace EventSample
 
         public int Result { get; private set; }
 
-        public Calculator(ManualResetEventSlim ev)
-        {
-            _mEvent = ev;
-        }
+        public Calculator(ManualResetEventSlim ev) => _mEvent = ev;
 
         public void Calculation(int x, int y)
         {

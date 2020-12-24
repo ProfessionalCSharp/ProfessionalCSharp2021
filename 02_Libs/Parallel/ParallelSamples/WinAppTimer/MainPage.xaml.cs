@@ -22,7 +22,7 @@ namespace WinAppTimer
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private DispatcherTimer _timer = new DispatcherTimer();
+        private DispatcherTimer _timer = new();
         public MainPage()
         {
             this.InitializeComponent();
