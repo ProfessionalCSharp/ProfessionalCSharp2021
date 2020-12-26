@@ -1,56 +1,47 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using LoggingSample;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Console;
+using Microsoft.Extensions.Hosting;
 using System;
-using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 
-namespace LoggingSample
-{
-    class Program
+using var host = Host.CreateDefaultBuilder(args)
+    .ConfigureLogging((context, logging) =>
     {
-        private static string s_url = "https://csharp.christiannagel.com";
-
-        static async Task Main(string[] args)
+        logging.AddConfiguration(context.Configuration.GetSection("Logging"));
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {
-            if (args.Length == 1)
-            {
-                s_url = args[0];
-            }
-
-            RegisterServices();
-            await RunSampleAsync();
-            Console.WriteLine("Completed");
-            Console.ReadLine();
+            logging.AddEventLog(); // EventLogLoggerProvider
         }
-
-        static async Task RunSampleAsync()
+        logging.AddEventSourceLogger();
+        logging.AddSimpleConsole(config =>
         {
-            var controller = AppServices.GetService<SampleController>();
-            await controller.NetworkRequestSampleAsync(s_url);
-        }
-
-        static void RegisterServices()
+            config.IncludeScopes = true;
+        });
+        logging.AddSystemdConsole(configure =>
         {
-            var services = new ServiceCollection();
-            services.AddLogging(builder =>
-            {
-                builder.AddEventSourceLogger();
-                builder.AddConsole();
-#if DEBUG
-                builder.AddDebug();
-#endif
-               // builder.AddFilter<ConsoleLoggerProvider>("LoggingSample", LogLevel.Error);
-                builder.AddFilter<ConsoleLoggerProvider>((category, logLevel) =>
-                {
-                    if (category.Contains("SampleController") && logLevel >= LogLevel.Information) return true;
-                    else if (logLevel >= LogLevel.Error) return true;
-                    else return false;
-                });
-            });
-            services.AddScoped<SampleController>();
-            AppServices = services.BuildServiceProvider();
-        }
-         
-        public static IServiceProvider AppServices { get; private set; }
-    }
-}
+            configure.IncludeScopes = true;
+        });
+        // builder.AddConsole(options => options.IncludeScopes = true);
+        logging.AddDebug();
+
+        logging.Configure(options =>
+        {
+            options.ActivityTrackingOptions = ActivityTrackingOptions.SpanId
+                                                | ActivityTrackingOptions.TraceId
+                                                | ActivityTrackingOptions.ParentId;
+        });
+    })
+    .ConfigureServices(services =>
+    {
+        services.AddHttpClient<NetworkService>(client =>
+        {
+        }).AddTypedClient<NetworkService>();
+        services.AddScoped<Runner>();
+    }).Build();
+
+var runner = host.Services.GetRequiredService<Runner>();
+await runner.RunAsync();
+
+Console.WriteLine("Bye... Press return to exit");
+Console.ReadLine();
