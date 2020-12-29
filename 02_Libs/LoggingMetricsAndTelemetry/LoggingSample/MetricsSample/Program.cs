@@ -1,20 +1,63 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+﻿using MetricsSample;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Hosting;
+using System;
+using System.Runtime.InteropServices;
+using Microsoft.Extensions.Logging.EventLog;
 
 using var host = Host.CreateDefaultBuilder(args)
-    .ConfigureLogging(logging =>
+    .ConfigureLogging((hostingContext, logging) =>
     {
-        // add a logger named "EventSource"
-        // logging.AddEventSourceLogger();
+        logging.ClearProviders();
+        bool isWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+
+        if (isWindows)
+        {
+            // Default the EventLogLoggerProvider to warning or above
+            logging.AddFilter<EventLogLoggerProvider>(level => level >= LogLevel.Warning);
+        }
+
+        logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
+        logging.AddDebug();
+        logging.AddEventSourceLogger();
+
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            logging.AddEventLog(); // EventLogLoggerProvider
+        }
+        // logging.AddConsole();
+        //logging.AddSimpleConsole(config =>
+        //{
+        //    config.IncludeScopes = true;
+        //});
+        //logging.AddSystemdConsole(configure =>
+        //{
+        //    configure.IncludeScopes = true;
+        //});
+        //logging.AddJsonConsole(configure =>
+        //{
+        //    configure.IncludeScopes = true;
+        //});
+
+
+        logging.Configure(options =>
+        {
+            options.ActivityTrackingOptions = ActivityTrackingOptions.SpanId
+                                                | ActivityTrackingOptions.TraceId
+                                                | ActivityTrackingOptions.ParentId;
+        });
     })
     .ConfigureServices(services =>
     {
-        services.AddHttpClient<MainRunner>(client =>
+        services.AddHttpClient<NetworkService>(client =>
         {
-        }).AddTypedClient<MainRunner>();
-        
+        }).AddTypedClient<NetworkService>();
+        services.AddScoped<Runner>();
     }).Build();
 
-var runner = host.Services.GetRequiredService<MainRunner>();
+var runner = host.Services.GetRequiredService<Runner>();
 await runner.RunAsync();
+
+Console.WriteLine("Bye... Press return to exit");
+Console.ReadLine();
