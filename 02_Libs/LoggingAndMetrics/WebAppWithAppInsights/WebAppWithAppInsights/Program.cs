@@ -19,26 +19,11 @@ namespace WebAppWithAppInsights
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                //.ConfigureAppConfiguration((context, config) =>
-                //{
-                //    DefaultAzureCredential credentials = new();
-                //    string connectionString = context.Configuration["AzureAppConfigurationConnection"];
-                //    config.AddAzureAppConfiguration(options =>
-                //    {
-                //        options.Connect(new Uri(connectionString), credentials);
-                //    });
-                //    //string? vaultUri = Environment.GetEnvironmentVariable("VaultUri");
-                //    //if (vaultUri is null) return;
-                //    //var keyVaultEndpoint = new Uri(vaultUri);
-                //    //config.AddAzureKeyVault(
-                //    //    keyVaultEndpoint,
-                //    //    new DefaultAzureCredential());
-                //})
-                //.ConfigureLogging((context, logging) =>
-                //{
-                //    string instrumentationKey = context.Configuration["AppInsightsConnection"];
-                //    logging.AddApplicationInsights(instrumentationKey);
-                //})
+                .ConfigureLogging((context, logging) =>
+                {
+                    string instrumentationKey = context.Configuration["AppInsightsConnection"];
+                    logging.AddApplicationInsights(instrumentationKey);
+                })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
