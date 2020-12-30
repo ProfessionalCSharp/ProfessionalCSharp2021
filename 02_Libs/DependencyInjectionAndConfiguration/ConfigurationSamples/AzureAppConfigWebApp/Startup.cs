@@ -1,15 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.FeatureManagement;
 using Microsoft.FeatureManagement.FeatureFilters;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AzureAppConfigWebApp
 {
@@ -28,7 +23,7 @@ namespace AzureAppConfigWebApp
             services.Configure<IndexAppSettings>(Configuration.GetSection("AppConfigurationSample:Settings"));
             services.AddRazorPages();
             services.AddAzureAppConfiguration();
-            services.AddFeatureManagement().AddFeatureFilter<PercentageFilter>(); //.AddFeatureFilter<TargetingFilter>();
+            services.AddFeatureManagement().AddFeatureFilter<PercentageFilter>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,7 +41,6 @@ namespace AzureAppConfigWebApp
             }
 
             app.UseAzureAppConfiguration();
-            
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
