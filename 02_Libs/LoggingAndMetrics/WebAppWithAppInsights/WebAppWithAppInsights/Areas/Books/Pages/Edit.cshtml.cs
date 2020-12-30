@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using WebAppWithAppInsights.Data;
 
 namespace WebAppWithAppInsights
@@ -20,7 +17,7 @@ namespace WebAppWithAppInsights
         }
 
         [BindProperty]
-        public Book Book { get; set; }
+        public Book? Book { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -55,7 +52,7 @@ namespace WebAppWithAppInsights
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!BookExists(Book.BookId))
+                if (Book is not null && !BookExists(Book.BookId))
                 {
                     return NotFound();
                 }

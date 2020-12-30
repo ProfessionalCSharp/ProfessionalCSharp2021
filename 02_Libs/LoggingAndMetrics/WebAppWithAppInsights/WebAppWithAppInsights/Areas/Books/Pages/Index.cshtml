@@ -1,4 +1,5 @@
 ﻿@page
+@using Data
 @model WebAppWithAppInsights.IndexModel
 
 @{
@@ -11,19 +12,27 @@
     <a asp-area="Books" asp-page="Create">Create New</a>
 </p>
 <table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Book[0].Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Book[0].Publisher)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Book) {
+
+<thead>
+    <tr>
+        @{
+#nullable disable
+    <th>
+        @Html.DisplayNameFor(model => model.Book![0].Title)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Book![0].Publisher)
+    </th>
+#nullable restore
+            }
+    <th></th>
+    </tr>
+</thead>
+
+<tbody>
+    @foreach (var item in Model.Book!)
+    {
+#nullable disable
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
@@ -37,6 +46,8 @@
                 <a asp-area="Books" asp-page="./Delete" asp-route-id="@item.BookId">Delete</a>
             </td>
         </tr>
-}
-    </tbody>
+#nullable restore
+    }
+</tbody>
+
 </table>

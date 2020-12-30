@@ -14,14 +14,14 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Book.Title" class="control-label"></label>
-                <input asp-for="Book.Title" class="form-control" />
-                <span asp-validation-for="Book.Title" class="text-danger"></span>
+                <label asp-for="Book!.Title" class="control-label"></label>
+                <input asp-for="Book!.Title" class="form-control" />
+                <span asp-validation-for="Book!.Title" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Book.Publisher" class="control-label"></label>
-                <input asp-for="Book.Publisher" class="form-control" />
-                <span asp-validation-for="Book.Publisher" class="text-danger"></span>
+                <label asp-for="Book!.Publisher" class="control-label"></label>
+                <input asp-for="Book!.Publisher" class="form-control" />
+                <span asp-validation-for="Book!.Publisher" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
