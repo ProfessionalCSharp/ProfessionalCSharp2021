@@ -1,13 +1,12 @@
-﻿using SimpleLib;
-using System;
+﻿using System;
 
 namespace ConsoleApp
 {
     class Program
     {
-        static void Main()
+        static void Main(string[] args)
         {
-            Console.WriteLine(Sample.GetVersion());
+            Console.WriteLine("Hello World!");
         }
     }
 }
