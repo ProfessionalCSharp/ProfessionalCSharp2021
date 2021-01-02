@@ -10,7 +10,7 @@ using System.Text;
 namespace CodeGenerationSample
 {
     [Generator]
-    public class GreetingGenerator : ISourceGenerator
+    public class EquatableGenerator : ISourceGenerator
     {
         public void Initialize(GeneratorInitializationContext context)
         {
@@ -29,30 +29,29 @@ namespace CodeGenerationSample
         {
             Debug.WriteLine("Execute code generator");
             // add the attribute text
-            context.AddSource("AddGreetAttribute", SourceText.From(attributeText, Encoding.UTF8));
+            context.AddSource("ImplementEquatableAttribute", SourceText.From(attributeText, Encoding.UTF8));
 
-            System.Console.WriteLine("added the attribute");
             if (!(context.SyntaxReceiver is SyntaxReceiver syntaxReceiver)) 
                 return;
 
             CSharpParseOptions? options = (context.Compilation as CSharpCompilation)?.SyntaxTrees[0].Options as CSharpParseOptions;
             Compilation compilation = context.Compilation.AddSyntaxTrees(CSharpSyntaxTree.ParseText(SourceText.From(attributeText, Encoding.UTF8), options));
 
-            INamedTypeSymbol? attributeSymbol = compilation.GetTypeByMetadataName("CodeGenerationSample.AddGreetAttribute");
+            INamedTypeSymbol? attributeSymbol = compilation.GetTypeByMetadataName("CodeGenerationSample.ImplementEquatableAttribute");
 
             List<ITypeSymbol> typeSymbols = new();
             foreach (ClassDeclarationSyntax @class in syntaxReceiver.CandidateClasses)
             {
                 SemanticModel model = compilation.GetSemanticModel(@class.SyntaxTree);
 
-                ITypeSymbol? typeSymbol = model.GetDeclaredSymbol(@class) as ITypeSymbol;
+                INamedTypeSymbol? typeSymbol = model.GetDeclaredSymbol(@class);
                 if (typeSymbol!.GetAttributes().Any(attr => attr.AttributeClass!.Equals(attributeSymbol, SymbolEqualityComparer.Default)))
                 {
                     typeSymbols.Add(typeSymbol);
                 }
             }
 
-            foreach (ITypeSymbol typeSymbol in typeSymbols)
+            foreach (INamedTypeSymbol typeSymbol in typeSymbols)
             {
                 string classSource = GetClassSource(typeSymbol);
                 context.AddSource(typeSymbol.Name, SourceText.From(classSource, Encoding.UTF8));
@@ -64,14 +63,24 @@ namespace CodeGenerationSample
             string namespaceName = typeSymbol.ContainingNamespace.ToDisplayString();
 
             StringBuilder source = new($@"
+using System;
+
 namespace {namespaceName}
 {{
-    public partial class {typeSymbol.Name}
+    public partial class {typeSymbol.Name} : IEquatable<{typeSymbol.Name}>
     {{
-        private static partial string Greet(string name)
-        {{
-            return $""Hello, {{name }}"";
-        }}
+        private static partial bool IsTheSame({typeSymbol.Name}? left, {typeSymbol.Name}? right);
+
+        public override bool Equals(object? obj) => this == obj as {typeSymbol.Name};
+
+        public bool Equals({typeSymbol.Name}? other) => this == other;
+
+        public static bool operator==({typeSymbol.Name}? left, {typeSymbol.Name}? right) => 
+            IsTheSame(left, right);
+
+        public static bool operator!=({typeSymbol.Name}? left, {typeSymbol.Name}? right) =>
+            !(left == right);
+
     }}
 }}
 ");
@@ -83,9 +92,9 @@ using System;
 namespace CodeGenerationSample
 {
     [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
-    sealed class AddGreetAttribute : Attribute
+    sealed class ImplementEquatableAttribute : Attribute
     {
-        public AddGreetAttribute() { }
+        public ImplementEquatableAttribute() { }
     }
 }
 ";
@@ -104,10 +113,9 @@ namespace CodeGenerationSample
         public void OnVisitSyntaxNode(SyntaxNode syntaxNode)
         {
             // any class with at least one attribute is a candidate for the method generation
-            if (syntaxNode is ClassDeclarationSyntax classDeclarationSyntax 
+            if (syntaxNode is ClassDeclarationSyntax classDeclarationSyntax
                 && classDeclarationSyntax.AttributeLists.Count > 0)
             {
-                System.Console.WriteLine($"Added {classDeclarationSyntax.Identifier} to candidates");
                 CandidateClasses.Add(classDeclarationSyntax);
             }
         }

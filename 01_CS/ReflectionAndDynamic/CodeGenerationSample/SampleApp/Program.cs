@@ -1,8 +1,11 @@
 ﻿using System;
 using SampleApp;
 
-HelloControl hello = new();
-string greeting = hello.GreetService("Katharina");
-Console.WriteLine(greeting);
-
 CodeGenerationSample.HelloWorld.Hello();
+
+Book b1 = new("Professional C#", "Wrox Press");
+Book b2 = new("Professional C#", "Wrox Press");
+if (b1 == b2)
+{
+    Console.WriteLine("the same book");
+}

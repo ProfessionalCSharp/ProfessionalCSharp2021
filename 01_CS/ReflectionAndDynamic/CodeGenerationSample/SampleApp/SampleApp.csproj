@@ -10,12 +10,4 @@
     <Analyzer Include="c:\sourcegenerators\CodeGenerationSample.dll" />
   </ItemGroup>
 
-  <!--<ItemGroup>
-    <Analyzer Include="..\CodeGenerationSample\bin\Debug\net5.0\CodeGenerationSample.dll" />
-  </ItemGroup>-->
-
-  <!--<ItemGroup>
-    <ProjectReference Include="..\CodeGenerationSample\CodeGenerationSample.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
-  </ItemGroup>-->
-
 </Project>
