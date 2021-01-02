@@ -1,6 +1,5 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
-using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -9,42 +8,41 @@ namespace CodeGenerationSample
     [Generator]
     public class HelloWorldGenerator : ISourceGenerator
     {
-        public void Execute(SourceGeneratorContext context)
+        public void Execute(GeneratorExecutionContext context)
         {
-            // begin creating the source we'll inject into the users compilation
-            StringBuilder sourceBuilder = new StringBuilder(@"
+            // Create the source code to inject into the users compilation
+            StringBuilder sourceBuilder = new(@"
 using System;
-namespace HelloWorldGenerated
+namespace CodeGenerationSample
 {
     public static class HelloWorld
     {
-        public static void SayHello() 
+        public static void Hello() 
         {
             Console.WriteLine(""Hello from generated code!"");
-            Console.WriteLine(""The following syntax trees existed in the compilation that created this program:"");
-");
-          
+            Console.WriteLine(""The following source files existed in the compilation:"");
+");          
 
-            // using the context, get a list of syntax trees in the users compilation
+            // using the context, get a list of files from the syntax trees in the users compilation
             IEnumerable<SyntaxTree> syntaxTrees = context.Compilation.SyntaxTrees;
 
             // add the filepath of each tree to the class we're building
             foreach (SyntaxTree tree in syntaxTrees)
             {
-                sourceBuilder.AppendLine($@"Console.WriteLine(@"" - {tree.FilePath}"");");
+                sourceBuilder.AppendLine($@"Console.WriteLine(@""source file: {tree.FilePath}"");");                
             }
 
-            // finish creating the source to inject
+            // closing brackets to inject
             sourceBuilder.Append(@"
         }
     }
 }");
 
             // inject the created source into the users compilation
-            context.AddSource("helloWorldGenerated", SourceText.From(sourceBuilder.ToString(), Encoding.UTF8));
+            context.AddSource("helloWorld", SourceText.From(sourceBuilder.ToString(), Encoding.UTF8));
         }
 
-        public void Initialize(InitializationContext context)
+        public void Initialize(GeneratorInitializationContext context)
         {
             // No initialization required
         }

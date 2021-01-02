@@ -3,12 +3,19 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
+
   <ItemGroup>
-    <Analyzer Include="..\CodeGenerationSample\bin\Debug\netstandard2.0\CodeGenerationSample.dll" />
+    <Analyzer Include="c:\sourcegenerators\CodeGenerationSample.dll" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CodeGenerationSample\CodeGenerationSample.csproj" />
-  </ItemGroup>
+
+  <!--<ItemGroup>
+    <Analyzer Include="..\CodeGenerationSample\bin\Debug\net5.0\CodeGenerationSample.dll" />
+  </ItemGroup>-->
+
+  <!--<ItemGroup>
+    <ProjectReference Include="..\CodeGenerationSample\CodeGenerationSample.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+  </ItemGroup>-->
 
 </Project>

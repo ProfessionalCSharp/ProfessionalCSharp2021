@@ -1,20 +1,8 @@
 ﻿using System;
+using SampleApp;
 
-namespace SampleApp
-{
+HelloControl hello = new();
+string greeting = hello.GreetService("Katharina");
+Console.WriteLine(greeting);
 
-
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            HelloWorldGenerated.HelloWorld.SayHello();
-
-            var b = new Book();
-            b.PropertyChanged += (sender, e) =>
-            {
-                Console.WriteLine($"property {e.PropertyName} changed");
-            };
-        }
-    }
-}
+CodeGenerationSample.HelloWorld.Hello();
