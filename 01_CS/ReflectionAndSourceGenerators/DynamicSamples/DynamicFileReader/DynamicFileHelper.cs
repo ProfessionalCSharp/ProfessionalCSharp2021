@@ -11,7 +11,7 @@ namespace DynamicFileReader
         public IEnumerable<dynamic> ParseFile(string fileName)
         {
             List<dynamic> retList = new();
-            StreamReader? reader = OpenFile(fileName);
+            using StreamReader? reader = OpenFile(fileName);
             if (reader != null)
             {
                 string[] headerLine = reader.ReadLine()?.Split(',').Select(s => s.Trim()).ToArray() ?? throw new InvalidOperationException("reader.ReadLine returned null");
@@ -26,6 +26,7 @@ namespace DynamicFileReader
                     retList.Add(dynamicEntity);
                 }
             }
+           
             return retList;
         }
 

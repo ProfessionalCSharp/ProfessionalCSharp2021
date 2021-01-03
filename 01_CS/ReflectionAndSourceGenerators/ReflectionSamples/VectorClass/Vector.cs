@@ -27,7 +27,12 @@ namespace VectorClass
         public double Y { get; }
         public double Z { get; }
 
-        public override bool Equals(object? obj) => this == obj as Vector;
+        public override bool Equals(object obj)
+        {
+            if (obj is null) throw new ArgumentNullException(nameof(obj));
+
+            return this == (Vector)obj;
+        }
 
         public override int GetHashCode() =>  (int)X | (int)Y | (int)Z;
 
