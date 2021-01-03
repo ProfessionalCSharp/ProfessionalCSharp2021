@@ -6,9 +6,9 @@ using System.Linq;
 
 namespace DynamicFileReader
 {
-    public class DynamicFileHelper
+    public static class DynamicFileHelper
     {
-        public IEnumerable<dynamic> ParseFile(string fileName)
+        public static IEnumerable<dynamic> ParseFile(string fileName)
         {
             List<dynamic> retList = new();
             using StreamReader? reader = OpenFile(fileName);
@@ -30,7 +30,7 @@ namespace DynamicFileReader
             return retList;
         }
 
-        private StreamReader? OpenFile(string fileName)
+        private static StreamReader? OpenFile(string fileName)
         {
             if (File.Exists(fileName))
             {

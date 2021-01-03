@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 
@@ -27,12 +29,20 @@ void AnalyzeType(Type t)
         AddToOutput($"Base Type: {tBase.Name}");
     }
 
-    AddToOutput("\npublic members:");
-    foreach (MemberInfo member in t.GetMembers())
-    {
-        AddToOutput($"{member.DeclaringType} {member.MemberType} {member.Name}");
-    }
-}
+    ShowMembers("constructors", t.GetConstructors());
+    ShowMembers("methods", t.GetMethods());
+    ShowMembers("properties", t.GetProperties());
+    ShowMembers("fields", t.GetFields());
+    ShowMembers("events", t.GetEvents());
 
-void AddToOutput(string Text) =>
-    OutputText.Append($"{Environment.NewLine} {Text}");
+    void ShowMembers(string title, IList<MemberInfo> members)
+    {
+        if (members.Count == 0) return;
+        AddToOutput($"\npublic {title}:");
+        var names = members.Select(m => m.Name).Distinct();
+        AddToOutput(string.Join(" ", names));
+    }
+
+    void AddToOutput(string Text) =>
+        OutputText.Append($"{Text}{Environment.NewLine}");
+}
