@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.8
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CEE92822-458C-4DBB-B7A3-D32FFC6C1635}"
 EndProject
@@ -19,9 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReaderWriterLockSample", "R
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThreadingIssues", "ThreadingIssues\ThreadingIssues.csproj", "{39465606-C05A-4831-BA62-31040B97AE44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingletonUsingMutex", "SingletonUsingMutex\SingletonUsingMutex.csproj", "{0935B90A-60FF-4B78-A72A-C3680683B2F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SingletonUsingMutex", "SingletonUsingMutex\SingletonUsingMutex.csproj", "{0935B90A-60FF-4B78-A72A-C3680683B2F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LockAcrossAwait", "LockAcrossAwait\LockAcrossAwait.csproj", "{7677C284-28FA-4BA1-AD5D-5F7DF81BEF12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LockAcrossAwait", "LockAcrossAwait\LockAcrossAwait.csproj", "{7677C284-28FA-4BA1-AD5D-5F7DF81BEF12}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

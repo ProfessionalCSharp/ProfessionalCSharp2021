@@ -10,7 +10,7 @@
         {
             for (int i = 0; i < 50000; i++)
             {
-                lock (_sharedState)
+                // lock (_sharedState)
                 {
                     _sharedState.State += 1;
                 }

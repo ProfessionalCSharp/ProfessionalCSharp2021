@@ -36,7 +36,7 @@ namespace WindowsAppTimer
                 if (!EqualityComparer<double>.Default.Equals(_timerAngle, value))
                 {
                     _timerAngle = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TimerAngle)));
+                    PropertyChanged?.Invoke(this, new(nameof(TimerAngle)));
                 }
             }
         }

@@ -5,19 +5,18 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-
 class Program
 {
     static void Main()
     {
         const int numberTasks = 2;
-        const int partitionSize = 1000000;
+        const int partitionSize = 1_000_000;
         const int loops = 5;
-        var taskResults = new Dictionary<int, int[][]>();
-        var data = new List<string>[loops];
+        Dictionary<int, int[][]> taskResults = new();
+        List<string>[] data = new List<string>[loops];
         for (int i = 0; i < loops; i++)
         {
-            data[i] = new List<string>(FillData(partitionSize * numberTasks));
+            data[i] = new(FillData(partitionSize * numberTasks));
         }
 
         Barrier barrier = new(1);
@@ -85,7 +84,7 @@ class Program
 
         for (int i = 0; i < loops; i++)
         {
-            var data = new List<string>(coll[i]);
+            List<string> data = new(coll[i]);
 
             int start = jobNumber * partitionSize;
             int end = start + partitionSize;

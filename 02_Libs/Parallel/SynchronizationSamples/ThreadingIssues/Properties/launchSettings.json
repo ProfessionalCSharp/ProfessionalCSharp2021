@@ -2,7 +2,7 @@
   "profiles": {
     "ThreadingIssues": {
       "commandName": "Project",
-      "commandLineArgs": "-d"
+      "commandLineArgs": "-r"
     }
   }
 }
