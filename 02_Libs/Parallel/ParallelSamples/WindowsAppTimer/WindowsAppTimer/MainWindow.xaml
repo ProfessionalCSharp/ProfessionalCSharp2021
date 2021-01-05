@@ -5,8 +5,7 @@
     xmlns:local="using:WindowsAppTimer"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" 
-    Title="WinUI Timer App">
+    mc:Ignorable="d" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -20,7 +19,7 @@
             <Ellipse Width="10" Height="10" Fill="Red" Canvas.Left="145" Canvas.Top="145" />
             <Line Canvas.Left="150" Canvas.Top="150" Fill="Green" StrokeThickness="3" Stroke="Blue" X1="0" Y1="0" X2="120" Y2="0" >
                 <Line.RenderTransform>
-                    <RotateTransform CenterX="0" CenterY="0" Angle="270" x:Name="rotate" />
+                    <RotateTransform CenterX="0" CenterY="0" Angle="{x:Bind TimerAngle, Mode=OneWay}" x:Name="rotate" />
                 </Line.RenderTransform>
             </Line>
         </Canvas>
