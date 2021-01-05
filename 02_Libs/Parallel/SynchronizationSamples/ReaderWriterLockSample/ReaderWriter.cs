@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-class ReaderWriter
+sealed class ReaderWriter : IDisposable
 {
     private List<int> _items = new() { 0, 1, 2, 3, 4, 5 };
     private ReaderWriterLockSlim _rwl = new();
+    private bool disposedValue;
 
     public void ReaderMethod(object? reader)
     {
@@ -47,5 +48,23 @@ class ReaderWriter
         {
             _rwl.ExitWriteLock();
         }
+    }
+
+    private void Dispose(bool disposing)
+    {
+        if (!disposedValue)
+        {
+            if (disposing)
+            {
+                _rwl.Dispose();
+            }
+            disposedValue = true;
+        }
+    }
+
+    void IDisposable.Dispose()
+    {
+        Dispose(disposing: true);
+        GC.SuppressFinalize(this);
     }
 }

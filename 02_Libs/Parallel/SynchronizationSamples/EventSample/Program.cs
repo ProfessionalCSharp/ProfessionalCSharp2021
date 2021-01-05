@@ -31,3 +31,10 @@ for (int i = 0; i < taskCount; i++)
         Console.WriteLine($"finished task for {index}, result: {calcs[index].Result}");
     }
 }
+
+for (int i = 0; i < taskCount; i++)
+{
+    mEvents[i].Dispose();
+    waitHandles[i].Dispose();
+}
+

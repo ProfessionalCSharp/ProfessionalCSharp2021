@@ -21,3 +21,5 @@ for (int i = 0; i < taskCount; i++)
 {
     Console.WriteLine($"task for {i}, result: {calcs[i].Result}");
 }
+
+cEvent.Dispose();

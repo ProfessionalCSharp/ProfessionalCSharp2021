@@ -4,7 +4,8 @@ using System.Threading.Tasks;
 
 int taskCount = 6;
 int semaphoreCount = 3;
-SemaphoreSlim semaphore = new(semaphoreCount, semaphoreCount);
+using SemaphoreSlim semaphore = new(semaphoreCount, semaphoreCount);
+
 Task[] tasks = new Task[taskCount];
 
 for (int i = 0; i < taskCount; i++)
@@ -15,7 +16,6 @@ for (int i = 0; i < taskCount; i++)
 Task.WaitAll(tasks);
 
 Console.WriteLine("All tasks finished");
-
 
 void TaskMain(SemaphoreSlim semaphore)
 {

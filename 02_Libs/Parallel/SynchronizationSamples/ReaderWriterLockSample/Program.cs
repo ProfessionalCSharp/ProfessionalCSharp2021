@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-ReaderWriter rw = new();
+using ReaderWriter rw = new();
 TaskFactory taskFactory = new(TaskCreationOptions.LongRunning, TaskContinuationOptions.None);
 Task[] tasks = new Task[6];
 tasks[0] = taskFactory.StartNew(rw.WriterMethod, 1);

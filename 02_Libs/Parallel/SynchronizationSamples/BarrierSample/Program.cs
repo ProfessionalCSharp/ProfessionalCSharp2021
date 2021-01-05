@@ -19,7 +19,8 @@ class Program
             data[i] = new(FillData(partitionSize * numberTasks));
         }
 
-        Barrier barrier = new(1);
+        using Barrier barrier = new(1);
+        
         LogBarrierInformation("initial participants in barrier", barrier);
 
         for (int i = 0; i < numberTasks; i++)
