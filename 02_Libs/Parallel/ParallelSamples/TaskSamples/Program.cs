@@ -12,7 +12,7 @@ namespace TaskSamples
             new Command("-p", nameof(TasksUsingThreadPool), TasksUsingThreadPool),
             new Command("-s", nameof(RunSynchronousTask), RunSynchronousTask),
             new Command("-l", nameof(LongRunningTask), LongRunningTask),
-            new Command("-r", nameof(TaskWithResultDemo), TaskWithResultDemo),
+            new Command("-r", nameof(TaskWithResult), TaskWithResultDemo),
             new Command("-c", nameof(ContinuationTasks), ContinuationTasks),
             new Command("-pc", nameof(ParentAndChild), ParentAndChild),
         };
@@ -42,7 +42,7 @@ namespace TaskSamples
 
         public static void ParentAndChild()
         {
-            var parent = new Task(ParentTask);
+            Task parent = new(ParentTask);
             parent.Start();
             Task.Delay(2000).Wait();
             Console.WriteLine(parent.Status);
@@ -53,7 +53,7 @@ namespace TaskSamples
         private static void ParentTask()
         {
             Console.WriteLine($"task id {Task.CurrentId}");
-            var child = new Task(ChildTask);
+            Task child = new(ChildTask);
             child.Start();
             Task.Delay(1000).Wait();
             Console.WriteLine("parent started child");
@@ -68,7 +68,7 @@ namespace TaskSamples
 
         public static void ContinuationTasks()
         {          
-            Task t1 = new Task(DoOnFirst);
+            Task t1 = new(DoOnFirst);
             Task t2 = t1.ContinueWith(DoOnSecond);
             Task t3 = t1.ContinueWith(DoOnSecond);
             Task t4 = t2.ContinueWith(DoOnSecond);
@@ -120,7 +120,7 @@ namespace TaskSamples
             TaskFactory tf = new();
             Task t1 = tf.StartNew(TaskMethod, "using a task factory");
             Task t2 = Task.Factory.StartNew(TaskMethod, "factory via a task");
-            var t3 = new Task(TaskMethod, "using a task constructor and Start");
+            Task t3 = new(TaskMethod, "using a task constructor and Start");
             t3.Start();
             Task t4 = Task.Run(() => TaskMethod("using the Run method"));
         }
@@ -128,13 +128,13 @@ namespace TaskSamples
         public static void RunSynchronousTask()
         {
             TaskMethod("just the main thread");
-            var t1 = new Task(TaskMethod, "run sync");
+            Task t1 = new(TaskMethod, "run sync");
             t1.RunSynchronously();
         }
 
         public static void LongRunningTask()
         {
-            var t1 = new Task(TaskMethod, "long running",
+            Task t1 = new(TaskMethod, "long running",
               TaskCreationOptions.LongRunning);
             t1.Start();
         }
@@ -144,7 +144,7 @@ namespace TaskSamples
             Log(o?.ToString() ?? string.Empty);
         }
 
-        private static object s_logLock = new object();
+        private static readonly object s_logLock = new();
 
         public static void Log(string title)
         {
