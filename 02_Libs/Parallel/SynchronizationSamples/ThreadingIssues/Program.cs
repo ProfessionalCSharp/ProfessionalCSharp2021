@@ -43,7 +43,7 @@ namespace ThreadingIssues
             StateObject state = new();
             for (int i = 0; i < 2; i++)
             {
-                Task.Run(() => new SampleTask().RaceCondition(state));
+                Task.Run(() => new TaskWithRaceCondition().RaceCondition(state));
             }
         }
 
@@ -51,8 +51,8 @@ namespace ThreadingIssues
         {
             StateObject s1 = new();
             StateObject s2 = new();
-            Task.Run(() => new SampleTask(s1, s2).Deadlock1());
-            Task.Run(() => new SampleTask(s1, s2).Deadlock2());
+            Task.Run(() => new TaskWithDeadlock(s1, s2).Deadlock1());
+            Task.Run(() => new TaskWithDeadlock(s1, s2).Deadlock2());
 
             Task.Delay(10000).Wait();
         }

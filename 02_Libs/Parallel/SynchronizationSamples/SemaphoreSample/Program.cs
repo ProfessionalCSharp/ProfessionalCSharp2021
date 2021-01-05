@@ -2,50 +2,47 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SemaphoreSample
+class Program
 {
-    class Program
+    static void Main()
     {
-        static void Main()
+        int taskCount = 6;
+        int semaphoreCount = 3;
+        SemaphoreSlim semaphore = new(semaphoreCount, semaphoreCount);
+        Task[] tasks = new Task[taskCount];
+
+        for (int i = 0; i < taskCount; i++)
         {
-            int taskCount = 6;
-            int semaphoreCount = 3;
-            SemaphoreSlim semaphore = new(semaphoreCount, semaphoreCount);
-            Task[] tasks = new Task[taskCount];
-
-            for (int i = 0; i < taskCount; i++)
-            {
-                tasks[i] = Task.Run(() => TaskMain(semaphore));
-            }
-
-            Task.WaitAll(tasks);
-
-            Console.WriteLine("All tasks finished");
+            tasks[i] = Task.Run(() => TaskMain(semaphore));
         }
 
-        private static void TaskMain(SemaphoreSlim semaphore)
+        Task.WaitAll(tasks);
+
+        Console.WriteLine("All tasks finished");
+    }
+
+    private static void TaskMain(SemaphoreSlim semaphore)
+    {
+        bool isCompleted = false;
+        while (!isCompleted)
         {
-            bool isCompleted = false;
-            while (!isCompleted)
+            if (semaphore.Wait(600))
             {
-                if (semaphore.Wait(600))
+                try
                 {
-                    try
-                    {
-                        Console.WriteLine($"Task {Task.CurrentId} locks the semaphore");
-                        Task.Delay(2000).Wait();
-                    }
-                    finally
-                    {
-                        Console.WriteLine($"Task {Task.CurrentId} releases the semaphore");
-                        semaphore.Release();
-                        isCompleted = true;
-                    }
+                    Console.WriteLine($"Task {Task.CurrentId} locks the semaphore");
+                    Task.Delay(2000).Wait();
                 }
-                else
+                finally
                 {
-                    Console.WriteLine($"Timeout for task {Task.CurrentId}; wait again");
+                    Console.WriteLine($"Task {Task.CurrentId} releases the semaphore");
+                    semaphore.Release();
+                    isCompleted = true;
                 }
+            }
+            else
+            {
+                Console.WriteLine($"Timeout for task {Task.CurrentId}; wait again");
             }
         }
     }

@@ -2,12 +2,9 @@
 {
     public class Job
     {
-        private SharedState _sharedState;
+        private readonly SharedState _sharedState;
 
-        public Job(SharedState sharedState)
-        {
-            _sharedState = sharedState;
-        }
+        public Job(SharedState sharedState) => _sharedState = sharedState;
 
         public void DoTheJob()
         {
@@ -20,5 +17,4 @@
             }
         }
     }
-
 }
