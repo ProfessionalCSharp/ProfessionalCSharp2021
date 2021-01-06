@@ -45,7 +45,7 @@ async Task<byte[]> AliceSendsDataAsync(string message, CngKey aliceKey, byte[] b
     aes.Key = symmKey;
     aes.GenerateIV();
     using ICryptoTransform encryptor = aes.CreateEncryptor();
-    using var ms = new MemoryStream();
+    using MemoryStream ms = new();
 
     {
         // create CryptoStream and encrypt data to send
@@ -56,7 +56,7 @@ async Task<byte[]> AliceSendsDataAsync(string message, CngKey aliceKey, byte[] b
         await cs.WriteAsync(rawData, 0, rawData.Length);
     }  // need to close the cryptostream before using the memorystream
     encryptedData = ms.ToArray();
- 
+
     aes.Clear();
     Console.WriteLine($"Alice: message is encrypted: {Convert.ToBase64String(encryptedData)}"); ;
     Console.WriteLine();
@@ -86,12 +86,12 @@ async Task BobReceivesDataAsync(byte[] encryptedData, CngKey bobKey, byte[] alic
     aes.IV = iv;
 
     using ICryptoTransform decryptor = aes.CreateDecryptor();
-    using MemoryStream ms = new MemoryStream();
-    { 
-        using var cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Write);
+    using MemoryStream ms = new();
+    using (CryptoStream cs = new(ms, decryptor, CryptoStreamMode.Write))
+    {
 
         await cs.WriteAsync(encryptedData, nBytes, encryptedData.Length - nBytes);
-    }  // close the cryptostream before using the memorystream
+    } // close the cryptostream before using the memorystream 
     rawData = ms.ToArray();
 
     Console.WriteLine($"Bob decrypts message to: {Encoding.UTF8.GetString(rawData)}");
