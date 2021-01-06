@@ -29,14 +29,14 @@ namespace BooksLib.Services
             }
         }
 
-        public Book GetBook(int bookId) =>
+        public Book? GetBook(int bookId) =>
             _books.Where(b => b.BookId == bookId).SingleOrDefault();
 
         public async Task<Book> AddOrUpdateBookAsync(Book book)
         {
             if (book is null) throw new ArgumentNullException(nameof(book));
 
-            Book updated = null;
+            Book? updated = null;
             if (book.BookId == 0)
             {
                 updated = await _booksRepository.AddAsync(book);

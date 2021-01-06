@@ -8,8 +8,8 @@ namespace BooksLib.Repositories
     {
         Task<Book> AddAsync(Book item);
         Task<bool> DeleteAsync(int id);
-        Task<Book> GetItemAsync(int id);
+        Task<Book?> GetItemAsync(int id);
         Task<IEnumerable<Book>> GetItemsAsync();
-        Task<Book> UpdateAsync(Book item);
+        Task<Book?> UpdateAsync(Book item);
     }
 }

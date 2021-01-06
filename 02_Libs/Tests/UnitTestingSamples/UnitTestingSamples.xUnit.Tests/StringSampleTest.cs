@@ -9,13 +9,13 @@ namespace UnitTestingSamples.xUnit.Tests
         [Fact]
         public void ConstructorShouldThrowOnNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new StringSample(null));
+            Assert.Throws<ArgumentNullException>(() => new StringSample(null!));
         }
 
         [Fact]
         public void GetStringDemoExceptions()
         {
-            var sample = new StringSample(string.Empty);
+            StringSample sample = new(string.Empty);
             Assert.Throws<ArgumentNullException>(() => sample.GetStringDemo(null, "a"));
             Assert.Throws<ArgumentNullException>(() => sample.GetStringDemo("a", null));
             Assert.Throws<ArgumentException>(() =>
@@ -43,7 +43,7 @@ namespace UnitTestingSamples.xUnit.Tests
         [InlineData("init", "longer string", "string", "INIT")]
         public void GetStringDemoInlineData(string init, string a, string b, string expected)
         {
-            var sample = new StringSample(init);
+            StringSample sample = new(init);
             string actual = sample.GetStringDemo(a, b);
             Assert.Equal(expected, actual);
         }
@@ -52,7 +52,7 @@ namespace UnitTestingSamples.xUnit.Tests
         [MemberData(nameof(GetStringSampleData))]
         public void GetStringDemoMemberData(string init, string a, string b, string expected)
         {
-            var sample = new StringSample(init);
+            StringSample sample = new(init);
             string actual = sample.GetStringDemo(a, b);
             Assert.Equal(expected, actual);
         }

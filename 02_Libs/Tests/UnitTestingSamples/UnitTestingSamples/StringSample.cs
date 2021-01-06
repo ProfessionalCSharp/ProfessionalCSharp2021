@@ -12,7 +12,7 @@ namespace UnitTestingSamples
         }
 
         private string _init;
-        public string GetStringDemo(string first, string second)
+        public string GetStringDemo(string? first, string? second)
         {
             if (first == null)
             {

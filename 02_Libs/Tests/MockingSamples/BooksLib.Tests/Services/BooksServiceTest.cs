@@ -54,7 +54,7 @@ namespace BooksLib.Services
             // arrange
             await _booksService.AddOrUpdateBookAsync(_newBook);
             // act
-            Book actualBook = _booksService.GetBook(1);
+            Book? actualBook = _booksService.GetBook(1);
             // assert
             Assert.Equal(_expectedBook, actualBook);
         }
@@ -64,7 +64,7 @@ namespace BooksLib.Services
         {
             // arrange in constructor
             // act
-            Book actualBook = _booksService.GetBook(42);
+            Book? actualBook = _booksService.GetBook(42);
             // assert
             Assert.Null(actualBook);
         }
@@ -73,9 +73,9 @@ namespace BooksLib.Services
         public async Task AddOrUpdateBookAsync_ThrowsForNull()
         {
             // arrange
-            Book nullBook = null;
+            Book? nullBook = null;
             // act and assert
-            await Assert.ThrowsAsync<ArgumentNullException>(() => _booksService.AddOrUpdateBookAsync(nullBook));
+            await Assert.ThrowsAsync<ArgumentNullException>(() => _booksService.AddOrUpdateBookAsync(nullBook!));
         }
 
         [Fact]
