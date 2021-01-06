@@ -10,7 +10,6 @@ await RunAsync("wss://localhost:5001/samplesockets");
 Console.WriteLine("Program end");
 Console.ReadLine();
 
-
 async Task RunAsync(string address)
 {
     try
