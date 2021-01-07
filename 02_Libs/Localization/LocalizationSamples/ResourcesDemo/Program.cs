@@ -9,11 +9,11 @@ namespace ResourcesDemo
     {
         static void Main()
         {
-            var resources = new ResourceManager("ResourcesDemo.Resources.Messages", typeof(Program).GetTypeInfo().Assembly);
-            string goodMorning = resources.GetString("GoodMorning", new CultureInfo("de-AT"));
+            ResourceManager resources = new("ResourcesDemo.Resources.Messages", typeof(Program).GetTypeInfo().Assembly);
+            string? goodMorning = resources.GetString("GoodMorning", new CultureInfo("de-AT"));
             Console.WriteLine(goodMorning);
 
-            var programResources = new ResourceManager(typeof(Program));
+            ResourceManager programResources = new(typeof(Program));
             Console.WriteLine(programResources.GetString("Resource1"));
         }
     }
