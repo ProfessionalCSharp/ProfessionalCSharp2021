@@ -1,6 +1,5 @@
-﻿using Wrox.MathLib;
+﻿using ProCSharp.MathLib;
+using System;
 
 double x = Calculator.Add(3, 5);
-
-#nullable enable
-#nullable disable
+Console.WriteLine($"result: {x}");

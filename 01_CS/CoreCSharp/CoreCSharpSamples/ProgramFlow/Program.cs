@@ -4,7 +4,6 @@ IfStatement();
 Book b = new("Professional C#");
 PatternMatching(b);
 
-
 void PatternMatching(object o)
 {
     if (o is null) throw new ArgumentNullException(nameof(o));
@@ -16,11 +15,10 @@ void PatternMatching(object o)
 
 void IfStatement()
 {
-
     Console.WriteLine("Type in a string");
     string? input = Console.ReadLine();
 
-    if (input == string.Empty)
+    if (string.IsNullOrEmpty(input))
     {
         Console.WriteLine("You typed in an empty string.");
     }

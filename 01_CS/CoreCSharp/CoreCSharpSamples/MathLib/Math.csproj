@@ -3,12 +3,8 @@
   <PropertyGroup>
     <OutputType>exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
-    <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>C:\github\ProfessionalCSharp2021\01_CS\CoreCSharp\CoreCSharpSamples\MathLib\Math.xml</DocumentationFile>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
 </Project>

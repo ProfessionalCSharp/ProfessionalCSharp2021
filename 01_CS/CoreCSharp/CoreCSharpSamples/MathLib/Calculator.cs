@@ -1,7 +1,7 @@
-﻿namespace Wrox.MathLib
+﻿namespace ProCSharp.MathLib
 {
     ///<summary>
-    /// Wrox.MathLib.Calculator class.
+    /// ProCSharp.MathLib.Calculator class.
     /// Provides a method to add two doublies.
     ///</summary>
     public static class Calculator

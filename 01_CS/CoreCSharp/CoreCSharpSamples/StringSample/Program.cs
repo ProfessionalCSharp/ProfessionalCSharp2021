@@ -12,8 +12,8 @@ void UsingStringBuilder()
 {
     StringBuilder sb = new("the quick");
     sb.Append(' ');
-    sb.Append("fox jumped over");
-    sb.Append("the world 1234567890 times");
+    sb.Append("brown fox jumped over ");
+    sb.Append("the lazy dogs 1234567890 times");
     string s = sb.ToString();
     Console.WriteLine(s);
     Console.WriteLine();

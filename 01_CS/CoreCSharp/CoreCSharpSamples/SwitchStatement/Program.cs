@@ -10,6 +10,9 @@ void SwitchWithPatternMatching(object o)
         case null:
             Console.WriteLine("const pattern with null");
             break;
+        case int i when i > 42:
+            Console.WriteLine("type pattern with when clause and a relational pattern");
+            break;
         case int:
             Console.WriteLine("type pattern with an int");
             break;
