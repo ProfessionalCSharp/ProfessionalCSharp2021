@@ -10,7 +10,6 @@ void ReturningTuples()
     Console.WriteLine($"7 / 2 - result: {result}, remainder: {remainder}");
 }
 
-
 void IntroTuples()
 {
     // define the tuple members and use a tuple literal
@@ -54,7 +53,4 @@ void TuplesDeconstruction()
     return (result, remainder);
 }
 
-
 public record Book(string Title, string Publisher);
-
-

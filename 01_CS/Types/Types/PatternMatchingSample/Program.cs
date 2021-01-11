@@ -2,14 +2,13 @@
 using System.Threading.Tasks;
 using static TrafficLight;
 
-
 var previousLight = Red;
 var currentLight = Red;
 for (int i = 0; i < 10; i++)
 {
     (currentLight, previousLight) = NextLightUsingTuples(currentLight, previousLight);
     Console.Write($"{currentLight} - ");
-    await Task.Delay(100);
+    await Task.Delay(1000);
 }
 Console.WriteLine();
 
@@ -23,7 +22,7 @@ for (int i = 0; i < 20; i++)
 }
 Console.WriteLine();
 
-// property pattern matching
+// tuple pattern with discard
 (TrafficLight Current, TrafficLight Previous) NextLightUsingTuples(TrafficLight current, TrafficLight previous) =>
     (current, previous) switch
     {
@@ -34,7 +33,7 @@ Console.WriteLine();
         _ => throw new InvalidOperationException()
     };
 
-// tuple pattern matching
+// property pattern with relational patterns
 TrafficLightState NextLightUsingRecords(TrafficLightState trafficLightState) =>
     trafficLightState switch
     {
@@ -58,4 +57,3 @@ public enum TrafficLight
 }
 
 public record TrafficLightState(TrafficLight CurrentLight, TrafficLight PreviousLight, int Milliseconds, int BlinkCount = 0);
-
