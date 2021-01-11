@@ -25,17 +25,16 @@ TrafficLight NextLightClassic(TrafficLight light)
 {
     switch (light)
     {
-        case TrafficLight.Red:
+        case TrafficLight.Green:
             return TrafficLight.Amber;
         case TrafficLight.Amber:
-            return TrafficLight.Green;
-        case TrafficLight.Green:
             return TrafficLight.Red;
+        case TrafficLight.Red:
+            return TrafficLight.Green;
         default:
             throw new InvalidOperationException();            
     }
 }
-
 
 // traffic light with the swith expression
 
@@ -48,9 +47,9 @@ for (int i = 0; i < 10; i++)
 TrafficLight NextLight(TrafficLight light) =>
     light switch
     {
-        TrafficLight.Red => TrafficLight.Amber,
-        TrafficLight.Amber => TrafficLight.Green,
-        TrafficLight.Green => TrafficLight.Red,
+        TrafficLight.Green => TrafficLight.Amber,
+        TrafficLight.Amber => TrafficLight.Red,
+        TrafficLight.Red => TrafficLight.Green,
         _ => throw new InvalidOperationException()
     };
 
