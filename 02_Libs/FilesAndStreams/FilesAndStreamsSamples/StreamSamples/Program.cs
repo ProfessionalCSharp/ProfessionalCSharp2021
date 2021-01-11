@@ -83,20 +83,20 @@ namespace StreamSamples
                 using FileStream stream = File.OpenRead(SampleFileDataPath);
 
                 byte[] buffer = new byte[RECORDSIZE];
+                var bufferSpan = buffer.AsSpan();
                 do
                 {
                     try
                     {
                         Console.Write("record number (or 'bye' to end): ");
-                        string? line = Console.ReadLine();
-                        if (line == null) throw new InvalidOperationException();
+                        string line = Console.ReadLine() ?? throw new InvalidOperationException();
                         if (line.ToUpper().CompareTo("BYE") == 0) break;
 
                         if (int.TryParse(line, out int record))
                         {
                             stream.Seek((record - 1) * RECORDSIZE, SeekOrigin.Begin);
-                            stream.Read(buffer, 0, RECORDSIZE);
-                            string s = Encoding.UTF8.GetString(buffer);
+                            int read = stream.Read(bufferSpan);
+                            string s = Encoding.UTF8.GetString(bufferSpan[0..read]);
                             Console.WriteLine($"record: {s}");
                         }
                     }
@@ -119,7 +119,7 @@ namespace StreamSamples
             using FileStream stream = File.Create(SampleFileDataPath);
             using StreamWriter writer = new(stream);
 
-            var r = new Random();
+            Random r = new();
 
             var records = Enumerable.Range(1, nRecords).Select(x => new
             {
@@ -142,13 +142,14 @@ namespace StreamSamples
             using var inputStream = File.OpenRead(inputFile);
             using var outputStream = File.OpenWrite(outputFile);
 
-            byte[] buffer = new byte[BUFFERSIZE];
+            var buffer = new byte[BUFFERSIZE].AsSpan();
+
             bool completed = false;
             do
             {
-                int nRead = inputStream.Read(buffer, 0, BUFFERSIZE);
+                int nRead = inputStream.Read(buffer);
                 if (nRead == 0) completed = true;
-                outputStream.Write(buffer, 0, nRead);
+                outputStream.Write(buffer[..nRead]);
             } while (!completed);
 
         }
@@ -164,28 +165,27 @@ namespace StreamSamples
         public static void ReadFileUsingFileStream(string fileName)
         {
             const int BUFFERSIZE = 4096;
-            using var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
+            using FileStream stream = new(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
 
             ShowStreamInformation(stream);
             Encoding encoding = GetEncoding(stream);
 
-            byte[] buffer = new byte[BUFFERSIZE];
-            Span<byte> bufferSpan = buffer.AsSpan();
+            var buffer = new byte[BUFFERSIZE].AsSpan();
 
             bool completed = false;
             do
             {                
-                int nread = stream.Read(bufferSpan);
+                int nread = stream.Read(buffer);
                 if (nread == 0) completed = true;
-                if (nread < bufferSpan.Length)
+                if (nread < buffer.Length)
                 {
                     // bufferSpan.Slice(nread).Clear();
-                    bufferSpan[nread..].Clear();
+                    buffer[nread..].Clear();
                     // Array.Clear(buffer, nread, BUFFERSIZE - nread);
                 }
 
                 // string s = encoding.GetString(buffer, 0, nread);
-                string s = encoding.GetString(bufferSpan[..nread]);
+                string s = encoding.GetString(buffer[..nread]);
                 Console.WriteLine($"read {nread} bytes");
                 Console.WriteLine(s);
             } while (!completed);
@@ -209,8 +209,8 @@ namespace StreamSamples
 
             Encoding encoding = Encoding.ASCII;
 
-            byte[] bom = new byte[5];
-            int nRead = stream.Read(bom, offset: 0, count: 5);
+            var bom = new byte[5].AsSpan();
+            int nRead = stream.Read(bom);
             if (bom[0] == 0xff && bom[1] == 0xfe && bom[2] == 0 && bom[3] == 0)
             {
                 Console.WriteLine("UTF-32");

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.CommandLine;
+using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 
@@ -23,72 +25,90 @@ class Program
 
     static void Main(string[] args)
     {
-        var ops = Enumerable.Range(0, options.GetLength(0)).Select(i => options[i, 0]);
-        if (args.Length == 0 || args.Length > 2 || !ops.Contains(args[0]))
-        {
-            ShowUsage();
-            return;
-        }
+        RootCommand rootCommand = new("WorkingWithFilesAndDirectories");
+        Command myDocumentsCommand = new("mydocuments") { Handler = CommandHandler.Create(() => Console.WriteLine(GetDocumentsFolder())) };
+        Command fileInfoCommand = new("fileinfo") { Handler = CommandHandler.Create<string>(FileInformation) };
+        Option<string> fileOption = new("--file");
+        fileOption.AddAlias("-f");
+        fileInfoCommand.AddOption(fileOption);
+       
+        rootCommand.AddCommand(myDocumentsCommand);
+        rootCommand.AddCommand(fileInfoCommand);
+        rootCommand.Invoke(args);
 
-        if (args[0] == "-r" && args.Length == 2)
-        {
-            ReadingAFileLineByLine(args[1]);
-        }
-        else if (args[0] == "-dd" && args.Length == 2)
-        {
-            DeleteDuplicateFiles(args[1], checkOnly: true);
-        }
-        else
-        {
-            switch (args[0])
-            {
-                case "-d":
-                    GetDocumentsFolder();
-                    break;
-                case "-fi":
-                    FileInformation("./Program.cs");
-                    break;
-                case "-p":
-                    ChangeFileProperties();
-                    break;
-                case "-c":
-                    CreateAFile();
-                    break;
-                case "-copy1":
-                    CopyFile1();
-                    break;
-                case "-copy2":
-                    CopyFile2();
-                    break;
-                case "-w":
-                    WriteAFile();
-                    break;
-                default:
-                    break;
-            }
-        }
+        //var ops = Enumerable.Range(0, options.GetLength(0)).Select(i => options[i, 0]);
+        //if (args.Length == 0 || args.Length > 2 || !ops.Contains(args[0]))
+        //{
+        //    ShowUsage();
+        //    return;
+        //}
+
+        //if (args[0] == "-r" && args.Length == 2)
+        //{
+        //    ReadingAFileLineByLine(args[1]);
+        //}
+        //else if (args[0] == "-dd" && args.Length == 2)
+        //{
+        //    DeleteDuplicateFiles(args[1], checkOnly: true);
+        //}
+        //else
+        //{
+        //    switch (args[0])
+        //    {
+        //        case "-d":
+        //            GetDocumentsFolder();
+        //            break;
+        //        case "-fi":
+        //            FileInformation("./Program.cs");
+        //            break;
+        //        case "-p":
+        //            ChangeFileProperties();
+        //            break;
+        //        case "-c":
+        //            CreateAFile();
+        //            break;
+        //        case "-copy1":
+        //            CopyFile1();
+        //            break;
+        //        case "-copy2":
+        //            CopyFile2();
+        //            break;
+        //        case "-w":
+        //            WriteAFile();
+        //            break;
+        //        default:
+        //            break;
+        //    }
+        //}
     }
 
-    private static void ShowUsage()
-    {
-        Console.WriteLine("Usage: WorkingWithFilesAndFolders [options] [filename|directory]");
-        for (int i = 0; i < options.GetLength(0); i++)
-        {
-            Console.WriteLine($"\t{options[i, 0]}\t{options[i, 1]}");
-        }
-    }
+    //private static void ShowUsage()
+    //{
+    //    Console.WriteLine("Usage: WorkingWithFilesAndFolders [options] [filename|directory]");
+    //    for (int i = 0; i < options.GetLength(0); i++)
+    //    {
+    //        Console.WriteLine($"\t{options[i, 0]}\t{options[i, 1]}");
+    //    }
+    //}
 
     private static void FileInformation(string fileName)
     {
-        FileInfo file = new(fileName);
-        Console.WriteLine($"Name: {file.Name}");
-        Console.WriteLine($"Directory: {file.DirectoryName}");
-        Console.WriteLine($"Read only: {file.IsReadOnly}");
-        Console.WriteLine($"Extension: {file.Extension}");
-        Console.WriteLine($"Length: {file.Length}");
-        Console.WriteLine($"Creation time: {file.CreationTime:F}");
-        Console.WriteLine($"Access time: {file.LastAccessTime:F}");
-        Console.WriteLine($"File attributes: {file.Attributes}");
+        try
+        {
+            FileInfo file = new(fileName);
+            Console.WriteLine($"Name: {file.Name}");
+            Console.WriteLine($"Directory: {file.DirectoryName}");
+            Console.WriteLine($"Read only: {file.IsReadOnly}");
+            Console.WriteLine($"Extension: {file.Extension}");
+            Console.WriteLine($"Length: {file.Length}");
+            Console.WriteLine($"Creation time: {file.CreationTime:F}");
+            Console.WriteLine($"Access time: {file.LastAccessTime:F}");
+            Console.WriteLine($"File attributes: {file.Attributes}");
+        }
+        catch (FileNotFoundException)
+        {
+            Console.WriteLine("file not found");
+        }
     }
 
     private static void DeleteDuplicateFiles(string directory, bool checkOnly)
@@ -162,26 +182,24 @@ class Program
         Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
 
-    private static void ChangeFileProperties()
+    private static void ChangeFileProperties(string fileName)
     {
-        string fileName = Path.Combine(GetDocumentsFolder(), Sample1FileName);
-        var file = new FileInfo(fileName);
-        if (!file.Exists)
+        FileInfo fileInfo = new(fileName);
+        if (!fileInfo.Exists)
         {
-            Console.WriteLine($"Create the file {Sample1FileName} before calling this method");
-            Console.WriteLine("You can do this by invoking this program with the -c argument");
+            Console.WriteLine($"File {fileName} does not exist");
             return;
         }
 
-        Console.WriteLine($"creation time: {file.CreationTime:F}");
-        file.CreationTime = new DateTime(2025, 12, 24, 15, 0, 0);
-        Console.WriteLine($"creation time: {file.CreationTime:F}");
+        Console.WriteLine($"creation time: {fileInfo.CreationTime:F}");
+        fileInfo.CreationTime = new DateTime(2035, 12, 24, 15, 0, 0);
+        Console.WriteLine($"creation time: {fileInfo.CreationTime:F}");
     }
 
-    private static void CreateAFile()
+    private static void CreateAFile(string file)
     {
-        string fileName = Path.Combine(GetDocumentsFolder(), Sample1FileName);
-        File.WriteAllText(fileName, "Hello, World!");
+        string path = Path.Combine(GetDocumentsFolder(), file);
+        File.WriteAllText(path, "Hello, World!");
     }
 
     private static void CopyFile1()

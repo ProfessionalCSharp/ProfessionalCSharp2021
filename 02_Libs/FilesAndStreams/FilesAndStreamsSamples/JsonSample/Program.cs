@@ -144,4 +144,3 @@ public record Card(string Title)
 {
     public IList<Category> Categories { get; } = new List<Category>();
 }
-

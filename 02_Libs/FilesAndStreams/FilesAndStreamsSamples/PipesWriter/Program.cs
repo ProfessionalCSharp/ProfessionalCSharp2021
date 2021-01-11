@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.IO.Pipes;
+using System.IO.Pipelines;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -37,6 +38,33 @@ namespace PipesWriter
                 writer.WriteLine($"Message {i}");
                 Task.Delay(500).Wait();
             }
+        }
+
+        private static void PipelineWriter(string serverName, string pipeName)
+        {
+            Console.OpenStandardInput()
+            Stream stream1 = null!;
+            PipeWriter writer1 = PipeWriter.Create(Console.OpenStandardOutput(), new StreamPipeWriterOptions(leaveOpen: true));
+            writer1.WriteAsync()
+
+
+            var pipeWriter = new NamedPipeClientStream(serverName, pipeName, PipeDirection.Out);
+            using StreamWriter writer = new(pipeWriter);
+
+            pipeWriter.Connect();
+            Console.WriteLine("writer connected");
+
+            bool completed = false;
+            while (!completed)
+            {
+                string? input = Console.ReadLine();
+                if (input == "bye") completed = true;
+
+                writer.WriteLine(input);
+                writer.Flush();
+            }
+
+            Console.WriteLine("completed writing");
         }
 
         private static void PipesWriter2(string serverName, string pipeName)

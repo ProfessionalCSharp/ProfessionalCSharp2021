@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.UI.Xaml;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -6,18 +7,18 @@ using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
 using Windows.UI.Popups;
-using Windows.UI.Xaml.Controls;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
+// To learn more about WinUI, the WinUI project structure,
+// and more about our project templates, see: http://aka.ms/winui-project-info.
 
-namespace WindowsAppEditor
+namespace WinUIAppEditor
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// An empty window that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class MainWindow : Window
     {
-        public MainPage()
+        public MainWindow()
         {
             this.InitializeComponent();
         }
@@ -26,7 +27,7 @@ namespace WindowsAppEditor
         {
             try
             {
-                var picker = new FileOpenPicker()
+                FileOpenPicker picker = new()
                 {
                     ViewMode = PickerViewMode.Thumbnail,
                     SuggestedStartLocation = PickerLocationId.DocumentsLibrary
@@ -38,17 +39,15 @@ namespace WindowsAppEditor
                 if (file != null)
                 {
                     IRandomAccessStreamWithContentType stream = await file.OpenReadAsync();
-                    using (var reader = new DataReader(stream))
-                    {
-                        await reader.LoadAsync((uint)stream.Size);
+                    using DataReader reader = new(stream);
+                    await reader.LoadAsync((uint)stream.Size);
 
-                        text1.Text = reader.ReadString((uint)stream.Size);
-                    }
+                    text1.Text = reader.ReadString((uint)stream.Size);
                 }
             }
             catch (Exception ex)
             {
-                var dlg = new MessageDialog(ex.Message, "Error");
+                MessageDialog dlg = new(ex.Message, "Error");
                 await dlg.ShowAsync();
             }
         }
@@ -57,7 +56,7 @@ namespace WindowsAppEditor
         {
             try
             {
-                var picker = new FileOpenPicker()
+                FileOpenPicker picker = new()
                 {
                     ViewMode = PickerViewMode.Thumbnail,
                     SuggestedStartLocation = PickerLocationId.DocumentsLibrary
@@ -87,7 +86,7 @@ namespace WindowsAppEditor
         {
             try
             {
-                var picker = new FileSavePicker()
+                FileSavePicker picker = new()
                 {
                     SuggestedStartLocation = PickerLocationId.DocumentsLibrary,
                     SuggestedFileName = "New Document"
@@ -97,24 +96,20 @@ namespace WindowsAppEditor
                 StorageFile file = await picker.PickSaveFileAsync();
                 if (file != null)
                 {
-                    using (StorageStreamTransaction tx = await file.OpenTransactedWriteAsync())
-                    {
-                        Stream stream = tx.Stream.AsStreamForWrite();
-                        using (var writer = new StreamWriter(stream))
-                        {
-                            byte[] preamble = Encoding.UTF8.GetPreamble();
-                            await stream.WriteAsync(preamble, 0, preamble.Length);
-                            await writer.WriteAsync(text1.Text);
-                            await writer.FlushAsync();
-                            tx.Stream.Size = (ulong)stream.Length;
-                            await tx.CommitAsync();
-                        }
-                    }
+                    using StorageStreamTransaction tx = await file.OpenTransactedWriteAsync();
+                    Stream stream = tx.Stream.AsStreamForWrite();
+                    using var writer = new StreamWriter(stream);
+                    byte[] preamble = Encoding.UTF8.GetPreamble();
+                    await stream.WriteAsync(preamble, 0, preamble.Length);
+                    await writer.WriteAsync(text1.Text);
+                    await writer.FlushAsync();
+                    tx.Stream.Size = (ulong)stream.Length;
+                    await tx.CommitAsync();
                 }
             }
             catch (Exception ex)
             {
-                var dlg = new MessageDialog(ex.Message, "Error");
+                MessageDialog dlg = new(ex.Message, "Error");
                 await dlg.ShowAsync();
             }
         }
@@ -123,7 +118,7 @@ namespace WindowsAppEditor
         {
             try
             {
-                var picker = new FileSavePicker()
+                FileSavePicker picker = new()
                 {
                     SuggestedStartLocation = PickerLocationId.DocumentsLibrary,
                     SuggestedFileName = "New Document"
@@ -133,23 +128,18 @@ namespace WindowsAppEditor
                 StorageFile file = await picker.PickSaveFileAsync();
                 if (file != null)
                 {
-                    using (StorageStreamTransaction tx = await file.OpenTransactedWriteAsync())
-                    {
-                        IRandomAccessStream stream = tx.Stream;
-                        stream.Seek(0);
-                        using (var writer = new DataWriter(stream))
-                        {
-                            writer.WriteString(text1.Text);
-                            tx.Stream.Size = await writer.StoreAsync();
-
-                            await tx.CommitAsync();
-                        }
-                    }
+                    using StorageStreamTransaction tx = await file.OpenTransactedWriteAsync();
+                    IRandomAccessStream stream = tx.Stream;
+                    stream.Seek(0);
+                    using DataWriter writer = new(stream);
+                    writer.WriteString(text1.Text);
+                    tx.Stream.Size = await writer.StoreAsync();
+                    await tx.CommitAsync();
                 }
             }
             catch (Exception ex)
             {
-                var dlg = new MessageDialog(ex.Message, "Error");
+                MessageDialog dlg = new(ex.Message, "Error");
                 await dlg.ShowAsync();
             }
         }

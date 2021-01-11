@@ -1,6 +1,11 @@
 ﻿using System;
 using System.IO;
 
+Console.WriteLine($"volume separator: {Path.VolumeSeparatorChar}");
+Console.WriteLine($"directory separator: {Path.DirectorySeparatorChar}");
+Console.WriteLine($"alt directory separator: {Path.AltDirectorySeparatorChar}");
+Console.WriteLine($"invalid path chars: {string.Join(' ', Path.GetInvalidFileNameChars())}");
+
 DriveInfo[] drives = DriveInfo.GetDrives();
 foreach (DriveInfo drive in drives)
 {
