@@ -2,25 +2,45 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Text;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
 using Windows.UI.Popups;
+using WinRT;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
 namespace WinUIAppEditor
 {
+
+
     /// <summary>
     /// An empty window that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class MainWindow : Window
     {
+        [ComImport, System.Runtime.InteropServices.Guid("3E68D4BD-7135-4D10-8018-9FB6D9F33FA1"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+        public interface IInitializeWithWindow
+        {
+            void Initialize([In] IntPtr hwnd);
+        }
+
+        [DllImport("user32.dll", ExactSpelling = true, CharSet = CharSet.Auto, PreserveSig = true, SetLastError = false)]
+        public static extern IntPtr GetActiveWindow();
+
         public MainWindow()
         {
             this.InitializeComponent();
+        }
+
+        private void InitializeActiveWindow(ICustomQueryInterface picker)
+        {
+            IInitializeWithWindow initializeWithWindowWrapper = picker.As<IInitializeWithWindow>();
+            IntPtr hwnd = GetActiveWindow();
+            initializeWithWindowWrapper.Initialize(hwnd);
         }
 
         public async void OnOpen()
@@ -34,6 +54,8 @@ namespace WinUIAppEditor
                 };
                 picker.FileTypeFilter.Add(".txt");
                 picker.FileTypeFilter.Add(".md");
+
+                InitializeActiveWindow(picker);
 
                 StorageFile file = await picker.PickSingleFileAsync();
                 if (file != null)
@@ -64,6 +86,8 @@ namespace WinUIAppEditor
                 picker.FileTypeFilter.Add(".txt");
                 picker.FileTypeFilter.Add(".md");
 
+                InitializeActiveWindow(picker);
+
                 StorageFile file = await picker.PickSingleFileAsync();
                 if (file != null)
                 {
@@ -92,6 +116,8 @@ namespace WinUIAppEditor
                     SuggestedFileName = "New Document"
                 };
                 picker.FileTypeChoices.Add("Plain Text", new List<string>() { ".txt" });
+
+                InitializeActiveWindow(picker);
 
                 StorageFile file = await picker.PickSaveFileAsync();
                 if (file != null)
@@ -124,6 +150,8 @@ namespace WinUIAppEditor
                     SuggestedFileName = "New Document"
                 };
                 picker.FileTypeChoices.Add("Plain Text", new List<string>() { ".txt" });
+
+                InitializeActiveWindow(picker);
 
                 StorageFile file = await picker.PickSaveFileAsync();
                 if (file != null)

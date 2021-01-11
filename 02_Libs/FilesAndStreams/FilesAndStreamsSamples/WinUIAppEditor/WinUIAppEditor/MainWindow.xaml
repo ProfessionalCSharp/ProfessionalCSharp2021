@@ -13,7 +13,7 @@
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
         <TextBox x:Name="text1" AcceptsReturn="True" TextReadingOrder="Default" HorizontalTextAlignment="Left" Margin="10"  />
-        <CommandBar IsOpen="True">
+        <CommandBar IsOpen="True" Grid.Row="1">
             <AppBarButton Icon="OpenFile" Label="Open" Click="{x:Bind OnOpen}" />
             <AppBarButton Icon="Save" Label="Save" Click="{x:Bind OnSave}" />
             <AppBarButton Icon="OpenFile" Label="Open .NET" Click="{x:Bind OnOpenDotnet}" />
