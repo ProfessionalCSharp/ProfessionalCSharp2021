@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "FilesAndFolders": {
+      "commandName": "Project",
+      "commandLineArgs": " deleteduplicate --dir C:\\github\\ProfessionalCSharp2021\\02_Libs\\FilesAndStreams\\FilesAndStreamsSamples\\PipesReader"
+    }
+  }
+}

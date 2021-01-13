@@ -12,18 +12,18 @@ DecompressFileWithBrotli("./test.txt.brotli");
 
 CreateZipFile("../StreamSamples/", "./test.zip");
 
-void CreateZipFile(string directory, string zipFile)
+void CreateZipFile(string sourceDirectory, string zipFile)
 {
-    InitSampleFilesForZip(directory);
+    InitSampleFilesForZip(sourceDirectory);  // create sample files if the directory does not exist
     string? destDirectory = Path.GetDirectoryName(zipFile);
-    if (destDirectory != null && !Directory.Exists(destDirectory))
+    if (destDirectory is not null && !Directory.Exists(destDirectory))
     {
         Directory.CreateDirectory(destDirectory);
     }
     FileStream zipStream = File.Create(zipFile);
     using ZipArchive archive = new(zipStream, ZipArchiveMode.Create);
 
-    IEnumerable<string> files = Directory.EnumerateFiles(directory, "*", SearchOption.TopDirectoryOnly);
+    IEnumerable<string> files = Directory.EnumerateFiles(sourceDirectory, "*", SearchOption.TopDirectoryOnly);
     foreach (var file in files)
     {
         ZipArchiveEntry entry = archive.CreateEntry(Path.GetFileName(file));

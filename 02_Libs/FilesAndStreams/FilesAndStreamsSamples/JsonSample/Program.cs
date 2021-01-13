@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
 Category appetizers = new("Appetizers");
-appetizers.Items.Add(new Item("Dungeon Crab Cocktail", "Classic coctail sauce", 27M));
+appetizers.Items.Add(new Item("Dungeon Crab Cocktail", "Classic cocktail sauce", 27M));
 appetizers.Items.Add(new Item("Almond Crusted Scallops", "Almonds, Parmesan, chive beurre blanc", 19M));
 
 Category dinner = new("Dinner");
@@ -39,15 +38,28 @@ string SerializeJson(Card card)
     return json;
 }
 
-static void DeserializeJson(string json)
+void DeserializeJson(string json)
 {
     Console.WriteLine(nameof(DeserializeJson));
     JsonSerializerOptions options = new()
     {
-        PropertyNameCaseInsensitive = true,
-        NumberHandling = JsonNumberHandling.AllowNamedFloatingPointLiterals,
+        PropertyNameCaseInsensitive = true
     };
     Card? card = JsonSerializer.Deserialize<Card>(json, options);
+    if (card is null)
+    {
+        Console.WriteLine("no card deserialized");
+        return;
+    }
+    Console.WriteLine($"{card.Title}");
+    foreach (var category in card.Categories)
+    {
+        Console.WriteLine($"\t{category.Title}");
+        foreach (var item in category.Items)
+        {
+            Console.WriteLine($"\t\t{item.Title}");
+        }
+    }
     Console.WriteLine();
 }
 
@@ -81,7 +93,6 @@ void UseReader(string json)
     Utf8JsonReader reader = new(data);
     while (reader.Read())
     {
-
         if (reader.TokenType == JsonTokenType.PropertyName && reader.GetString() == "title")
         {
             isNextTitle = true;
@@ -138,9 +149,9 @@ void UseWriter()
 public record Item(string Title, string Text, decimal Price);
 public record Category(string Title)
 {
-    public IList<Item> Items { get; } = new List<Item>();
+    public IList<Item> Items { get; init; } = new List<Item>();
 }
 public record Card(string Title)
 {
-    public IList<Category> Categories { get; } = new List<Category>();
+    public IList<Category> Categories { get; init; } = new List<Category>();
 }

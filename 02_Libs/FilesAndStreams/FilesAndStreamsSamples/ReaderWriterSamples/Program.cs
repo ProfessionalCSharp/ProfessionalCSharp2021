@@ -17,23 +17,22 @@ ReadFileUsingBinaryReader(binFile);
 void WriteFileUsingWriter(string fileName, string[] lines)
 {
     var outputStream = File.OpenWrite(fileName);
-    using var writer = new StreamWriter(outputStream);
+    using StreamWriter writer = new(outputStream);
 
-    byte[] preamble = Encoding.UTF8.GetPreamble();
-    outputStream.Write(preamble, 0, preamble.Length);
+    var preamble = Encoding.UTF8.GetPreamble().AsSpan();
+    outputStream.Write(preamble);
     writer.Write(lines);
 }
 
 void WriteFileUsingBinaryWriter(string binFile)
 {
     var outputStream = File.Create(binFile);
-    using var writer = new BinaryWriter(outputStream);
+    using BinaryWriter writer = new(outputStream);
 
     double d = 47.47;
     int i = 42;
     long l = 987654321;
     string s = "sample";
-
     writer.Write(d);
     writer.Write(i);
     writer.Write(l);
@@ -56,7 +55,7 @@ void ReadFileUsingBinaryReader(string binFile)
 void ReadFileUsingReader(string fileName)
 {
     FileStream stream = new(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
-    using var reader = new StreamReader(stream);
+    using StreamReader reader = new(stream);
 
     while (!reader.EndOfStream)
     {

@@ -7,15 +7,10 @@ using System.CommandLine.Invocation;
 using System.CommandLine.Parsing;
 using System.IO;
 
-await BuildCommandLine().UseHost(hostBuilder =>
-{
-    //hostBuilder.ConfigureServices(services =>
-    //{
-
-    //});
-}).UseDefaults()
-.Build()
-.InvokeAsync(args);
+await BuildCommandLine()
+    .UseDefaults()
+    .Build()
+    .InvokeAsync(args);
 
 CommandLineBuilder BuildCommandLine()
 {
@@ -23,7 +18,7 @@ CommandLineBuilder BuildCommandLine()
     {
         IsRequired = true
     };
-    RootCommand rootCommand = new("WorkingWithFilesAndDirectories");
+    RootCommand rootCommand = new("FilesAndFolders");
     Command showDrivesCommand = new("showdrives") { Handler = CommandHandler.Create(ShowDrivesInformation) };
     Command specialFoldersCommand = new("specialfolders") { Handler = CommandHandler.Create(ShowSpecialFolders) };
     Command createFileCommand = new("createfile") { fileOption };
