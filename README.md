@@ -36,7 +36,7 @@ Here's the list of chapters and the folders for the code samples:
 * Chapter 9 - Language Integrated Query (LINQ)
 * Chapter 10 - Errors and Exceptions (ErrorsAndExceptions)
 * Chapter 11 - Tasks and Asynchronous Programming (Async)
-* Chapter 12 - Reflection, Metadata, and Code Generation (ReflectionAndDynamic)
+* Chapter 12 - Reflection, Metadata, and Source Generators (ReflectionAndSourceGenerators)
 * Chapter 13 - Managed and Umanaged Memory (Memory)
 
 ## Part 2  (The Libraries)
@@ -51,7 +51,7 @@ Here's the list of chapters and the folders for the code samples:
 * Chapter 21 - ADO.NET and Transactions (ADONet)
 * Chapter 22 - Entity Framework Core (EFCore)
 * Chapter 23 - Localization (Localization)
-* Chapter 24 - Unit Tests (UnitTesting)
+* Chapter 24 - Tests (Tests)
 
 ## Part 3 (Web Apps and Services)
 
