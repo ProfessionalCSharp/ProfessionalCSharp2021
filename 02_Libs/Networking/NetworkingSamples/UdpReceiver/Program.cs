@@ -1,14 +1,20 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using System.CommandLine;
 using System.CommandLine.Builder;
+using System.CommandLine.Hosting;
 using System.CommandLine.Invocation;
 using System.CommandLine.Parsing;
-using System.Net;
-using System.Net.Sockets;
-using System.Text;
 using System.Threading.Tasks;
 
 await BuildCommandLine()
+    .UseHost(_ => Host.CreateDefaultBuilder(), hostBuilder =>
+    {
+        hostBuilder.ConfigureServices(services =>
+        {
+            services.AddTransient<Receiver>();
+        });
+    })
     .UseDefaults()
     .Build()
     .InvokeAsync(args);
@@ -29,39 +35,15 @@ CommandLineBuilder BuildCommandLine()
  
     rootCommand.AddOption(portOption);
     rootCommand.AddOption(groupAddressOption);
-    rootCommand.Handler = CommandHandler.Create<int, string?>(ReaderAsync);
+    rootCommand.Handler = CommandHandler.Create<int, string?, IHost>(RunAsync);
     CommandLineBuilder commandLineBuilder = new(rootCommand);
  
     return commandLineBuilder;
 }
 
-async Task ReaderAsync(int port, string? groupAddress)
+async Task RunAsync(int port,string? groupAddress, IHost host)
 {
-    using var client = new UdpClient(port);
-
-    if (groupAddress != null)
-    {
-        client.JoinMulticastGroup(IPAddress.Parse(groupAddress));
-        Console.WriteLine($"joining the multicast group {IPAddress.Parse(groupAddress)}");
-    }
-
-    bool completed = false;
-    do
-    {
-        Console.WriteLine("starting the receiver");
-        UdpReceiveResult result = await client.ReceiveAsync();
-        byte[] datagram = result.Buffer;
-        string received = Encoding.UTF8.GetString(datagram);
-        Console.WriteLine($"received {received}");
-        if (received == "bye")
-        {
-            completed = true;
-        }
-    } while (!completed);
-    Console.WriteLine("receiver closing");
-
-    if (groupAddress != null)
-    {
-        client.DropMulticastGroup(IPAddress.Parse(groupAddress));
-    }
+    var receiver = host.Services.GetRequiredService<Receiver>();
+    await receiver.RunAsync(port, groupAddress);
 }
+
