@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Net.Sockets;
 using System.Threading.Tasks;
 
 do
@@ -35,7 +36,7 @@ async Task OnLookupAsync(string hostname)
             Console.WriteLine($"Address Family: {address.AddressFamily}, address: {address}");
         }
     }
-    catch (Exception ex)
+    catch (SocketException ex)
     {
         Console.WriteLine(ex.Message);
     }
