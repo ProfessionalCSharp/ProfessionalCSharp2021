@@ -26,12 +26,10 @@ class EchoClient
         _logger = logger;
     }
 
-    public async Task SendAndReceiveAsync()
+    public async Task SendAndReceiveAsync(CancellationToken cancellationToken)
     {
         try
         {
-            CancellationTokenSource cancellationTokenSource = new();
-
             var addresses = await Dns.GetHostAddressesAsync(_hostname);
             IPAddress ipAddress = addresses.Where(address => address.AddressFamily == AddressFamily.InterNetwork).First();
             if (ipAddress is null)
@@ -39,28 +37,22 @@ class EchoClient
                 _logger.LogWarning("no IPv4 address");
                 return;
             }
-            using Socket clientSocket = new(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            await clientSocket.ConnectAsync(ipAddress, _serverPort, cancellationTokenSource.Token);
 
-            Console.CancelKeyPress += async (sender, e) =>
-            {
-                _logger.LogInformation("cancellation initiated by the user");
-                clientSocket.Disconnect(reuseSocket: false);
-                clientSocket.Close();
-                cancellationTokenSource.Cancel();
-            };
+            using Socket clientSocket = new(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            await clientSocket.ConnectAsync(ipAddress, _serverPort, cancellationToken);
 
             _logger.LogInformation("client connected to echo service");
             NetworkStream stream = new(clientSocket);
+
             Console.WriteLine("enter text that is streamed to the server and returned");
-            Stream consoleInput = Console.OpenStandardInput();
 
             // send the input to the network stream
-            Task sender = consoleInput.CopyToAsync(stream, cancellationTokenSource.Token);
+            Stream consoleInput = Console.OpenStandardInput();
+            Task sender = consoleInput.CopyToAsync(stream, cancellationToken);
 
             // receive the output from the network stream
             Stream consoleOutput = Console.OpenStandardOutput();
-            Task receiver = stream.CopyToAsync(consoleOutput, cancellationTokenSource.Token);
+            Task receiver = stream.CopyToAsync(consoleOutput, cancellationToken);
 
             await Task.WhenAll(sender, receiver);
             _logger.LogInformation("sender and receiver completed");

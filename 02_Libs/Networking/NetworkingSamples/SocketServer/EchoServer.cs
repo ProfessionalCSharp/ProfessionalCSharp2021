@@ -28,56 +28,35 @@ class EchoServer
         _logger = logger;
     }
 
-    public void StartListener()
+    public async Task StartListenerAsync(CancellationToken cancellationToken = default)
     {
         try
         {
-            
-            ServicePointManager.SetTcpKeepAlive(true, 10000, 1000);
-
-            Socket listener = new(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            using Socket listener = new(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             listener.ReceiveTimeout = _timeout;
             listener.SendTimeout = _timeout;
 
             listener.Bind(new IPEndPoint(IPAddress.Any, _port));
             listener.Listen(backlog: 15);
-
             _logger.LogTrace("EchoListener started on port {0}", _port);
-
-            CancellationTokenSource cts = new();
-
-            TaskFactory tf = new(TaskCreationOptions.LongRunning, TaskContinuationOptions.None);
-            var listenerTask = tf.StartNew(async () =>  // listener task
+            while (true)
             {
-                _logger.LogTrace("EchoService listener started");
-                while (true)
+                if (cancellationToken.IsCancellationRequested)
                 {
-                    if (cts.Token.IsCancellationRequested)
-                    {
-                        cts.Token.ThrowIfCancellationRequested();
-                        break;
-                    }
-                    var socket = await listener.AcceptAsync();
-                    if (!socket.Connected)
-                    {
-                        _logger.LogWarning("Client not connected after accept - continue");
-                        break;
-                    }
-
-                    _logger.LogInformation("client connected, local {0}, remote {1}", socket.LocalEndPoint, socket.RemoteEndPoint);
-
-                    Task _ = ProcessClientJobAsync(socket);
+                    cancellationToken.ThrowIfCancellationRequested();
+                    break;
                 }
-            }, cts.Token);
-            listenerTask.ContinueWith(t =>
-            {
-                listener.Dispose();
-                _logger.LogTrace("listener disposed");
-            }, TaskContinuationOptions.OnlyOnCanceled);
+                var socket = await listener.AcceptAsync();
+                if (!socket.Connected)
+                {
+                    _logger.LogWarning("Client not connected after accept");
+                    break;
+                }
 
-            Console.WriteLine("Press return to exit");
-            Console.ReadLine();
-            cts.Cancel();
+                _logger.LogInformation("client connected, local {0}, remote {1}", socket.LocalEndPoint, socket.RemoteEndPoint);
+
+                Task _ = ProcessClientJobAsync(socket);
+            }
         }
         catch (SocketException ex)
         {
@@ -102,7 +81,7 @@ class EchoServer
             bool completed = false;
             do
             {
-                ReadResult result = await reader.ReadAsync();
+                ReadResult result = await reader.ReadAsync(cancellationToken);
                 SequencePosition nextPosition = result.Buffer.GetPosition(result.Buffer.Length);
 
                 if (result.Buffer.Length == 0)
@@ -115,7 +94,7 @@ class EchoServer
                 {
                     string data = Encoding.UTF8.GetString(buffer.FirstSpan);
                     _logger.LogTrace("received data {0} from the client {1}", data, socket.RemoteEndPoint);
-                    await writer.WriteAsync(buffer.First);
+                    await writer.WriteAsync(buffer.First, cancellationToken);
                 }
                 else
                 {
@@ -127,7 +106,7 @@ class EchoServer
                         _logger.LogTrace("received data {0} from the client {1} in the {2}. segment", data, socket.RemoteEndPoint, segmentNumber);
 
                         // send the data back
-                        await writer.WriteAsync(item);
+                        await writer.WriteAsync(item, cancellationToken);
                     }
                 }
                 reader.AdvanceTo(nextPosition);
