@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System;
 using System.Linq;
 using System.Net;
@@ -6,25 +7,47 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
+record SenderOptions
+{
+    public int Port { get; set; }
+    public string? HostName { get; set; }
+    public bool UseBroadcast { get; set; } = false;
+    public string? GroupAddress { get; set; }
+    public bool UseIpv6 { get; set; } = false;
+}
+
 class Sender
 {
     private readonly ILogger _logger;
-    public Sender(ILogger<Sender> logger) => _logger = logger;
+    private readonly int _port;
+    private readonly string? _hostName;
+    private readonly bool _useBroadcast;
+    private readonly string? _groupAddress;
+    private readonly bool _useIpv6;
+    public Sender(IOptions<SenderOptions> options, ILogger<Sender> logger)
+    {
+        _logger = logger;
+        _port = options.Value.Port;
+        _hostName = options.Value.HostName;
+        _useBroadcast = options.Value.UseBroadcast;
+        _groupAddress = options.Value.GroupAddress;
+        _useIpv6 = options.Value.UseIpv6;
+    }
 
-    private async Task<IPEndPoint?> GetIPEndPointAsync(int port, string? hostName, bool broadcast, string? groupAddress, bool ipv6)
+    private async Task<IPEndPoint?> GetReceiverIPEndPointAsync()
     {
         IPEndPoint? endpoint = null;
         try
         {
-            if (broadcast)
+            if (_useBroadcast)
             {
-                endpoint = new IPEndPoint(IPAddress.Broadcast, port);
+                endpoint = new IPEndPoint(IPAddress.Broadcast, _port);
             }
-            else if (hostName != null)
+            else if (_hostName != null)
             {
-                IPHostEntry hostEntry = await Dns.GetHostEntryAsync(hostName);
+                IPHostEntry hostEntry = await Dns.GetHostEntryAsync(_hostName);
                 IPAddress? address = null;
-                if (ipv6)
+                if (_useIpv6)
                 {
                     address = hostEntry.AddressList.Where(a => a.AddressFamily == AddressFamily.InterNetworkV6).FirstOrDefault();
                 }
@@ -35,19 +58,19 @@ class Sender
 
                 if (address == null)
                 {
-                    Func<string> ipversion = () => ipv6 ? "IPv6" : "IPv4";
-                    _logger.LogWarning($"no {ipversion()} address for {hostName}");
+                    Func<string> ipversion = () => _useIpv6 ? "IPv6" : "IPv4";
+                    _logger.LogWarning($"no {ipversion()} address for {_hostName}");
                     return null;
                 }
-                endpoint = new IPEndPoint(address, port);
+                endpoint = new IPEndPoint(address, _port);
             }
-            else if (groupAddress != null)
+            else if (_groupAddress != null)
             {
-                endpoint = new IPEndPoint(IPAddress.Parse(groupAddress), port);
+                endpoint = new IPEndPoint(IPAddress.Parse(_groupAddress), _port);
             }
             else
             {
-                throw new InvalidOperationException($"{nameof(hostName)}, {nameof(broadcast)}, or {nameof(groupAddress)} must be set");
+                throw new InvalidOperationException($"{nameof(_hostName)}, {nameof(_useBroadcast)}, or {nameof(_groupAddress)} must be set");
             }
         }
         catch (SocketException ex)
@@ -57,25 +80,25 @@ class Sender
         return endpoint;
     }
 
-    public async Task RunAsync(int port, string? hostName, bool broadcast, string? groupAddress, bool ipv6)
+    public async Task RunAsync()
     {
-        IPEndPoint? endpoint = await GetIPEndPointAsync(port, hostName, broadcast, groupAddress, ipv6);
+        IPEndPoint? endpoint = await GetReceiverIPEndPointAsync();
         if (endpoint == null) return;
 
         try
         {
             string localhost = Dns.GetHostName();
             using UdpClient client = new(); // (new IPEndPoint(IPAddress.Parse("192.168.178.20"), 0));
-            client.EnableBroadcast = broadcast;
-            if (groupAddress != null)
+            client.EnableBroadcast = _useBroadcast;
+            if (_groupAddress != null)
             {
-                client.JoinMulticastGroup(IPAddress.Parse(groupAddress));
+                client.JoinMulticastGroup(IPAddress.Parse(_groupAddress));
             }
 
             bool completed = false;
             do
             {
-                Console.WriteLine("Enter a message or bye to exit");
+                Console.WriteLine(@"Enter a message or ""bye"" to exit");
                 string? input = Console.ReadLine();
                 Console.WriteLine();
                 completed = input == "bye";
@@ -85,9 +108,9 @@ class Sender
                 _logger.LogInformation($"Sent datagram using local EP {client.Client.LocalEndPoint} to {endpoint}");
             } while (!completed);
 
-            if (groupAddress != null)
+            if (_groupAddress != null)
             {
-                client.DropMulticastGroup(IPAddress.Parse(groupAddress));
+                client.DropMulticastGroup(IPAddress.Parse(_groupAddress));
             }
         }
         catch (SocketException ex)

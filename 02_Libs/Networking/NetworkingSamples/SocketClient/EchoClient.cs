@@ -38,11 +38,11 @@ class EchoClient
                 return;
             }
 
-            using Socket clientSocket = new(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            Socket clientSocket = new(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             await clientSocket.ConnectAsync(ipAddress, _serverPort, cancellationToken);
 
             _logger.LogInformation("client connected to echo service");
-            NetworkStream stream = new(clientSocket);
+            using NetworkStream stream = new(clientSocket, ownsSocket: true);
 
             Console.WriteLine("enter text that is streamed to the server and returned");
 
@@ -56,6 +56,10 @@ class EchoClient
 
             await Task.WhenAll(sender, receiver);
             _logger.LogInformation("sender and receiver completed");
+        }
+        catch (SocketException ex) when (ex.ErrorCode == 10061)
+        {
+            _logger.LogError("Is the server running?");
         }
         catch (SocketException ex)
         {

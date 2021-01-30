@@ -82,7 +82,6 @@ class EchoServer
             do
             {
                 ReadResult result = await reader.ReadAsync(cancellationToken);
-                SequencePosition nextPosition = result.Buffer.GetPosition(result.Buffer.Length);
 
                 if (result.Buffer.Length == 0)
                 {
@@ -94,6 +93,8 @@ class EchoServer
                 {
                     string data = Encoding.UTF8.GetString(buffer.FirstSpan);
                     _logger.LogTrace("received data {0} from the client {1}", data, socket.RemoteEndPoint);
+
+                    // send the data back
                     await writer.WriteAsync(buffer.First, cancellationToken);
                 }
                 else
@@ -109,6 +110,7 @@ class EchoServer
                         await writer.WriteAsync(item, cancellationToken);
                     }
                 }
+                SequencePosition nextPosition = result.Buffer.GetPosition(result.Buffer.Length);
                 reader.AdvanceTo(nextPosition);
 
             } while (!completed);

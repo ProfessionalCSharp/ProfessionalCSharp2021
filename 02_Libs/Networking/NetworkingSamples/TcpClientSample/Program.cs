@@ -1,42 +1,27 @@
-﻿using System;
-using System.IO;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Threading;
 
-namespace TcpClientSample
-{
-    class Program
+using var host = Host.CreateDefaultBuilder(args)
+    .ConfigureServices((context, services) =>
     {
-        private const string Host = "localhost";
-        private const int Port = 8000;
+        var settings = context.Configuration;
+        services.Configure<QuotesClientOptions>(settings.GetSection("QuotesClient"));
+        services.AddTransient<QuotesClient>();
+    })
+    .Build();
 
-        static async Task Main()
-        {
-            await SendAndReceiveAsync();
-            Console.ReadLine();
-        }
+var logger = host.Services.GetRequiredService<ILoggerFactory>().CreateLogger("QuotesClient");
 
-        public static async Task SendAndReceiveAsync()
-        {
-            using var client = new TcpClient();
-            await client.ConnectAsync(Host, Port);
-            using NetworkStream stream = client.GetStream();
-            using var writer = new StreamWriter(stream, Encoding.ASCII, 1024, leaveOpen: true);
-            using var reader = new StreamReader(stream, Encoding.ASCII, true, 1024, leaveOpen: true);
-            writer.AutoFlush = true;
-            string? line = string.Empty;
-            do
-            {
-                Console.WriteLine("enter a string, bye to exit");
-                line = Console.ReadLine();
-                await writer.WriteLineAsync(line);
+CancellationTokenSource cancellationTokenSource = new();
 
-                string? result = await reader.ReadLineAsync();
-                Console.WriteLine($"received {result} from server");
-            } while (line != "bye");
+Console.CancelKeyPress += (sender, e) =>
+{
+    logger.LogInformation("cancellation initiated by the user");
+    cancellationTokenSource.Cancel();
+};
 
-            Console.WriteLine("so long, and thanks for all the fish");
-        }
-    }
-}
+var client = host.Services.GetRequiredService<QuotesClient>();
+await client.SendAndReceiveAsync(cancellationTokenSource.Token);
