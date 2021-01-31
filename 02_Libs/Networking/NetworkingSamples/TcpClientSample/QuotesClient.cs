@@ -6,10 +6,10 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-class QuotesClientOptions
+record QuotesClientOptions
 {
-    public string? Hostname { get; set; }
-    public int ServerPort { get; set; }
+    public string? Hostname { get; init; }
+    public int ServerPort { get; init; }
 }
 
 class QuotesClient

@@ -8,13 +8,13 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-public class QuotesServerOptions
+record QuotesServerOptions
 {
-    public string? QuotesFile { get; set; }
-    public int Port { get; set; }
+    public string? QuotesFile { get; init; }
+    public int Port { get; init; }
 }
 
-public class QuotesServer
+class QuotesServer
 {
     private readonly int _port;
     private readonly ILogger _logger;
