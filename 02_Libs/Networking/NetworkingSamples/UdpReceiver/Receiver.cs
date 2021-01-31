@@ -6,27 +6,31 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-record ReceiverOptions
+public record ReceiverOptions
 {
-    public int Port { get; set; }
-    public string? GroupAddress { get; set; }
+    public int Port { get; init; }
+    public bool UseBroadcast { get; init; } = false;
+    public string? GroupAddress { get; init; }
 }
 
-class Receiver
+public class Receiver
 {
     private readonly ILogger _logger;
     private readonly int _port;
     private readonly string? _groupAddress;
-    public Receiver(IOptions<ReceiverOptions> options, ILogger logger)
+    private readonly bool _useBroadcast;
+    public Receiver(IOptions<ReceiverOptions> options, ILogger<Receiver> logger)
     {
         _port = options.Value.Port;
         _groupAddress = options.Value.GroupAddress;
+        _useBroadcast = options.Value.UseBroadcast;
         _logger = logger;
     }
 
     public async Task RunAsync()
     {
         using UdpClient client = new(_port);
+        client.EnableBroadcast = _useBroadcast;
 
         if (_groupAddress != null)
         {
@@ -37,12 +41,12 @@ class Receiver
         bool completed = false;
         do
         {
-            _logger.LogInformation("Starting the receiver");
+            _logger.LogInformation("Waiting to receivd data");
             UdpReceiveResult result = await client.ReceiveAsync();
             byte[] datagram = result.Buffer;
-            string received = Encoding.UTF8.GetString(datagram);
-            Console.WriteLine($"received: {received}");
-            if (received == "bye")
+            string dataReceived = Encoding.UTF8.GetString(datagram);
+            _logger.LogInformation("Received {0} from {1}", dataReceived, result.RemoteEndPoint);
+            if (dataReceived.Equals("bye", StringComparison.CurrentCultureIgnoreCase))
             {
                 completed = true;
             }

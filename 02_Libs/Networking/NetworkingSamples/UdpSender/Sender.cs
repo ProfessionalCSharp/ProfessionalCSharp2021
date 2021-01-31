@@ -7,16 +7,16 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-record SenderOptions
+public record SenderOptions
 {
-    public int Port { get; set; }
-    public string? HostName { get; set; }
-    public bool UseBroadcast { get; set; } = false;
-    public string? GroupAddress { get; set; }
-    public bool UseIpv6 { get; set; } = false;
+    public int ReceiverPort { get; init; }
+    public string? HostName { get; init; }
+    public bool UseBroadcast { get; init; } = false;
+    public string? GroupAddress { get; init; }
+    public bool UseIpv6 { get; init; } = false;
 }
 
-class Sender
+public class Sender
 {
     private readonly ILogger _logger;
     private readonly int _port;
@@ -27,7 +27,7 @@ class Sender
     public Sender(IOptions<SenderOptions> options, ILogger<Sender> logger)
     {
         _logger = logger;
-        _port = options.Value.Port;
+        _port = options.Value.ReceiverPort;
         _hostName = options.Value.HostName;
         _useBroadcast = options.Value.UseBroadcast;
         _groupAddress = options.Value.GroupAddress;
@@ -83,12 +83,12 @@ class Sender
     public async Task RunAsync()
     {
         IPEndPoint? endpoint = await GetReceiverIPEndPointAsync();
-        if (endpoint == null) return;
+        if (endpoint is null) return;
 
         try
         {
             string localhost = Dns.GetHostName();
-            using UdpClient client = new(); // (new IPEndPoint(IPAddress.Parse("192.168.178.20"), 0));
+            using UdpClient client = new();
             client.EnableBroadcast = _useBroadcast;
             if (_groupAddress != null)
             {
@@ -98,14 +98,14 @@ class Sender
             bool completed = false;
             do
             {
-                Console.WriteLine(@"Enter a message or ""bye"" to exit");
+                Console.WriteLine(@$"{Environment.NewLine}Enter a message or ""bye"" to exit");
                 string? input = Console.ReadLine();
-                Console.WriteLine();
-                completed = input == "bye";
+                if (input is null) continue;
+                completed = input.Equals("bye", StringComparison.CurrentCultureIgnoreCase);
 
-                byte[] datagram = Encoding.UTF8.GetBytes($"{input} from {localhost}");
+                byte[] datagram = Encoding.UTF8.GetBytes(input);
                 int sent = await client.SendAsync(datagram, datagram.Length, endpoint);
-                _logger.LogInformation($"Sent datagram using local EP {client.Client.LocalEndPoint} to {endpoint}");
+                _logger.LogInformation("Sent datagram using local EP {0} to {1}", client.Client.LocalEndPoint, endpoint);
             } while (!completed);
 
             if (_groupAddress != null)
