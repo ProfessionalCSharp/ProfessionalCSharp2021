@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.CommandLine;
 using System.CommandLine.Builder;
-using System.CommandLine.Hosting;
 using System.CommandLine.Invocation;
 using System.CommandLine.Parsing;
 using System.IO;
