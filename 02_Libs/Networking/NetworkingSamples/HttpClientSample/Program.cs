@@ -7,6 +7,7 @@ using System.CommandLine.Hosting;
 using System.CommandLine.Invocation;
 using System.CommandLine.Parsing;
 using System.Net.Http;
+using System.Threading;
 
 await BuildCommandLine()
     .UseHost(_ =>
@@ -20,10 +21,14 @@ await BuildCommandLine()
             {
                 httpClient.BaseAddress = new Uri(httpClientSettings["Url"]);
             });
+
+            services.Configure<RateLimitHandlerOptions>(context.Configuration.GetSection("RateLimit"));
+            services.AddTransient<LimitCallsHandler>();
             services.AddHttpClient<HttpClientSampleWithMessageHandler>(httpClient =>
             {
                 httpClient.BaseAddress = new Uri(httpClientSettings["Url"]);
-            }).ConfigurePrimaryHttpMessageHandler<SampleMessageHandler>();
+            }).AddHttpMessageHandler<LimitCallsHandler>().SetHandlerLifetime(Timeout.InfiniteTimeSpan);
+           
 
         });
     })
@@ -70,7 +75,11 @@ CommandLineBuilder BuildCommandLine()
     messageHandlerCommand.Handler = CommandHandler.Create<IHost>(async (host) =>
     {
         var service = host.Services.GetRequiredService<HttpClientSampleWithMessageHandler>();
-        await service.UseMessageHandlerAsync();
+        for (int i = 0; i < 10; i++)
+        {
+            await service.UseMessageHandlerAsync();
+        }
+
     });
     rootCommand.AddCommand(messageHandlerCommand);
 

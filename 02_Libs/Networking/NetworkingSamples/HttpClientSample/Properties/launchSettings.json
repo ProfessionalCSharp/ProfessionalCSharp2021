@@ -2,7 +2,7 @@
   "profiles": {
     "HttpClientSample": {
       "commandName": "Project",
-      "commandLineArgs": "simple"
+      "commandLineArgs": "messagehandler"
     }
   }
 }
