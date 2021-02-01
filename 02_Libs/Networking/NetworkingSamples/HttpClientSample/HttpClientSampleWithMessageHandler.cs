@@ -1,17 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 
 class HttpClientSampleWithMessageHandler
 {
     private readonly HttpClient _httpClient;
-    public HttpClientSampleWithMessageHandler(HttpClient httpClient)
+    private readonly ILogger _logger;
+    public HttpClientSampleWithMessageHandler(
+        HttpClient httpClient, 
+        ILogger<HttpClientSampleWithMessageHandler> logger)
     {
         _httpClient = httpClient;
+        _logger = logger;
     }
 
     public async Task UseMessageHandlerAsync()
