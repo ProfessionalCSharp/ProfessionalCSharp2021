@@ -18,7 +18,7 @@ namespace ReferenceSemantics
         private static void UseItemOfContainer()
         {
             Console.WriteLine(nameof(UseItemOfContainer));
-            var c = new Container(Enumerable.Range(0, 10).Select(x => x).ToArray());
+            Container c = new(Enumerable.Range(0, 10).Select(x => x).ToArray());
             ref int item = ref c.GetItem(3);
             item = 33;
             c.ShowAll();

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.InteropServices;
-using System.Security;
+using System.Runtime.Versioning;
 
-namespace PInvokeSampleLib
+namespace PInvokeSample
 {
-    [SecurityCritical]
-    internal static class NativeMethods
+    [SupportedOSPlatform("Windows")]
+    internal static class WindowsNativeMethods
     {
         [DllImport("kernel32.dll", SetLastError = true,
           EntryPoint = "CreateHardLinkW", CharSet = CharSet.Unicode)]
@@ -14,7 +14,7 @@ namespace PInvokeSampleLib
         private static extern bool CreateHardLink(
           [In, MarshalAs(UnmanagedType.LPWStr)] string newFileName,
           [In, MarshalAs(UnmanagedType.LPWStr)] string existingFileName,
-          IntPtr securityAttributes);
+          nint securityAttributes);
 
         internal static void CreateHardLink(string oldFileName,
                                             string newFileName)

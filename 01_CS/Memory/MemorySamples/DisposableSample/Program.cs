@@ -1,11 +1,2 @@
-﻿namespace DisposableSample
-{
-    class Program
-    {
-        static void Main()
-        {
-            using var resource = new SomeResource();
-            resource.Foo();
-        }
-    }
-}
+﻿using SomeResource resource = new();
+resource.Foo();

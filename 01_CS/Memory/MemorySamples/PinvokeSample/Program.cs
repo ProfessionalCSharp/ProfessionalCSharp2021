@@ -1,26 +1,17 @@
-﻿using PInvokeSampleLib;
+﻿using PInvokeSample;
 using System;
 using System.IO;
 
-namespace PInvokeSample
+if (args.Length != 2)
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            if (args.Length != 2)
-            {
-                Console.WriteLine("usage: PInvokeSample existingfilename newfilename");
-                return;
-            }
-            try
-            {
-                FileUtility.CreateHardLink(args[0], args[1]);
-            }
-            catch (IOException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
-    }
+    Console.WriteLine("usage: PInvokeSample existingfilename newfilename");
+    return;
+}
+try
+{
+    FileUtility.CreateHardLink(args[0], args[1]);
+}
+catch (IOException ex)
+{
+    Console.WriteLine(ex.Message);
 }

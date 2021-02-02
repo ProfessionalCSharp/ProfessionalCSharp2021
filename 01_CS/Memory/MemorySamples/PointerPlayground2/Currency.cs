@@ -1,17 +1,21 @@
 ﻿namespace PointerPlayground2
 {
-    internal struct CurrencyStruct
+    internal readonly struct CurrencyStruct
     {
-        public long Dollars;
-        public byte Cents;
+        public CurrencyStruct(long dollars, byte cents) => (Dollars, Cents) = (dollars, cents);
+
+        public readonly long Dollars;
+        public readonly byte Cents;
 
         public override string ToString() => $"$ {Dollars}.{Cents}";
     }
 
     internal class CurrencyClass
     {
-        public long Dollars = 0;
-        public byte Cents = 0;
+        public CurrencyClass(long dollars, byte cents) => (Dollars, Cents) = (dollars, cents);
+
+        public readonly long Dollars = 0;
+        public readonly byte Cents = 0;
 
         public override string ToString() => $"$ {Dollars}.{Cents}";
     }

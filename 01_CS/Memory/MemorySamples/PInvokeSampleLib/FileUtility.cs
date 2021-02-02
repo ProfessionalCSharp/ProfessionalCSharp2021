@@ -1,14 +1,24 @@
-﻿using System.Security.Permissions;
+﻿using System;
 
-namespace PInvokeSampleLib
+namespace PInvokeSample
 {
     public static class FileUtility
     {
-        [FileIOPermission(SecurityAction.LinkDemand, Unrestricted = true)]
         public static void CreateHardLink(string oldFileName,
                                           string newFileName)
         {
-            NativeMethods.CreateHardLink(oldFileName, newFileName);
+            if (OperatingSystem.IsWindows())
+            {
+                WindowsNativeMethods.CreateHardLink(oldFileName, newFileName);
+            }
+            else if (OperatingSystem.IsLinux())
+            {
+                LinuxNativeMethods.CreateHardLink(oldFileName, newFileName);
+            }
+            else
+            {
+                throw new PlatformNotSupportedException();
+            }
         }
     }
 }
