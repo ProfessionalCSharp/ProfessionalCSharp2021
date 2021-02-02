@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace HttpServerSample
 {
@@ -31,6 +32,11 @@ namespace HttpServerSample
             {
                 endpoints.MapGet("/api/racers", async context =>
                 {
+                    await context.Response.WriteAsJsonAsync(formula1.GetChampions());
+                });
+                endpoints.MapGet("/api/racersdelay", async context =>
+                {
+                    await Task.Delay(3000);
                     await context.Response.WriteAsJsonAsync(formula1.GetChampions());
                 });
                 endpoints.MapGet("/", async context =>

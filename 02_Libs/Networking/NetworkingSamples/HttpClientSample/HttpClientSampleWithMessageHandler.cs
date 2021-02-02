@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 
 
-class HttpClientSampleWithMessageHandler
+public class HttpClientSampleWithMessageHandler
 {
     private readonly HttpClient _httpClient;
     private readonly ILogger _logger;

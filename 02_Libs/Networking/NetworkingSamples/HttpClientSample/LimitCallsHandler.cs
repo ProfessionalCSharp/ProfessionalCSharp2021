@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
-public record RateLimitHandlerOptions
+public record LimitCallsHandlerOptions
 {
     public int LimitCalls { get; init; }
 }
@@ -15,7 +15,7 @@ public class LimitCallsHandler : DelegatingHandler
     private readonly ILogger _logger;
     private readonly int _limitCount;
     private int _numberCalls = 0;
-    public LimitCallsHandler(IOptions<RateLimitHandlerOptions> options, ILogger<LimitCallsHandler> logger)
+    public LimitCallsHandler(IOptions<LimitCallsHandlerOptions> options, ILogger<LimitCallsHandler> logger)
     {
         _limitCount = options.Value.LimitCalls;
         _logger = logger;
@@ -29,7 +29,7 @@ public class LimitCallsHandler : DelegatingHandler
             return Task.FromResult(new HttpResponseMessage(HttpStatusCode.TooManyRequests));
         }
         Interlocked.Increment(ref _numberCalls);
-        _logger.LogTrace("SendAsync from within SampleDelegatingHandler");
+        _logger.LogTrace("SendAsync from within LimitCallsHandler");
         return base.SendAsync(request, cancellationToken);
     }
 }
