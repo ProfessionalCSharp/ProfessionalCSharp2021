@@ -7,7 +7,7 @@ namespace PointerPlayground2
         unsafe public static void Main()
         {
             Console.WriteLine($"Size of CurrencyStruct struct is {sizeof(CurrencyStruct)}");
-            CurrencyStruct amount1, amount2;
+            CurrencyStruct amount1 = new(10, 10), amount2 = new(20, 20);
             CurrencyStruct* pAmount = &amount1;
             long* pDollars = &(pAmount->Dollars);
             byte* pCents = &(pAmount->Cents);
@@ -17,8 +17,11 @@ namespace PointerPlayground2
             Console.WriteLine($"Address of pAmount is 0x{(ulong)&pAmount:X}");
             Console.WriteLine($"Address of pDollars is 0x{(ulong)&pDollars:X}");
             Console.WriteLine($"Address of pCents is 0x{(ulong)&pCents:X}");
-            pAmount->Dollars = 20;
-            *pCents = 50;
+
+            // because Dollars are declared readonly in CurrencyStruct, you cannot change it with a variable of type CurrencyStruct
+            // pAmount->Dollars = 20;
+            // but you can change it via a pointer referencing the memory address!
+            *pDollars = 100;
             Console.WriteLine($"amount1 contains {amount1}");
 
             --pAmount;   // this should get it to point to amount2
@@ -33,7 +36,7 @@ namespace PointerPlayground2
 
             Console.WriteLine("\nNow with classes");
             // now try it out with classes
-            var amount3 = new CurrencyClass();
+            CurrencyClass amount3 = new(30, 0);
 
             fixed (long* pDollars2 = &(amount3.Dollars))
             fixed (byte* pCents2 = &(amount3.Cents))
@@ -43,6 +46,13 @@ namespace PointerPlayground2
                 *pDollars2 = -100;
                 Console.WriteLine($"amount3 contains {amount3}");
             }
+
+            // use a function pointer
+            FunctionPointerSample.Calc(&Add);
+            FunctionPointerSample.Calc(&Subtract);
         }
+
+        static int Add(int x, int y) => x + y;
+        static int Subtract(int x, int y) => x - y;
     }
 }

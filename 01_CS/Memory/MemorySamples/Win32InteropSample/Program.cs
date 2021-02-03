@@ -7,7 +7,8 @@ namespace Win32InteropSample
     {
         static void Main(string[] args)
         {
-            PInvoke.CreateFile()
+
+
         }
     }
 }

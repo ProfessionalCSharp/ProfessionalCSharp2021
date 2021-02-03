@@ -15,7 +15,7 @@ unsafe void SpanOnNativeMemory()
     {
         int* p2 = (int*)p;
 
-        var span = new Span<int>(p2, nbytes >> 2);
+        Span<int> span = new(p2, nbytes >> 2);
         span.Fill(42);
 
         int max = nbytes >> 2;
@@ -64,7 +64,6 @@ void SpanExtensions()
 {
     Console.WriteLine(nameof(SpanExtensions));
     Span<int> span1 = (new int[] { 1, 5, 11, 71, 22, 19, 21, 33 }).AsSpan();
-    // Span<int> span2 = span1.Slice(3, 4);
     Span<int> span2 = span1[3..7];
 
     bool overlaps = span1.Overlaps(span2);

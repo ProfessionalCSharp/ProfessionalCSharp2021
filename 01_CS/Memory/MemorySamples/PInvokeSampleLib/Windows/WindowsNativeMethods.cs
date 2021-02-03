@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
@@ -22,7 +23,8 @@ namespace PInvokeSample
             if (!CreateHardLink(newFileName, oldFileName, IntPtr.Zero))
             {
                 int errorCode = Marshal.GetLastWin32Error();
-                throw new IOException($"Error {errorCode}");
+                Win32Exception ex = new(errorCode);
+                throw new IOException(ex.Message, ex);
             }
         }
     }
