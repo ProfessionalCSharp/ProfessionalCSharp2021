@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 using var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((context, services) =>
@@ -17,7 +18,15 @@ using var host = Host.CreateDefaultBuilder(args)
 
 using var scope = host.Services.CreateScope();
 var runner = scope.ServiceProvider.GetRequiredService<Runner>();
-await runner.CreateTheDatabaseAsync();
+if (InputHelper.TrueFalse("Use migrations (true/false)?"))
+{
+    await runner.ApplyMigrationsAsync();
+}
+else
+{
+    await runner.CreateTheDatabaseAsync();
+}
+
 await runner.AddBooksAsync();
 await runner.ReadBooksAsync();
 await runner.QueryBooksAsync();

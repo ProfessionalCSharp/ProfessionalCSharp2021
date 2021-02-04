@@ -32,6 +32,11 @@ public class Runner
         }
     }
 
+    public async Task ApplyMigrationsAsync()
+    {
+        await _booksContext.Database.MigrateAsync();
+    }
+
     async Task AddBookAsync(string title, string publisher)
     {
         Book book = new(Title: title, Publisher: publisher);
@@ -91,7 +96,6 @@ public class Runner
             records = await _booksContext.SaveChangesAsync();
         }
         Console.WriteLine($"{records} record updated");
-
         Console.WriteLine();
     }
 
