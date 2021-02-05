@@ -19,6 +19,6 @@ void SortWithIComparable()
 
 void DependencyInjection()
 {
-    Rectangle r1 = new(new ConsoleLogger()) { Position = new(20, 30), Size = new(100, 120) };
-    r1.Draw();
+    Ellipse e1 = new(new ConsoleLogger()) { Position = new(20, 30), Size = new(100, 120) };
+    e1.Draw();
 }
