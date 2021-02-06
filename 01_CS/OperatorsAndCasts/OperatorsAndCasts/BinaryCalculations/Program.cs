@@ -4,7 +4,6 @@ long myLongNumber = 333333423;
 object myObject = (object)myLongNumber;
 int myIntNumber = (int)(long)myObject;
 
-
 SimpleCalculations();
 ShiftingBits();
 SignedNumbers();
@@ -76,9 +75,10 @@ void ShiftingBits()
 {
     Console.WriteLine(nameof(ShiftingBits));
     ushort s1 = 0b01;
+    Console.WriteLine($"{"Binary",16} {"Decimal",8} {"Hex",6}");
     for (int i = 0; i < 16; i++)
     {
-        Console.WriteLine($"{s1.ToBinaryString()} {s1} hex: {s1:X}");
+        Console.WriteLine($"{s1.ToBinaryString(),16} {s1,8} {s1,6:X}");
         s1 = (ushort)(s1 << 1);
     }
     Console.WriteLine();
