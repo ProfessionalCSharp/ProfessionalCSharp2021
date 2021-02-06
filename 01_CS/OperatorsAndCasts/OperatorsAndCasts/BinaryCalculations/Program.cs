@@ -12,11 +12,11 @@ void SignedNumbers()
 {
     Console.WriteLine(nameof(SignedNumbers));
 
-    void DisplayNumber(string title, int x) =>
-        Console.WriteLine($"{title,-11} bin: {x.ToBinaryString().AddSeparators()}, dec: {x}, hex: {x:X}");
+    void DisplayNumber(string title, short x) =>
+        Console.WriteLine($"{title,-12} bin: {x.ToBinaryString().AddSeparators()}, dec: {x,6}, hex: {x,4:X}");
 
-    int maxNumber = int.MaxValue;
-    DisplayNumber("max int", maxNumber);
+    short maxNumber = short.MaxValue;
+    DisplayNumber("max short", maxNumber);
     for (int i = 0; i < 3; i++)
     {
         maxNumber++;
@@ -24,7 +24,7 @@ void SignedNumbers()
     }
     Console.WriteLine();
 
-    int zero = 0;
+    short zero = 0;
     DisplayNumber("zero", zero);
     for (int i = 0; i < 3; i++)
     {
@@ -33,7 +33,7 @@ void SignedNumbers()
     }
     Console.WriteLine();
 
-    int minNumber = int.MinValue;
+    short minNumber = short.MinValue;
     DisplayNumber("min number", minNumber);
     for (int i = 0; i < 3; i++)
     {

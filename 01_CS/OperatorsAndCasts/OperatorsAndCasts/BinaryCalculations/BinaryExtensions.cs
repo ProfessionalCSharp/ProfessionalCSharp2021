@@ -7,6 +7,7 @@ public static class BinaryExtensions
     public static string ToBinaryString(this int number) => Convert.ToString(number, toBase: 2).PadLeft(sizeof(int) << 3, '0');
 
     public static string ToBinaryString(this ushort number) => Convert.ToString(number, toBase: 2).PadLeft(sizeof(ushort) << 3, '0');
+    public static string ToBinaryString(this short number) => Convert.ToString(number, toBase: 2).PadLeft(sizeof(short) << 3, '0');
 
     public static string AddSeparators(this string number) =>
         string.Join("_",
