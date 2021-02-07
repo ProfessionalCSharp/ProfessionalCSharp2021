@@ -19,7 +19,7 @@ void LinqDemo()
 void UsingABuilder(ImmutableList<Account> immutableAccounts)
 {
     ImmutableList<Account>.Builder builder = immutableAccounts.ToBuilder();
-    for (int i = 0; i < builder.Count; i++)
+    for (int i = builder.Count - 1; i >= 0; i--)
     {
         Account a = builder[i];
         if (a.Amount > 0)
@@ -30,7 +30,7 @@ void UsingABuilder(ImmutableList<Account> immutableAccounts)
 
     ImmutableList<Account> overdrawnAccounts = builder.ToImmutable();
 
-    overdrawnAccounts.ForEach(a => Console.WriteLine($"{a.Name} {a.Amount}"));
+    overdrawnAccounts.ForEach(a => Console.WriteLine($"overdrawn: {a.Name} {a.Amount}"));
 }
 
 ImmutableList<Account> CreateImmutableList()
