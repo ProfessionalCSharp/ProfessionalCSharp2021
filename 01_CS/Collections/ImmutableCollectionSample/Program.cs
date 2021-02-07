@@ -10,7 +10,6 @@ LinqDemo();
 
 Console.ReadLine();
 
-
 void LinqDemo()
 {
     ImmutableArray<string> arr = ImmutableArray.Create<string>("one", "two", "three", "four", "five");
@@ -61,3 +60,5 @@ void SimpleArrayDemo()
     ImmutableArray<string> a3 =
         a2.Add("Ferrari").Add("Mercedes").Add("Red Bull Racing");
 }
+
+public record Account(string Name, decimal Amount);
