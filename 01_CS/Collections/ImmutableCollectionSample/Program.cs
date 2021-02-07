@@ -35,11 +35,12 @@ void UsingABuilder(ImmutableList<Account> immutableAccounts)
 
 ImmutableList<Account> CreateImmutableList()
 {
-    List<Account> accounts = new() {
-                new("Scrooge McDuck", 667377678765m),
-                new("Donald Duck", -200m),
-                new("Ludwig von Drake", 20000m)
-            };
+    List<Account> accounts = new() 
+    {
+        new("Scrooge McDuck", 667377678765m),
+        new("Donald Duck", -200m),
+        new("Ludwig von Drake", 20000m)
+    };
 
     ImmutableList<Account> immutableAccounts = accounts.ToImmutableList();
 
