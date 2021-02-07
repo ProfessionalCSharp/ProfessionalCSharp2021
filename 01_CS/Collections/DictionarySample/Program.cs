@@ -20,7 +20,7 @@ EmployeeId idKyleL = new ("C42");
 Employee kyleL = new (idKyleL, "Kyle Larson", 80_000.00m);
 
 
-Dictionary<EmployeeId, Employee> employees = new (31)
+Dictionary<EmployeeId, Employee> employees = new(31)
 {
     [idKyle] = kyle,
     [idMartin] = martin,
