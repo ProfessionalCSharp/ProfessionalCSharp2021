@@ -15,7 +15,7 @@ public struct EmployeeId : IEquatable<EmployeeId>
         if (id == null) throw new ArgumentNullException(nameof(id));
 
         _prefix = (id.ToUpper())[0];
-        int last = id.Length > 6 ? 6 : id.Length;
+        int last = id.Length > 7 ? 7 : id.Length;
         try
         {
             _number = int.Parse(id[1..last]);

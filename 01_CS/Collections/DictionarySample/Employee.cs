@@ -1,6 +1,4 @@
-﻿using System;
-
-public record Employee
+﻿public record Employee
 {
     private readonly string _name;
     private readonly decimal _salary;
@@ -13,5 +11,5 @@ public record Employee
         _salary = salary;
     }
 
-    public override string ToString() => $"{_id.ToString()}: {_name,-20} {_salary:C}";
+    public override string ToString() => $"{_id}: {_name,-20} {_salary,12:C}";
 }
