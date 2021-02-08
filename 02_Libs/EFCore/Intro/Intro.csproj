@@ -6,12 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup Condition="$(Build) == 'Release'">
-    <None Remove="BooksContextFactory.cs" />
-  </ItemGroup>
-
-  <ItemGroup Condition="$(Build) == 'Debug'">
-    <None Include="BooksContextFactory.cs" />
+  <ItemGroup Condition="'$(Configuration)'=='Release'">
+    <Compile Remove="BooksContextFactory.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,6 +18,12 @@
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.2" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

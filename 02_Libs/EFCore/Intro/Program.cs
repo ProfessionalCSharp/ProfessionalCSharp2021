@@ -18,7 +18,9 @@ using var host = Host.CreateDefaultBuilder(args)
 
 using var scope = host.Services.CreateScope();
 var runner = scope.ServiceProvider.GetRequiredService<Runner>();
-if (InputHelper.TrueFalse("Use migrations (true/false)?"))
+
+string input = Console.ReadLine()?.Trim().ToLower() ?? string.Empty;
+if (input == "yes" || input == "y")
 {
     await runner.ApplyMigrationsAsync();
 }
@@ -27,6 +29,7 @@ else
     await runner.CreateTheDatabaseAsync();
 }
 
+await runner.AddBookAsync("sample book", "sample");
 await runner.AddBooksAsync();
 await runner.ReadBooksAsync();
 await runner.QueryBooksAsync();

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 public record Book(
-    int BookId = 0,
-    [StringLength(50)] string Title = "",
-    string? Publisher = default);
+    [StringLength(50)] string Title,
+    string? Publisher = default,
+    int BookId = 0);

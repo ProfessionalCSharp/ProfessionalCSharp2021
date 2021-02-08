@@ -22,7 +22,7 @@ public class Runner
 
     public async Task DeleteDatabaseAsync()
     {
-        Console.Write("Delete the database? ");
+        Console.Write("Delete the database? (y|n) ");
         string? input = Console.ReadLine();
         if (input?.ToLower() == "y")
         {
@@ -37,9 +37,9 @@ public class Runner
         await _booksContext.Database.MigrateAsync();
     }
 
-    async Task AddBookAsync(string title, string publisher)
+    public async Task AddBookAsync(string title, string publisher)
     {
-        Book book = new(Title: title, Publisher: publisher);
+        Book book = new(title, publisher);
         await _booksContext.Books.AddAsync(book);
         int records = await _booksContext.SaveChangesAsync();
         Console.WriteLine($"{records} record added");
@@ -49,10 +49,10 @@ public class Runner
 
     public async Task AddBooksAsync()
     {
-        Book b1 = new(Title: "Professional C# 6 and .NET Core 1.0", Publisher: "Wrox Press");
-        Book b2 = new(Title: "Professional C# 5 and .NET 4.5.1", Publisher: "Wrox Press");
-        Book b3 = new(Title: "JavaScript for Kids", Publisher: "Wrox Press");
-        Book b4 = new(Title: "Web Design with HTML and CSS", Publisher: "For Dummies");
+        Book b1 = new("Professional C# 6 and .NET Core 1.0", "Wrox Press");
+        Book b2 = new("Professional C# 5 and .NET 4.5.1", "Wrox Press");
+        Book b3 = new("JavaScript for Kids", "Wrox Press");
+        Book b4 = new("Web Design with HTML and CSS", "For Dummies");
         await _booksContext.Books.AddRangeAsync(b1, b2, b3, b4);
         int records = await _booksContext.SaveChangesAsync();
         Console.WriteLine($"{records} records added");
