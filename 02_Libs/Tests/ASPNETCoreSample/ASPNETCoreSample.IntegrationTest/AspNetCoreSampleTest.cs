@@ -1,36 +1,30 @@
-using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.TestHost;
-using System;
-using System.Net.Http;
+using Microsoft.AspNetCore.Mvc.Testing;
 using System.Threading.Tasks;
 using Xunit;
 
 namespace ASPNETCoreSample.IntegrationTest
 {
-    public class ASPNETCoreSampleTest : IDisposable
+    public class ASPNETCoreSampleTest
+        : IClassFixture<WebApplicationFactory<ASPNETCoreSample.Startup>>
     {
-        private TestServer _testServer;
+        private readonly WebApplicationFactory<ASPNETCoreSample.Startup> _factory;
 
-        public ASPNETCoreSampleTest()
+        public ASPNETCoreSampleTest(WebApplicationFactory<ASPNETCoreSample.Startup> factory)
         {
-            _testServer = new TestServer(
-                WebHost.CreateDefaultBuilder().UseStartup<Startup>());
+            _factory = factory;
         }
-
-        public void Dispose() => _testServer?.Dispose();
 
         [Fact]
         public async Task ReturnHelloWorld()
         {
+            // arrange
+            var client = _factory.CreateClient();
             // act
-            RequestBuilder requestBuilder = _testServer.CreateRequest("/");
-            HttpResponseMessage response = await requestBuilder.GetAsync();
-            response.EnsureSuccessStatusCode();
-
-            var responseString = await response.Content.ReadAsStringAsync();
+            var response = await client.GetAsync("/");
 
             // assert
+            response.EnsureSuccessStatusCode();
+            string responseString = await response.Content.ReadAsStringAsync();
             Assert.Equal("Hello World!", responseString);
         }
     }
