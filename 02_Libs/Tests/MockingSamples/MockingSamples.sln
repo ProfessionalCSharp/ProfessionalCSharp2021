@@ -1,13 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksLib", "BooksLib\BooksLib.csproj", "{C57F5C04-C606-43BA-9F65-909851853090}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksLib", "BooksLib\BooksLib.csproj", "{C57F5C04-C606-43BA-9F65-909851853090}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework", "Framework\Framework.csproj", "{E77EAF09-A242-45CE-A414-85E60A59DABA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksLib.Tests", "BooksLib.Tests\BooksLib.Tests.csproj", "{654F51CB-26C0-4C9A-B0EA-0CDA495C0AD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksLib.Tests", "BooksLib.Tests\BooksLib.Tests.csproj", "{654F51CB-26C0-4C9A-B0EA-0CDA495C0AD3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +17,6 @@ Global
 		{C57F5C04-C606-43BA-9F65-909851853090}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C57F5C04-C606-43BA-9F65-909851853090}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C57F5C04-C606-43BA-9F65-909851853090}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E77EAF09-A242-45CE-A414-85E60A59DABA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E77EAF09-A242-45CE-A414-85E60A59DABA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E77EAF09-A242-45CE-A414-85E60A59DABA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E77EAF09-A242-45CE-A414-85E60A59DABA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{654F51CB-26C0-4C9A-B0EA-0CDA495C0AD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{654F51CB-26C0-4C9A-B0EA-0CDA495C0AD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{654F51CB-26C0-4C9A-B0EA-0CDA495C0AD3}.Release|Any CPU.ActiveCfg = Release|Any CPU

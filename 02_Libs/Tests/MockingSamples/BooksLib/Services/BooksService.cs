@@ -10,12 +10,10 @@ namespace BooksLib.Services
 {
     public class BooksService : IBooksService
     {
-        private readonly ObservableCollection<Book> _books = new ObservableCollection<Book>();
+        private readonly ObservableCollection<Book> _books = new();
         private readonly IBooksRepository _booksRepository;
         public BooksService(IBooksRepository repository)
-        {
-            _booksRepository = repository;
-        }
+            => _booksRepository = repository;
 
         public async Task LoadBooksAsync()
         {
@@ -45,7 +43,7 @@ namespace BooksLib.Services
             else
             {
                 updated = await _booksRepository.UpdateAsync(book);
-                if (updated == null) throw new InvalidOperationException();
+                if (updated is null) throw new InvalidOperationException();
 
                 Book old = _books.Where(b => b.BookId == updated.BookId).Single();
                 int ix = _books.IndexOf(old);

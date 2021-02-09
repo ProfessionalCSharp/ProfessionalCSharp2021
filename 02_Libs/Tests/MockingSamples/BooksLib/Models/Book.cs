@@ -1,8 +1,8 @@
-﻿using Framework;
+﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace BooksLib.Models
 {
-    public class Book : BindableObject
+    public class Book : ObservableObject
     {
         public int BookId { get; set; }
 
