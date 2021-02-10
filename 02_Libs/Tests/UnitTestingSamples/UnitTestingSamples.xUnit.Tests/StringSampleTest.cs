@@ -16,10 +16,10 @@ namespace UnitTestingSamples.xUnit.Tests
         public void GetStringDemoExceptions()
         {
             StringSample sample = new(string.Empty);
-            Assert.Throws<ArgumentNullException>(() => sample.GetStringDemo(null, "a"));
-            Assert.Throws<ArgumentNullException>(() => sample.GetStringDemo("a", null));
+            Assert.Throws<ArgumentNullException>(() => sample.GetStringDemo(null!, "a"));
+            Assert.Throws<ArgumentNullException>(() => sample.GetStringDemo("a", null!));
             Assert.Throws<ArgumentException>(() =>
-            sample.GetStringDemo(string.Empty, "a"));
+                sample.GetStringDemo(string.Empty, "a"));
         }
 
         [Fact]

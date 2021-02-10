@@ -1,4 +1,3 @@
-using System;
 using Xunit;
 
 namespace UnitTestingSamples.xUnit.Tests
@@ -19,6 +18,5 @@ namespace UnitTestingSamples.xUnit.Tests
             // assert
             Assert.Equal(expected, actual);
         }
-
     }
 }

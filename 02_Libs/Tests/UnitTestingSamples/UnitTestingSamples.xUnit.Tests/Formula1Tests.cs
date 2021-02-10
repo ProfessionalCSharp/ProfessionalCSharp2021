@@ -1,13 +1,9 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
+using Xunit;
 
-namespace UnitTestingSamples.MSTests
+namespace UnitTestingSamples.xUnit.Tests
 {
-    [TestClass]
-    public class Formula1Test
+    public class Formula1Tests
     {
         internal static string Formula1SampleData()
         {
@@ -234,12 +230,12 @@ namespace UnitTestingSamples.MSTests
             public XElement LoadChampions() => XElement.Parse(Formula1SampleData());
         }
 
-        [TestMethod]
+        [Fact]
         public void ChampionsByCountryFilterFinland()
         {
-            Formula1 f1 = new Formula1(new F1TestLoader());
+            Formula1 f1 = new(new F1TestLoader());
             XElement actual = f1.ChampionsByCountry("Finland");
-            Assert.AreEqual(Formula1VerificationData().ToString(),
+            Assert.Equal(Formula1VerificationData().ToString(),
               actual.ToString());
         }
     }
