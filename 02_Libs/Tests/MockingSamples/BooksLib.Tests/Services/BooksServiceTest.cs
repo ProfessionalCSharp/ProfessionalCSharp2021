@@ -13,24 +13,28 @@ namespace BooksLib.Services
         private const string UpdatedTestTitle = "Updated Test Title";
         public const string APublisher = "A Publisher";
         private BooksService _booksService;
+
         private Book _newBook = new Book
         {
             BookId = 0,
             Title = TestTitle,
             Publisher = APublisher
         };
+
         private Book _expectedBook = new()
         {
             BookId = 1,
             Title = TestTitle,
             Publisher = APublisher
         };
+
         private Book _notInRepositoryBook = new()
         {
             BookId = 42,
             Title = TestTitle,
             Publisher = APublisher
         };
+
         private Book _updatedBook = new()
         {
             BookId = 1,
