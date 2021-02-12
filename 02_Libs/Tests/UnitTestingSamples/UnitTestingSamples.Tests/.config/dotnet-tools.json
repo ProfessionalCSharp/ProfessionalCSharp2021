@@ -7,6 +7,12 @@
       "commands": [
         "coverlet"
       ]
+    },
+    "dotnet-reportgenerator-globaltool": {
+      "version": "4.8.5",
+      "commands": [
+        "reportgenerator"
+      ]
     }
   }
 }
