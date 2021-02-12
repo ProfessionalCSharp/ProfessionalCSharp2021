@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "isRoot": true,
+  "tools": {
+    "coverlet.console": {
+      "version": "3.0.2",
+      "commands": [
+        "coverlet"
+      ]
+    }
+  }
+}
