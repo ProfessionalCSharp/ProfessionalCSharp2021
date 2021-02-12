@@ -25,10 +25,9 @@ namespace UnitTestingSamples.xUnit.Tests
         [Fact]
         public void GetStringDemoBNotInA()
         {
-            // A - A - A
             // arrange
             string expected = "b not found in a";
-            var sample = new StringSample(String.Empty);
+            StringSample sample = new(string.Empty);
 
             // act
             string actual = sample.GetStringDemo("a", "b");

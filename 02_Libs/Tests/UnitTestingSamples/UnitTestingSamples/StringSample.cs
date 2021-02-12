@@ -23,7 +23,7 @@ namespace UnitTestingSamples
             int startIndex = first.IndexOf(second);
             if (startIndex < 0)
             {
-                return $"{first} not found in {second}";
+                return $"{second} not found in {first}";
             }
             else if (startIndex < 5)
             {
