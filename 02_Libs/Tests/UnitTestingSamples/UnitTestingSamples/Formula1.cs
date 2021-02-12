@@ -5,7 +5,7 @@ namespace UnitTestingSamples
 {
     public class Formula1
     {
-        private IChampionsLoader _loader;
+        private readonly IChampionsLoader _loader;
         public Formula1(IChampionsLoader loader) => _loader = loader;
 
         public XElement ChampionsByCountry(string country)
