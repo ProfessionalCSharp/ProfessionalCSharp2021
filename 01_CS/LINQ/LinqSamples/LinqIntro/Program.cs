@@ -51,7 +51,6 @@ void ExtensionMethods()
     Console.WriteLine();
 }
 
-
 void LINQQuery()
 {
     var query = from r in Formula1.GetChampions()
