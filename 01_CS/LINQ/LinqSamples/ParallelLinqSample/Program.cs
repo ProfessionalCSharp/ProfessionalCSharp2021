@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -31,11 +32,18 @@ namespace ParallelLinqSample
         static void ExtensionMethods(IEnumerable<int> data)
         {
             Console.WriteLine(nameof(ExtensionMethods));
+
+            Stopwatch stopwatch = new();
+            stopwatch.Start();
+
             var res = data.AsParallel()
                 .Where(x => Math.Log(x) < 4)
                 .Select(x => x).Average();
 
-            Console.WriteLine($"result from {nameof(ExtensionMethods)}: {res}");
+            stopwatch.Stop();
+
+            Console.WriteLine($"result from {nameof(ExtensionMethods)}: {res} with elapsed milliseconds {stopwatch.ElapsedMilliseconds}");
+
             Console.WriteLine();
         }
 
