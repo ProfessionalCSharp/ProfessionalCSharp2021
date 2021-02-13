@@ -84,7 +84,7 @@ namespace ParallelLinqSample
 
         static IList<int> SampleData()
         {
-            const int arraySize = 50000000;
+            const int arraySize = 50_000_000;
             var r = new Random();
             return Enumerable.Range(0, arraySize).Select(x => r.Next(140)).ToList();
         }
