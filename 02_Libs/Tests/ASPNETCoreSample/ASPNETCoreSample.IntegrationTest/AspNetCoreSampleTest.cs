@@ -10,13 +10,11 @@ namespace ASPNETCoreSample.IntegrationTest
         private readonly WebApplicationFactory<ASPNETCoreSample.Startup> _factory;
 
         public ASPNETCoreSampleTest(WebApplicationFactory<ASPNETCoreSample.Startup> factory)
-        {
-            _factory = factory;
-        }
+            => _factory = factory;
 
         [Fact]
         public async Task ReturnHelloWorld()
-        {
+        {          
             // arrange
             var client = _factory.CreateClient();
             // act
