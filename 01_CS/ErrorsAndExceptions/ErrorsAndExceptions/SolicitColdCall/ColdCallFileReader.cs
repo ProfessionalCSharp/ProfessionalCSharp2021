@@ -13,7 +13,7 @@ public class ColdCallFileReader : IDisposable
     {
         if (_isDisposed)
         {
-            throw new ObjectDisposedException("peopleToRing");
+            throw new ObjectDisposedException(nameof(ColdCallFileReader));
         }
 
         _fileStream = new(fileName, FileMode.Open);
@@ -30,8 +30,7 @@ public class ColdCallFileReader : IDisposable
         }
         catch (FormatException ex)
         {
-            throw new ColdCallFileFormatException(
-                $"First line isn\'t an integer {ex}");
+            throw new ColdCallFileFormatException($"First line isn't an integer {ex}");
         }
     }
 
@@ -39,13 +38,12 @@ public class ColdCallFileReader : IDisposable
     {
         if (_isDisposed)
         {
-            throw new ObjectDisposedException("peopleToRing");
+            throw new ObjectDisposedException(nameof(ColdCallFileReader));
         }
 
         if (!_isOpen)
         {
-            throw new UnexpectedException(
-                "Attempted to access coldcall file that is not open");
+            throw new UnexpectedException("Attempted to access coldcall file that is not open");
         }
 
         try
@@ -76,13 +74,12 @@ public class ColdCallFileReader : IDisposable
         {
             if (_isDisposed)
             {
-                throw new ObjectDisposedException("peopleToRing");
+                throw new ObjectDisposedException(nameof(ColdCallFileReader));
             }
 
             if (!_isOpen)
             {
-                throw new UnexpectedException(
-                    "Attempted to access cold–call file that is not open");
+                throw new UnexpectedException("Attempted to access cold–call file that is not open");
             }
 
             return _nPeopleToRing;
@@ -99,7 +96,7 @@ public class ColdCallFileReader : IDisposable
         _isDisposed = true;
         _isOpen = false;
 
-        _fileStream?.Dispose();
-        _fileStream = null;
+        _streamReader?.Dispose();
+        _streamReader = null;
     }
 }
