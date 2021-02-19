@@ -107,7 +107,7 @@ public class Runner
         Console.WriteLine();
     }
 #else
-    public async Task UpdateBoookAsync()
+    public async Task UpdateBookAsync()
     {
         Book? book = _booksContext.Books.Find(1);
 

@@ -6,9 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DefineConstants>TRACE;USERECORDS</DefineConstants>
-  </PropertyGroup>
+  <!--<PropertyGroup>
+    <DefineConstants>USERECORDS</DefineConstants>
+  </PropertyGroup>-->
 
   <ItemGroup Condition="'$(Configuration)'=='Release'">
     <Compile Remove="BooksContextFactory.cs" />
