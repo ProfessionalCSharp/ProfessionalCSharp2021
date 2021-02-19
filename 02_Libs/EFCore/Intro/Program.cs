@@ -26,12 +26,14 @@ if (input == "yes" || input == "y")
 }
 else
 {
-    await runner.CreateTheDatabaseAsync();
+    
 }
 
-await runner.AddBookAsync("sample book", "sample");
+await runner.CreateTheDatabaseAsync();
+await runner.AddBookAsync("Professional C# and .NET", "Wrox Press");
 await runner.AddBooksAsync();
 await runner.ReadBooksAsync();
 await runner.QueryBooksAsync();
+await runner.UpdateBookAsync();
 await runner.DeleteBooksAsync();
 await runner.DeleteDatabaseAsync();
