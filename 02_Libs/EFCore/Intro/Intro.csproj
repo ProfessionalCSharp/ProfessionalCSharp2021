@@ -10,10 +10,6 @@
     <DefineConstants>USERECORDS</DefineConstants>
   </PropertyGroup>-->
 
-  <ItemGroup Condition="'$(Configuration)'=='Release'">
-    <Compile Remove="BooksContextFactory.cs" />
-  </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.3">

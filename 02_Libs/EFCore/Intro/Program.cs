@@ -18,16 +18,6 @@ using var host = Host.CreateDefaultBuilder(args)
 using var scope = host.Services.CreateScope();
 var runner = scope.ServiceProvider.GetRequiredService<Runner>();
 
-//string input = Console.ReadLine()?.Trim().ToLower() ?? string.Empty;
-//if (input == "yes" || input == "y")
-//{
-//    await runner.ApplyMigrationsAsync();
-//}
-//else
-//{
-    
-//}
-
 await runner.CreateTheDatabaseAsync();
 await runner.AddBookAsync("Professional C# and .NET", "Wrox Press");
 await runner.AddBooksAsync();

@@ -32,11 +32,6 @@ public class Runner
         }
     }
 
-    public async Task ApplyMigrationsAsync()
-    {
-        await _booksContext.Database.MigrateAsync();
-    }
-
     public async Task AddBookAsync(string title, string publisher)
     {
         Book book = new(title, publisher);
