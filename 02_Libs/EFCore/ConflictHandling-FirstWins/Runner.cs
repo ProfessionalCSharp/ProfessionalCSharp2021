@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 public class Runner
 {
@@ -49,12 +50,41 @@ public class Runner
     public async Task UpdateAsync()
     {
         if (_selectedBook is null) throw new InvalidOperationException("_selectedBook not set. Invoke PrepareUpdateAsync before UpdateAsync");
-        _selectedBook.Title = $"Book updated from {_user}";
-        int records = await _booksContext.SaveChangesAsync();
-        if (records == 1)
+
+        try
         {
-            Console.WriteLine($"Book {_selectedBook.BookId} updated from {_user}");
+            _selectedBook.Title = $"Book updated from {_user}";
+            int records = await _booksContext.SaveChangesAsync();
+            if (records == 1)
+            {
+                Console.WriteLine($"Book {_selectedBook.BookId} updated from {_user}");
+            }
         }
+        catch (DbUpdateConcurrencyException ex)
+        {
+            Console.WriteLine($"{_user}: update failed with {_selectedBook.Title}");
+            Console.WriteLine($"error: {ex.Message}");
+            foreach (var entry in ex.Entries)
+            {
+                if (entry.Entity is Book b)
+                {
+                    PropertyEntry pe = entry.Property("TimeStamp");
+                    Console.WriteLine($"{b.Title} {BitConverter.ToString((byte[])pe.CurrentValue)}");
+                    ShowChanges(_selectedBook.BookId, _booksContext.Entry(_selectedBook));
+                }
+            }
+        }
+    }
+
+    private void ShowChanges(int id, EntityEntry entity)
+    {
+        static void ShowChange(PropertyEntry propertyEntry, int id) =>
+          Console.WriteLine($"id: {id}, current: {propertyEntry.CurrentValue}, " +
+            $"original: {propertyEntry.OriginalValue}, " +
+            $"modified: {propertyEntry.IsModified}");
+
+        ShowChange(entity.Property("Title"), id);
+        ShowChange(entity.Property("Publisher"), id);
     }
 
     public async Task<string> GetUpdatedTitleAsyc(int id)

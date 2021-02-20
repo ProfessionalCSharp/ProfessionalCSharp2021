@@ -14,5 +14,8 @@ public class Book
     public string? Publisher { get; set; }
     public int BookId { get; set; }
 
-    [RowVersion]
+    internal object this[string index]
+    {
+        get => null;
+    }
 }
