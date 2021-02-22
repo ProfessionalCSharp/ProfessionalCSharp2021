@@ -6,36 +6,24 @@ namespace UnitTestingSamples
     {
         public StringSample(string init)
         {
-            if (init == null)
+            if (init is null)
                 throw new ArgumentNullException(nameof(init));
             _init = init;
         }
 
         private string _init;
-        public string GetStringDemo(string? first, string? second)
+        public string GetStringDemo(string first, string second)
         {
-            if (first == null)
-            {
-                throw new ArgumentNullException(nameof(first));
-            }
-            if (string.IsNullOrEmpty(first))
-            {
-                throw new ArgumentException("empty string is allowed", first);
-            }
-            if (second == null)
-            {
-                throw new ArgumentNullException(nameof(second));
-            }
-            if (second.Length > first.Length)
-            {
-                throw new ArgumentOutOfRangeException(nameof(second),
+            if (first is null) throw new ArgumentNullException(nameof(first));
+            if (string.IsNullOrEmpty(first)) throw new ArgumentException("empty string is allowed", first);
+            if (second is null) throw new ArgumentNullException(nameof(second));
+            if (second.Length > first.Length) throw new ArgumentOutOfRangeException(nameof(second),
                   "must be shorter than second");
-            }
 
             int startIndex = first.IndexOf(second);
             if (startIndex < 0)
             {
-                return $"{first} not found in {second}";
+                return $"{second} not found in {first}";
             }
             else if (startIndex < 5)
             {

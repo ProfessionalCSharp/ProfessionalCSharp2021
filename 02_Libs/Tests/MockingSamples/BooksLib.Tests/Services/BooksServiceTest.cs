@@ -13,25 +13,29 @@ namespace BooksLib.Services
         private const string UpdatedTestTitle = "Updated Test Title";
         public const string APublisher = "A Publisher";
         private BooksService _booksService;
+
         private Book _newBook = new Book
         {
             BookId = 0,
             Title = TestTitle,
             Publisher = APublisher
         };
-        private Book _expectedBook = new Book
+
+        private Book _expectedBook = new()
         {
             BookId = 1,
             Title = TestTitle,
             Publisher = APublisher
         };
-        private Book _notInRepositoryBook = new Book
+
+        private Book _notInRepositoryBook = new()
         {
             BookId = 42,
             Title = TestTitle,
             Publisher = APublisher
         };
-        private Book _updatedBook = new Book
+
+        private Book _updatedBook = new()
         {
             BookId = 1,
             Title = UpdatedTestTitle,
@@ -40,12 +44,12 @@ namespace BooksLib.Services
 
         public BooksServiceTest()
         {
-            var mock = new Mock<IBooksRepository>();
+            Mock<IBooksRepository> mock = new();
             mock.Setup(repository => repository.AddAsync(_newBook)).ReturnsAsync(_expectedBook);
             mock.Setup(repository => repository.UpdateAsync(_notInRepositoryBook)).ReturnsAsync(null as Book);
             mock.Setup(repository => repository.UpdateAsync(_updatedBook)).ReturnsAsync(_updatedBook);
 
-            _booksService = new BooksService(mock.Object);
+            _booksService = new(mock.Object);
         }
 
         [Fact]

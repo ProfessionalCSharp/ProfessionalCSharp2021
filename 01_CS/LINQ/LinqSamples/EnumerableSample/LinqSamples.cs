@@ -46,7 +46,7 @@ namespace EnumerableSample
             {
                 Console.WriteLine($"{r.FirstName} {r.LastName}");
             }
-        } 
+        }
 
         public static void ConvertWithCast()
         {
@@ -107,12 +107,9 @@ namespace EnumerableSample
                               Racer = r
                           }).ToLookup(cr => cr.Car, cr => cr.Racer);
 
-            if (racers.Contains("Williams"))
+            foreach (var williamsRacer in racers["Williams"])
             {
-                foreach (var williamsRacer in racers["Williams"])
-                {
-                    Console.WriteLine(williamsRacer);
-                }
+                Console.WriteLine(williamsRacer);
             }
         }
 
@@ -174,8 +171,8 @@ namespace EnumerableSample
                 var racers =
                    (from r in Formula1.GetChampions()
                     orderby r.LastName, r.FirstName
-                    select r.FirstName + " " + r.LastName).
-                   Skip(page * pageSize).Take(pageSize);
+                    select r.FirstName + " " + r.LastName)
+                    .Skip(page * pageSize).Take(pageSize);
 
                 foreach (var name in racers)
                 {

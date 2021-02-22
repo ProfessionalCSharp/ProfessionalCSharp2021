@@ -28,9 +28,9 @@ namespace BooksLib.Repositories
             Book? bookToDelete = _books.Find(b => b.BookId == id);
             if (bookToDelete != null)
             {
-                return Task.FromResult<bool>(_books.Remove(bookToDelete));
+                return Task.FromResult(_books.Remove(bookToDelete));
             }
-            return Task.FromResult<bool>(false);
+            return Task.FromResult(false);
         }
 
         public Task<Book?> GetItemAsync(int id) =>
