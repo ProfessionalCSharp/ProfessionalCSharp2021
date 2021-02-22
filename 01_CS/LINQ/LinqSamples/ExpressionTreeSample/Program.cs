@@ -8,7 +8,7 @@ DisplayTree(0, "Lambda", expression);
 
 void DisplayTree(int indent, string message, Expression expression)
 {
-    string output = $"{ string.Empty.PadLeft(indent, '>')} {message} ! NodeType: {expression.NodeType}; Expr: {expression}";
+    string output = $"{string.Empty.PadLeft(indent, '>')} {message}! NodeType: {expression.NodeType}; Expr: {expression}";
 
     indent++;
     switch (expression.NodeType)

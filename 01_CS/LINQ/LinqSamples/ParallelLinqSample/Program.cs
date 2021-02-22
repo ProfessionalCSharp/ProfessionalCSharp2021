@@ -71,7 +71,7 @@ namespace ParallelLinqSample
                                where Math.Log(x) < 4
                                select x).Average();
 
-                    Console.WriteLine($"query finished, sum: {res}");
+                    Console.WriteLine($"Query finished, sum: {res}");
                 }
                 catch (OperationCanceledException ex)
                 {
@@ -79,8 +79,8 @@ namespace ParallelLinqSample
                 }
             });
 
-            Console.WriteLine("query started");
-            Console.Write("cancel? ");
+            Console.WriteLine("Query started");
+            Console.Write("Cancel? ");
             string? input = Console.ReadLine();
             if (input?.ToLower().Equals("y") == true)
             {
