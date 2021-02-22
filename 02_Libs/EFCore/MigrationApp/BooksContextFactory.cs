@@ -3,25 +3,22 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using System;
 
-namespace MigrationApp
+public class BooksContextFactory : IDesignTimeDbContextFactory<BooksContext>
 {
-    public class BooksContextFactory : IDesignTimeDbContextFactory<BooksContext>
+    public BooksContext CreateDbContext(string[] args)
     {
-        public BooksContext CreateDbContext(string[] args)
+        if (args.Length < 1)
         {
-            if (args.Length < 1)
-            {
-                Console.WriteLine($"please supply a connection string");
-                Environment.Exit(-1);
-                return null!;
-            }
-            else
-            {
-                string connectionString = args[0];
-                DbContextOptionsBuilder<BooksContext> optionsBuilder = new();
-                optionsBuilder.UseSqlServer(connectionString);
-                return new BooksContext(optionsBuilder.Options);
-            }
+            Console.WriteLine($"please supply a connection string");
+            Environment.Exit(-1);
+            return null!;
+        }
+        else
+        {
+            string connectionString = args[0];
+            DbContextOptionsBuilder<BooksContext> optionsBuilder = new();
+            optionsBuilder.UseSqlServer(connectionString);
+            return new BooksContext(optionsBuilder.Options);
         }
     }
 }
