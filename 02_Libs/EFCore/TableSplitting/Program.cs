@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Relations
+namespace TableSplitting
 {
     class Program
     {

@@ -26,7 +26,10 @@ consisting of these sample projects
 
 To build and run the .NET Core samples, please install
 
-* Visual Studio 2017 Update 7 with the .NET Core workload
+* Visual Studio 2019 Update 8 with the .NET Core workload
+
+To access the database, you can use the **Azure Data Studio** on Winodws, MacOS, and Linux:
+[Download and install Azure Data Studio](https://docs.microsoft.com/en-us/sql/azure-data-studio/download-azure-data-studio)
 
 Please download and install the tools from [.NET Core downloads](https://www.microsoft.com/net/core).
  
