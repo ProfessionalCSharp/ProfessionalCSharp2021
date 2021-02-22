@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Analyzer Include="c:\sourcegenerators\CodeGenerationSample.dll" />
+    <Analyzer Include="c:\sgen\CodeGenerationSample.dll" />
   </ItemGroup>
 
 </Project>
