@@ -1,7 +1,7 @@
 
-# Professional C# and .NET (2021 Edition)
+# Professional C# and .NET - 2021 Edition
 
-Code samples for the Wrox Press book **Professional C# and .NET (2021 Edition)**
+Code samples for the Wrox Press book **Professional C# and .NET - 2021 Edition**
 
 To compile and run the samples, you need Visual Studio 2019, Visual Studio for Mac, or Visual Studio Code. 
 
@@ -9,11 +9,11 @@ You can download these tools here: [Visual Studio](https://www.visualstudio.com/
 
 The console app samples can be used on Windows, Linux, or Mac. Here is the installation procedure for .NET Core: [.NET on Linux](https://www.microsoft.com/net/core)
 
-If you're using Visual Studio, Update x or a later version of Visual Studio 2019 is needed. With the Visual Studio Installer you need to select this workload to compile most of the code samples: **.NET Core cross-platform development**.
+If you're using Visual Studio, Version 16.8 or a later version of Visual Studio 2019 is needed. With the Visual Studio Installer you need to select this workload to compile most of the code samples: **.NET Core cross-platform development**.
 
 ASP.NET Core samples need this workload: **ASP.NET and web development**.
 
-Windows app samples require Windows 10, Windows 10 Fall Creators Update (build TBD) or a later version. With the Windows app samples, Visual Studio 2019 Update TBD is required with this workload: **Universal Windows Platform Development**.
+Windows app samples require Windows 10, Windows 10 Version 20H2 (build 19042) or a later version. With the Windows app samples, Visual Studio 2019 Update 16.9 or later is required with this workload: **Universal Windows Platform Development**, along with the [Windows UI Library 3 Preview 4](https://docs.microsoft.com/en-us/windows/apps/winui/winui3/)
 
 Compiling the Xamarin samples, you have different options using a Mac or a Windows system:
 * On the Mac, you can install Visual Studio for Mac to compile the Android and iOS samples.
@@ -48,25 +48,24 @@ Here's the list of chapters and the folders for the code samples:
 * Chapter 18 - Files and Streams (FilesAndStreams)
 * Chapter 19 - Networking (Networking)
 * Chapter 20 - Security (Security)
-* Chapter 21 - ADO.NET and Transactions (ADONet)
-* Chapter 22 - Entity Framework Core (EFCore)
-* Chapter 23 - Localization (Localization)
-* Chapter 24 - Tests (Tests)
+* Chapter 21 - Entity Framework Core (EFCore)
+* Chapter 22 - Localization (Localization)
+* Chapter 23 - Tests (Tests)
 
 ## Part 3 (Web Apps and Services)
 
-* Chapter 25 - ASP.NET Core (AspNetCore)
-* Chapter 26 - Services (Services)
-* Chapter 27 - Razor Pages and MVC (RazorAndMVC)
-* Chapter 28 - Blazor (Blazor)
-* Chapter 29 - SignalR (SignalR)
+* Chapter 24 - ASP.NET Core (AspNetCore)
+* Chapter 25 - Services (Services)
+* Chapter 26 - Razor Pages and MVC (RazorAndMVC)
+* Chapter 27 - Blazor (Blazor)
+* Chapter 28 - SignalR (SignalR)
 
 ## Part 4 (Windows and Mobile)
 
-* Chapter 30 - Windows Apps (WinUI)
-* Chapter 31 - Patterns with XAML Apps
-* Chapter 32 - Styling Windows Apps (Styling)
-* Chapter 33 - Advanced Windows Apps (AdvancedWindows)
+* Chapter 29 - Windows Apps (WinUI)
+* Chapter 30 - Patterns with XAML Apps
+* Chapter 31 - Styling Windows Apps (Styling)
+* Chapter 32 - Advanced Windows Apps (AdvancedWindows)
 
 In case you've some issues to compile and run the samples, create an issue in the [Professional C# and .NET (2021) GitHub repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021).
 
