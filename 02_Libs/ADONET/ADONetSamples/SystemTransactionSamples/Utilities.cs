@@ -9,10 +9,10 @@ namespace SystemTransactionSamples
         public static bool AbortTx()
         {
             Console.WriteLine("Abort the transaction (y/n)?");
-            return Console.ReadLine().ToLower().Equals("y");
+            return Console.ReadLine()?.ToLower().Equals("y") ?? false;
         }
 
-        public static void DisplayTransactionInformation(string title, TransactionInformation info)
+        public static void DisplayTransactionInformation(string title, TransactionInformation? info)
         {
             if (info == null) throw new ArgumentNullException(nameof(info));
 

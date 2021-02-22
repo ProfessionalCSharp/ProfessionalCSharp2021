@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.IO;
 using System.Threading.Tasks;
 using System.Transactions;
@@ -10,45 +10,41 @@ namespace SystemTransactionSamples
     {
         public async Task AddBookAsync(Book book, Transaction tx)
         {
-            using (SqlConnection connection = new SqlConnection(GetConnectionString()))
+            using SqlConnection connection = new (GetConnectionString());
+            string sql = "INSERT INTO [ProCSharp].[Books] ([Title], [Publisher], [Isbn], [ReleaseDate]) " +
+                "VALUES (@Title, @Publisher, @Isbn, @ReleaseDate)";
+
+            await connection.OpenAsync();
+            if (tx != null)
             {
-                string sql = "INSERT INTO [ProCSharp].[Books] ([Title], [Publisher], [Isbn], [ReleaseDate]) " +
-                    "VALUES (@Title, @Publisher, @Isbn, @ReleaseDate)";
-
-                await connection.OpenAsync();
-                if (tx != null)
-                {
-                    connection.EnlistTransaction(tx);
-                }
-                var command = connection.CreateCommand();
-                command.CommandText = sql;
-                command.Parameters.AddWithValue("Title", book.Title);
-                command.Parameters.AddWithValue("Publisher", book.Publisher);
-                command.Parameters.AddWithValue("Isbn", book.Isbn);
-                command.Parameters.AddWithValue("ReleaseDate", book.ReleaseDate);
-
-                await command.ExecuteNonQueryAsync();
+                connection.EnlistTransaction(tx);
             }
+            var command = connection.CreateCommand();
+            command.CommandText = sql;
+            command.Parameters.AddWithValue("Title", book.Title);
+            command.Parameters.AddWithValue("Publisher", book.Publisher);
+            command.Parameters.AddWithValue("Isbn", book.Isbn);
+            command.Parameters.AddWithValue("ReleaseDate", book.ReleaseDate);
+
+            await command.ExecuteNonQueryAsync();
         }
 
         public void AddBook(Book book)
         {
-            using (SqlConnection connection = new SqlConnection(GetConnectionString()))
-            {
-                string sql = "INSERT INTO [ProCSharp].[Books] ([Title], [Publisher], [Isbn], [ReleaseDate]) " +
-                    "VALUES (@Title, @Publisher, @Isbn, @ReleaseDate)";
+            using SqlConnection connection = new (GetConnectionString());
+            string sql = "INSERT INTO [ProCSharp].[Books] ([Title], [Publisher], [Isbn], [ReleaseDate]) " +
+                "VALUES (@Title, @Publisher, @Isbn, @ReleaseDate)";
 
-                connection.Open();
+            connection.Open();
 
-                var command = connection.CreateCommand();
-                command.CommandText = sql;
-                command.Parameters.AddWithValue("Title", book.Title);
-                command.Parameters.AddWithValue("Publisher", book.Publisher);
-                command.Parameters.AddWithValue("Isbn", book.Isbn);
-                command.Parameters.AddWithValue("ReleaseDate", book.ReleaseDate);
+            var command = connection.CreateCommand();
+            command.CommandText = sql;
+            command.Parameters.AddWithValue("Title", book.Title);
+            command.Parameters.AddWithValue("Publisher", book.Publisher);
+            command.Parameters.AddWithValue("Isbn", book.Isbn);
+            command.Parameters.AddWithValue("ReleaseDate", book.ReleaseDate);
 
-                command.ExecuteNonQuery();
-            }
+            command.ExecuteNonQuery();
         }
 
         public static string GetConnectionString()

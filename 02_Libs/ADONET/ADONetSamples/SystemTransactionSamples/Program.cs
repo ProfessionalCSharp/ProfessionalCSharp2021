@@ -50,83 +50,88 @@ namespace SystemTransactionSamples
 
         static void NestedScopes()
         {
-            using (var scope = new TransactionScope())
+            if (Transaction.Current is null) throw new InvalidOperationException("Transaction.Current is null");
+
+            using TransactionScope scope = new();
+
+            Transaction.Current.TransactionCompleted += (sender, e) =>
+                DisplayTransactionInformation("TX completed", e.Transaction?.TransactionInformation);
+
+            DisplayTransactionInformation("Ambient TX created", Transaction.Current.TransactionInformation);
+
+            Book b = new()
+            {
+                Title = "Dogs in The House",
+                Publisher = "Pet Show",
+                Isbn = RandomIsbn(),
+                ReleaseDate = new DateTime(2020, 11, 24)
+            };
+
+            BookData data = new();
+            data.AddBook(b);
+
+            using (var scope2 = new TransactionScope(TransactionScopeOption.RequiresNew))
             {
                 Transaction.Current.TransactionCompleted += (sender, e) =>
-                    DisplayTransactionInformation("TX completed", e.Transaction.TransactionInformation);
-
-                DisplayTransactionInformation("Ambient TX created", Transaction.Current.TransactionInformation);
-
-                var b = new Book
                 {
-                    Title = "Dogs in The House",
+                    if (e.Transaction is null) throw new InvalidOperationException("e.Transaction is null");
+                    DisplayTransactionInformation("Inner TX completed", e.Transaction.TransactionInformation);
+                };
+
+                DisplayTransactionInformation("Inner TX scope", Transaction.Current.TransactionInformation);
+
+                var b1 = new Book
+                {
+                    Title = "Dogs and Cats in The House",
                     Publisher = "Pet Show",
                     Isbn = RandomIsbn(),
-                    ReleaseDate = new DateTime(2020, 11, 24)
+                    ReleaseDate = new DateTime(2021, 11, 24)
                 };
-                var data = new BookData();
-                data.AddBook(b);
+                var data1 = new BookData();
+                data1.AddBook(b1);
 
-                using (var scope2 = new TransactionScope(TransactionScopeOption.RequiresNew))
-                {
-                    Transaction.Current.TransactionCompleted += (sender, e) =>
-                        DisplayTransactionInformation("Inner TX completed", e.Transaction.TransactionInformation);
-
-                    DisplayTransactionInformation("Inner TX scope", Transaction.Current.TransactionInformation);
-
-                    var b1 = new Book
-                    {
-                        Title = "Dogs and Cats in The House",
-                        Publisher = "Pet Show",
-                        Isbn = RandomIsbn(),
-                        ReleaseDate = new DateTime(2021, 11, 24)
-                    };
-                    var data1 = new BookData();
-                    data1.AddBook(b1);
-
-                    scope2.Complete();
-                }
-
-                scope.Complete();
+                scope2.Complete();
             }
+
+            scope.Complete();
+
         }
 
         static void AmbientTransactions()
         {
-            using (var scope = new TransactionScope())
+            using TransactionScope scope = new();
+
+            if (Transaction.Current == null) throw new InvalidOperationException();
+            Transaction.Current.TransactionCompleted += (sender, e) =>
+                DisplayTransactionInformation("TX completed", e.Transaction.TransactionInformation);
+
+            DisplayTransactionInformation("Ambient TX created", Transaction.Current.TransactionInformation);
+
+            var b = new Book
             {
-                Transaction.Current.TransactionCompleted += (sender, e) => 
-                    DisplayTransactionInformation("TX completed", e.Transaction.TransactionInformation);
+                Title = "Cats in The House",
+                Publisher = "Pet Show",
+                Isbn = RandomIsbn(),
+                ReleaseDate = new (2019, 11, 24)
+            };
+            BookData data = new ();
+            data.AddBook(b);
 
-                DisplayTransactionInformation("Ambient TX created", Transaction.Current.TransactionInformation);
-
-                var b = new Book
-                {
-                    Title = "Cats in The House",
-                    Publisher = "Pet Show",
-                    Isbn = RandomIsbn(),
-                    ReleaseDate = new DateTime(2019, 11, 24)
-                };
-                var data = new BookData();
-                data.AddBook(b);
-
-                if (!AbortTx())
-                {
-                    scope.Complete();
-                }
-                else
-                {
-                    Console.WriteLine("transaction abort by the user");
-                }
-
-            }  // scope.Dispose();
-        }
+            if (!AbortTx())
+            {
+                scope.Complete();
+            }
+            else
+            {
+                Console.WriteLine("transaction abort by the user");
+            }
+        } // scope.Dispose()
 
         static void DependentTransactions()
         {
             async Task UsingDependentTransactionAsync(DependentTransaction dtx)
             {
-                dtx.TransactionCompleted += (sender, e) => 
+                dtx.TransactionCompleted += (sender, e) =>
                     DisplayTransactionInformation("Depdendent TX completed", e.Transaction.TransactionInformation);
 
                 DisplayTransactionInformation("Dependent Tx", dtx.TransactionInformation);
@@ -167,7 +172,7 @@ namespace SystemTransactionSamples
 
             try
             {
-                var b = new Book
+                Book b = new ()
                 {
                     Title = "A Cat in The House",
                     Publisher = "Pet Show",
@@ -179,7 +184,7 @@ namespace SystemTransactionSamples
 
                 DisplayTransactionInformation("First Connection", tx.TransactionInformation);
 
-                var b2 = new Book
+                Book b2 = new ()
                 {
                     Title = "A Rabbit in The House",
                     Publisher = "Pet Show",
@@ -214,11 +219,11 @@ namespace SystemTransactionSamples
 
             try
             {
-                var b = new Book
+                Book b = new()
                 {
                     Title = "A Dog in The House",
                     Publisher = "Pet Show",
-                    Isbn =RandomIsbn(),
+                    Isbn = RandomIsbn(),
                     ReleaseDate = new DateTime(2018, 11, 24)
                 };
                 var data = new BookData();

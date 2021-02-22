@@ -1,8 +1,10 @@
 ﻿using System;
 using Microsoft.Extensions.Configuration;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.IO;
 using System.Collections;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Data.Sqlite;
 
 namespace ConnectionSamples
 {
@@ -10,6 +12,9 @@ namespace ConnectionSamples
     {
         static void Main(string[] args)
         {
+            using var host = Host.CreateDefaultBuilder(args)
+                .Build();
+
             if (args.Length != 1)
             {
                 ShowUsage();
@@ -52,7 +57,7 @@ namespace ConnectionSamples
             string connectionString = @"server=(localdb)\MSSQLLocalDB;" +
                             "integrated security=SSPI;" +
                             "database=Books";
-            var connection = new SqlConnection(connectionString);
+            SqliteConnection connection = new(connectionString);
 
             connection.Open();
 
@@ -68,7 +73,7 @@ namespace ConnectionSamples
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("config.json");
             IConfiguration config = configurationBuilder.Build();
-         
+
             string connectionString = config["Data:DefaultConnection:ConnectionString"];
             Console.WriteLine(connectionString);
         }
@@ -86,41 +91,40 @@ namespace ConnectionSamples
 
         public static void ConnectionInformation()
         {
-            using (var connection = new SqlConnection(GetConnectionString()))
+            using SqlConnection connection = new(GetConnectionString());
+
+            connection.InfoMessage += (sender, e) =>
             {
-                connection.InfoMessage += (sender, e) =>
-                {
-                    Console.WriteLine($"warning or info: {e.Message}");
-                };
-                connection.StateChange += (sender, e) =>
-                {
-                    Console.WriteLine($"current state: {e.CurrentState}, before: {e.OriginalState}");
-                };
+                Console.WriteLine($"warning or info: {e.Message}");
+            };
+            connection.StateChange += (sender, e) =>
+            {
+                Console.WriteLine($"current state: {e.CurrentState}, before: {e.OriginalState}");
+            };
 
-                try
+            try
+            {
+                connection.StatisticsEnabled = true;
+                connection.FireInfoMessageEventOnUserErrors = true;
+                connection.Open();
+
+                Console.WriteLine("connection opened");
+
+                // Do something useful
+                SqlCommand command = connection.CreateCommand();
+                command.CommandText = "SELECT Titl, Publisher FROM [ProCSharp].[Books]";
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
                 {
-                    connection.StatisticsEnabled = true;
-                    connection.FireInfoMessageEventOnUserErrors = true;
-                    connection.Open();
-
-                    Console.WriteLine("connection opened");
-
-                    // Do something useful
-                    SqlCommand command = connection.CreateCommand();
-                    command.CommandText = "SELECT Titl, Publisher FROM [ProCSharp].[Books]";
-                    SqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        Console.WriteLine($"{reader.GetString(0)} {reader.GetString(1)}");
-                    }
-                    IDictionary statistics = connection.RetrieveStatistics();
-                    ShowStatistics(statistics);
-                    connection.ResetStatistics();
+                    Console.WriteLine($"{reader.GetString(0)} {reader.GetString(1)}");
                 }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
+                IDictionary statistics = connection.RetrieveStatistics();
+                ShowStatistics(statistics);
+                connection.ResetStatistics();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
 
@@ -137,14 +141,13 @@ namespace ConnectionSamples
         public static void Transactions()
         {
             string connectionString = GetConnectionString();
-            using (var connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                SqlTransaction tx = connection.BeginTransaction();
-                tx.Save("one");
+            using SqlConnection connection = new(connectionString);
 
-                tx.Commit();
-            }
+            connection.Open();
+            SqlTransaction tx = connection.BeginTransaction();
+            tx.Save("one");
+
+            tx.Commit();
         }
     }
 }
