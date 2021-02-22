@@ -13,6 +13,4 @@ public class Book
     [StringLength(30)]
     public string? Publisher { get; set; }
     public int BookId { get; set; }
-
-    [RowVersion]
 }
