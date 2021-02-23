@@ -90,15 +90,25 @@ class Runner
         Console.WriteLine();
     }
 
-    public async Task UseCompiledQuery()
+    public void UseCompiledQuery()
     {
         Console.WriteLine(nameof(UseCompiledQuery));
-        var menus = await _menusContext.Menus.FromSqlInterpolated($"SELECT * FROM [mc].[Menus] WHERE TEXT = '{term}'").TagWith("RawSQL").ToListAsync();
+        var menus = _menusContext.MenusByText("menu 26");
         foreach (var menu in menus)
         {
             Console.WriteLine(menu);
         }
+        Console.WriteLine();
+    }
 
+    public async Task UseCompiledQueryAsync()
+    {
+        Console.WriteLine(nameof(UseCompiledQueryAsync));
+
+        await foreach (var menu in _menusContext.MenusByTextAsync("menu 26"))
+        {
+            Console.WriteLine(menu);
+        }
         Console.WriteLine();
     }
 
@@ -114,4 +124,3 @@ class Runner
         }
     }
 }
-

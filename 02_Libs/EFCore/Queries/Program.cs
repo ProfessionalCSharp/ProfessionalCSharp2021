@@ -27,10 +27,10 @@ await runner.FirstOrDefaultAsync("menu 27");
 await runner.WhereAsync();
 await runner.PagingAsync(10, 5);
 await runner.GetAllMenusUsingAsyncStream();
-await runner.RawSqlAsync("menu 27");
+// await runner.RawSqlAsync("menu 27");
+runner.UseCompiledQuery();
+await runner.UseCompiledQueryAsync();
 
-await runner.DeleteDatabaseAsync();
+// await runner.DeleteDatabaseAsync();
 
 
-
-query.Invoke()
