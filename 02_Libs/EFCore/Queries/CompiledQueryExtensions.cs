@@ -7,8 +7,8 @@ static class CompiledQueryExtensions
 {
     private static Func<MenusContext, string, IEnumerable<Menu>>? s_menusByText;
 
-    private static Func<MenusContext, string, IEnumerable<Menu>> CompileMenusByTextQuery() =>
-        EF.CompileQuery((MenusContext context, string text)
+    private static Func<MenusContext, string, IEnumerable<Menu>> CompileMenusByTextQuery() 
+        => EF.CompileQuery((MenusContext context, string text)
                 => context.Menus.Where(m => m.Text == text));
 
     public static IEnumerable<Menu> MenusByText(this MenusContext menusContext, string text)
@@ -21,8 +21,8 @@ static class CompiledQueryExtensions
     }
 
     private static Func<MenusContext, string, IAsyncEnumerable<Menu>>? s_menusByTextAsync;
-    private static Func<MenusContext, string, IAsyncEnumerable<Menu>> CompileMenusByTextAsyncQuery() =>
-        EF.CompileAsyncQuery((MenusContext context, string text)
+    private static Func<MenusContext, string, IAsyncEnumerable<Menu>> CompileMenusByTextAsyncQuery() 
+        => EF.CompileAsyncQuery((MenusContext context, string text)
             => context.Menus.Where(m => m.Text == text));
 
     public static IAsyncEnumerable<Menu> MenusByTextAsync(this MenusContext menusContext, string text)
@@ -33,5 +33,4 @@ static class CompiledQueryExtensions
         }
         return s_menusByTextAsync(menusContext, text);
     }
-
 }

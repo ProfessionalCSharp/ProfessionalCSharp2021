@@ -111,6 +111,20 @@ class Runner
         }
         Console.WriteLine();
     }
+    public async Task UseEFCunctions(string textSegment)
+    {
+        Console.WriteLine(nameof(UseEFCunctions));
+        string likeExpression = $"%{textSegment}%";
+
+        var menus = await _menusContext.Menus.Where(m => EF.Functions.Like(m.Text, likeExpression)).ToListAsync();
+        foreach (var menu in menus)
+        {
+            Console.WriteLine(menu);
+        }
+        Console.WriteLine();
+    }
+
+
 
     public async Task DeleteDatabaseAsync()
     {
