@@ -1,25 +1,51 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 
 public class Runner
 {
     private readonly BooksContext _booksContext;
-    private string? _user;
-    private Book? _selectedBook;
-    public Runner(BooksContext booksContext)
-    {
-        _booksContext = booksContext;
-    }
+
+    public Runner(BooksContext booksContext) => _booksContext = booksContext;
 
     public async Task CreateTheDatabaseAsync()
     {
         bool created = await _booksContext.Database.EnsureCreatedAsync();
         string creationInfo = created ? "created" : "exists";
         Console.WriteLine($"database {creationInfo}");
+    }
+
+    public async Task EagerLoadingAsync()
+    {
+        Console.WriteLine(nameof(EagerLoadingAsync));
+        var books = await _booksContext.Books
+            .Where(b => b.Publisher == "pub1")
+            .Include(b => b.Author)
+            .ThenInclude(a => a!.Address)
+            .Include(b => b.Chapters)
+            .ToListAsync();
+        foreach (var book in books)
+        {
+            Console.WriteLine($"{book.Title} {book.Author?.FirstName} {book.Author?.Address?.Country}");
+        }
+        Console.WriteLine();
+    }
+
+    public async Task FilteredIncludeAsync()
+    {
+        Console.WriteLine(nameof(FilteredIncludeAsync));
+        var books = await _booksContext.Books
+            .Where(b => b.Publisher == "pub2")
+            .Include(b => b.Author)
+            .ThenInclude(a => a!.Address)
+            .Include(b => b.Chapters!.Where(c => c.ChapterId > 5)) 
+            .ToListAsync();
+        foreach (var book in books)
+        {
+            Console.WriteLine($"{book.Title} {book.Author?.FirstName} {book.Author?.Address?.Country}");
+        }
+        Console.WriteLine();
     }
 
     public async Task DeleteDatabaseAsync()
@@ -34,32 +60,51 @@ public class Runner
         }
     }
 
-    public async Task<int> PrepareUpdateAsync(string user, int id = 0)
+    public async Task ExplicitLoadingAsync()
     {
-        _user = user;
-        if (id is 0)
+        Console.WriteLine(nameof(ExplicitLoadingAsync));
+        var books = await _booksContext.Books
+            .Where(b => b.Publisher == "pub1")
+            .ToListAsync();
+
+        foreach (var book in books)
         {
-            _selectedBook = await _booksContext.Books.OrderBy(b => b.BookId).LastAsync();
-            return _selectedBook.BookId;
+            Console.WriteLine(book.Title);
+            var bookEntry = _booksContext.Entry(book);
+            await bookEntry.Reference(b => b.Author).LoadAsync();
+            Console.WriteLine($"{book.Author?.FirstName} {book.Author?.LastName}");
+
+            await _booksContext.Entry(book.Author).Reference(a => a!.Address).LoadAsync();
+            Console.WriteLine($"{book.Author!.Address!.Country}");
+
+            await bookEntry.Collection(b => b.Chapters).LoadAsync();
+
+            foreach (var chapter in book.Chapters)
+            {
+                Console.WriteLine(chapter.Title);
+            }
         }
-        _selectedBook = await _booksContext.Books.FindAsync(id);
-        return id;
+        Console.WriteLine();
     }
 
-    public async Task UpdateAsync()
+    public async Task LazyLoadingAsync()
     {
-        if (_selectedBook is null) throw new InvalidOperationException("_selectedBook not set. Invoke PrepareUpdateAsync before UpdateAsync");
-        _selectedBook.Title = $"Book updated from {_user}";
-        int records = await _booksContext.SaveChangesAsync();
-        if (records == 1)
-        {
-            Console.WriteLine($"Book {_selectedBook.BookId} updated from {_user}");
-        }
-    }
+        Console.WriteLine(nameof(LazyLoadingAsync));
+        var books = await _booksContext.Books
+            .Where(b => b.Publisher == "pub1")
+            .ToListAsync();
 
-    public async Task<string> GetUpdatedTitleAsyc(int id)
-    {
-        var book = await _booksContext.Books.FindAsync(id);
-        return $"{book.Title} with id {book.BookId}";
+        foreach (var book in books)
+        {
+            Console.WriteLine(book.Title);
+            Console.WriteLine($"{book.Author?.FirstName} {book.Author?.LastName}");
+
+            Console.WriteLine($"{book.Author!.Address!.Country}");
+            foreach (var chapter in book.Chapters)
+            {
+                Console.WriteLine(chapter.Title);
+            }
+        }
+        Console.WriteLine();
     }
 }

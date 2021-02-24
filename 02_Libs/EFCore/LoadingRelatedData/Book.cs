@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 public class Book
 {
@@ -13,4 +15,11 @@ public class Book
     [StringLength(30)]
     public string? Publisher { get; set; }
     public int BookId { get; set; }
+
+    // set accessor required for lazy loading
+    public virtual ICollection<Chapter> Chapters { get; protected set; } = new HashSet<Chapter>();
+
+    public int AuthorId { get; set; }
+    [ForeignKey(nameof(AuthorId))]
+    public virtual Person? Author { get; set; }
 }
