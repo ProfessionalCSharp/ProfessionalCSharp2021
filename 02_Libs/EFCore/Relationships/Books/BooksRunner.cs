@@ -14,6 +14,23 @@ public class BooksRunner
         await _booksContext.Database.MigrateAsync();
     }
 
+    public async Task GetBooksForAuthorAsync()
+    {
+        var books = await _booksContext.Books
+            .Where(b => b.Title.StartsWith("Professional C#"))
+            .Include(b => b.Authors)
+            .ToListAsync();
+        foreach (var b in books)
+        {
+            Console.WriteLine(b.Title);
+            foreach (var a in b.Authors)
+            {
+                Console.Write($"{a.FirstName} {a.LastName}");
+            }
+            Console.WriteLine();
+        }
+    }
+
     public async Task DeleteDatabaseAsync()
     {
         Console.Write("Delete the database? (y|n) ");

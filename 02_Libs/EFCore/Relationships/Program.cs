@@ -21,6 +21,7 @@ using (var scope = host.Services.CreateScope())
     var booksRunner = scope.ServiceProvider.GetRequiredService<BooksRunner>();
 
     await booksRunner.CreateTheDatabaseAsync();
+    await booksRunner.GetBooksForAuthorAsync();
 
 }
 

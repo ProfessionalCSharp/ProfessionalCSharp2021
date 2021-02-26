@@ -1,10 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 
 public class BankContext : DbContext
 {
@@ -15,7 +9,7 @@ public class BankContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.HasDefaultSchema("pm");
+        modelBuilder.HasDefaultSchema("bank");
 
         modelBuilder.Entity<Payment>()
             .HasDiscriminator<string>("Type")
