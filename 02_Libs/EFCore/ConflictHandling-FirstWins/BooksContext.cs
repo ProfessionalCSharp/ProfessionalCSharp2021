@@ -16,12 +16,6 @@ public class BooksContext : DbContext
         modelBuilder.Entity<Book>().Property<byte[]>("Timestamp")
           .HasColumnType("timestamp")
           .IsRowVersion();
-
-        //modelBuilder.Entity<Book>().IndexerProperty<byte[]>("TimeStamp")
-        //    .HasColumnType("timestamp")
-        //    .IsRowVersion()
-        //    // .ValueGeneratedOnAddOrUpdate()
-        //    .IsConcurrencyToken();
     }
 
     private IEnumerable<Book> GetSampleBooks()

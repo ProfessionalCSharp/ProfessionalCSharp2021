@@ -19,17 +19,15 @@ using var host = Host.CreateDefaultBuilder(args)
 using (var scope = host.Services.CreateScope())
 {
     var creator = scope.ServiceProvider.GetRequiredService<Runner>();
-
     await creator.CreateTheDatabaseAsync();
 }
-
 
 using var user1Scope = host.Services.CreateScope();
 using var user2Scope = host.Services.CreateScope();
 var user1Runner = user1Scope.ServiceProvider.GetRequiredService<Runner>();
 var user2Runner = user2Scope.ServiceProvider.GetRequiredService<Runner>();
 int bookId = await user1Runner.PrepareUpdateAsync("user1");
-await user2Runner.PrepareUpdateAsync("user2");
+await user2Runner.PrepareUpdateAsync("user2", bookId);
 await user1Runner.UpdateAsync();
 await user2Runner.UpdateAsync();
 

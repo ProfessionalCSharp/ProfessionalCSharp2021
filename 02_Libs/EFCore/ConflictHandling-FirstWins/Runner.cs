@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 public class Runner
 {
     private readonly BooksContext _booksContext;
     private string? _user;
     private Book? _selectedBook;
-    public Runner(BooksContext booksContext)
-    {
-        _booksContext = booksContext;
-    }
+    public Runner(BooksContext booksContext) => _booksContext = booksContext;
 
     public async Task CreateTheDatabaseAsync()
     {
@@ -49,7 +44,7 @@ public class Runner
 
     public async Task UpdateAsync()
     {
-        if (_selectedBook is null) throw new InvalidOperationException("_selectedBook not set. Invoke PrepareUpdateAsync before UpdateAsync");
+        if (_selectedBook is null || _user is null) throw new InvalidOperationException("_selectedBook not set. Invoke PrepareUpdateAsync before UpdateAsync");
 
         try
         {
@@ -68,7 +63,7 @@ public class Runner
             {
                 if (entry.Entity is Book b)
                 {
-                    PropertyEntry pe = entry.Property("TimeStamp");
+                    PropertyEntry pe = entry.Property("Timestamp");
                     Console.WriteLine($"{b.Title} {BitConverter.ToString((byte[])pe.CurrentValue)}");
                     ShowChanges(_selectedBook.BookId, _booksContext.Entry(_selectedBook));
                 }
