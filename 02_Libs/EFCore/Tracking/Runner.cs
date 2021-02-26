@@ -1,24 +1,20 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using static ColumnNames;
 
 class Runner
 {
     private readonly IDbContextFactory<MenusContext> _menusContextFactory;
 
-    public Runner(IDbContextFactory<MenusContext> menusContextFactory)
-    {
+    public Runner(IDbContextFactory<MenusContext> menusContextFactory) =>
         _menusContextFactory = menusContextFactory;
-    }
 
-    public Task CreateDatabaseAsync()
+    public async Task CreateDatabaseAsync()
     {
         using var context = _menusContextFactory.CreateDbContext();
-        return context.Database.EnsureCreatedAsync();
+        await context.Database.EnsureCreatedAsync();
     }
 
     public async Task AddRecordsAsync()
@@ -107,8 +103,6 @@ class Runner
         ShowState(context);
     }
 
-
-
     public async Task UpdateRecordUntrackedAsync()
     {
         Task<Menu> GetMenuAsync()
@@ -135,7 +129,6 @@ class Runner
 
         await UpdateMenuAsync(menu);
     }
-
 
     public async Task DeleteDatabaseAsync()
     {
