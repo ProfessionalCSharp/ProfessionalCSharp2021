@@ -1,12 +1,28 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
-namespace Transactions
-{
-    class Program
+using var host = Host.CreateDefaultBuilder(args)
+    .ConfigureServices((context, services) =>
     {
-        static void Main(string[] args)
+        var connectionString = context.Configuration.GetConnectionString("MenusConnection");
+        services.AddDbContextFactory<MenusContext>(options =>
         {
-            Console.WriteLine("Hello World!");
-        }
-    }
-}
+            options.UseSqlServer(connectionString);
+        });
+
+        services.AddScoped<Runner>();
+    })
+    .Build();
+
+using var scope = host.Services.CreateScope();
+var runner = scope.ServiceProvider.GetRequiredService<Runner>();
+await runner.CreateDatabaseAsync();
+
+await runner.AddTwoRecordsWithOneTxAsync();
+await runner.AddTwoRecordsWithTwoTxAsync();
+await runner.TwoSaveChangesWithOneTxAsync();
+await runner.AmbientTransactionsAsync();
+
+await runner.DeleteDatabaseAsync();
