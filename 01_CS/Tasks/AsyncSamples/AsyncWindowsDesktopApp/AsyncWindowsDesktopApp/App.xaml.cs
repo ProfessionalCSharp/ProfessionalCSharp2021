@@ -16,6 +16,9 @@ using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
+// TODO: update with release
+#nullable enable
+
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
@@ -62,3 +65,5 @@ namespace AsyncWindowsDesktopApp
         private Window? m_window;
     }
 }
+
+#nullable restore
