@@ -1,9 +1,12 @@
 ﻿using Microsoft.UI.Xaml;
 using System;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI.Popups;
+using WinRT;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -86,14 +89,25 @@ namespace AsyncWindowsDesktopApp
         private async void OnIAsyncOperation(object sender, RoutedEventArgs e)
         {
             MessageDialog dlg = new("Select One, Two, Or Three", "Sample");
+            // TODO: remove workaround after next preview?
 
-            dlg.Commands.Add(new UICommand("One", null, 1));
-            dlg.Commands.Add(new UICommand("Two", null, 2));
-            dlg.Commands.Add(new UICommand("Three", null, 3));
+            IInitializeWithWindow withWindow = dlg.As<IInitializeWithWindow>();
+            var handle = this.As<IWindowNative>().WindowHandle;
+            try
+            {
+                dlg.Commands.Add(new UICommand("One", null, 1));
+                dlg.Commands.Add(new UICommand("Two", null, 2));
+                dlg.Commands.Add(new UICommand("Three", null, 3));
 
-            IUICommand command = await dlg.ShowAsync();
+                withWindow.Initialize(handle);
+                IUICommand command = await dlg.ShowAsync();
 
-            text1.Text = $"Command {command.Id} with the label {command.Label} invoked";
+                text1.Text = $"Command {command.Id} with the label {command.Label} invoked";
+            }
+            catch (System.Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
         }
 
         private void OnStartDeadlock(object sender, RoutedEventArgs e)
@@ -110,5 +124,23 @@ namespace AsyncWindowsDesktopApp
         }
 
         private string GetThread() => $"thread: {Thread.CurrentThread.ManagedThreadId}";
+
+        // TODO: remove workaround with next preview?
+        [ComImport]
+        [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+        [Guid("3E68D4BD-7135-4D10-8018-9FB6D9F33FA1")]
+        internal interface IInitializeWithWindow
+        {
+            void Initialize(IntPtr hwnd);
+        }
+
+        [ComImport]
+        [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+        [Guid("EECDBF0E-BAE9-4CB6-A68E-9598E1CB57BB")]
+        internal interface IWindowNative
+        {
+            IntPtr WindowHandle { get; }
+        }
+       
     }
 }
