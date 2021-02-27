@@ -1,62 +1,41 @@
 ﻿using System;
 using System.Globalization;
 
-if (args.Length != 1)
-{
-    ShowUsage();
-    return;
-}
-switch (args[0])
-{
-    case "-n":
-        NumberFormatDemo();
-        break;
-    case "-d":
-        DateFormatDemo();
-        break;
-    default:
-        ShowUsage();
-        break;
-}
-
-void ShowUsage()
-{
-    Console.WriteLine("NumberAndDateFormatting command");
-    Console.WriteLine("\tCommands:");
-    Console.WriteLine("\t-n\tShow numbers");
-    Console.WriteLine("\t-d\tShow dates");
-}
+NumberFormatDemo();
+DateFormatDemo();
 
 void NumberFormatDemo()
 {
     int val = 1234567890;
 
     // culture of the current thread
-    Console.WriteLine(val.ToString("N"));
+    string output = val.ToString("N");
+    Console.WriteLine($"Current thread culture: {CultureInfo.CurrentCulture}: {output}");
 
     // use IFormatProvider
-    Console.WriteLine(val.ToString("N", new CultureInfo("fr-FR")));
+    output = val.ToString("N", new CultureInfo("fr-FR"));
+    Console.WriteLine($"IFormatProvider with fr-FR culture {output}");
 
     // change the culture of the thread
-    CultureInfo.CurrentCulture = new CultureInfo("de-DE");
-
-    Console.WriteLine(val.ToString("N"));
+    CultureInfo.CurrentCulture = new("de-DE");
+    output = val.ToString("N");
+    Console.WriteLine($"Changed culture of the thread to de-DE: {output}");
 }
 
 void DateFormatDemo()
 {
-    var d = new DateTime(2017, 09, 17);
+    DateTime d = new(2024, 09, 17);
 
     // current culture
-    Console.WriteLine(d.ToString("D"));
+    string output = d.ToString("D");
+    Console.WriteLine($"Current thread culture: {CultureInfo.CurrentCulture}: {output}");
 
     // use IFormatProvider
-    Console.WriteLine(d.ToString("D", new CultureInfo("fr-FR")));
+    output = d.ToString("D", new CultureInfo("fr-FR"));
+    Console.WriteLine($"IFormatProvider with fr-FR culture: {output}");
 
-    // use current culture
-    Console.WriteLine($"{CultureInfo.CurrentCulture}: {d:D}");
 
     CultureInfo.CurrentCulture = new("es-ES");
-    Console.WriteLine($"{CultureInfo.CurrentCulture}: {d:D}");
+    output = d.ToString("D");
+    Console.WriteLine($"Changed culture of the thread {CultureInfo.CurrentCulture}: {output}");
 }
-
