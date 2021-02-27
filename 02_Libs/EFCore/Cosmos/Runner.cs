@@ -54,15 +54,28 @@ internal class Runner
 
         _menusContext.MenuCards.Add(soupCard);
 
- //       ShowState(context);
         int records = await _menusContext.SaveChangesAsync();
         Console.WriteLine($"{records} added");
         Console.WriteLine();
     }
 
+    public async Task AddAddtionalCardsAsync()
+    {
+        Random random = new();
+        var menus = Enumerable.Range(1, 10).Select(i => new Menu($"menu {i}") { Price = random.Next(8) }).ToList();
+        var cards = Enumerable.Range(1, 5).Select(i => new MenuCard($"card {i}", _restaurantId) { Menus = menus });
+
+        await _menusContext.MenuCards.AddRangeAsync(cards);
+        await _menusContext.SaveChangesAsync();
+    }
+
     public async Task ShowCardsAsync()
     {
-        var cards = await _menusContext.MenuCards.Where(c => c.IsActive).ToListAsync();
+        var cards = await _menusContext.MenuCards
+            .Where(c => c.IsActive)
+            .Where(c => c.Title == "Soups")
+            .WithPartitionKey(_restaurantId)
+            .ToListAsync();
         foreach (var card in cards)
         {
             Console.WriteLine(card.Title);
@@ -72,7 +85,6 @@ internal class Runner
             }
         }
     }
-
 
     public async Task DeleteDatabaseAsync()
     {
@@ -86,9 +98,6 @@ internal class Runner
         }
     }
 
-    public async Task QueryCardAsync()
-    {
-        _menusContext.MenuCards.Where
-    }
+
 }
 

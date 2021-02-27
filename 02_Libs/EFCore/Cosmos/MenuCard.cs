@@ -8,7 +8,7 @@ public class MenuCard
 
     public Guid MenuCardId { get; set; }
     public string Title { get; set; }
-    public ICollection<Menu> Menus { get; } = new HashSet<Menu>();
+    public ICollection<Menu> Menus { get; internal set; } = new HashSet<Menu>();
     public string RestaurantId { get; set; }
     public bool IsActive { get; set; } = true;
     public override string ToString() => Title;

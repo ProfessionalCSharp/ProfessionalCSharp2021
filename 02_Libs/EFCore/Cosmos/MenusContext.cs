@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
-class MenusContext : DbContext
+internal class MenusContext : DbContext
 {
     private readonly string _restaurantId;
 
@@ -15,13 +15,13 @@ class MenusContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.HasDefaultContainer("menucards")
-            .ApplyConfiguration(new MenuCardConfiguration());
+        modelBuilder.HasDefaultContainer("menucards");
 
+        modelBuilder.Entity<MenuCard>().OwnsMany(c => c.Menus);
+        modelBuilder.Entity<MenuCard>().HasKey(c => c.MenuCardId);
 
-        modelBuilder.Entity<MenuCard>().HasPartitionKey("RestaurantId");
-        modelBuilder.Entity<MenuCard>().HasQueryFilter(c => c.RestaurantId == _restaurantId);
-
+        modelBuilder.Entity<MenuCard>().HasPartitionKey(c => c.RestaurantId);
+//        modelBuilder.Entity<MenuCard>().HasQueryFilter(c => c.RestaurantId == _restaurantId);
     }
 }
 

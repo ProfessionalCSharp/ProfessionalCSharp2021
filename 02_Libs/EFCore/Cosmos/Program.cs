@@ -11,10 +11,8 @@ using var host = Host.CreateDefaultBuilder(args)
 
         services.Configure<RestaurantConfiguration>(restaurantSettings);
         services.AddDbContext<MenusContext>(options =>
-        {            
-            options.UseCosmos(connectionString, "ProCSharpMenus1", cosmosOptions =>
-            {
-            });
+        {
+            options.UseCosmos(connectionString, "ProCSharpMenus1");
         });
         services.AddScoped<Runner>();
     })
@@ -24,5 +22,7 @@ using var scope = host.Services.CreateScope();
 var runner = scope.ServiceProvider.GetRequiredService<Runner>();
 await runner.CreateDatabaseAsync();
 
-await runner.AddMenuCardAsync();
+// await runner.AddMenuCardAsync();
+await runner.AddAddtionalCardsAsync();
+await runner.ShowCardsAsync();
 await runner.DeleteDatabaseAsync();
