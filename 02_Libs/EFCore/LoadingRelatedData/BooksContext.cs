@@ -10,10 +10,6 @@ public class BooksContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-
-        //modelBuilder.Entity<Person>().Property<int>("PersonId").HasField("_personId").IsRequired();
-        //modelBuilder.Entity<Person>().HasKey("PersonId");
-
         modelBuilder.Entity<Address>().HasData(GetSampleAddresses());
         modelBuilder.Entity<Person>().HasData(GetSamplePeople());
         modelBuilder.Entity<Chapter>().HasData(GetSampleChapters());

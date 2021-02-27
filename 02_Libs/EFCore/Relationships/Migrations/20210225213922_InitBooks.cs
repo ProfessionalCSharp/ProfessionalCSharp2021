@@ -107,7 +107,7 @@ namespace Relationships.Migrations
                     { 9, "Wrox Press", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(71), "Professional C# 5.0 and .NET 4.5.1" },
                     { 8, "Wrox Press", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(6), "Professional C# 2012 and .NET 4.5" },
                     { 7, "Wrox Press", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(134), "Professional C# 4 and .NET 4" },
-                    { 12, "Wrox Press", null, "Professional C# and .NET 2021 Edition" },
+                    { 12, "Wrox Press", null!, "Professional C# and .NET 2021 Edition" },
                     { 5, "Wrox Press", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(44), "Professional C# 2005 with .NET 3.0" },
                     { 4, "Wrox Press", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(45), "Professional C# 2005" },
                     { 3, "Wrox Press", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(83), "Professional C# 3rd Edition" },

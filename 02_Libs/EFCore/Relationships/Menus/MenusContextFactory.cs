@@ -2,10 +2,9 @@
 using Microsoft.EntityFrameworkCore.Design;
 using System;
 
-
-public class BankContextFactory : IDesignTimeDbContextFactory<BankContext>
+public class MenusContextFactory : IDesignTimeDbContextFactory<MenusContext>
 {
-    public BankContext CreateDbContext(string[] args)
+    public MenusContext CreateDbContext(string[] args)
     {
         if (args.Length < 1)
         {
@@ -14,8 +13,8 @@ public class BankContextFactory : IDesignTimeDbContextFactory<BankContext>
         }
         string connectionString = args[0];
 
-        DbContextOptionsBuilder<BankContext> builder = new();
+        DbContextOptionsBuilder<MenusContext> builder = new();
         builder.UseSqlServer(connectionString);
-        return new BankContext(builder.Options);
+        return new MenusContext(builder.Options);
     }
 }
