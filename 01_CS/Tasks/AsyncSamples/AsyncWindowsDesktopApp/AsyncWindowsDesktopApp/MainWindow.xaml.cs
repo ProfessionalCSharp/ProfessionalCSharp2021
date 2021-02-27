@@ -77,10 +77,15 @@ namespace AsyncWindowsDesktopApp
                 await Task.Delay(1000).ConfigureAwait(continueOnCapturedContext: false);
                 result += $"\nasync function after await : {GetThread()}";
 
-                await text1.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                text1.DispatcherQueue.TryEnqueue(() =>
                 {
                     text1.Text += $"\nasync function switch back to the UI thread: {GetThread()}";
                 });
+                // Dispatcher is null with Preview 4
+                //await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                //{
+                //    text1.Text += $"\nasync function switch back to the UI thread: {GetThread()}";
+                //});
 
                 return result;
             }
