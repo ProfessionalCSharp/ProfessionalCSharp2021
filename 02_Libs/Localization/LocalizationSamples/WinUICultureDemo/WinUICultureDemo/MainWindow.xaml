@@ -8,11 +8,40 @@
     mc:Ignorable="d">
 
     <Grid>
+        <Grid.Resources>
+            <DataTemplate x:Key="CultureItemDataTemplate">
+                <StackPanel Orientation="Horizontal" Height="40">
+                    <TextBlock Text="{Binding Content.CultureInfo.EnglishName}" VerticalAlignment="Center" />
+                </StackPanel>
+            </DataTemplate>
+            <Style x:Key="TreeViewStyle1" TargetType="TreeView">
+                <Setter Property="IsTabStop" Value="False"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="TreeView">
+                            <TreeViewList x:Name="ListControl" AllowDrop="False" 
+                                      CanReorderItems="False" 
+                                      CanDragItems="False" 
+                                      ItemTemplate="{StaticResource CultureItemDataTemplate}">
+                                <TreeViewList.ItemContainerTransitions>
+                                    <TransitionCollection>
+                                        <ContentThemeTransition/>
+                                        <ReorderThemeTransition/>
+                                        <EntranceThemeTransition IsStaggeringEnabled="False"/>
+                                    </TransitionCollection>
+                                </TreeViewList.ItemContainerTransitions>
+                            </TreeViewList>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <TreeView x:Name="treeView1">
+        <TreeView x:Name="treeView1" 
+                  Style="{StaticResource TreeViewStyle1}">
         </TreeView>
         <!--<TreeView Style="{StaticResource TreeViewStyle1}" x:Name="treeView1"
                   ItemInvoked="{x:Bind OnSelectionChanged, Mode=OneTime}"
