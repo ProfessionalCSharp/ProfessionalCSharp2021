@@ -26,11 +26,43 @@ namespace WinUICultureDemo
         public MainWindow()
         {
             this.InitializeComponent();
+            this.Activated += OnActivated;
         }
 
-        private void myButton_Click(object sender, RoutedEventArgs e)
+        public CulturesViewModel ViewModel { get; } = new CulturesViewModel();
+
+        private void OnActivated(object sender, WindowActivatedEventArgs args)
         {
-            myButton.Content = "Clicked";
+            void AddSubNodes(TreeViewNode parent)
+            {
+                if (parent.Content is CultureData cd && cd.SubCultures is not null)
+                {
+                    foreach (var culture in cd.SubCultures)
+                    {
+                        var node = new TreeViewNode
+                        {
+                            Content = culture
+                        };
+                        parent.Children.Add(node);
+
+                        foreach (var subCulture in culture.SubCultures)
+                        {
+                            AddSubNodes(node);
+                        }
+                    }
+                }
+            }
+
+            var rootNodes = ViewModel.RootCultures.Select(cd => new TreeViewNode
+            {
+                Content = cd
+            });
+
+            foreach (var node in rootNodes)
+            {
+                treeView1.RootNodes.Add(node);
+                AddSubNodes(node);
+            }
         }
     }
 }
