@@ -16,7 +16,7 @@ namespace VectorClass
         "Vector accepts N and VE format specifiers")]
     public class Vector : IFormattable, IEnumerable<double>
     {
-        [LastModified("19 Dec 2020", "changed to deconstruction syntax")]
+        [LastModified("19 Dec 2020", "changed to use deconstruction syntax")]
         public Vector(double x, double y, double z) => (X, Y, Z) = (x, y, z);
 
         [LastModified("19 Jul 2017", "Reduced the number of code lines")]
@@ -27,7 +27,8 @@ namespace VectorClass
         public double Y { get; }
         public double Z { get; }
 
-        public override bool Equals(object obj)
+        [LastModified("28 Feb 2021", "changed for nullability")]
+        public override bool Equals(object? obj)
         {
             if (obj is null) throw new ArgumentNullException(nameof(obj));
 
