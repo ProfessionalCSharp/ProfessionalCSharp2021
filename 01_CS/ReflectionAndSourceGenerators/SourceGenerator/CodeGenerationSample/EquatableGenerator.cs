@@ -103,7 +103,7 @@ namespace CodeGenerationSample
     /// <summary>
     /// Created on demand before each generation pass
     /// </summary>
-    class SyntaxReceiver : ISyntaxReceiver
+    internal class SyntaxReceiver : ISyntaxReceiver
     {
         public List<ClassDeclarationSyntax> CandidateClasses { get; } = new();
 

@@ -4,11 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Nullable>enable</Nullable>
     <LangVersion>9.0</LangVersion>
-    <Version>2.3</Version>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>C:\sourcegenerators\</OutputPath>
+    <Version>2.4</Version>
   </PropertyGroup>
 
   <ItemGroup>
