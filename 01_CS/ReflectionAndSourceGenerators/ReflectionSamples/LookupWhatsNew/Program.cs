@@ -15,7 +15,7 @@ AddToOutput($"Assembly: {theAssembly.FullName}");
 
 if (supportsAttribute is null)
 {
-    AddToOutput("This assembly does not support WhatsNew attributes");
+    Console.WriteLine("This assembly does not support WhatsNew attributes");
     return;
 }
 else
@@ -28,11 +28,10 @@ foreach (Type definedType in theAssembly.ExportedTypes)
     DisplayTypeInfo(definedType);
 }
 
-Console.WriteLine($"What\'s New since {backDateTo:D}");
+Console.WriteLine($"What's New since {backDateTo:D}");
 Console.WriteLine(outputText.ToString());
 
 Console.ReadLine();
-
 
 void AddToOutput(string text) =>
     outputText.Append($"{Environment.NewLine}{text}");
@@ -90,4 +89,3 @@ void WriteAttributeInfo(Attribute attribute)
         }
     }
 }
-
