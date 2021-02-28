@@ -12,7 +12,6 @@ if (args.Length != 1)
 UsingReflection(args[0]);
 UsingReflectionWithDynamic(args[0]);
 
-
 void ShowUsage()
 {
     Console.WriteLine($"Usage: {Assembly.GetExecutingAssembly().GetName().Name} path");
@@ -45,7 +44,9 @@ void UsingReflection(string addinPath)
     double y = 4;
     object calc = GetCalculator(addinPath) ?? throw new InvalidOperationException("GetCalculator returned null");
 
-    object? result = calc.GetType().GetMethod("Add")?.Invoke(calc, new object[] { x, y }) ?? throw new InvalidOperationException("Add method not found");
+    object? result = calc.GetType().GetMethod("Add")
+        ?.Invoke(calc, new object[] { x, y }) 
+        ?? throw new InvalidOperationException("Add method not found");
     Console.WriteLine($"the result of {x} and {y} is {result}");
 }
 
@@ -54,4 +55,3 @@ object? GetCalculator(string addinPath)
     Assembly assembly = Assembly.LoadFile(addinPath);
     return assembly.CreateInstance(CalculatorTypeName);
 }
-

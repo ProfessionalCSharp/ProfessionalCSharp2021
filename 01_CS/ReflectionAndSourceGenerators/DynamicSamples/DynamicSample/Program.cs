@@ -18,7 +18,6 @@ Console.WriteLine($"{dyn.FirstName} {dyn.LastName}");
 UseExpando();
 Console.Read();
 
-
 void UseExpando()
 {
     dynamic expObj = new ExpandoObject();
@@ -40,4 +39,3 @@ void UseExpando()
         Console.WriteLine($"{friend.FirstName} {friend.LastName}");
     }
 }
-
