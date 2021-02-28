@@ -7,19 +7,20 @@ using WhatsNewAttributes;
 
 namespace VectorClass
 {
-    [LastModified("19 Dec 2020", "updated for C# 9 and .NET 5")]
-    [LastModified("19 Jul 2017", "updated for C# 7 and .NET Core 2")]
-    [LastModified("6 Jun 2015", "updated for C# 6 and .NET Core")]
-    [LastModified("14 Dec 2010", "IEnumerable interface implemented: " +
+    [LastModified("2021/2/28", "changed the LastModified dates")]
+    [LastModified("2020/12/19", "updated for C# 9 and .NET 5")]
+    [LastModified("2017/7/19", "updated for C# 7 and .NET Core 2")]
+    [LastModified("2015/6/6", "updated for C# 6 and .NET Core")]
+    [LastModified("2010/12/14", "IEnumerable interface implemented: " +
         "Vector can be treated as a collection")]
-    [LastModified("10 Feb 2010", "IFormattable interface implemented " +
+    [LastModified("2010/2/10", "IFormattable interface implemented " +
         "Vector accepts N and VE format specifiers")]
     public class Vector : IFormattable, IEnumerable<double>
     {
-        [LastModified("19 Dec 2020", "changed to use deconstruction syntax")]
+        [LastModified("2020/12/19", "changed to use deconstruction syntax")]
         public Vector(double x, double y, double z) => (X, Y, Z) = (x, y, z);
 
-        [LastModified("19 Jul 2017", "Reduced the number of code lines")]
+        [LastModified("2017/7/19", "Reduced the number of code lines")]
         public Vector(Vector vector)
             : this (vector.X, vector.Y, vector.Z) { }
 
@@ -27,7 +28,7 @@ namespace VectorClass
         public double Y { get; }
         public double Z { get; }
 
-        [LastModified("28 Feb 2021", "changed for nullability")]
+        [LastModified("2021/2/28", "changed for nullability")]
         public override bool Equals(object? obj)
         {
             if (obj is null) throw new ArgumentNullException(nameof(obj));
@@ -37,11 +38,11 @@ namespace VectorClass
 
         public override int GetHashCode() =>  (int)X | (int)Y | (int)Z;
 
-        [LastModified("19 Dec 2020",
+        [LastModified("2020/12/19",
             "changed to use switch expression")]
-        [LastModified("19 Dec 2020",
+        [LastModified("2020/12/19",
             "changed with nullability annotations")]
-        [LastModified("19 Jul 2017",
+        [LastModified("2017/7/19",
               "changed ijk format from StringBuilder to format string")]
         public string ToString(string? format, IFormatProvider? formatProvider)
         {
@@ -59,14 +60,14 @@ namespace VectorClass
             };
         }
 
-        [LastModified("6 Jun 2015", "added to implement IEnumerable<T>")]
+        [LastModified("2015/6/6", "added to implement IEnumerable<T>")]
         public IEnumerator<double> GetEnumerator() => new VectorEnumerator(this);
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         public override string ToString() => $"({X} , {Y}, {Z}";
 
-        [LastModified("19 Dec 2020",
+        [LastModified("2020/12/19",
             "changed to switch expression")]
         public double this[uint i]
         {
@@ -101,8 +102,8 @@ namespace VectorClass
         public double Norm() => X * X + Y * Y + Z * Z;
 
         #region enumerator class
-        [LastModified("6 Jun 2015", "Change to implement the generic version IEnumerator<T>")]
-        [LastModified("14 Feb 2010", "Class created as part of collection support for Vector")]
+        [LastModified("2015/6/6", "Change to implement the generic version IEnumerator<T>")]
+        [LastModified("2010/2/14", "Class created as part of collection support for Vector")]
         private class VectorEnumerator : IEnumerator<double>
         {
             readonly Vector _theVector;      // Vector object that this enumerato refers to 
@@ -134,7 +135,7 @@ namespace VectorClass
                 }
             }
 
-            [LastModified("19 Dec 2020", "Changet to use Lambda")]
+            [LastModified("2020/12/19", "Changet to use Lambda")]
             public void Reset() => _location = -1;
 
             public void Dispose()
@@ -145,4 +146,3 @@ namespace VectorClass
         #endregion
     }
 }
-
