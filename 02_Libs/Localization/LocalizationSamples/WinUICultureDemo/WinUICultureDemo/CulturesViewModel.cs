@@ -46,7 +46,7 @@ namespace WinUICultureDemo
                         continue;
                     }
 
-                    // workaround: some cultures don't have the direct parent name in the list, take the next parent
+                    // with the latest culture updates, some cultures don't have the direct parent name in the list, take the next parent
                     string parent = cd.CultureInfo.Parent.Name;
                     int index = parent.IndexOf("-");
                     if (index < 0)
@@ -60,9 +60,8 @@ namespace WinUICultureDemo
                     {
                         grandParentCultureData.SubCultures.Add(cd);
                     }
-                    else
+                    else // parent also not found to the root cultures, add it directly
                     {
-                        // just add this culture to the root cultures
                         rootCultures.Add(cd);
                     }
                 }
