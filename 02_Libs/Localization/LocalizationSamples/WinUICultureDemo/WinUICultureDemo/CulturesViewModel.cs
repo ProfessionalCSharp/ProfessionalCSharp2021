@@ -43,11 +43,27 @@ namespace WinUICultureDemo
                     if (cultureDataDict.TryGetValue(cd.CultureInfo.Parent.Name, out CultureData? parentCultureData))
                     {
                         parentCultureData.SubCultures.Add(cd);
+                        continue;
+                    }
+
+                    // workaround: some cultures don't have the direct parent name in the list, take the next parent
+                    string parent = cd.CultureInfo.Parent.Name;
+                    int index = parent.IndexOf("-");
+                    if (index < 0)
+                    {
+                        // just add this culture to the root cultures
+                        rootCultures.Add(cd);
+                        continue;
+                    }
+                    string grandParent = parent[..index];
+                    if (cultureDataDict.TryGetValue(grandParent, out CultureData? grandParentCultureData))
+                    {
+                        grandParentCultureData.SubCultures.Add(cd);
                     }
                     else
                     {
-                        // now there are some cultures without a parent culture - TODO: check which and why, ignore for now
-//                        throw new InvalidOperationException("parent culture not found");
+                        // just add this culture to the root cultures
+                        rootCultures.Add(cd);
                     }
                 }
             }

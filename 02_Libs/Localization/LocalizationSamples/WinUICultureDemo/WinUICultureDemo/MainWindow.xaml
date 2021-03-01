@@ -41,12 +41,15 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <TreeView x:Name="treeView1" 
-                  Style="{StaticResource TreeViewStyle1}">
+                  Style="{StaticResource TreeViewStyle1}"
+                  ItemInvoked="{x:Bind OnSelectionChanged, Mode=OneTime}"
+                  SelectionMode="Single">
         </TreeView>
         <!--<TreeView Style="{StaticResource TreeViewStyle1}" x:Name="treeView1"
                   ItemInvoked="{x:Bind OnSelectionChanged, Mode=OneTime}"
                   SelectionMode="Single">
         </TreeView>-->
+        <local:CultureDetailUC Grid.Column="1" CultureData="{x:Bind ViewModel.SelectedCulture, Mode=OneWay}" />
         <!--<local:CultureDetailUC Grid.Column="1" CultureData="{x:Bind ViewModel.SelectedCulture, Mode=OneWay}" />-->
     </Grid>
 </Window>
