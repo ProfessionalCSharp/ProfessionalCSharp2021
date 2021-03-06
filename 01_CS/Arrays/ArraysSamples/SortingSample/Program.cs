@@ -51,7 +51,7 @@ namespace Wrox.ProCSharp.Arrays
                    "Christina Aguilera",
                    "Shakira",
                    "Beyonce",
-                   "Gwen Stefani"
+                   "Ava Max"
                  };
 
             Array.Sort(names);
