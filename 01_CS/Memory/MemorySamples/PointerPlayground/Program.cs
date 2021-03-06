@@ -4,27 +4,37 @@ class Program
 {
     unsafe static void Main()
     {
-        int x = 10;
-        short y = -1;
-        byte y2 = 4;
-        double z = 1.5;
-        int* pX = &x;
-        short* pY = &y;
-        double* pZ = &z;
+        int a = 10;
+        short b = -1;
+        byte c = 4;
+        float d = 1.5F;
+        int* pa = &a;
+        short* pb = &b;
+        byte* pc = &c;
+        float* pd = &d;
 
-        Console.WriteLine($"Address of x is 0x{(ulong)&x:X}, size is {sizeof(int)}, value is {x}");
-        Console.WriteLine($"Address of y is 0x{(ulong)&y:X}, size is {sizeof(short)}, value is {y}");
-        Console.WriteLine($"Address of y2 is 0x{(ulong)&y2:X}, size is {sizeof(byte)}, value is {y2}");
-        Console.WriteLine($"Address of z is 0x{(ulong)&z:X}, size is {sizeof(double)}, value is {z}");
-        Console.WriteLine($"Address of pX=&x is 0x{(ulong)&pX:X}, size is {sizeof(int*)}, value is 0x{(ulong)pX:X}");
-        Console.WriteLine($"Address of pY=&y is 0x{(ulong)&pY:X}, size is {sizeof(short*)}, value is 0x{(ulong)pY:X}");
-        Console.WriteLine($"Address of pZ=&z is 0x{(ulong)&pZ:X}, size is {sizeof(double*)}, value is 0x{(ulong)pZ:X}");
-        *pX = 20;
-        Console.WriteLine($"After setting *pX, x = {x}");
-        Console.WriteLine($"*pX = {*pX}");
+        Console.WriteLine($"Address of a is 0x{(ulong)&a:X}, " +
+            $"size is {sizeof(int)}, value is {a}");
+        Console.WriteLine($"Address of b is 0x{(ulong)&b:X}, " +
+            $"size is {sizeof(short)}, value is {b}");
+        Console.WriteLine($"Address of c is 0x{(ulong)&c:X}, " +
+            $"size is {sizeof(byte)}, value is {c}");
+        Console.WriteLine($"Address of d is 0x{(ulong)&d:X}, " +
+            $"size is {sizeof(float)}, value is {d}");
+        Console.WriteLine($"Address of pa=&a is 0x{(ulong)&pa:X}, " +
+            $"size is {sizeof(int*)}, value is 0x{(ulong)pa:X}");
+        Console.WriteLine($"Address of pb=&b is 0x{(ulong)&pb:X}, " +
+            $"size is {sizeof(short*)}, value is 0x{(ulong)pb:X}");
+        Console.WriteLine($"Address of pc=&c is 0x{(ulong)&pc:X}, " +
+            $"size is {sizeof(byte*)}, value is 0x{(ulong)pc:X}");
+        Console.WriteLine($"Address of pd=&d is 0x{(ulong)&pd:X}, " +
+            $"size is {sizeof(float*)}, value is 0x{(ulong)pd:X}");
+        *pa = 20;
+        Console.WriteLine($"After setting *pa, a = {a}");
+        Console.WriteLine($"*pa = {*pa}");
 
-        pZ = (double*)pX;
-        Console.WriteLine($"x treated as a double = {*pZ}");
+        pd = (float*)pa;
+        Console.WriteLine($"a treated as a float = {*pd}");
 
         Console.ReadLine();
     }
