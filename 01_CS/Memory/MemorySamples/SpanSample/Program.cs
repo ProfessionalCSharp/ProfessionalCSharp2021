@@ -37,7 +37,7 @@ unsafe void SpanOnTheStack()
     Console.WriteLine(nameof(SpanOnTheStack));
 
     long* lp = stackalloc long[20];
-    var span1 = new Span<long>(lp, 20);
+    Span<long> span1 = new(lp, 20);
 
     for (int i = 0; i < 20; i++)
     {
