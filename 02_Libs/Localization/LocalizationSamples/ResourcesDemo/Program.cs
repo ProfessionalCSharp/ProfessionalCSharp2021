@@ -9,8 +9,8 @@ namespace ResourcesDemo
     {
         static void Main()
         {
-            ResourceManager resources = new("ResourcesDemo.Resources.Messages", typeof(Program).GetTypeInfo().Assembly);
-            string? goodMorning = resources.GetString("GoodMorning", new CultureInfo("de-AT"));
+            ResourceManager resources = new("ResourcesDemo.Resources.Messages", typeof(Program).GetType().Assembly);
+            string? goodMorning = resources.GetString("GoodMorning", new CultureInfo("de-CH"));
             Console.WriteLine(goodMorning);
 
             ResourceManager programResources = new(typeof(Program));
