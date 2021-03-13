@@ -25,23 +25,38 @@ namespace WinUILocalization
     public sealed partial class MainWindow : Window
     {
         private readonly ResourceLoader _resourceLoader;
+        private readonly ResourceManager _resourceManager;
+        private readonly ResourceContext _resourceContext;
         public MainWindow(ResourceLoader resourceLoader, ResourceManager resourceManager)
         {
-            this.InitializeComponent();
             _resourceLoader = resourceLoader;
-            this.Activated += OnActivated;
+
+            _resourceManager = resourceManager;
+            _resourceContext = _resourceManager.CreateResourceContext();
+            _resourceContext.QualifierValues["language"] = "de"; 
+
+            this.InitializeComponent();
         }
 
-        private void OnActivated(object sender, WindowActivatedEventArgs args)
+        private void OnGetResource(object sender, RoutedEventArgs e)
         {
-            text1.Text = DateTime.Today.ToString("D");
-            text2.Text = _resourceLoader.GetString("Hello");
-
-            //ResourceManager
-            //var resourceLoader = ResourceLoader.GetDefaultResourceFilePath.GetForCurrentView("Messages");
-            //text2.Text = resourceLoader.GetString("Hello");
+            textDate.Text = DateTime.Today.ToString("D");
+            textHello.Text = _resourceLoader.GetString("Hello");
         }
 
+        private void OnUseResourceManager(object sender, RoutedEventArgs e)
+        {
+            ResourceMap map = _resourceManager.MainResourceMap;
+           
+            ResourceCandidate candidate = map.TryGetValue("Resources/GoodMorning");
+            textGoodMorning.Text = candidate.ValueAsString;
+        }
 
+        private void OnUseContext(object sender, RoutedEventArgs e)
+        {
+            ResourceMap map = _resourceManager.MainResourceMap;
+            ResourceCandidate candidate = map.TryGetValue("Resources/GoodEvening", _resourceContext);
+            textGoodEvening.Text = candidate.ValueAsString;
+        }
     }
 }

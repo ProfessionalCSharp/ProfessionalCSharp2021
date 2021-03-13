@@ -118,15 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="GoodDay" xml:space="preserve">
-    <value>Good Day!</value>
+    <value>Guten Tag!</value>
   </data>
   <data name="GoodEvening" xml:space="preserve">
-    <value>Good Evening!</value>
+    <value>Guten Abend!</value>
   </data>
   <data name="GoodMorning" xml:space="preserve">
-    <value>Good Morning!</value>
+    <value>Guten Morgen!</value>
   </data>
   <data name="Hello" xml:space="preserve">
-    <value>Hello, World</value>
+    <value>Hallo Welt!</value>
   </data>
 </root>

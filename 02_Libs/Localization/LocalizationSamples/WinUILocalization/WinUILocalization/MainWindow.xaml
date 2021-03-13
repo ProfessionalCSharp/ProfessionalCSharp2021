@@ -8,8 +8,30 @@
     mc:Ignorable="d">
 
     <StackPanel>
-        <TextBlock HorizontalAlignment="Left" Margin="40" TextWrapping="Wrap" VerticalAlignment="Top" x:Name="text1" />
-        <TextBlock HorizontalAlignment="Left" Margin="40" TextWrapping="Wrap" VerticalAlignment="Top" x:Name="text2" />
-        <TextBox x:Uid="Text3" HorizontalAlignment="Left" Margin="40" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top"/>
+        <StackPanel.Resources>
+            <Style TargetType="Button">
+                <Style.Setters>
+                    <Setter Property="Margin" Value="40, 8" />
+                    <Setter Property="HorizontalAlignment" Value="Left" />
+                </Style.Setters>
+            </Style>
+            <Style TargetType="TextBlock">
+                <Style.Setters>
+                    <Setter Property="Margin" Value="40, 8" />
+                    <Setter Property="VerticalAlignment" Value="Top" />
+                    <Setter Property="HorizontalAlignment" Value="Left" />
+                    <Setter Property="TextWrapping" Value="Wrap" />
+                </Style.Setters>
+            </Style>
+        </StackPanel.Resources>
+        <Button Click="OnGetResource">Get a string resource</Button>
+        <TextBlock x:Name="textDate" />
+        <TextBlock x:Name="textHello" />
+
+        <Button Click="OnUseResourceManager">Use the ResourceManager</Button>
+        <TextBlock x:Name="textGoodMorning" />
+
+        <Button Click="OnUseContext">Use the Context</Button>
+        <TextBlock x:Name="textGoodEvening" />
     </StackPanel>
 </Window>

@@ -9,6 +9,8 @@
     <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Resources.lang-de-at.resw" />
+    <None Remove="Resources.lang-de-de.resw" />
     <None Remove="Resources.resw" />
   </ItemGroup>
 
@@ -20,6 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PRIResource Include="Resources.lang-de-at.resw" />
+    <PRIResource Include="Resources.lang-de-de.resw" />
     <PRIResource Include="Resources.resw" />
   </ItemGroup>
 </Project>
