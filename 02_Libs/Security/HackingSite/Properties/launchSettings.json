@@ -1,10 +1,10 @@
-{
+﻿{
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:48987/",
-      "sslPort": 0
+      "applicationUrl": "http://localhost:38233",
+      "sslPort": 44357
     }
   },
   "profiles": {
@@ -17,11 +17,12 @@
     },
     "HackingSite": {
       "commandName": "Project",
+      "dotnetRunMessages": "true",
       "launchBrowser": true,
+      "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "applicationUrl": "http://localhost:48988/"
+      }
     }
   }
 }
