@@ -7,19 +7,15 @@ To compile and run the samples, you need Visual Studio 2019, Visual Studio for M
 
 You can download these tools here: [Visual Studio](https://www.visualstudio.com/).
 
-The console app samples can be used on Windows, Linux, or Mac. Here is the installation procedure for .NET Core: [.NET on Linux](https://www.microsoft.com/net/core)
+The console app samples can be used on Windows, Linux, or Mac. Here is the installation procedure for .NET: [.NET](https://dotnet.microsoft.comt)
 
-If you're using Visual Studio, Version 16.8 or a later version of Visual Studio 2019 is needed. With the Visual Studio Installer you need to select this workload to compile most of the code samples: **.NET Core cross-platform development**.
+If you're using Visual Studio, Version 16.9 or a later version of Visual Studio 2019 is needed. With the Visual Studio Installer you need to select this workload to compile most of the code samples: **.NET Core cross-platform development**.
 
 ASP.NET Core samples need this workload: **ASP.NET and web development**.
 
-Windows app samples require Windows 10, Windows 10 Version 20H2 (build 19042) or a later version. With the Windows app samples, Visual Studio 2019 Update 16.9 or later is required with this workload: **Universal Windows Platform Development**, along with the [Windows UI Library 3 Preview 4](https://docs.microsoft.com/en-us/windows/apps/winui/winui3/)
+See the [WinUI.md](WinUI.md) for the requirements of building and running the WinUI samples.
 
-Compiling the Xamarin samples, you have different options using a Mac or a Windows system:
-* On the Mac, you can install Visual Studio for Mac to compile the Android and iOS samples.
-* On Windows 10, you can use Visual Studio 2019. To compile the iOS samples, you also need a Mac. Using only Windows 10, you can compile and run the Windows and Android code samples.
-
-* Visual Studio 2019 with the .NET Core workload
+See [updates](Updates.md) for issues and updates.
 
 Here's the list of chapters and the folders for the code samples:
 
