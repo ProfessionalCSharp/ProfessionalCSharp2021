@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "X509CertificateSample": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development",
+        "AZURE_USERNAME": "{enter your azure username}"
+      }
+    }
+  }
+}
