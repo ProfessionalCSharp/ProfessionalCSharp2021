@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <UserSecretsId>aspnet-WebAppWithADSample-D3F1D045-6494-4AF9-ABF2-19D69C600B1D</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.0-preview.2.21154.6" NoWarn="NU1605" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="6.0.0-preview.2.21154.6" NoWarn="NU1605" />
+    <PackageReference Include="Microsoft.Identity.Web" Version="1.1.0" />
+    <PackageReference Include="Microsoft.Identity.Web.UI" Version="1.1.0" />
+  </ItemGroup>
+
+</Project>
