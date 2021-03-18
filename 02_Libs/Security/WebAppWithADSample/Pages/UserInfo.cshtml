@@ -1,0 +1,17 @@
+﻿@page
+@model WebAppWithADSample.Pages.UserInfoModel
+@{
+}
+
+<h2>User: @Model.UserName</h2>
+
+<table>
+    @foreach (var claimsInfo in Model.ClaimsInformation)
+    {
+    <tr>
+        <td>@claimsInfo.Type</td>
+        <td>@claimsInfo.Subject</td>
+        <td>@claimsInfo.Value</td>
+    </tr>
+    }
+</table>
