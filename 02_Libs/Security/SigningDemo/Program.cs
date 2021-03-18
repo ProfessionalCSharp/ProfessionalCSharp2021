@@ -1,40 +1,16 @@
-﻿using System;
-using System.Security.Cryptography;
-using System.Text;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
-(var aliceKeys, var alicePublicKey) = GetAliceKeys();
+using var host = Host.CreateDefaultBuilder(args)
+    .ConfigureServices(services =>
+    {
+        services.AddTransient<AliceRunner>();
+        services.AddTransient<BobRunner>();
+    })
+    .Build();
 
-byte[] aliceData = Encoding.UTF8.GetBytes("Alice");
-byte[] aliceSignature = CreateSignature(aliceData, aliceKeys);
-Console.WriteLine($"Alice created signature: {Convert.ToBase64String(aliceSignature)}");
-
-if (VerifySignature(aliceData, aliceSignature, alicePublicKey))
-{
-    Console.WriteLine("Alice signature verified successfully");
-}
-
-(CngKey KeyPair, byte[] PublicKey) GetAliceKeys()
-{
-    var aliceKeyPair = CngKey.Create(CngAlgorithm.ECDsaP521);
-    var alicePublicKey = aliceKeyPair.Export(CngKeyBlobFormat.GenericPublicBlob);
-    return (aliceKeyPair, alicePublicKey);
-}
-
-byte[] CreateSignature(byte[] data, CngKey key)
-{
-    byte[] signature;
-    using ECDsaCng signingAlg = new(key);
-    signature = signingAlg.SignData(data, HashAlgorithmName.SHA512);
-    signingAlg.Clear();
-    return signature;
-}
-
-bool VerifySignature(byte[] data, byte[] signature, byte[] pubKey)
-{
-    bool retValue = false;
-    using CngKey key = CngKey.Import(pubKey, CngKeyBlobFormat.GenericPublicBlob);
-    using ECDsaCng signingAlg = new(key);
-    retValue = signingAlg.VerifyData(data, signature, HashAlgorithmName.SHA512);
-    signingAlg.Clear();
-    return retValue;
-}
+var alice = host.Services.GetRequiredService<AliceRunner>();
+var bob = host.Services.GetRequiredService<BobRunner>();
+var keyAlice = alice.GetPublicKey();
+var aliceData = alice.GetDocumentAndSignature();
+bob.VerifySignature(aliceData.Data, aliceData.Sign, keyAlice);
