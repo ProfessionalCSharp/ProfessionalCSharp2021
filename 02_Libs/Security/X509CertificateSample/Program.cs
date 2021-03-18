@@ -15,7 +15,6 @@ using var certificate = await service.GetCertificateAsync("AliceCert");
 
 ShowCertificate(certificate);
 
-
 void ShowCertificate(X509Certificate2 certificate)
 {
     Console.WriteLine($"Subject: {certificate.Subject}");
