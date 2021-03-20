@@ -29,7 +29,7 @@ class KeyVaultService : IDisposable
 {
     private readonly string _vaultUri;
     private readonly ILogger _logger;
-    private readonly VisualStudioCredential _credential = new();
+    private readonly DefaultAzureCredential _credential = new();
     private readonly AzureEventSourceListener _azureEventSourceListener;
     public KeyVaultService(IConfiguration configuration, ILogger<KeyVaultService> logger)
     {
@@ -37,7 +37,6 @@ class KeyVaultService : IDisposable
         _logger = logger;
         _azureEventSourceListener = new AzureEventSourceListener((eventArgs, message) 
             => _logger.Log(eventArgs.Level.ToLogLevel(), message), EventLevel.Verbose);
-
     }
 
     public void Dispose()
@@ -51,12 +50,13 @@ class KeyVaultService : IDisposable
         options.Diagnostics.IsLoggingContentEnabled = true;
 
         CertificateClient certClient = new(new Uri(_vaultUri), _credential, options);
-        Response<KeyVaultCertificateWithPolicy> response = await certClient.GetCertificateAsync("AliceCert");
+        Response<KeyVaultCertificateWithPolicy> response = await certClient.GetCertificateAsync(name);
+        byte[] publicKeyBytes = response.Value.Cer;
         Uri secretId = response.Value.SecretId;
         string secretName = secretId.Segments[2].Trim('/');
         string version = secretId.Segments[3].TrimEnd('/');
         
-        byte[] x509cer = response.Value.Cer;
+
         SecretClient secretClient = new(new Uri(_vaultUri), _credential);
         Response<KeyVaultSecret> responseSecret = await secretClient.GetSecretAsync(secretName, version);
         KeyVaultSecret secret = responseSecret.Value;

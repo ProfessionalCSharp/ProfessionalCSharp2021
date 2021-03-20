@@ -16,10 +16,7 @@ class AliceRunner : IDisposable
         _logger.LogInformation($"Using this ECDiffieHellman class: {_algorithm.GetType().Name}");
     }
 
-    public void Dispose()
-    {
-        _algorithm.Dispose();
-    }
+    public void Dispose() => _algorithm.Dispose();
 
     public ECDiffieHellmanPublicKey GetPublicKey() => _algorithm.PublicKey;
 

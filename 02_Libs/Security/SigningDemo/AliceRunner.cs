@@ -14,26 +14,16 @@ class AliceRunner : IDisposable
         _logger.LogInformation($"Using this ECDsa class: {_signAlgorithm.GetType().Name}");
     }
 
-    public void Dispose()
-    {
-        _signAlgorithm.Dispose();
-    }
+    public void Dispose() => _signAlgorithm.Dispose();
 
     public byte[] GetPublicKey() => _signAlgorithm.ExportSubjectPublicKeyInfo();
 
     public (byte[] Data, byte[] Sign) GetDocumentAndSignature()
     {
         byte[] aliceData = Encoding.UTF8.GetBytes("I'm Alice");
-        byte[] aliceDataSignature = CreateSignature(aliceData);
+        byte[] aliceDataSignature = _signAlgorithm.SignData(aliceData, HashAlgorithmName.SHA512);
         return (aliceData, aliceDataSignature);
     }
 
-    private byte[] CreateSignature(byte[] data)
-    {
-        byte[] signature;
-
-        signature = _signAlgorithm.SignData(data, HashAlgorithmName.SHA512);
-        return signature;
-    }
 }
   

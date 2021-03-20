@@ -2,6 +2,7 @@
   "profiles": {
     "X509CertificateSample": {
       "commandName": "Project",
+      "commandLineArgs": "KeyVaultUri={enter your key vault URL here}",
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development",
         "AZURE_USERNAME": "{enter your azure username}"

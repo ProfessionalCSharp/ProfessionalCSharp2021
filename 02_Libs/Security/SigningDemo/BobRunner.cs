@@ -12,10 +12,7 @@ class BobRunner : IDisposable
         _signAlgorithm = ECDsa.Create();
     }
 
-    public void Dispose()
-    {
-        _signAlgorithm.Dispose();
-    }
+    public void Dispose() => _signAlgorithm.Dispose();
 
     public byte[] GetPublicKey() => _signAlgorithm.ExportSubjectPublicKeyInfo();
 

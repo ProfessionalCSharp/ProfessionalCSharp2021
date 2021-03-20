@@ -14,7 +14,7 @@ internal static class IdentityLogLevelExtensions
             Id.LogLevel.Warning => LogLevel.Warning,
             Id.LogLevel.Info => LogLevel.Information,
             Id.LogLevel.Verbose => LogLevel.Trace,
-            _ => throw new InvalidOperationException("unexpected log level")
+            _ => throw new InvalidOperationException("Update for a new log level")
         };
 }
 
@@ -87,4 +87,3 @@ class Runner
         }
     }
 }
-

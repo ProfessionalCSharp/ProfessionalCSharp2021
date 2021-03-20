@@ -15,10 +15,7 @@ class BobRunner
         _algorithm = ECDiffieHellman.Create();
     }
 
-    public void Dispose()
-    {
-        _algorithm.Dispose();
-    }
+    public void Dispose() => _algorithm.Dispose();
 
     public ECDiffieHellmanPublicKey GetPublicKey() => _algorithm.PublicKey;
 
