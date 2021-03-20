@@ -4,7 +4,9 @@
 
 <h1>EditBook</h1>
 
-<form asp-controller="Home" asp-action="EditBook" method="post">
+<form asp-controller="Home" asp-action="EditBookSecure" method="post">
+    @Html.AntiForgeryToken()
+
     <label for="title">Title:</label>
     <input type="text" id="title" name="title" />
     <br />

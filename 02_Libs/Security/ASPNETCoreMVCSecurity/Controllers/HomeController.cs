@@ -73,6 +73,12 @@ namespace ASPNETCoreMVCSecurity.Controllers
         [HttpPost]
         public IActionResult EditBook(Book book) => View("EditBookResult", book);
 
+        public IActionResult EditBookSecure() => View();
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditBookSecure(Book book) => View("EditBookResult", book);
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
