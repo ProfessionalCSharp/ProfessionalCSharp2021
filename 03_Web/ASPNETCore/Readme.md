@@ -1,23 +1,17 @@
-# Readme - Code Samples for Chapter 30, ASP.NET Core
+# Readme - Code Samples for Chapter 24, ASP.NET Core
 
 This chapter contains these samples:
 
 * Simple Host (custom host )
-* WebSampleApp (showing ASP.NET Core features)
-* CustomConfiguration (more configuration samples with `Microsoft.Extensions.Configuration`)
-* AngularWithDotnetCore (using Angular with ASP.NET Core)
+* WebSampleApp (showing ASP.NET Core features including health checking)
 
 Building this sample starts with an empty ASP.NET Core Web project, and adds many features of ASP.NET Core.
 
-To build and run the .NET Core samples, please install one of these tools:
+For deploying a docker image to Microsoft Azure, you need an Azure subscription and Docker Desktop. See chapter 1 for more information.
 
-* Visual Studio 2017 Update 8 with the .NET Core workload
-* Visual Studio for Mac
-* Visual Studio Code
+[See the commands to create an Azure App Service, Azure Container Registry, and push a docker image to the registry](createappservice.sh)
 
-Please download and install the tools from [.NET Core downloads](https://www.microsoft.com/net/core).
- 
-For code comments and issues please check [Professional C#'s GitHub Repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp7)
+For code comments and issues please check [Professional C#'s GitHub Repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021)
 
 Please check my blog [csharp.christiannagel.com](https://csharp.christiannagel.com "csharp.christiannagel.com") for additional information on topics covered in the book.
 
