@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BooksApi.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -28,10 +30,14 @@ namespace BooksApi
         {
 
             services.AddControllers();
+//                .AddXmlSerializerFormatters(); // requires default constructor
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BooksApi", Version = "v1" });
             });
+
+            services.AddSingleton<IBookChapterService, BookChapterService>();
+            services.AddScoped<SampleChapters>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +59,13 @@ namespace BooksApi
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+
+                endpoints.MapGet("/init", async context =>
+                {
+                    var sampleChapters = context.RequestServices.GetRequiredService<SampleChapters>();
+                    sampleChapters.CreateSampleChapters();
+                    await context.Response.WriteAsync("sample chapters initialized");
+                });
             });
         }
     }
