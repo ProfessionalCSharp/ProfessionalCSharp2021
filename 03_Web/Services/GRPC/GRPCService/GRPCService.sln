@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GRPCService", "GRPCService.csproj", "{89B5D974-6065-4DC3-84A6-FAAF7EA92F77}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Books.Shared", "..\Books.Shared\Books.Shared.csproj", "{A093485E-2957-4615-9EF4-EA212E123AAB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Books.Data", "..\Books.Data\Books.Data.csproj", "{9F647DF2-4E2C-4650-BA23-769E037A9A01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GRPC.SensorClient", "..\GRPC.SensorClient\GRPC.SensorClient.csproj", "{CDC7642D-57A1-47CE-816D-99C5CC84373C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{89B5D974-6065-4DC3-84A6-FAAF7EA92F77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89B5D974-6065-4DC3-84A6-FAAF7EA92F77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89B5D974-6065-4DC3-84A6-FAAF7EA92F77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89B5D974-6065-4DC3-84A6-FAAF7EA92F77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A093485E-2957-4615-9EF4-EA212E123AAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A093485E-2957-4615-9EF4-EA212E123AAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A093485E-2957-4615-9EF4-EA212E123AAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A093485E-2957-4615-9EF4-EA212E123AAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F647DF2-4E2C-4650-BA23-769E037A9A01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F647DF2-4E2C-4650-BA23-769E037A9A01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F647DF2-4E2C-4650-BA23-769E037A9A01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F647DF2-4E2C-4650-BA23-769E037A9A01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDC7642D-57A1-47CE-816D-99C5CC84373C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDC7642D-57A1-47CE-816D-99C5CC84373C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDC7642D-57A1-47CE-816D-99C5CC84373C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDC7642D-57A1-47CE-816D-99C5CC84373C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {536114ED-DB86-4DDC-9E50-73DDD501EF97}
+	EndGlobalSection
+EndGlobal

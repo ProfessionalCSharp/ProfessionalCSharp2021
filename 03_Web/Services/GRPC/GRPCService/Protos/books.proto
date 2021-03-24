@@ -1,0 +1,31 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+
+option csharp_namespace = "GRPCService";
+
+package bookservice;
+
+// The greeting service definition.
+service GRPCBooks {
+  rpc GetBookChapters (google.protobuf.Empty) returns (GetBookChapterResponse);
+  rpc AddBookChapter (AddBookChapterRequest) returns (AddBookChapterResponse);
+}
+
+message AddBookChapterRequest {
+	Chapter Chapter = 1;
+}
+
+message AddBookChapterResponse {
+	Chapter Chapter = 1;
+}
+
+message GetBookChapterResponse {
+	repeated Chapter chapters = 1;
+}
+
+message Chapter {
+	string id = 1;
+	int32 number = 2;
+	string title = 3;
+	int32 pageCount = 4;
+}
