@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BooksApi.Services
@@ -43,7 +44,7 @@ namespace BooksApi.Services
         }
 
         public Task<IEnumerable<BookChapter>> GetAllAsync() =>
-            Task.FromResult<IEnumerable<BookChapter>>(_chapters.Values);
+            Task.FromResult<IEnumerable<BookChapter>>(_chapters.Values.OrderBy(c => c.Number));
 
         public Task<BookChapter?> RemoveAsync(Guid id)
         {
