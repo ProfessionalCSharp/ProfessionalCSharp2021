@@ -8,8 +8,7 @@ namespace BooksApi.Services
 {
     public class BookChapterService : IBookChapterService
     {
-        private readonly ConcurrentDictionary<Guid, BookChapter> _chapters =
-          new ConcurrentDictionary<Guid, BookChapter>();
+        private readonly ConcurrentDictionary<Guid, BookChapter> _chapters = new();
 
         private BookChapter GetInitializedId(BookChapter chapter)
         {
@@ -29,10 +28,10 @@ namespace BooksApi.Services
 
         public Task AddRangeAsync(IEnumerable<BookChapter> chapters)
         {
-            foreach (var chapter in chapters)
+            foreach (var c in chapters)
             {
-                var chapteri = GetInitializedId(chapter);
-                _chapters[chapteri.Id] = chapteri;
+                var chapter = GetInitializedId(c);
+                _chapters[chapter.Id] = chapter;
             }
             return Task.CompletedTask;
         }

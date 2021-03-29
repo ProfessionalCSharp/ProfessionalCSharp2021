@@ -18,22 +18,18 @@ namespace BooksApi
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+        public Startup(IConfiguration configuration) => Configuration = configuration;
 
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
 //                .AddXmlSerializerFormatters(); // requires default constructor
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "BooksApi", Version = "v1" });
+                c.SwaggerDoc("v3", new OpenApiInfo { Title = "BooksApi", Version = "v3" });              
             });
 
             services.AddSingleton<IBookChapterService, BookChapterService>();
@@ -47,7 +43,7 @@ namespace BooksApi
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BooksApi v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v3/swagger.json", "BooksApi v3"));
             }
 
             app.UseHttpsRedirection();
