@@ -11,7 +11,7 @@ namespace BooksApi.Services
 
         private string[] _sampleTitles = new[]
         {
-            ".NET Applications and Tools",
+            ".NET Application Architectures",
             "Core C#",
             "Classes, Structs, Tuples, and Records",
             "Object-Oriented Programming with C#",
@@ -29,7 +29,7 @@ namespace BooksApi.Services
         public void CreateSampleChapters()
         {
             List<BookChapter> chapters = new();
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < 9; i++)
             {
                 chapters.Add(new BookChapter(Guid.NewGuid(), _chapterNumbers[i], _sampleTitles[i], _pageCounts[i]));
             }

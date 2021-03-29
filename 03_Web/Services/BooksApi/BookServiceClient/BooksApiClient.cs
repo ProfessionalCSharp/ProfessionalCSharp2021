@@ -1,14 +1,12 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Books.Models;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using System.Net.Http.Json;
-using Books.Models;
-using System.Net.Http.Headers;
-using System.Xml.Linq;
+using System.Threading.Tasks;
 
 namespace BookServiceClient
 {
@@ -21,11 +19,13 @@ namespace BookServiceClient
     {
         private readonly HttpClient _httpClient;
         private readonly string _booksApiUri;
-        private Guid? _chapterId;
+        private readonly ILogger _logger;
+        private Guid? _firstChapterId;
 
-        public BooksApiClient(HttpClient httpClient, IOptions<BooksApiClientOptions> options)
+        public BooksApiClient(HttpClient httpClient, IOptions<BooksApiClientOptions> options, ILogger<BooksApiClient> logger)
         {
             _httpClient = httpClient;
+            _logger = logger;
             _booksApiUri = options.Value.BooksApiUri ?? "api/books";
         }
 
@@ -38,16 +38,16 @@ namespace BookServiceClient
             {
                 Console.WriteLine($"{chapter.Number} {chapter.Title}");
             }
-            _chapterId = chapters.FirstOrDefault()?.Id;
+            _firstChapterId = chapters.FirstOrDefault()?.Id;
             Console.WriteLine();
         }
 
         public async Task ReadChapterAsync()
         {
             Console.WriteLine(nameof(ReadChapterAsync));
-            if (_chapterId is not null)
+            if (_firstChapterId is not null)
             {
-                string uri = $"{_booksApiUri}/{_chapterId}";
+                string uri = $"{_booksApiUri}/{_firstChapterId}";
                 var chapter = await _httpClient.GetFromJsonAsync<BookChapter>(uri);
                 if (chapter is not null)
                 {
@@ -57,12 +57,29 @@ namespace BookServiceClient
             Console.WriteLine();            
         }
 
+        public async Task ReadNotExistingChapterAsync()
+        {
+            Console.WriteLine(nameof(ReadNotExistingChapterAsync));
+            string requestIdentifier = Guid.NewGuid().ToString();
+            try
+            {
+                string uri = $"{_booksApiUri}/{requestIdentifier}";
+                var chapter = await _httpClient.GetFromJsonAsync<BookChapter>(uri);
+            }
+            catch (HttpRequestException ex) when (ex.Message.Contains("404"))
+            {
+                _logger.LogError("book chapter with identifier {0} not found", requestIdentifier);
+            }
+            Console.WriteLine();
+        }
+
         public async Task AddChapterAsync()
         {
             Console.WriteLine(nameof(AddChapterAsync));
             var chapter = new BookChapter(Guid.NewGuid(), 25, "Services", 40);
-            // TODO: check - is this throwing?
             var response = await _httpClient.PostAsJsonAsync(_booksApiUri, chapter);
+            Console.WriteLine($"status code: {response.StatusCode}");
+            Console.WriteLine($"created at location: {response.Headers.Location?.AbsolutePath}");
             Console.WriteLine();
         }
 
@@ -71,16 +88,18 @@ namespace BookServiceClient
             Console.WriteLine(nameof(UpdateChapterAsync));
 
             var chapters = await _httpClient.GetFromJsonAsync<IEnumerable<BookChapter>>(_booksApiUri);
-            if (chapters == null) return;
+            if (chapters is null) return;
             var chapter = chapters.SingleOrDefault(
               c => c.Title == ".NET Application Architectures");
-            if (chapter != null)
+            if (chapter is not null)
             {
+                string uri = $"{_booksApiUri}/{chapter.Id}";
                 chapter = chapter with { Title = ".NET Applications and Tools" };
-                var response = await _httpClient.PutAsJsonAsync(_booksApiUri, chapter);
+                var response = await _httpClient.PutAsJsonAsync(uri, chapter);
                 if (response.IsSuccessStatusCode)
                 {
-                    Console.WriteLine($"updated chapter {chapter.Title}");
+                    Console.WriteLine($"Status code: {response.StatusCode}");
+                    Console.WriteLine($"Updated chapter {chapter.Title}");
                 }
             }
             Console.WriteLine();
@@ -90,10 +109,10 @@ namespace BookServiceClient
         {
             Console.WriteLine(nameof(RemoveChapterAsync));
             var chapters = await _httpClient.GetFromJsonAsync<IEnumerable<BookChapter>>(_booksApiUri);
-            if (chapters == null) return;
+            if (chapters is null) return;
 
             var chapter = chapters.SingleOrDefault(c => c.Title == "ADO.NET and Transactions");
-            if (chapter != null)
+            if (chapter is not null)
             {
                 string uri = $"{_booksApiUri}/{chapter.Id}";
                 var response = await _httpClient.DeleteAsync(uri);
@@ -104,20 +123,5 @@ namespace BookServiceClient
             }
             Console.WriteLine();
         }
-
-
-
-        //public async Task ReadXmlChaptersAsync()
-        //{
-        //    Console.WriteLine(nameof(ReadXmlChaptersAsync));
-        //    HttpRequestMessage requestMessage = new(HttpMethod.Get, _booksApiUri);
-        //    requestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/xml"));
-        //    var response = await _httpClient.SendAsync(requestMessage);
-        //    response.EnsureSuccessStatusCode();
-        //    string xml = await response.Content.ReadAsStringAsync();
-        //    XElement chapters = XElement.Parse(xml);   
-
-        //    Console.WriteLine();
-        //}
     }
 }
