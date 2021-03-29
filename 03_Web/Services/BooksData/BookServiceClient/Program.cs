@@ -23,6 +23,7 @@ using var scope = host.Services.CreateScope();
 var client = scope.ServiceProvider.GetRequiredService<BooksApiClient>();
 await client.ReadChaptersAsync();
 await client.ReadChapterAsync();
+await client.ReadNotExistingChapterAsync();
 await client.AddChapterAsync();
 await client.UpdateChapterAsync();
 await client.RemoveChapterAsync();

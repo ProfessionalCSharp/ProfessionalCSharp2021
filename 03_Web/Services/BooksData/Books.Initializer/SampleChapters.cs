@@ -6,10 +6,9 @@ namespace Books.Services
 {
     public class SampleChapters
     {
-
         private string[] _sampleTitles = new[]
         {
-            ".NET Applications and Tools",
+            ".NET Application Architectures",
             "Core C#",
             "Classes, Structs, Tuples, and Records",
             "Object-Oriented Programming with C#",
@@ -27,7 +26,7 @@ namespace Books.Services
         public IEnumerable<BookChapter> GetSampleChapters()
         {
             List<BookChapter> chapters = new();
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < 9; i++)
             {
                 chapters.Add(new BookChapter(Guid.NewGuid(), _chapterNumbers[i], _sampleTitles[i], _pageCounts[i]));
             }

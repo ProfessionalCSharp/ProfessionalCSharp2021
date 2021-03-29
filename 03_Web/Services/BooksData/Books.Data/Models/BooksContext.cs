@@ -7,23 +7,19 @@ using System.Threading.Tasks;
 
 namespace Books.Data
 {
-    public class BooksContext : DbContext, IBookChapterService, IDisposable
+    public class BooksContext : DbContext, IBookChapterService
     {
         public BooksContext(DbContextOptions<BooksContext> options)
-            : base(options)
+            : base(options) 
         {
-        }
-
-        public override void Dispose()
-        {
-            base.Dispose();
+            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
         public DbSet<BookChapter> Chapters => Set<BookChapter>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<BookChapter>().Property(b => b.Title).HasMaxLength(80);
+            modelBuilder.Entity<BookChapter>().Property(b => b.Title).HasMaxLength(120);
         }
 
         public async Task AddAsync(BookChapter chapter)
@@ -34,15 +30,8 @@ namespace Books.Data
 
         public async Task AddRangeAsync(IEnumerable<BookChapter> chapters)
         {
-            try
-            {
-                await this.Chapters.AddRangeAsync(chapters);
-                await SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
+            await this.Chapters.AddRangeAsync(chapters);
+            await SaveChangesAsync();
         }
 
         public async Task<IEnumerable<BookChapter>> GetAllAsync()
