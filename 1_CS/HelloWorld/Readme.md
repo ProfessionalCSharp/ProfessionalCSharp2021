@@ -6,15 +6,6 @@ This chapter contains the following code samples:
 * WebApp (Tool-generated ASP.NET Core MVC Web App)
 * SelfContainedHelloWorld (Console App configured for self-contained deployment)
 * TrimmedHelloWorld
-
-To build and run the .NET Core samples, please install one of these tools:
-
-* Visual Studio 2019 (at least 16.8.3)
-* Visual Studio for Mac
-* Visual Studio Code
-* or just install .NET 5.0+ (https://dotnet.microsoft.com/download) and use any editor
-
-Please download and install the tools from [.NET Core downloads](https://www.microsoft.com/net/core).
  
 For code comments and issues please check [Professional C#'s GitHub Repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021)
 
