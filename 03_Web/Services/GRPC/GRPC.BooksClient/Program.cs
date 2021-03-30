@@ -6,7 +6,7 @@ using System;
 using var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((context, services) =>
     {
-        services.AddGrpcClient<Sensor.SensorClient>(options =>
+        services.AddGrpcClient<GRPCBooks.GRPCBooksClient>(options =>
         {
             string grpcServiceUri = context.Configuration["GrpcServiceUri"] ?? "https://localhost:5001";
             options.Address = new Uri(grpcServiceUri);

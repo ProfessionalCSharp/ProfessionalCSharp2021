@@ -25,7 +25,7 @@ namespace GRPCService.Services
                     await Task.Delay(100, context.CancellationToken);
                     SensorData data = new()
                     {
-                        TimeStamp = Timestamp.FromDateTime(DateTime.UtcNow),
+                        Timestamp = Timestamp.FromDateTime(DateTime.UtcNow),
                         Val1 = random.Next(100),
                         Val2 = random.Next(100)
                     };

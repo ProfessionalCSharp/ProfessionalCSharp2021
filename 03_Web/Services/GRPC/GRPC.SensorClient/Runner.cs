@@ -3,9 +3,6 @@ using Grpc.Core;
 using GRPCService;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -19,18 +16,17 @@ public class Runner
         _logger = logger;
     }
 
-    public async Task Run()
+    public async Task RunAsync()
     {
-        CancellationTokenSource cts = new(5000); // cancel after 5 seconds
+        CancellationTokenSource cts = new(10000); // cancel after 10 seconds
 
         try
         {
+            using var stream = _sensorClient.GetSensorData(new Empty());
 
-            using var stream = _sensorClient.GetSensorData(new Empty(), cancellationToken: cts.Token);
-
-            await foreach (var data in stream.ResponseStream.ReadAllAsync())
+            await foreach (var data in stream.ResponseStream.ReadAllAsync().WithCancellation(cts.Token))
             {
-                Console.WriteLine($"data {data.Val1} {data.Val2} {data.TimeStamp.ToDateTime():T}");
+                Console.WriteLine($"data {data.Val1} {data.Val2} {data.Timestamp.ToDateTime():T}");
             }
         }
         catch (TaskCanceledException ex)

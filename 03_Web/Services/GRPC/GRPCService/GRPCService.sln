@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Books.Data", "..\Books.Data
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GRPC.SensorClient", "..\GRPC.SensorClient\GRPC.SensorClient.csproj", "{CDC7642D-57A1-47CE-816D-99C5CC84373C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GRPC.BooksClient", "..\GRPC.BooksClient\GRPC.BooksClient.csproj", "{E069DF21-8ECD-4656-B88B-D78250F9D004}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{CDC7642D-57A1-47CE-816D-99C5CC84373C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDC7642D-57A1-47CE-816D-99C5CC84373C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDC7642D-57A1-47CE-816D-99C5CC84373C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E069DF21-8ECD-4656-B88B-D78250F9D004}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E069DF21-8ECD-4656-B88B-D78250F9D004}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E069DF21-8ECD-4656-B88B-D78250F9D004}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E069DF21-8ECD-4656-B88B-D78250F9D004}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

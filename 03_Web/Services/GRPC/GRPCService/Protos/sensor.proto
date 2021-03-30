@@ -1,18 +1,16 @@
 syntax = "proto3";
+package sensing;
+option csharp_namespace = "GRPCService";
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
-
-option csharp_namespace = "GRPCService";
-
-package sensing;
 
 service Sensor {
   rpc GetSensorData (google.protobuf.Empty) returns (stream SensorData);
 }
 
 message SensorData {
-  google.protobuf.Timestamp timeStamp = 1;
+  google.protobuf.Timestamp timestamp = 1;
   int32 val1 = 2;
   int32 val2 = 3;
 }

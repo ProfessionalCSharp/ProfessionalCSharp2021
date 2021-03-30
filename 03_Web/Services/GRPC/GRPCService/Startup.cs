@@ -8,16 +8,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace GRPCService
 {
     public class Startup
     {
-
-        public Startup(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
+        public Startup(IConfiguration configuration) => _configuration = configuration;
 
         private readonly IConfiguration _configuration;
 
@@ -29,6 +26,7 @@ namespace GRPCService
             services.AddDbContext<IBookChapterService, BooksContext>(options =>
             {
                 string connectionString = _configuration.GetConnectionString("BooksConnection");
+                if (connectionString is null) throw new InvalidOperationException("Configure the connection string");
                 options.UseSqlServer(connectionString);
             });
         }
@@ -50,7 +48,7 @@ namespace GRPCService
 
                 endpoints.MapGet("/", async context =>
                 {
-                    await context.Response.WriteAsync("Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
+                    await context.Response.WriteAsync("Use a gRPC client!");
                 });
             });
         }
