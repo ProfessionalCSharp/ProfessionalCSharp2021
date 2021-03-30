@@ -3,16 +3,13 @@
 This chapter contains the following code samples:
 
 * VirtualMethods (declare base types using *abstract*, *virtual*, *override*)
+* AbstractClasses
 * InheritanceWithConstructors (inheritance with non-default constructors)
+* InheritanceWithRecords (inheritance with C# 9 records)
 * UsingInterfaces (declaring and using interfaces)
-
-To build and run the .NET Core samples, please install one of these tools:
-
-* Visual Studio 2017 Update 7 with the .NET Core workload
-* Visual Studio for Mac
-* Visual Studio Code
-
-Please download and install the tools from [.NET Core downloads](https://www.microsoft.com/net/core).
+* DefaultInterfaceMethods (versioning and traits)
+* GenericTypes
+* GenericTypesWithConstraints
  
 For code comments and issues please check [Professional C#'s GitHub Repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp7)
 
