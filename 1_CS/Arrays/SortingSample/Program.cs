@@ -14,7 +14,6 @@ namespace Wrox.ProCSharp.Arrays
             SortUsingPersonComparer(persons);
         }
 
-
         static void SortUsingPersonComparer(Person[] persons)
         {
             Array.Sort(persons,
@@ -48,7 +47,7 @@ namespace Wrox.ProCSharp.Arrays
         static void SortNames()
         {
             string[] names = {
-                   "Christina Aguilera",
+                   "Lady Gaga",
                    "Shakira",
                    "Beyonce",
                    "Ava Max"

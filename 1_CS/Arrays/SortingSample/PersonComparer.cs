@@ -26,8 +26,8 @@ namespace Wrox.ProCSharp.Arrays
             return _compareType switch
             {
                 PersonCompareType.FirstName => x.FirstName.CompareTo(y.FirstName),
-                PersonCompareType.LastName => x.LastName.CompareTo(y.LastName)
-                _ => throw new ArgumentException("unexpected compare type");
+                PersonCompareType.LastName => x.LastName.CompareTo(y.LastName),
+                _ => throw new ArgumentException("unexpected compare type")
             };
         }
 
