@@ -21,12 +21,12 @@ Here's the list of chapters and the folders for the code samples:
 
 ## Part 1 (The Language)
 
-* Chapter 1 - .NET Applications and Tools (HelloWorld)
-* Chapter 2 - Core C# (CoreCsharp)
-* Chapter 3 - Classes, Structs, Tuples, and Records (ObjectsAndTypes)
-* Chapter 4 - Object-Oriented Programming with C# (ObjectOrientation)
-* Chapter 5 - Operators and Casts (OperatorsAndCasts)
-* Chapter 6 - Arrays (Arrays)
+* Chapter 1 - .NET Applications and Tools ([HelloWorld](1_CS/HelloWorld/Readme.md))
+* Chapter 2 - Core C# ([CoreCsharp(1_CS/CoreCSharp/Readme.md)])
+* Chapter 3 - Classes, Structs, Tuples, and Records ([ObjectsAndTypes](1_CS/ObjectsAndTypes/Readme.md))
+* Chapter 4 - Object-Oriented Programming with C# ([ObjectOrientation](1_CS/ObjectOrientation/Readme.md))
+* Chapter 5 - Operators and Casts ([OperatorsAndCasts](1_CS/OperatorsAndCasts/Readme.md))
+* Chapter 6 - Arrays ([Arrays](1_CS/Arrays/Readme.md))
 * Chapter 7 - Delegates, Lambdas, and Events (Delegates)
 * Chapter 8 - Collections (Collections)
 * Chapter 9 - Language Integrated Query (LINQ)
