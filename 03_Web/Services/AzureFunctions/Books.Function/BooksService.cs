@@ -1,30 +1,54 @@
-using System.Collections.Generic;
-using System.Net;
+using Books.Models;
+using Books.Services;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace Books.Function
 {
     public class BooksService
     {
-        public BooksService()
+        private readonly IBookChapterService _bookChapterService;
+        public BooksService(IBookChapterService bookChapterService)
         {
-
+            if (bookChapterService is null) throw new ArgumentNullException(nameof(bookChapterService));
+            _bookChapterService = bookChapterService;
         }
 
-        [Function("BooksService")]
-        public HttpResponseData Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequestData req,
+        [Function("AddChapter")]
+        public async Task<HttpResponseData> AddChapterAsync(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route ="chapters")] HttpRequestData req,
+            FunctionContext executionContext)
+        {
+            var logger = executionContext.GetLogger("BooksService");
+            logger.LogInformation("C# HTTP trigger function processed a request.");
+
+            var chapter = await req.ReadFromJsonAsync<BookChapter>();
+            if (chapter is null)
+            {
+                logger.LogError("invalid chapter received");
+                return req.CreateResponse(HttpStatusCode.BadRequest);
+            }
+            var response = req.CreateResponse(HttpStatusCode.OK);
+            await _bookChapterService.AddAsync(chapter);
+            await response.WriteAsJsonAsync(chapter);
+            return response;
+        }
+
+        [Function("GetChapters")]
+        public async Task<HttpResponseData> GetChaptersAsync(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "chapters")] HttpRequestData req,
             FunctionContext executionContext)
         {
             var logger = executionContext.GetLogger("BooksService");
             logger.LogInformation("C# HTTP trigger function processed a request.");
 
             var response = req.CreateResponse(HttpStatusCode.OK);
-            response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
-
-            response.WriteString("Welcome to Azure Functions!");
-
+            var chapters = _bookChapterService.GetAllAsync();
+            await response.WriteAsJsonAsync(chapters);
             return response;
         }
     }

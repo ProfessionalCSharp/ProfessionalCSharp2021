@@ -1,19 +1,22 @@
-using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
+using Books.Data;
+using Books.Services;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Azure.Functions.Worker.Configuration;
+using System;
 
-namespace Books_Function
-{
-    public class Program
+using var host = new HostBuilder()
+    .ConfigureFunctionsWorkerDefaults()
+    .ConfigureServices(services =>
     {
-        public static void Main()
-        {
-            var host = new HostBuilder()
-                .ConfigureFunctionsWorkerDefaults()
-                .Build();
+        string? connectionString = Environment.GetEnvironmentVariable("BooksConnection");
+        if (connectionString is null) throw new InvalidOperationException("Configure the BooksConnection");
 
-            host.Run();
-        }
-    }
-}
+        services.AddDbContext<IBookChapterService, BooksContext>(options =>
+        {
+            options.UseSqlServer(connectionString);
+        });
+    })
+    .Build();
+
+await host.RunAsync();
