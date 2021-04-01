@@ -1,22 +1,24 @@
-# Readme - Code Samples for Chapter 32, Web API
+# Readme - Code Samples for Chapter 25, Services
 
 This chapter contains these samples:
 
-* Book Service Sample (offering in-memory data from a Web API service using ASP.NET Core)
-* Book Service Async Sample (similar to the Book Service Sample, but offering async methods from the controller and use EF Core 2 )
-* Book Service Client App (making use of the HttpClient and JSON.NET to access the Web API services)
-* Azure Function hosting a Web API
+* BooksApi (ASP.NET Core Web API and a .NET client)
+* Books Data (ASP.NET Core Web API with EF Core)
+* BooksApiWithB2C (ASP.NET Core Web API with Azure Active Directory B2C)
+* GRPC (GRPC service and client)
+* Azure Functions
 
-The Book Service Sample makes use of Swagger.
+## Azure Active Directory B2C
 
-An OData sample will follow
-The OData Library for .NET Core is still not available on NuGet. I'm planning to have a sample when .NET Core 2.0 is available - and hopefully ODAta as well. [See](https://github.com/OData/WebApi/tree/feature/netcore "OData WebAPI")
+For the sample *BooksApiWithB2C*, create an Azure Active Directory B2C tenant using your Microsoft Azure subscription.
 
-To build and run the .NET Core samples, please install
+## Azure Functions
 
-* Visual Studio 2017 Update 5 with the .NET Core workload
+To use Azure Functions with .NET 5, install the *Azure Functions Core Tools*
 
-Please download and install the tools from [.NET Core downloads](https://www.microsoft.com/net/core).
+* [Azure Functions Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local)
+
+At the time of this writing, you can't start the Azure Function with .NET 5 from Visual Studio. Instead, use the Azure Functions Core Tools. 
 
 For code comments and issues please check [Professional C#'s GitHub Repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp7)
 
