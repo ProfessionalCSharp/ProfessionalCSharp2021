@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Books.Data", "..\Books.Data
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Books.Shared", "..\Books.Shared\Books.Shared.csproj", "{C34913F9-A401-4C00-A85B-FB5275A52DA1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookServiceClient", "..\BookServiceClient\BookServiceClient.csproj", "{F5F9722E-B75B-4768-AAFE-3794843EBFBF}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{C34913F9-A401-4C00-A85B-FB5275A52DA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C34913F9-A401-4C00-A85B-FB5275A52DA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C34913F9-A401-4C00-A85B-FB5275A52DA1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F5F9722E-B75B-4768-AAFE-3794843EBFBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F5F9722E-B75B-4768-AAFE-3794843EBFBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F5F9722E-B75B-4768-AAFE-3794843EBFBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F5F9722E-B75B-4768-AAFE-3794843EBFBF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -20,11 +20,11 @@ namespace Books.Function
 
         [Function("AddChapter")]
         public async Task<HttpResponseData> AddChapterAsync(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route ="chapters")] HttpRequestData req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "chapters")] HttpRequestData req,
             FunctionContext executionContext)
         {
             var logger = executionContext.GetLogger("BooksService");
-            logger.LogInformation("C# HTTP trigger function processed a request.");
+            logger.LogInformation("Function AddChhapter invoked.");
 
             var chapter = await req.ReadFromJsonAsync<BookChapter>();
             if (chapter is null)
@@ -44,7 +44,7 @@ namespace Books.Function
             FunctionContext executionContext)
         {
             var logger = executionContext.GetLogger("BooksService");
-            logger.LogInformation("C# HTTP trigger function processed a request.");
+            logger.LogInformation("Function GetChapters invoked.");
 
             var response = req.CreateResponse(HttpStatusCode.OK);
             var chapters = _bookChapterService.GetAllAsync();
