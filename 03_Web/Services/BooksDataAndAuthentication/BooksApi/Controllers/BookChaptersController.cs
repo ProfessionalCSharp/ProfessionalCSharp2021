@@ -11,7 +11,7 @@ namespace BooksApi.Controllers
 {
     [Produces("application/json")]
     [Route("api/[controller]")]
-    [Authorize]
+   // [Authorize]
     [ApiController]
     public class BookChaptersController : ControllerBase
     {
@@ -28,7 +28,7 @@ namespace BooksApi.Controllers
         [HttpGet]
         public Task<IEnumerable<BookChapter>> GetBookChapters()
         {
-            HttpContext.VerifyUserHasAnyAcceptedScope(readScopesRequired);
+            // HttpContext.VerifyUserHasAnyAcceptedScope(readScopesRequired);
 
             return _chapterService.GetAllAsync();
         }
