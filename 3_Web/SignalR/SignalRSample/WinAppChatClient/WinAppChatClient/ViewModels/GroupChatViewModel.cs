@@ -1,21 +1,15 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
-using Microsoft.Extensions.Logging;
 using Microsoft.Toolkit.Mvvm.Input;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Net.Http;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Windows.ApplicationModel.Core;
-using Windows.UI.Core;
 using WindowsAppChatClient.Services;
 
 namespace WindowsAppChatClient.ViewModels
 {
-    public sealed class GroupChatViewModel : INotifyPropertyChanged
+    public sealed class GroupChatViewModel
     {
         private readonly IDialogService _dialogService;
         private readonly UrlService _urlService;
@@ -30,26 +24,11 @@ namespace WindowsAppChatClient.ViewModels
             LeaveGroupCommand = new RelayCommand(OnLeaveGroup);
         }
 
-        public event PropertyChangedEventHandler? PropertyChanged;
-        private void Set<T>(ref T item, T value, [CallerMemberName] string? propertyName = null)
-        {
-            if (!EqualityComparer<T>.Default.Equals(item, value))
-            {
-                item = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
         public string? Name { get; set; }
         public string? Message { get; set; }
         public string? NewGroup { get; set; }
 
-        private string? _selectedGroup;
-        public string? SelectedGroup
-        {
-            get => _selectedGroup;
-            set => Set(ref _selectedGroup, value);
-        }
+        public string? SelectedGroup { get; set; }
 
         public ObservableCollection<string> Messages { get; } = new ObservableCollection<string>();
         public ObservableCollection<string> Groups { get; } = new ObservableCollection<string>();
@@ -66,9 +45,6 @@ namespace WindowsAppChatClient.ViewModels
             await CloseConnectionAsync();
             _hubConnection = new HubConnectionBuilder()
                 .WithUrl(_urlService.GroupAddress)
-                .ConfigureLogging(loggingBuilder =>
-                {
-                })
                 .Build();
 
             _hubConnection.Closed += HubConnectionClosed;
@@ -102,10 +78,7 @@ namespace WindowsAppChatClient.ViewModels
         {
             try
             {
-                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                {
-                    Messages.Add($"{group}-{name}: {message}");
-                });
+                Messages.Add($"{group}-{name}: {message}");
             }
             catch (Exception ex)
             {
@@ -146,7 +119,7 @@ namespace WindowsAppChatClient.ViewModels
             }
         }
 
-        private Task HubConnectionClosed(Exception arg) 
+        private Task HubConnectionClosed(Exception arg)
             => _dialogService.ShowMessageAsync("Hub connection closed");
 
         private ValueTask CloseConnectionAsync() =>

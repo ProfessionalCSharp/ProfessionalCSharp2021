@@ -23,28 +23,22 @@ namespace ChatServer
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseFileServer();
+            app.UseStaticFiles();
 
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapHub<ChatHub>("/chat");
-                endpoints.MapHub<GroupChatHub>("7groupchat");
+                endpoints.MapHub<GroupChatHub>("/groupchat");
                 endpoints.Map("/", async context =>
                 {
-                    var sb = new StringBuilder();
+                    StringBuilder sb = new();
                     sb.Append("<h1>SignalR Sample</h1>");
                     sb.Append("<div>Open <a href='/ChatWindow.html'>ChatWindow</a> for communication</div>");
                     await context.Response.WriteAsync(sb.ToString());
                 });
             });
-
-            //app.UseAzureSignalR(routes =>
-            //{
-            //    routes.MapHub<ChatHub>("/chat");
-            //    routes.MapHub<GroupChatHub>("/groupchat");
-            //});
 
         }
     }

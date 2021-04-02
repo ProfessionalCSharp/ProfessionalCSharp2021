@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using WinAppChatClient.Views;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using WindowsAppChatClient.ViewModels;
@@ -27,17 +28,7 @@ namespace WinAppChatClient
     {
         public MainWindow()
         {
-            this.InitializeComponent();
-            
-        }
-
-        public ChatViewModel ViewModel { get; } = ((App)Application.Current).Services.GetRequiredService<ChatViewModel>();
-
-        private void OnGotoGroupChat(object sender, RoutedEventArgs e)
-        {
-            
-            //Frame.Navigate(typeof(GroupChatWindow));
-            // Frame.Navigate(typeof(GroupChatPage));
+            this.InitializeComponent();           
         }
     }
 }

@@ -1,22 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
-using Microsoft.UI.Xaml.Shapes;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.ApplicationModel;
-using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using WindowsAppChatClient.Services;
 using WindowsAppChatClient.ViewModels;
 
@@ -47,7 +32,7 @@ namespace WinAppChatClient
                 }).Build();
         }
 
-        private IHost _host;
+        private readonly IHost _host;
 
         internal IServiceProvider Services => _host.Services;
 
@@ -62,6 +47,6 @@ namespace WinAppChatClient
             m_window.Activate();
         }
 
-        private Window? m_window;
+        private Window? m_window;    
     }
 }

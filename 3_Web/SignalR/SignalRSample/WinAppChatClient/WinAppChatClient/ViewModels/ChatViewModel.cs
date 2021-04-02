@@ -1,22 +1,19 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
-using Microsoft.Extensions.Logging;
-using Microsoft.System;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using System;
 using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Windows.ApplicationModel.Core;
-using Windows.UI.Core;
 using WindowsAppChatClient.Services;
 
 namespace WindowsAppChatClient.ViewModels
 {
-    public class ChatViewModel
+    public class ChatViewModel : ObservableObject
     {
         private readonly IDialogService _dialogService;
         private readonly UrlService _urlService;
-     //   private readonly DispatcherQueueController _dispatcherQueue;
         public ChatViewModel(IDialogService dialogService, UrlService urlService)
         {
             _dialogService = dialogService;
@@ -24,7 +21,6 @@ namespace WindowsAppChatClient.ViewModels
 
             ConnectCommand = new RelayCommand(OnConnect);
             SendCommand = new RelayCommand(OnSendMessage);
-       //     _dispatcherQueue = DispatcherQueueController.CreateOnCurrentThread();
         }
 
         public string? Name { get; set; }
@@ -43,6 +39,7 @@ namespace WindowsAppChatClient.ViewModels
             await CloseConnectionAsync();
             _hubConnection = new HubConnectionBuilder()
                 .WithUrl(_urlService.ChatAddress)
+                .AddMessagePackProtocol()
                 .Build();
 
             _hubConnection.Closed += HubConnectionClosed;

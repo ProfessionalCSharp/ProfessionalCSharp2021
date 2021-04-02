@@ -10,11 +10,13 @@
     <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="GroupChatWindow.xaml" />
+    <None Remove="Views\ChatUC.xaml" />
+    <None Remove="Views\GroupChatUC.xaml" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="5.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Protocols.MessagePack" Version="5.0.4" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
     <PackageReference Include="Microsoft.ProjectReunion" Version="0.5.0" />
     <PackageReference Include="Microsoft.ProjectReunion.Foundation" Version="0.5.0" />
@@ -24,7 +26,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Page Update="GroupChatWindow.xaml">
+    <Page Update="Views\GroupChatUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Views\ChatUC.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
