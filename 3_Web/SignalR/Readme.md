@@ -1,4 +1,4 @@
-# Readme - Code Samples for Chapter 25, SignalR
+# Readme - Code Samples for Chapter 28, SignalR
 
 This chapter contains these samples:
 
