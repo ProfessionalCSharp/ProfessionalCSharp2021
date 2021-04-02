@@ -1,16 +1,18 @@
-# Readme - Code Samples for Bonus Chapter 3, SignalR and WebHooks
+# Readme - Code Samples for Chapter 28, SignalR
 
 This chapter contains these samples:
 
-* WebSockets (Console app client and ASP.NET Core server)
-* SignalR (ASP.NET Core App, HTML client, Windows App client)
+* SignalR Service with ASP.NET Core
+* HTML Client
+* WinUI 3 Windows client app
+
 * WebHooksReceiver (with Dropbox and GitHub)
 
-The WebHooks packages for .NET Core are early versions available on NuGet, this is not part of .NET Core 2.1.
+To install the required tools and setup the configuration see [WinUI](../../WinUI.md)
 
-For WebHooks you need to configure the myget server to get the early packages:
+For code comments and issues please check [Professional C#'s GitHub Repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp7)
 
-* [.NET Core MyGet](https://dotnet.myget.org/F/dotnet-core/api/v3/index.json)
-* [ASP.NET Core MyGet](https://dotnet.myget.org/F/aspnetcore-dev/api/v3/index.json)
+Please check my blog [csharp.christiannagel.com](https://csharp.christiannagel.com "csharp.christiannagel.com") for additional information for topics covered in the book.
 
-For the WebHooksReceiver project, you also need to configure a WebHook with GitHub and with Dropbox. The sample writes the result to an Azure Storage queue. Create a Azure Storage account in your portal, and configure the project accordingly. More information how to - read the book chapter.
+Thank you!
+
