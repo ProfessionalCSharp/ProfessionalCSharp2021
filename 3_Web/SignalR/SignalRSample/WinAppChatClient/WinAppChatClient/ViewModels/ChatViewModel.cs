@@ -39,7 +39,6 @@ namespace WindowsAppChatClient.ViewModels
             await CloseConnectionAsync();
             _hubConnection = new HubConnectionBuilder()
                 .WithUrl(_urlService.ChatAddress)
-                .AddMessagePackProtocol()
                 .Build();
 
             _hubConnection.Closed += HubConnectionClosed;

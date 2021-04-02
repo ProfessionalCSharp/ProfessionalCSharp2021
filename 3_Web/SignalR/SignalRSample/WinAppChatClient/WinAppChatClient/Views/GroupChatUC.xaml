@@ -16,6 +16,9 @@
             <Style TargetType="ListBox">
                 <Setter Property="Margin" Value="12" />
             </Style>
+            <Style TargetType="ComboBox">
+                <Setter Property="Margin" Value="12" />
+            </Style>
             <Style TargetType="Button">
                 <Setter Property="Margin" Value="12" />
                 <Setter Property="Padding" Value="8" />
@@ -25,28 +28,33 @@
         </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="auto" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <TextBox Header="Name" Text="{x:Bind ViewModel.Name, Mode=TwoWay}" Grid.Row="0" Grid.Column="1" />
-        <TextBox Header="Group" Text="{x:Bind ViewModel.NewGroup, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" />
-        <TextBox Header="Message" Text="{x:Bind ViewModel.Message, Mode=TwoWay}" Grid.Row="2" Grid.Column="1" />
+        <TextBox Header="Name" Text="{x:Bind ViewModel.Name, Mode=TwoWay}" Grid.Row="0" Grid.Column="0" />
+        <Button Content="Connect" Command="{x:Bind ViewModel.ConnectCommand}" Grid.Row="0" Grid.Column="1" />
+        
+        <TextBox Header="Group" Text="{x:Bind ViewModel.NewGroup, Mode=TwoWay}" Grid.Row="1" Grid.Column="0" />
+        <Button Content="Enter Group" Command="{x:Bind ViewModel.EnterGroupCommand}" Grid.Row="1" Grid.Column="1" />
 
-        <ListBox ItemsSource="{x:Bind ViewModel.Groups, Mode=OneWay}" SelectedItem="{x:Bind ViewModel.SelectedGroup, Mode=TwoWay}" Grid.Row="2" Grid.Column="0" MinWidth="80" />
 
+        <ComboBox Header="Select Group" ItemsSource="{x:Bind ViewModel.Groups, Mode=OneWay}" SelectedItem="{x:Bind ViewModel.SelectedGroup, Mode=TwoWay}" Grid.Row="2" Grid.Column="0" MinWidth="80" />
+        
+        <TextBox Header="Message" Text="{x:Bind ViewModel.Message, Mode=TwoWay}" Grid.Row="3" Grid.Column="0" />
+
+        <Button Content="Send" Command="{x:Bind ViewModel.SendCommand, Mode=OneTime}" Grid.Row="2" Grid.Column="1" />
+        <Button Content="Leave Group" Command="{x:Bind ViewModel.LeaveGroupCommand, Mode=OneTime}" Grid.Row="3" Grid.Column="1" />
+        
         <StackPanel Orientation="Vertical" Grid.Row="0" Grid.RowSpan="3" Grid.Column="2">
-            <Button Content="Connect" Command="{x:Bind ViewModel.ConnectCommand}" />
-            <Button Content="Enter Group" Command="{x:Bind ViewModel.EnterGroupCommand}" />
-            <Button Content="Send" Command="{x:Bind ViewModel.SendCommand, Mode=OneTime}" />
-            <Button Content="Leave Group" Command="{x:Bind ViewModel.LeaveGroupCommand, Mode=OneTime}" />
+
         </StackPanel>
 
-        <ListBox ItemsSource="{x:Bind ViewModel.Messages, Mode=OneWay}" Grid.Row="3"  Grid.Column="0" Grid.ColumnSpan="2" Margin="12" />
+        <ListBox ItemsSource="{x:Bind ViewModel.Messages, Mode=OneWay}" Grid.Row="4"  Grid.Column="0" Grid.ColumnSpan="2" />
     </Grid>
 </UserControl>
