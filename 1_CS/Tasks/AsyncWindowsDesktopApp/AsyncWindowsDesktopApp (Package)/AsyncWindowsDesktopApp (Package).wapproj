@@ -32,6 +32,7 @@
   <PropertyGroup>
     <WapProjPath Condition="'$(WapProjPath)'==''">$(MSBuildExtensionsPath)\Microsoft\DesktopBridge\</WapProjPath>
     <PathToXAMLWinRTImplementations>AsyncWindowsDesktopApp\</PathToXAMLWinRTImplementations>
+    <AssetTargetFallback>net5.0-windows$(TargetPlatformVersion);$(AssetTargetFallback)</AssetTargetFallback>
   </PropertyGroup>
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.props" />
   <PropertyGroup>
@@ -58,15 +59,17 @@
     <Content Include="Images\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="Microsoft.VCLibs.Desktop, Version=14.0" />
-    <!-- Needed for ucrtbased.dll when running a debug build. -->
-    <SDKReference Include="Microsoft.VCLibs, Version=14.0" Condition="'$(Configuration)' == 'Debug'" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\AsyncWindowsDesktopApp\AsyncWindowsDesktopApp.csproj">
       <SkipGetTargetFrameworkProperties>True</SkipGetTargetFrameworkProperties>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ProjectReunion" Version="[0.5.0]">
+      <IncludeAssets>build</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.ProjectReunion.WinUI" Version="[0.5.0]">
+      <IncludeAssets>build</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
-  <Import Project="$(AppxTargetsLocation)Microsoft.WinUI.AppX.targets" />
 </Project>

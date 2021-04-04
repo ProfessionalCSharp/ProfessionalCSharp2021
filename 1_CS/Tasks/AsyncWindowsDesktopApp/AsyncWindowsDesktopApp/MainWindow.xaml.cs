@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
-using Windows.UI.Core;
 using Windows.UI.Popups;
 using WinRT;
 
@@ -81,7 +80,7 @@ namespace AsyncWindowsDesktopApp
                 {
                     text1.Text += $"\nasync function switch back to the UI thread: {GetThread()}";
                 });
-                // Dispatcher is null with Preview 4
+                // Dispatcher is null with Preview 5
                 //await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 //{
                 //    text1.Text += $"\nasync function switch back to the UI thread: {GetThread()}";
@@ -145,7 +144,6 @@ namespace AsyncWindowsDesktopApp
         internal interface IWindowNative
         {
             IntPtr WindowHandle { get; }
-        }
-       
+        }      
     }
 }
