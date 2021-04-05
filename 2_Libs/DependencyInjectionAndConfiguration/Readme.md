@@ -1,4 +1,4 @@
-# Readme - Code Samples for Chapter 15, Dependency Injection
+# Readme - Code Samples for Chapter 15, Dependency Injection and configuration
 
 This chapter contains the following code samples:
 
