@@ -1,4 +1,4 @@
-# Readme - Code Samples for Chapter 20, Dependency Injection
+# Readme - Code Samples for Chapter 15, Dependency Injection
 
 This chapter contains the following code samples:
 
@@ -12,7 +12,7 @@ This chapter contains the following code samples:
 
 [Bash script for Azure App Configuration](prepareappconfig.sh)
  
-For code comments and issues please check [Professional C#'s GitHub Repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp7)
+For code comments and issues please check [Professional C#'s GitHub Repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021)
 
 Please check my blog [csharp.christiannagel.com](https://csharp.christiannagel.com "csharp.christiannagel.com") for additional information for topics covered in the book.
 
