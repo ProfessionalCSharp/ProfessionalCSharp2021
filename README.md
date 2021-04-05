@@ -27,13 +27,13 @@ Here's the list of chapters and the folders for the code samples:
 * Chapter 4 - Object-Oriented Programming with C# ([ObjectOrientation](1_CS/ObjectOrientation/Readme.md))
 * Chapter 5 - Operators and Casts ([OperatorsAndCasts](1_CS/OperatorsAndCasts/Readme.md))
 * Chapter 6 - Arrays ([Arrays](1_CS/Arrays/Readme.md))
-* Chapter 7 - Delegates, Lambdas, and Events (Delegates)
-* Chapter 8 - Collections (Collections)
-* Chapter 9 - Language Integrated Query (LINQ)
-* Chapter 10 - Errors and Exceptions (ErrorsAndExceptions)
-* Chapter 11 - Tasks and Asynchronous Programming (Async)
-* Chapter 12 - Reflection, Metadata, and Source Generators (ReflectionAndSourceGenerators)
-* Chapter 13 - Managed and Umanaged Memory (Memory)
+* Chapter 7 - Delegates, Lambdas, and Events ([Delegates](1_CS/Delegates/Readme.md))
+* Chapter 8 - Collections ([Collections](1_CS/Collections/Readme.md))
+* Chapter 9 - Language Integrated Query ([LINQ](1_CS/LINQ/Readme.md)
+* Chapter 10 - Errors and Exceptions ([ErrorsAndExceptions](1_CS/ErrorsAndExceptions/Readme.md))
+* Chapter 11 - Tasks and Asynchronous Programming ([Async]1_CS/Async/Readme.md))
+* Chapter 12 - Reflection, Metadata, and Source Generators ([ReflectionAndSourceGenerators](1_CS/ReflectionAndSourceGenerators/Readme.md))
+* Chapter 13 - Managed and Umanaged Memory ([Memory](1_CS/Memory/Readme.md))
 
 ## Part 2  (The Libraries)
 
@@ -56,12 +56,11 @@ Here's the list of chapters and the folders for the code samples:
 * Chapter 27 - Blazor (Blazor)
 * Chapter 28 - SignalR (SignalR)
 
-## Part 4 (Windows and Mobile)
+## Part 4 (Windows Apps)
 
 * Chapter 29 - Windows Apps (WinUI)
 * Chapter 30 - Patterns with XAML Apps
 * Chapter 31 - Styling Windows Apps (Styling)
-* Chapter 32 - Advanced Windows Apps (AdvancedWindows)
 
 In case you've some issues to compile and run the samples, create an issue in the [Professional C# and .NET (2021) GitHub repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021).
 
