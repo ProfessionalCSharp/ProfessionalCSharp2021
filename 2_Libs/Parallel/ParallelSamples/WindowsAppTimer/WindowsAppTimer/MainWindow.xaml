@@ -12,7 +12,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <CommandBar IsOpen="True">
-            <AppBarButton Icon="Play" Click="{x:Bind OnTimer}" Label="Play" />
+            <AppBarButton Icon="Play" Click="{x:Bind OnStartTimer}" Label="Play" />
             <AppBarButton Icon="Stop" Click="{x:Bind OnStopTimer}" Label="Stop" />
         </CommandBar>
         <Canvas Width="300" Height="300" Grid.Row="1">
