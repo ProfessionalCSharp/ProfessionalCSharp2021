@@ -13,13 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValueTaskSample", "ValueTas
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimersSample", "TimersSample\TimersSample.csproj", "{8B1F79BC-6545-4677-9707-75FCAAFC1B1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinAppTimer", "WinAppTimer\WinAppTimer.csproj", "{E734B5A0-B380-4466-B0D4-CF6FA3DC27FE}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChannelSample", "ChannelSample\ChannelSample.csproj", "{C78FD4CE-A6A8-478E-A62A-CFDA8227E551}"
 EndProject
 Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "WindowsAppTimer (Package)", "WindowsAppTimer\WindowsAppTimer (Package)\WindowsAppTimer (Package).wapproj", "{24786032-8777-48AA-8941-BD60AE4A1D61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsAppTimer", "WindowsAppTimer\WindowsAppTimer\WindowsAppTimer.csproj", "{2A3173D5-02D5-4C0F-BBED-396FB91EEBBC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WindowsAppTimer", "WindowsAppTimer\WindowsAppTimer\WindowsAppTimer.csproj", "{2A3173D5-02D5-4C0F-BBED-396FB91EEBBC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -135,30 +133,6 @@ Global
 		{8B1F79BC-6545-4677-9707-75FCAAFC1B1F}.Release|x64.Build.0 = Release|Any CPU
 		{8B1F79BC-6545-4677-9707-75FCAAFC1B1F}.Release|x86.ActiveCfg = Release|Any CPU
 		{8B1F79BC-6545-4677-9707-75FCAAFC1B1F}.Release|x86.Build.0 = Release|Any CPU
-		{E734B5A0-B380-4466-B0D4-CF6FA3DC27FE}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{E734B5A0-B380-4466-B0D4-CF6FA3DC27FE}.Debug|Any CPU.Build.0 = Debug|x86
-		{E734B5A0-B380-4466-B0D4-CF6FA3DC27FE}.Debug|Any CPU.Deploy.0 = Debug|x86
-		{E734B5A0-B380-4466-B0D4-CF6FA3DC27FE}.Debug|ARM.ActiveCfg = Debug|ARM
-		{E734B5A0-B380-4466-B0D4-CF6FA3DC27FE}.Debug|ARM.Build.0 = Debug|ARM
-		{E734B5A0-B380-4466-B0D4-CF6FA3DC27FE}.Debug|ARM.Deploy.0 = Debug|ARM
-		{E734B5A0-B380-4466-B0D4-CF6FA3DC27FE}.Debug|arm64.ActiveCfg = Debug|x86
-		{E734B5A0-B380-4466-B0D4-CF6FA3DC27FE}.Debug|x64.ActiveCfg = Debug|x64
-		{E734B5A0-B380-4466-B0D4-CF6FA3DC27FE}.Debug|x64.Build.0 = Debug|x64
-		{E734B5A0-B380-4466-B0D4-CF6FA3DC27FE}.Debug|x64.Deploy.0 = Debug|x64
-		{E734B5A0-B380-4466-B0D4-CF6FA3DC27FE}.Debug|x86.ActiveCfg = Debug|x86
-		{E734B5A0-B380-4466-B0D4-CF6FA3DC27FE}.Debug|x86.Build.0 = Debug|x86
-		{E734B5A0-B380-4466-B0D4-CF6FA3DC27FE}.Debug|x86.Deploy.0 = Debug|x86
-		{E734B5A0-B380-4466-B0D4-CF6FA3DC27FE}.Release|Any CPU.ActiveCfg = Release|x86
-		{E734B5A0-B380-4466-B0D4-CF6FA3DC27FE}.Release|ARM.ActiveCfg = Release|ARM
-		{E734B5A0-B380-4466-B0D4-CF6FA3DC27FE}.Release|ARM.Build.0 = Release|ARM
-		{E734B5A0-B380-4466-B0D4-CF6FA3DC27FE}.Release|ARM.Deploy.0 = Release|ARM
-		{E734B5A0-B380-4466-B0D4-CF6FA3DC27FE}.Release|arm64.ActiveCfg = Release|x86
-		{E734B5A0-B380-4466-B0D4-CF6FA3DC27FE}.Release|x64.ActiveCfg = Release|x64
-		{E734B5A0-B380-4466-B0D4-CF6FA3DC27FE}.Release|x64.Build.0 = Release|x64
-		{E734B5A0-B380-4466-B0D4-CF6FA3DC27FE}.Release|x64.Deploy.0 = Release|x64
-		{E734B5A0-B380-4466-B0D4-CF6FA3DC27FE}.Release|x86.ActiveCfg = Release|x86
-		{E734B5A0-B380-4466-B0D4-CF6FA3DC27FE}.Release|x86.Build.0 = Release|x86
-		{E734B5A0-B380-4466-B0D4-CF6FA3DC27FE}.Release|x86.Deploy.0 = Release|x86
 		{C78FD4CE-A6A8-478E-A62A-CFDA8227E551}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C78FD4CE-A6A8-478E-A62A-CFDA8227E551}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C78FD4CE-A6A8-478E-A62A-CFDA8227E551}.Debug|ARM.ActiveCfg = Debug|Any CPU
