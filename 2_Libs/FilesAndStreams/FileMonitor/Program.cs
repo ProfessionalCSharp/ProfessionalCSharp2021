@@ -14,7 +14,6 @@ Console.WriteLine("Press enter to stop watching");
 Console.ReadLine();
 UnWatchFiles();
 
-
 void WatchFiles(string path, string filter)
 {
     _watcher = new(path, filter)

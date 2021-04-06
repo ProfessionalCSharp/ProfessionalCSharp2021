@@ -86,6 +86,10 @@ void CreateFile(string file)
     {
         Console.WriteLine("Invalid characters in the filename?");
     }
+    catch (IOException ex)
+    {
+        Console.WriteLine(ex.Message);
+    }
 }
 
 void ShowSpecialFolders()
@@ -101,22 +105,20 @@ void ShowSpecialFolders()
 
 void FileInformation(string file)
 {
-    try
+    FileInfo fileInfo = new(file);
+    if (!fileInfo.Exists)
     {
-        FileInfo fileInfo = new(file);
-        Console.WriteLine($"Name: {fileInfo.Name}");
-        Console.WriteLine($"Directory: {fileInfo.DirectoryName}");
-        Console.WriteLine($"Read only: {fileInfo.IsReadOnly}");
-        Console.WriteLine($"Extension: {fileInfo.Extension}");
-        Console.WriteLine($"Length: {fileInfo.Length}");
-        Console.WriteLine($"Creation time: {fileInfo.CreationTime:F}");
-        Console.WriteLine($"Access time: {fileInfo.LastAccessTime:F}");
-        Console.WriteLine($"File attributes: {fileInfo.Attributes}");
+        Console.WriteLine("File not found");
+        return;
     }
-    catch (FileNotFoundException)
-    {
-        Console.WriteLine("file not found");
-    }
+    Console.WriteLine($"Name: {fileInfo.Name}");
+    Console.WriteLine($"Directory: {fileInfo.DirectoryName}");
+    Console.WriteLine($"Read only: {fileInfo.IsReadOnly}");
+    Console.WriteLine($"Extension: {fileInfo.Extension}");
+    Console.WriteLine($"Length: {fileInfo.Length}");
+    Console.WriteLine($"Creation time: {fileInfo.CreationTime:F}");
+    Console.WriteLine($"Access time: {fileInfo.LastAccessTime:F}");
+    Console.WriteLine($"File attributes: {fileInfo.Attributes}");
 }
 
 void ChangeFileProperties(string file)
