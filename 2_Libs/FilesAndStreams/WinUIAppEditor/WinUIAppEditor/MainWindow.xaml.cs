@@ -93,15 +93,13 @@ namespace WinUIAppEditor
                 {
                     IRandomAccessStreamWithContentType wrtStream = await file.OpenReadAsync();
                     Stream stream = wrtStream.AsStreamForRead();
-                    using (var reader = new StreamReader(stream))
-                    {
-                        text1.Text = await reader.ReadToEndAsync();
-                    }
+                    StreamReader reader = new(stream);
+                    text1.Text = await reader.ReadToEndAsync();
                 }
             }
             catch (Exception ex)
             {
-                var dlg = new MessageDialog(ex.Message, "Error");
+                MessageDialog dlg = new(ex.Message, "Error");
                 await dlg.ShowAsync();
             }
         }
