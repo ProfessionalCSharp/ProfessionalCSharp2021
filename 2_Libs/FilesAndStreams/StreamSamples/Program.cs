@@ -136,9 +136,10 @@ Encoding GetEncoding(Stream stream)
 
 void WriteTextFile()
 {
-    string tempTextFileName = Path.ChangeExtension(Path.GetTempFileName(), "txt");
+    string tempFileName = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+    string tempTextFileName = Path.ChangeExtension(tempFileName, "txt");
     using FileStream stream = File.OpenWrite(tempTextFileName);
-
+   
     //// write BOM
     //stream.WriteByte(0xef);
     //stream.WriteByte(0xbb);
