@@ -4,11 +4,11 @@ using System.Text;
 
 ReadFileUsingReader("./Program.cs");
 Console.WriteLine();
-string textFile = Path.ChangeExtension(Path.GetTempFileName(), "txt");
+string textFile = Path.ChangeExtension(Path.Combine(Path.GetTempPath(), Path.GetRandomFileName()), "txt");
 WriteFileUsingWriter(textFile, new string[] { "one", "two" });
 Console.WriteLine($"Written temp file {textFile}");
 
-string binFile = Path.ChangeExtension(Path.GetTempFileName(), "bin");
+string binFile = Path.ChangeExtension(Path.Combine(Path.GetTempPath(), Path.GetRandomFileName()), "bin");
 Console.WriteLine($"writing to {binFile}");
 WriteFileUsingBinaryWriter(binFile);
 Console.WriteLine($"written to {binFile}");
@@ -17,11 +17,14 @@ ReadFileUsingBinaryReader(binFile);
 void WriteFileUsingWriter(string fileName, string[] lines)
 {
     var outputStream = File.OpenWrite(fileName);
-    using StreamWriter writer = new(outputStream);
-
+    using StreamWriter writer = new(outputStream, Encoding.UTF8);
+    
     var preamble = Encoding.UTF8.GetPreamble().AsSpan();
     outputStream.Write(preamble);
-    writer.Write(lines);
+    foreach (var line in lines)
+    {
+        writer.WriteLine(line);
+    }
 }
 
 void WriteFileUsingBinaryWriter(string binFile)
