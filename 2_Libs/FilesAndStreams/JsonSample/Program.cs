@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.Json;
 
 Category appetizers = new("Appetizers");
-appetizers.Items.Add(new Item("Dungeon Crab Cocktail", "Classic cocktail sauce", 27M));
+appetizers.Items.Add(new Item("Dungeness Crab Cocktail", "Classic cocktail sauce", 27M));
 appetizers.Items.Add(new Item("Almond Crusted Scallops", "Almonds, Parmesan, chive beurre blanc", 19M));
 
 Category dinner = new("Dinner");
@@ -68,7 +68,8 @@ void UseDom(string json)
     Console.WriteLine(nameof(UseDom));
 
     using JsonDocument document = JsonDocument.Parse(json);
-    JsonElement element = document.RootElement.GetProperty("title");
+    JsonElement titleElement = document.RootElement.GetProperty("title");
+    Console.WriteLine(titleElement);
     foreach (JsonElement category in document.RootElement.GetProperty("categories").EnumerateArray())
     {
         foreach (JsonElement item in category.GetProperty("items").EnumerateArray())
