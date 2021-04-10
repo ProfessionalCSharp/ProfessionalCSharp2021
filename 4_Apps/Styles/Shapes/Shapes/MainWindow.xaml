@@ -12,7 +12,7 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" Click="OnChangeShape">Change</Button>
+        <Button Grid.Row="0" Click="{x:Bind OnChangeShape}">Change</Button>
         <Canvas Grid.Row="1">
             <Ellipse Canvas.Left="10" Canvas.Top="10" Width="100" Height="100" 
            Stroke="Blue" StrokeThickness="4" Fill="Yellow" />

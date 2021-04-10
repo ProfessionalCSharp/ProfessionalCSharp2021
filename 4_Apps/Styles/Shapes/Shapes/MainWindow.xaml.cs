@@ -28,19 +28,12 @@ namespace Shapes
             this.InitializeComponent();
         }
 
-        private void OnChangeShape(object sender, RoutedEventArgs e)
-        {
-            SetMouth();
-        }
+        private void OnChangeShape() => SetMouth();
 
         private readonly Point[,] _mouthPoints = new Point[2, 3]
         {
-            {
-                new(40, 74), new(57, 95), new(80, 74),
-            },
-            {
-                new(40, 82), new(57, 65), new(80, 82),
-            }
+            { new(40, 74), new(57, 95), new(80, 74) },
+            { new(40, 82), new(57, 65), new(80, 82) }
         };
 
         private bool _laugh = false;
@@ -50,14 +43,14 @@ namespace Shapes
 
             PathFigure figure = new() { StartPoint = _mouthPoints[index, 0] };
             figure.Segments = new PathSegmentCollection();
-            var segment1 = new QuadraticBezierSegment
+            QuadraticBezierSegment segment1 = new()
             {
                 Point1 = _mouthPoints[index, 1],
                 Point2 = _mouthPoints[index, 2]
             };
 
             figure.Segments.Add(segment1);
-            var geometry = new PathGeometry();
+            PathGeometry geometry = new();
             geometry.Figures = new PathFigureCollection();
             geometry.Figures.Add(figure);
 
