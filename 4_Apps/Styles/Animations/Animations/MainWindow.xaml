@@ -1,0 +1,24 @@
+﻿<Window
+    x:Class="Animations.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Animations"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <TabView IsAddTabButtonVisible="False">
+        <TabView.TabItems>
+            <TabViewItem Header="Simple Animation" IsClosable="False">
+                <local:SimpleAnimationControl />
+            </TabViewItem>
+            <TabViewItem Header="Easing Functions" IsClosable="False">
+                <local:EasingFunctionsControl />
+            </TabViewItem>
+            <TabViewItem Header="Keyframe" IsClosable="False">
+                <local:KeyframeAnimationControl />
+            </TabViewItem>
+        </TabView.TabItems>
+    </TabView>
+
+
+</Window>
