@@ -1,11 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HttpServerSample
 {
@@ -18,10 +15,10 @@ namespace HttpServerSample
         }
 
         private static string s_htmlFormat =
-            "<!DOCTYPE html><html><head><title>{0}</title></head>" +
+            "<!DOCTYPE html>\r\n<html><head><title>{0}</title></head>" +
             "<body>{1}</body></html>";
 
-        public byte[] GetHtmlContent(HttpRequest request)
+        public string GetHtmlContent(HttpRequest request)
         {
             string title = "Sample Listener using Kestrel";
 
@@ -31,8 +28,7 @@ namespace HttpServerSample
                 $"<h2>Request Object Information</h2>" +
                 $"{string.Join(' ', GetRequestInfo(request))}";
 
-            string html = string.Format(s_htmlFormat, title, content);
-            return Encoding.UTF8.GetBytes(html);
+            return string.Format(s_htmlFormat, title, content);
         }
 
         private IEnumerable<string> GetRequestInfo(HttpRequest request)
@@ -51,10 +47,10 @@ namespace HttpServerSample
                 }
                 catch (TargetInvocationException ex)
                 {
-                    _logger.LogInformation("{0}: {1}", property.Name, ex.Message);
+                    _logger.LogInformation("property name: {0}: message {1}", property.Name, ex.Message);
                     if (ex.InnerException != null)
                     {
-                        _logger.LogInformation("\t{0}", ex.InnerException.Message);
+                        _logger.LogInformation("\tinner exception: {0}", ex.InnerException.Message);
                     }
                 }
             }

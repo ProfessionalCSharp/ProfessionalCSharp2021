@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
+using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -41,8 +43,9 @@ namespace HttpServerSample
                 });
                 endpoints.MapGet("/", async context =>
                 {
-                    byte[] content = generateHtml.GetHtmlContent(context.Request);
-                    await context.Response.WriteAsync(Encoding.UTF8.GetString(content));
+                    string content = generateHtml.GetHtmlContent(context.Request);
+                    context.Response.ContentType = "text/html";
+                    await context.Response.WriteAsync(content);
                 });
             });
         }

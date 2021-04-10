@@ -21,7 +21,7 @@ CommandLineBuilder BuildCommandLine()
         }
     };
     uriCommand.Handler = CommandHandler.Create<string>(UriSample);
-    Command ipCommand = new Command("ip", "Show the part of the IP address, e.g. ipaddress 234.56.78.9")
+    Command ipCommand = new("ip", "Show the part of the IP address, e.g. ipaddress 234.56.78.9")
     {
         new Option<string>("--ip")
         {
