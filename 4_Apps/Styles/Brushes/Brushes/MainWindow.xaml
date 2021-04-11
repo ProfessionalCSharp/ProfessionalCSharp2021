@@ -14,54 +14,80 @@
                 <Setter Property="Height" Value="160" />
                 <Setter Property="Margin" Value="12" />
             </Style>
-            <ImageBrush x:Key="BackgroundBrush" ImageSource="msbuild.png" Opacity="0.5" />
+            <Style TargetType="Rectangle">
+                <Setter Property="Width" Value="300" />
+                <Setter Property="Height" Value="200" />
+                <Setter Property="Margin" Value="12" />
+            </Style>
+            <Style TargetType="Ellipse">
+                <Setter Property="Width" Value="300" />
+                <Setter Property="Height" Value="100" />
+                <Setter Property="Margin" Value="12" />
+            </Style>
+            <Style TargetType="TextBlock">
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Margin" Value="12" />
+            </Style>
         </Grid.Resources>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal">
-            <Slider x:Name="slider1" Value="1" Minimum="0.1" Maximum="1" StepFrequency="0.1" Width="200" />
-        </StackPanel>
-        <Rectangle Fill="Orange" Width="300" Height="300" Grid.RowSpan="2" Margin="100"></Rectangle>
-        <VariableSizedWrapGrid Grid.Row="1">
-            <Button Background="#FFC9659C">Solid Color
-            </Button>
-            <Button Content="Solid Color 2">
-                <Button.Background>
-                    <SolidColorBrush Color="#FFC9659C" />
-                </Button.Background>
-            </Button>
-            <Button Content="Linear Gradient Brush">
-                <Button.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Offset="0" Color="LightGreen" />
-                        <GradientStop Offset="0.4" Color="Green" />
-                        <GradientStop Offset="1" Color="DarkGreen" />
-                    </LinearGradientBrush>
-                </Button.Background>
-            </Button>
-            <Button Content="Image Brush" FontWeight="ExtraBold" FontSize="28" RenderTransformOrigin="0.5,0.5">
-                <Button.Background>
-                    <ImageBrush ImageSource="msbuild.png" Opacity="0.5">
-                    </ImageBrush>
-                </Button.Background>
-            </Button>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Rectangle Fill="#FFC9659C" Grid.Row="0" Grid.Column="0" />
+        <TextBlock Text="Solid Color"  Grid.Row="0" Grid.Column="0" />
 
-            <Button Content="Acrylic Brush Host Backdrop">
-                <Button.Background>
-                    <AcrylicBrush BackgroundSource="HostBackdrop" TintColor="#FFFF0000"  TintOpacity="{x:Bind slider1.Value, Mode=OneWay}" FallbackColor="Orange" />
-                </Button.Background>
-            </Button>
-            <Button Content="Acrylic Brush Backdrop">
-                <Button.Background>
-                    <AcrylicBrush BackgroundSource="Backdrop" TintColor="#FFFF0000" TintOpacity="{x:Bind slider1.Value, Mode=OneWay}" FallbackColor="Orange" />
-                </Button.Background>
-            </Button>
+        <Ellipse Grid.Row="1" Grid.Column="0">
+            <Ellipse.Fill>
+                <SolidColorBrush Color="#FFC9659C" />
+            </Ellipse.Fill>
+        </Ellipse>
+        <TextBlock Text="Solid Color with Child" Grid.Row="1" Grid.Column="0" />
 
-            <Button Content="Button with Reveal Style" Style="{StaticResource ButtonRevealStyle}" />
-            <Button Margin="4" BorderThickness="8" Background="{ThemeResource SystemControlHighlightAccentRevealBackgroundBrush}" BorderBrush="{ThemeResource SystemControlHighlightAccentRevealBorderBrush}">With Reveal Border</Button>
+        <Rectangle Grid.Row="2" Grid.Column="0">
+            <Rectangle.Fill>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Offset="0" Color="LightGreen" />
+                    <GradientStop Offset="0.4" Color="Green" />
+                    <GradientStop Offset="1" Color="DarkGreen" />
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <TextBlock Text="Linear Gradient Brush" Grid.Row="2" Grid.Column="0" />
 
-        </VariableSizedWrapGrid>
+        <Ellipse Grid.Row="3" Grid.Column="0">
+            <Ellipse.Fill>
+                <RadialGradientBrush>
+                    <GradientStop Offset="0" Color="LightGreen" />
+                    <GradientStop Offset="0.4" Color="Green" />
+                    <GradientStop Offset="1" Color="DarkGreen" />
+                </RadialGradientBrush>
+            </Ellipse.Fill>
+        </Ellipse>
+        <TextBlock Text="Radial Gradient Brush" Grid.Row="3" Grid.Column="0" />
+
+        <Ellipse Grid.Row="0" Grid.Column="1">
+            <Ellipse.Fill>
+                <ImageBrush ImageSource="msbuild.jpg" Opacity="0.5" />
+            </Ellipse.Fill>
+        </Ellipse>
+        <TextBlock Text="Image Brush" Grid.Row="0" Grid.Column="1" />
+
+        <Slider Header="Acrylic Brush Opacity" x:Name="acrylicOpacitySlider" Value="1" Minimum="0.1" Maximum="1" StepFrequency="0.1" Width="200" Margin="8" Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" />
+
+        <Rectangle Fill="Blue" Height="180" Width="200" Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" HorizontalAlignment="Right" />
+        <Ellipse Grid.Row="3" Grid.Column="1">
+            <Ellipse.Fill>
+                <AcrylicBrush BackgroundSource="Backdrop" TintColor="#FFFF0000" TintOpacity="{x:Bind acrylicOpacitySlider.Value, Mode=OneWay}" FallbackColor="Orange" />
+            </Ellipse.Fill>
+        </Ellipse>
+        <TextBlock Text="Acrylic Brush" Grid.Row="0" Grid.Column="1" />
+
     </Grid>
 </Window>
