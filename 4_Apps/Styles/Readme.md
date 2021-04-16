@@ -16,6 +16,8 @@ See [WinUI](../../WinUI.md) for information what's needed to install and run Win
  
 [SimpleAnimation](simpleanimation.gif)
 
+[EasingAnimation](easinganimation.gif)
+
 For code comments and issues please check [Professional C#'s GitHub Repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp7)
 
 Please check my blog [csharp.christiannagel.com](https://csharp.christiannagel.com "csharp.christiannagel.com") for additional information for topics covered in the book.
