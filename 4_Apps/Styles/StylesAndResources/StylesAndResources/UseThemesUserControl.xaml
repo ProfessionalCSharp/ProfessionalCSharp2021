@@ -25,7 +25,6 @@
             </ResourceDictionary.ThemeDictionaries>
         </ResourceDictionary>
 
-
     </UserControl.Resources>
 
     <Grid x:Name="grid1" RequestedTheme="Dark">
