@@ -13,6 +13,7 @@ The sample applications use WinUI 3 for desktop apps:
 
 [Get started with WinUI 3 for desktop apps](https://docs.microsoft.com/en-us/windows/apps/winui/winui3/get-started-winui3-for-desktop)
 
+> With WinUI projects, currently graphical design of templates is not yet available with Visual Studio and Blend for Visual Studio. However, you can create an UWP project, and copy the generated XAML code to the WinUI project.
 
 ## Windows 10 Developer Mode
 
