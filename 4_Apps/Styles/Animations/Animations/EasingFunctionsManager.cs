@@ -22,6 +22,5 @@ namespace Animations
 
         public IEnumerable<EasingFunctionModel> EasingFunctionModels =>
             s_easingFunctions.Select(f => new EasingFunctionModel(f));
-
     }
 }

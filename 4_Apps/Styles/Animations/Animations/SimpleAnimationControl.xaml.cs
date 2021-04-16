@@ -24,5 +24,6 @@ namespace Animations
         {
             this.InitializeComponent();
         }
+
     }
 }
