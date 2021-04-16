@@ -17,12 +17,12 @@ namespace VisualStates
 
         private void OnEnable(object sender, RoutedEventArgs e)
         {
-            VisualStateManager.GoToState(page1, "Enabled", useTransitions: true);
+            VisualStateManager.GoToState(page1, "Enabled", useTransitions: false);
         }
 
         private void OnDisable(object sender, RoutedEventArgs e)
         {
-            VisualStateManager.GoToState(page1, "Disabled", useTransitions: true);
+            VisualStateManager.GoToState(page1, "Disabled", useTransitions: false);
         }
     }
 }

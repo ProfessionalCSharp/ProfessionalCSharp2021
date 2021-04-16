@@ -9,7 +9,6 @@
 
     <Page x:Name="page1">
         <Grid>
-
             <VisualStateManager.VisualStateGroups>
                 <VisualStateGroup x:Name="CustomStates">
                     <VisualState x:Name="Enabled"/>
