@@ -1,6 +1,4 @@
-﻿using BooksApp.ViewModels;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Toolkit.Mvvm.DependencyInjection;
+﻿using BooksLib.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -19,20 +17,22 @@ using Windows.Foundation.Collections;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
-namespace BooksApp
+namespace BooksApp.Views
 {
-    /// <summary>
-    /// An empty window that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class MainWindow : Window
+    public sealed partial class BookDetailUserControl : UserControl
     {
-        public MainWindow()
+        public BookDetailUserControl()
         {
             this.InitializeComponent();
-            ViewModel = Ioc.Default.GetRequiredService<MainWindowViewModel>();
-            ViewModel.SetNavigationFrame(MainFrame);
         }
 
-        public MainWindowViewModel ViewModel { get; }
+        public BookDetailViewModel ViewModel
+        {
+            get => (BookDetailViewModel)GetValue(ViewModelProperty);
+            set => SetValue(ViewModelProperty, value);
+        }
+
+        public static readonly DependencyProperty ViewModelProperty =
+            DependencyProperty.Register("ViewModel", typeof(BookDetailViewModel), typeof(BookDetailUserControl), new PropertyMetadata(null));
     }
 }

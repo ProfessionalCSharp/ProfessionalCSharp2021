@@ -15,6 +15,6 @@ namespace GenericViewModels.Services
         ObservableCollection<T> Items { get; }
 
         T? SelectedItem { get; set; }
-        event EventHandler<T> SelectedItemChanged;
+        event EventHandler<T>? SelectedItemChanged;
     }
 }

@@ -46,6 +46,8 @@ namespace BooksLib.ViewModels
         {
             try
             {
+                if (EditItem is null) return;
+
                 await _itemsService.AddOrUpdateAsync(EditItem);
             }
             catch (Exception ex)
@@ -61,6 +63,6 @@ namespace BooksLib.ViewModels
             {
                 await _navigationService.GoBackAsync();
             }
-        }  
+        }
     }
 }

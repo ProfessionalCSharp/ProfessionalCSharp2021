@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 namespace BooksLib.Services
 {
     public class BooksService : ObservableObject, IItemsService<Book>
-    {     
+    {
         private ObservableCollection<Book> _books = new ObservableCollection<Book>();
         private readonly IBooksRepository _booksRepository;
 
-        public event EventHandler<Book> SelectedItemChanged;
+        public event EventHandler<Book>? SelectedItemChanged;
 
         public BooksService(IBooksRepository repository)
         {
@@ -23,13 +23,13 @@ namespace BooksLib.Services
 
         public ObservableCollection<Book> Items => _books;
 
-        private Book _selectedItem;
-        public Book SelectedItem
+        private Book? _selectedItem;
+        public Book? SelectedItem
         {
             get => _selectedItem;
             set
             {
-                if (SetProperty(ref _selectedItem, value))
+                if (value is not null && SetProperty(ref _selectedItem, value) && _selectedItem is not null)
                 {
                     SelectedItemChanged?.Invoke(this, _selectedItem);
                 }
@@ -38,16 +38,14 @@ namespace BooksLib.Services
 
         public async Task<Book> AddOrUpdateAsync(Book book)
         {
-            Book updated = null;
             if (book.BookId == 0)
             {
-                updated = await _booksRepository.AddAsync(book);
+                return await _booksRepository.AddAsync(book);
             }
             else
             {
-                updated = await _booksRepository.UpdateAsync(book);
+                return await _booksRepository.UpdateAsync(book);
             }
-            return updated;
         }
 
         public Task DeleteAsync(Book book) =>

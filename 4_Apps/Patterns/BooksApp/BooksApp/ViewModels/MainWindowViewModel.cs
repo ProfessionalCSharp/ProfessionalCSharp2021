@@ -1,4 +1,5 @@
-﻿using BooksApp.Views;
+﻿using BooksApp.Services;
+using BooksApp.Views;
 using BooksLib.Services;
 using GenericViewModels.Services;
 using GenericViewModels.ViewModels;
@@ -20,14 +21,14 @@ namespace BooksApp.ViewModels
         };
 
         private readonly INavigationService _navigationService;
-        // private readonly UWPInitializeNavigationService _initializeNavigationService;
-        public MainWindowViewModel(INavigationService navigationService)
+        private readonly WinUIInitializeNavigationService _initializeNavigationService;
+        public MainWindowViewModel(INavigationService navigationService, WinUIInitializeNavigationService initializeNavigationService)
         {
-            _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
-           //  _initializeNavigationService = initializeNavigationService ?? throw new ArgumentNullException(nameof(initializeNavigationService));
+            _navigationService = navigationService;
+            _initializeNavigationService = initializeNavigationService;
         }
 
-       // public void SetNavigationFrame(Frame frame) => _initializeNavigationService.Initialize(frame, _pages);
+        public void SetNavigationFrame(Frame frame) => _initializeNavigationService.Initialize(frame, _pages);
 
         public void UseNavigation(bool navigation)
         {

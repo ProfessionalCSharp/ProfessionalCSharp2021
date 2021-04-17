@@ -7,5 +7,27 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+    <Grid>
+        <NavigationView IsBackButtonVisible="Collapsed" SelectionChanged="{x:Bind ViewModel.OnNavigationSelectionChanged, Mode=OneTime}">
+            <NavigationView.MenuItems>
+                <NavigationViewItem Content="Books" Tag="books">
+                    <NavigationViewItem.Icon>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE82D;" />
+                    </NavigationViewItem.Icon>
+
+                </NavigationViewItem>
+            </NavigationView.MenuItems>
+            <Frame x:Name="MainFrame">
+
+                <Frame.ContentTransitions>
+                    <TransitionCollection>
+                        <NavigationThemeTransition />
+                    </TransitionCollection>
+                </Frame.ContentTransitions>
+
+            </Frame>
+        </NavigationView>
+    </Grid>
+
 
 </Window>

@@ -9,6 +9,6 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-
+        <local:BookDetailUserControl ViewModel="{x:Bind ViewModel, Mode=OneTime}" />
     </Grid>
 </Page>

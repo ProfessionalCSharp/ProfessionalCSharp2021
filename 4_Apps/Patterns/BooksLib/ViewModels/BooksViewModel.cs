@@ -3,7 +3,6 @@ using BooksLib.Services;
 using GenericViewModels.Services;
 using GenericViewModels.ViewModels;
 using System;
-using System.Diagnostics;
 
 namespace BooksLib.ViewModels
 {
@@ -29,7 +28,7 @@ namespace BooksLib.ViewModels
 
         public override void OnAdd()
         {
-            var newBook = new Book();
+            Book newBook = new();
             Items.Add(newBook);
             SelectedItem = newBook;
         }

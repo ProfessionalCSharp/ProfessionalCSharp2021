@@ -1,26 +1,50 @@
 ﻿using GenericViewModels.Services;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BooksApp.Services
 {
     public class WinUINavigationService : INavigationService
     {
-        public bool UseNavigation { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        private readonly WinUIInitializeNavigationService _initializeNavigation;
 
-        public string CurrentPage => throw new NotImplementedException();
+        public WinUINavigationService(WinUIInitializeNavigationService initializeNavigationService)
+        {
+            _initializeNavigation = initializeNavigationService;
+        }
+
+
+        public bool UseNavigation { get; set; }
+
+        private string _currentPage = string.Empty;
+        public string CurrentPage => _currentPage;
+
+        private Frame? _frame;
+        private Frame Frame => _frame ??= _initializeNavigation.Frame;
+
+        private Dictionary<string, Type>? _pages;
+        private Dictionary<string, Type> Pages => _pages ?? (_pages = _initializeNavigation.Pages);
 
         public Task GoBackAsync()
         {
-            throw new NotImplementedException();
+            PageStackEntry stackEntry = Frame.BackStack.Last();
+            Type backPageType = stackEntry.SourcePageType;
+            var pageEntry = Pages.FirstOrDefault(pair => pair.Value == backPageType);
+            _currentPage = pageEntry.Key;
+
+            Frame.GoBack();
+            return Task.CompletedTask;
         }
 
-        public Task NavigateToAsync(string page)
+        public Task NavigateToAsync(string pageName)
         {
-            throw new NotImplementedException();
+            _currentPage = pageName;
+            Frame.Navigate(Pages[pageName]);
+            return Task.CompletedTask;
         }
     }
 }

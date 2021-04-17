@@ -11,6 +11,8 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Views\BookDetailPage.xaml" />
+    <None Remove="Views\BookDetailUserControl.xaml" />
+    <None Remove="Views\BookItemUserControl.xaml" />
     <None Remove="Views\BooksPage.xaml" />
   </ItemGroup>
 
@@ -31,6 +33,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Update="Views\BookDetailUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Views\BookItemUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
     <Page Update="Views\BookDetailPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -40,5 +54,9 @@
     <Page Update="Views\BooksPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Styles\" />
   </ItemGroup>
 </Project>

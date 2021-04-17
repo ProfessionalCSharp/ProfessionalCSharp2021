@@ -19,7 +19,7 @@ namespace GenericViewModels.ViewModels
 
             _itemsService.Items.CollectionChanged += (sender, e) =>
             {
-                base.OnPropertyChanged(nameof(ItemsViewModels));
+                OnPropertyChanged(nameof(ItemsViewModels));
             };
 
             RefreshCommand = new RelayCommand(OnRefresh);

@@ -8,8 +8,8 @@ namespace BooksLib.Models
         public Book(string? title = null, string? publisher = null, int id = 0)
         {
             BookId = id;
-            Title = title ?? string.Empty;
-            Publisher = publisher ?? string.Empty;
+            _title = title ?? string.Empty;
+            _publisher = publisher ?? string.Empty;
         }
         public int BookId { get; set; }
         private string _title;

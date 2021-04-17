@@ -12,8 +12,8 @@ namespace BooksLib.ViewModels
         private readonly IItemsService<Book> _booksService;
 
         public BookItemViewModel(Book book, IItemsService<Book> booksService)
+            : base(book)
         {
-            Item = book;
             _booksService = booksService ?? throw new ArgumentNullException(nameof(booksService));
             DeleteBookCommand = new RelayCommand(OnDeleteBook);
         }

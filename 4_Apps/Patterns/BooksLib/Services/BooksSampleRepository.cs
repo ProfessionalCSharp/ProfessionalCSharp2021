@@ -8,14 +8,11 @@ namespace BooksLib.Services
     public class BooksSampleRepository : IBooksRepository
     {
         private List<Book> _books;
-        public BooksSampleRepository()
-        {
-            InitSampleBooks();
-        }
+        public BooksSampleRepository() =>
+            _books = GetSampleBooks();
 
-        private void InitSampleBooks()
-        {
-            _books = new List<Book>()
+        private List<Book> GetSampleBooks() =>
+            new()
             {
                 new("Professional C# and .NET - 2021 Edition", "Wrox Press", 1),
                 new("Professional C# 7 and .NET Core 2", "Wrox Press", 2),
@@ -23,19 +20,18 @@ namespace BooksLib.Services
                 new("Professional C# 5.0 and .NET 4.5.1", "Wrox Press", 4),
                 new("Enterprise Services with the .NET Framework", "AWL", 5)
             };
-        }
 
         public Task<bool> DeleteAsync(int id)
         {
-            Book bookToDelete = _books.Find(b => b.BookId == id);
-            if (bookToDelete != null)
+            Book? bookToDelete = _books.Find(b => b.BookId == id);
+            if (bookToDelete is not null)
             {
                 return Task.FromResult(_books.Remove(bookToDelete));
             }
             return Task.FromResult(false);
         }
 
-        public Task<Book> GetItemAsync(int id) =>
+        public Task<Book?> GetItemAsync(int id) =>
             Task.FromResult(_books.Find(b => b.BookId == id));
 
         public Task<IEnumerable<Book>> GetItemsAsync() => 
@@ -43,7 +39,7 @@ namespace BooksLib.Services
 
         public Task<Book> UpdateAsync(Book item)
         {
-            Book bookToUpdate = _books.Find(b => b.BookId == item.BookId);
+            Book bookToUpdate = _books.Single(b => b.BookId == item.BookId);
             int ix = _books.IndexOf(bookToUpdate);
             _books[ix] = item;
             return Task.FromResult(_books[ix]);

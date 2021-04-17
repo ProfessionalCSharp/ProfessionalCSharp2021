@@ -12,7 +12,7 @@ namespace GenericViewModels.ViewModels
         private readonly IItemsService<TItem> _itemsService;
 
         public EditableItemViewModel(IItemsService<TItem> itemsService)
-            : base(itemsService.SelectedItem ?? throw new InvalidOperationException("EditableItemViewModel: SelectedItem is null"))
+            : base(itemsService.SelectedItem)
         {
             _itemsService = itemsService;
 
@@ -98,14 +98,12 @@ namespace GenericViewModels.ViewModels
 
         public async virtual void EndEdit()
         {
-            using (StartInProgress())
-            {
-                await OnSaveAsync();
-                EditItem = default(TItem);
-                IsEditMode = false;
-                await _itemsService.RefreshAsync();
-                await OnEndEditAsync();
-            }
+            using var _ = StartInProgress();
+            await OnSaveAsync();
+            EditItem = default(TItem);
+            IsEditMode = false;
+            await _itemsService.RefreshAsync();
+            await OnEndEditAsync();
         }
         #endregion
     }
