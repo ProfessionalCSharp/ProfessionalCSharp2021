@@ -31,7 +31,7 @@ namespace GenericViewModels.ViewModels
 
         public ObservableCollection<TItem> Items => _itemsService.Items;
 
-        protected abstract TItemViewModel ToViewModel(TItem? item);
+        protected abstract TItemViewModel ToViewModel(TItem item);
 
         public virtual IEnumerable<TItemViewModel> ItemsViewModels => Items.Select(item => ToViewModel(item));
 
@@ -52,10 +52,16 @@ namespace GenericViewModels.ViewModels
         protected TItemViewModel? _selectedItemViewModel;
         public virtual TItemViewModel? SelectedItemViewModel
         {
-            get => ToViewModel(_itemsService.SelectedItem);
+            get
+            {
+                var selectedItem = _itemsService.SelectedItem;
+                if (selectedItem is null) return default(TItemViewModel);
+                return ToViewModel(selectedItem);
+            }
+
             set
             {
-                if (!EqualityComparer<TItem>.Default.Equals(SelectedItem, value?.Item)) 
+                if (!EqualityComparer<TItem>.Default.Equals(SelectedItem, value?.Item))
                 {
                     SelectedItem = value?.Item;
                     OnPropertyChanged();

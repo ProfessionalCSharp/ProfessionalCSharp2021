@@ -12,9 +12,9 @@ namespace GenericViewModels.ViewModels
         private readonly IItemsService<TItem> _itemsService;
 
         public EditableItemViewModel(IItemsService<TItem> itemsService)
+            : base(itemsService.SelectedItem ?? throw new InvalidOperationException("EditableItemViewModel: SelectedItem is null"))
         {
             _itemsService = itemsService;
-            Item = _itemsService.SelectedItem;
 
             PropertyChanged += (sender, e) =>
             {
