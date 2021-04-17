@@ -12,8 +12,10 @@ The sample code for this chapter contains this solution:
 * Transitions (EntranceThemeTransition, RepositionThemeTransition..)
 * VisualStates (VisualStateManager)
 
-See [WinUI](../../WinUI.md) for information what's needed to install and run WinUI applications.
- 
+See [WinUI](../../WinUI.md)  what you need to install and develop WinUI applications.
+
+See the gif files for the sample animations:
+
 [SimpleAnimation](simpleanimation.gif)
 
 [EasingAnimation](easinganimation.gif)
