@@ -7,7 +7,11 @@ Requirements:
 
 [Install Project Reunion 0.5 (March 2021)](https://docs.microsoft.com/windows/apps/project-reunion/)
 
+[Get Started with Project Reunion](https://docs.microsoft.com/en-us/windows/apps/project-reunion/get-started-with-project-reunion)
+
 [Set up your development environment](https://docs.microsoft.com/en-us/windows/apps/project-reunion/get-started-with-project-reunion#set-up-your-development-environment)
+
+[Upgrade projects to Project Reunion 0.5.5 (April 2021)](https://docs.microsoft.com/en-us/windows/apps/project-reunion/update-existing-projects-to-the-latest-release)
 
 The sample applications use WinUI 3 for desktop apps:
 
