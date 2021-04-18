@@ -29,6 +29,10 @@ namespace BooksLib.ViewModels
             };
         }
 
+        protected override void OnAdd()
+        {
+        }
+
         public override Book CreateCopy(Book? item)
         {
             int id = item?.BookId ?? -1;
@@ -37,16 +41,11 @@ namespace BooksLib.ViewModels
             return new Book(title, publisher, id);
         }
 
-        protected override void OnAdd()
-        {
-
-        }
-
         public override async Task OnSaveAsync()
         {
             try
             {
-                if (EditItem is null) return;
+                if (EditItem is null) throw new InvalidOperationException();
 
                 await _itemsService.AddOrUpdateAsync(EditItem);
             }

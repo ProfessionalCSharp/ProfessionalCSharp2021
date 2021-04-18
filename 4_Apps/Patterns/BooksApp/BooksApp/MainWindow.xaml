@@ -17,7 +17,7 @@
 
                 </NavigationViewItem>
             </NavigationView.MenuItems>
-            <Frame x:Name="MainFrame">
+            <Frame x:Name="MainFrame" Margin="16">
 
                 <Frame.ContentTransitions>
                     <TransitionCollection>

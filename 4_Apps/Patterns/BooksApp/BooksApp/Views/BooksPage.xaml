@@ -32,8 +32,8 @@
             <AppBarButton Icon="Add" Command="{x:Bind ViewModel.AddCommand}" Label="Add Book" IsCompact="True" />
         </StackPanel>
         <ListView ItemTemplate="{StaticResource BookItemTemplate}" Grid.Row="2" ItemsSource="{x:Bind ViewModel.ItemsViewModels, Mode=OneWay}" 
-                 SelectedItem="{x:Bind ViewModel.SelectedItemViewModel, Mode=TwoWay}" >
-        </ListView>
+                 SelectedItem="{x:Bind ViewModel.SelectedItemViewModel, Mode=TwoWay}" />
+
         <local:BookDetailUserControl x:Name="BookDetailUC" Visibility="Collapsed" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" />
 
         <VisualStateManager.VisualStateGroups>

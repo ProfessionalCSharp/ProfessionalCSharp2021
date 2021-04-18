@@ -16,7 +16,8 @@ namespace BooksApp.Services
         {
             MessageDialog dlg = new(message);
 
-            // temporary workaround https://github.com/microsoft/microsoft-ui-xaml/issues/4167
+            // temporary workaround, this will change with 1.0
+            // https://github.com/microsoft/microsoft-ui-xaml/issues/4167
             var handle = GetActiveWindow();
             if (handle == IntPtr.Zero)
             {
