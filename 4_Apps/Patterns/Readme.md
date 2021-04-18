@@ -8,7 +8,7 @@ The sample code for this chapter contains these project:
 
 See [WinUI](../../WinUI.md) what you need to install and develop WinUI applications.
  
-For code comments and issues please check [Professional C#'s GitHub Repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp7)
+For code comments and issues please check [Professional C#'s GitHub Repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021)
 
 Please check my blog [csharp.christiannagel.com](https://csharp.christiannagel.com "csharp.christiannagel.com") for additional information for topics covered in the book.
 
