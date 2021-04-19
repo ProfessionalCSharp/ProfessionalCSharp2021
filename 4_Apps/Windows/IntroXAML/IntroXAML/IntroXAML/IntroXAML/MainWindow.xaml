@@ -25,9 +25,9 @@
             </Button.Background>
         </Button>
         <ListBox x:Name="list1">
-            <!--<datalib:Person FirstName="Stephanie" LastName="Nagel" />
+            <datalib:Person FirstName="Stephanie" LastName="Nagel" />
             <datalib:Person FirstName="Matthias" LastName="Nagel" />
-            <datalib:Person FirstName="Katharina" LastName="Nagel" />-->
+            <datalib:Person FirstName="Katharina" LastName="Nagel" />
         </ListBox>
     </StackPanel>
 </Window>

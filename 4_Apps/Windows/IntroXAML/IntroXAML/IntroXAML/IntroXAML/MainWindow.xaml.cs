@@ -21,10 +21,14 @@ namespace IntroXAML
             {
                 Content = "created dynamically"
             };
-            button2.Click += async (sender, e) => await new MessageDialog("button 2 clicked").ShowAsync();
+            button2.Click += async (sender, e) =>
+            {
+                MessageDialog dlg = new("button 2 clicked");
+                await dlg.ShowAsync();
+            };
             stackPanel1.Children.Add(button2);
 
-            list1.Items.Add(new Person("Stephanie", "Nagel"));
+            list1.Items.Add(new Person() { FirstName = "Stephanie", LastName = "Nagel" });
         }
 
         private async void OnButtonClick(object sender, RoutedEventArgs e)
