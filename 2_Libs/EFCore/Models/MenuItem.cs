@@ -1,11 +1,11 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-public class Menu
+public class MenuItem
 {
-    public Menu(string text, int menuId = default) => (Text, MenuId) = (text, menuId);
+    public MenuItem(string text, int menuItemId = default) => (Text, MenuItemId) = (text, menuItemId);
 
-    public int MenuId { get; set; }
+    public int MenuItemId { get; set; }
     public string Text { get; set; }
     public decimal? Price { get; set; }
     private MenuCard? _menuCard;

@@ -12,24 +12,24 @@ class MenusContext : DbContext
         : base(options) {}
 
     public DbSet<MenuCard> MenuCards => Set<MenuCard>();
-    public DbSet<Menu> Menus => Set<Menu>();
+    public DbSet<MenuItem> MenuItems => Set<MenuItem>();
     public DbSet<Restaurant> Restaurants => Set<Restaurant>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         //modelBuilder.HasDefaultSchema("mc");
-        //modelBuilder.Entity<Menu>().ToTable("Menus").HasKey(m => m.MenuId);
-        //modelBuilder.Entity<Menu>().Property(m => m.MenuId).ValueGeneratedOnAdd();
-        //modelBuilder.Entity<Menu>().Property(m => m.Text).HasMaxLength(50);
-        //modelBuilder.Entity<Menu>().Property(m => m.Price).HasColumnType("Money");
+        //modelBuilder.Entity<MenuItem>().ToTable("MenuItems").HasKey(m => m.MenuId);
+        //modelBuilder.Entity<MenuItem>().Property(m => m.MenuId).ValueGeneratedOnAdd();
+        //modelBuilder.Entity<MenuItem>().Property(m => m.Text).HasMaxLength(50);
+        //modelBuilder.Entity<MenuItem>().Property(m => m.Price).HasColumnType("Money");
 
-        //modelBuilder.Entity<Menu>().HasOne(m => m.MenuCard)
+        //modelBuilder.Entity<MenuItem>().HasOne(m => m.MenuCard)
         //    .WithMany(c => c.Menus)
         //    .HasForeignKey("MenuCardId");
 
         modelBuilder.HasDefaultSchema("mc")
             .ApplyConfiguration(new MenuCardConfiguration())
-            .ApplyConfiguration(new MenuConfiguration())
+            .ApplyConfiguration(new MenuItemConfiguration())
             .ApplyConfiguration(new RestaurantConfiguration());
 
         var restaurantId = Guid.NewGuid();
@@ -42,7 +42,7 @@ class MenusContext : DbContext
 
         var menus = GetInitialMenus(card1, restaurantId);
         modelBuilder.Entity<MenuCard>().HasData(card1);
-        modelBuilder.Entity<Menu>().HasData(menus);
+        modelBuilder.Entity<MenuItem>().HasData(menus);
     }
 
     private IEnumerable<dynamic> GetInitialMenus(dynamic card, Guid restaurantId)
@@ -64,7 +64,7 @@ class MenusContext : DbContext
     {
         ChangeTracker.DetectChanges();
 
-        foreach (var item in ChangeTracker.Entries<Menu>()
+        foreach (var item in ChangeTracker.Entries<MenuItem>()
             .Where(e => e.State == EntityState.Added
             || e.State == EntityState.Modified
             || e.State == EntityState.Deleted))

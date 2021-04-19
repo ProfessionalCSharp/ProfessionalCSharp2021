@@ -3,13 +3,13 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using static ColumnNames;
 
-internal class MenuConfiguration : IEntityTypeConfiguration<Menu>
+internal class MenuItemConfiguration : IEntityTypeConfiguration<MenuItem>
 {
-    public void Configure(EntityTypeBuilder<Menu> builder)
+    public void Configure(EntityTypeBuilder<MenuItem> builder)
     {
-        builder.ToTable("Menus")
-            .HasKey(m => m.MenuId);
-        builder.Property(m => m.MenuId)
+        builder.ToTable("MenuItems")
+            .HasKey(m => m.MenuItemId);
+        builder.Property(m => m.MenuItemId)
             .ValueGeneratedOnAdd();
         builder.Property(m => m.Text)
             .HasMaxLength(50);
@@ -17,7 +17,7 @@ internal class MenuConfiguration : IEntityTypeConfiguration<Menu>
             .HasColumnType("Money");
 
         builder.HasOne(m => m.MenuCard)
-            .WithMany(c => c.Menus)
+            .WithMany(c => c.MenuItems)
             .HasForeignKey(MenuCardId);
 
         // shadow properties
