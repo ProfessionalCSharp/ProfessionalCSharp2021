@@ -66,7 +66,7 @@ namespace ControlsSamples.Views
                 var booking = bookings.SingleOrDefault(b => b.day.Date == args.Item.Date.Date);
                 if (booking.bookings > 0)
                 {
-                    var colors = new List<Color>();
+                    List<Color> colors = new();
                     for (int i = 0; i < booking.bookings; i++)
                     {
                         if (args.Item.Date.DayOfWeek == DayOfWeek.Saturday || args.Item.Date.DayOfWeek == DayOfWeek.Sunday)
@@ -100,7 +100,6 @@ namespace ControlsSamples.Views
 
         private async void OnDatesChanged(CalendarView sender, CalendarViewSelectedDatesChangedEventArgs args)
         {
-
             currentDatesSelected.AddRange(args.AddedDates);
             args.RemovedDates.ToList().ForEach(date => currentDatesSelected.Remove(date));
 

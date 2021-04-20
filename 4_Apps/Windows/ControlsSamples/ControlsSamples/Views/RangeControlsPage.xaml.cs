@@ -35,9 +35,7 @@ namespace ControlsSamples.Views
             timer.Interval = TimeSpan.FromSeconds(1);
             int i = 0;
             timer.Tick += (sender, e) =>
-            {
                 progressBar1.Value = i++ % 100;
-            };
             timer.Start();
         }
     }
