@@ -9,8 +9,7 @@
     mc:Ignorable="d">
 
     <StackPanel x:Name="stackPanel1">
-        <Button x:Name="button1" Click="OnButtonClick">
-            Click Me!
+        <Button x:Name="button1" Content="Click Me!" Click="OnButtonClick">
             <Button.Background>
                 <LinearGradientBrush StartPoint="0.5,0.0" EndPoint="0.5, 1.0">
                     <LinearGradientBrush.GradientStops>
