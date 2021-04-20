@@ -19,7 +19,7 @@ using Windows.Foundation.Collections;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
-namespace DependencyObjectSample
+namespace MarkupExtensions
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
@@ -46,6 +46,6 @@ namespace DependencyObjectSample
             m_window.Activate();
         }
 
-        private Window? m_window;
+        private Window m_window;
     }
 }
