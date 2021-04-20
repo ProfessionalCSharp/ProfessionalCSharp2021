@@ -1,0 +1,23 @@
+﻿<Window
+    x:Class="NavigationControls.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NavigationControls"
+    xmlns:views="using:NavigationControls.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <TabView IsAddTabButtonVisible="False">
+        <TabView.TabItems>
+            <TabViewItem IsClosable="False" Header="Hub">
+                <views:HubPage />
+            </TabViewItem>
+            <TabViewItem IsClosable="False" Header="TabView">
+                <views:TabViewPage />
+            </TabViewItem>
+        </TabView.TabItems>
+        
+    </TabView>
+
+</Window>
