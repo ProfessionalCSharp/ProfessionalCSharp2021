@@ -39,6 +39,7 @@ namespace ControlsSamples
                 "Ranges" => typeof(RangeControlsPage),
                 "Buttons" => typeof(ButtonsPage),
                 "Dates" => typeof(DateSelectionPage),
+                "Web" => typeof(WebView2Page),
                 _ => throw new InvalidOperationException()
             };
 

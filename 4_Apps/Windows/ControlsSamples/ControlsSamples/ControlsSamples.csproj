@@ -15,6 +15,7 @@
     <None Remove="Views\PresentersPage.xaml" />
     <None Remove="Views\RangeControlsPage.xaml" />
     <None Remove="Views\TextPage.xaml" />
+    <None Remove="Views\WebView2Page.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,6 +28,12 @@
   <ItemGroup>
     <FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" RuntimeFrameworkVersion="10.0.18362.16" />
     <FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" TargetingPackVersion="10.0.18362.16" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Views\WebView2Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>

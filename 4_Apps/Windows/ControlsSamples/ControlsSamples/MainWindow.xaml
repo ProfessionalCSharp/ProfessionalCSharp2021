@@ -24,6 +24,7 @@
                     <MenuFlyoutItem Text="Ranges" Command="{x:Bind NavigateCommand}" CommandParameter="Ranges" />
                     <MenuFlyoutItem Text="Buttons" Command="{x:Bind NavigateCommand}" CommandParameter="Buttons" />
                     <MenuFlyoutItem Text="Date Selection" Command="{x:Bind NavigateCommand}" CommandParameter="Dates" />
+                    <MenuFlyoutItem Text="WebView 2" Command="{x:Bind NavigateCommand}" CommandParameter="Web" />
                 </MenuBarItem>
             </MenuBar.Items>
         </MenuBar>
