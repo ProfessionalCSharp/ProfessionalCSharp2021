@@ -25,6 +25,6 @@ namespace DataBindingSamples.Services
 
         public void AddBook(Book book) => _books.Add(book);
 
-        public IEnumerable<Book> Books => _books;
+        public ObservableCollection<Book> Books => _books;
     }
 }
