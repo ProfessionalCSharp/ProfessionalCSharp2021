@@ -13,8 +13,7 @@ The sample code for this chapter contains this solution:
     * CustomMarkupExtension
 * ControlsSamples (Viewbox, TextBox, CalendarView, ProrgressBar, Slider...)
 * DataBindingSamples (compiled binding)
-* PageNavigation
-* NavigationControls (Hub, Pivot, NavigationView)
+* NavigationControls (Hub, TabView, NavigationView)
 * LayoutSamples (Grid, VariableSizedWrapGrid, RelativePanel, Adaptive Trigger, deferred loading)
 
 See [WinUI](../../WinUI.md) for information what's needed to create, build, and run WinUI applications.
