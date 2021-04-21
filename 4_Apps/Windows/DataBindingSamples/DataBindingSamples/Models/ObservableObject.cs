@@ -4,11 +4,11 @@ using System.Runtime.CompilerServices;
 
 namespace DataBindingSamples.Models
 {
-    public abstract class BindableBase : INotifyPropertyChanged
+    public abstract class ObservableObject : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public virtual bool Set<T>(ref T item, T value, [CallerMemberName] string? propertyName = default)
+        public virtual bool SetProperty<T>(ref T item, T value, [CallerMemberName] string? propertyName = default)
         {
             if (EqualityComparer<T>.Default.Equals(item, value)) return false;
             item = value;   

@@ -2,7 +2,7 @@
 
 namespace DataBindingSamples.Models
 {
-    public class Book : BindableBase
+    public class Book : ObservableObject
     {
         public Book(int id, string title, string publisher, params string[] authors)
         {
@@ -17,14 +17,14 @@ namespace DataBindingSamples.Models
         public string Title
         {
             get => _title;
-            set => Set(ref _title, value);
+            set => SetProperty(ref _title, value);
         }
 
         private string _publisher;
         public string Publisher
         {
             get => _publisher;
-            set => Set(ref _publisher, value);
+            set => SetProperty(ref _publisher, value);
         }
         public IEnumerable<string> Authors { get; }
 

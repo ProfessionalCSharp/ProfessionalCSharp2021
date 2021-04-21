@@ -11,6 +11,22 @@
     mc:Ignorable="d">
     <Grid>
         <Grid.Resources>
+            <XamlUICommand x:Name="RefreshBooksCommand" Label="Refresh" Description="Refresh books" ExecuteRequested="{x:Bind RefreshBooks}">
+                <XamlUICommand.IconSource>
+                    <SymbolIconSource Symbol="Refresh" />
+                </XamlUICommand.IconSource>
+                <XamlUICommand.KeyboardAccelerators>
+                    <KeyboardAccelerator Key="R" Modifiers="Control" />
+                </XamlUICommand.KeyboardAccelerators>
+            </XamlUICommand>
+            <XamlUICommand x:Name="AddBookCommand" Label="Add Book" Description="Add a book" ExecuteRequested="{x:Bind AddBook}">
+                <XamlUICommand.IconSource>
+                    <SymbolIconSource Symbol="Add" />
+                </XamlUICommand.IconSource>
+                <XamlUICommand.KeyboardAccelerators>
+                    <KeyboardAccelerator Key="A" Modifiers="Control" />
+                </XamlUICommand.KeyboardAccelerators>            
+            </XamlUICommand>
             <DataTemplate x:DataType="models:Book" x:Key="WroxTemplate">
                 <Border Background="Red" Margin="4" Padding="4" BorderThickness="2" BorderBrush="DarkRed">
                     <TextBlock Text="{x:Bind Title, Mode=OneWay}" Foreground="White" Width="300" />
@@ -27,18 +43,19 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
 
         <CommandBar Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-            <AppBarButton Icon="Refresh" Label="Refresh" Click="{x:Bind OnRefreshBooks}" />
-            <AppBarButton Icon="Add" Label="Add Book" Click="{x:Bind OnAddBook}" />
+            <AppBarButton Command="{StaticResource RefreshBooksCommand}" />
+            <AppBarButton Command="{StaticResource AddBookCommand}" />
         </CommandBar>
-
-        <ListView x:Name="BooksList" ItemsSource="{x:Bind Books, Mode=OneWay}" ItemTemplateSelector="{StaticResource BookTemplateSelector}" SelectedItem="{x:Bind CurrentBook.Book, Mode=TwoWay}" Grid.Row="1" />
-        <views:BookUserControl x:Name="CurrentBook" Grid.Row="1" Grid.Column="1" Margin="4" />
+        <TwoPaneView WideModeConfiguration="LeftRight" TallModeConfiguration="TopBottom" Grid.Row="1">
+            <TwoPaneView.Pane1>
+                <ListView x:Name="BooksList" ItemsSource="{x:Bind Books, Mode=OneWay}" ItemTemplateSelector="{StaticResource BookTemplateSelector}" SelectedItem="{x:Bind CurrentBook.Book, Mode=TwoWay}"  />
+            </TwoPaneView.Pane1>
+            <TwoPaneView.Pane2>
+                <views:BookUserControl x:Name="CurrentBook" Margin="4" />
+            </TwoPaneView.Pane2>
+        </TwoPaneView>
 
     </Grid>
 </Window>
