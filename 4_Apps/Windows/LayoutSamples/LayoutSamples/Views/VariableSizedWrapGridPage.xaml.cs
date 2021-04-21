@@ -56,7 +56,7 @@ namespace LayoutSamples.Views
                         HorizontalAlignment = HorizontalAlignment.Center,
                         VerticalAlignment = VerticalAlignment.Center
                     };
-                    var grid = new Grid();
+                    Grid grid = new();
                     grid.Children.Add(rect);
                     grid.Children.Add(textBlock);
                     return grid;

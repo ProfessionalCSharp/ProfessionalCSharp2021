@@ -28,6 +28,6 @@
                 </MenuBarItem>
             </MenuBar.Items>
         </MenuBar>
-        <Frame Grid.Row="1" x:Name="MainFrame" />
+        <Frame Margin="8" Grid.Row="1" x:Name="MainFrame" />
     </Grid>
 </Window>
