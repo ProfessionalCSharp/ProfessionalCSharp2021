@@ -20,7 +20,7 @@ namespace ControlsSamples.Views
     /// </summary>
     public sealed partial class DateSelectionPage : Page
     {
-        // TODO: after 0.8, remove workaround
+        // TODO: remove workaround - with version 0.8 (or 1.0) 
 
         public DateSelectionPage()
         {
@@ -35,11 +35,9 @@ namespace ControlsSamples.Views
             {
                 case 0:
                     RegisterUpdateCallback();
-                    Console.WriteLine("0");
                     break;
                 case 1:
                     SetBlackoutDates();
-                    Console.WriteLine("1");
                     break;
                 case 2:
                     SetBookings();
@@ -50,26 +48,35 @@ namespace ControlsSamples.Views
 
             void RegisterUpdateCallback() => args.RegisterUpdateCallback(OnDayItemChanging);
 
-            void SetBlackoutDates()
+            async void SetBlackoutDates()
             {
-                if (args.Item.Date < DateTimeOffset.Now || args.Item.Date.DayOfWeek == DayOfWeek.Saturday || args.Item.Date.DayOfWeek == DayOfWeek.Sunday)
-                {
-                    args.Item.IsBlackout = true;
-                }
                 RegisterUpdateCallback();
+                CalendarViewDayItem item = args.Item;
+
+                await Task.Delay(500); // simulate a delay for an API call
+                if (item.Date < DateTimeOffset.Now || item.Date.DayOfWeek == DayOfWeek.Saturday || item.Date.DayOfWeek == DayOfWeek.Sunday)
+                {
+                    item.IsBlackout = true;
+                }
             }
 
-            void SetBookings()
+            async void SetBookings()
             {
+                CalendarViewDayItem item = args.Item;
+                if (item is null) 
+                    return;
+
+                await Task.Delay(3000); // simulate a delay for an API call
+
                 var bookings = GetBookings().ToList();
 
-                var booking = bookings.SingleOrDefault(b => b.day.Date == args.Item.Date.Date);
+                var booking = bookings.SingleOrDefault(b => b.day.Date == item.Date.Date);
                 if (booking.bookings > 0)
                 {
                     List<Color> colors = new();
                     for (int i = 0; i < booking.bookings; i++)
                     {
-                        if (args.Item.Date.DayOfWeek == DayOfWeek.Saturday || args.Item.Date.DayOfWeek == DayOfWeek.Sunday)
+                        if (item.Date.DayOfWeek == DayOfWeek.Saturday || item.Date.DayOfWeek == DayOfWeek.Sunday)
                         {
                             colors.Add(Colors.Red);
                         }
@@ -79,9 +86,8 @@ namespace ControlsSamples.Views
                         }
                     }
 
-                    args.Item.SetDensityColors(colors);
+                    item.SetDensityColors(colors);
                 }
-                RegisterUpdateCallback();
             }
         }
 

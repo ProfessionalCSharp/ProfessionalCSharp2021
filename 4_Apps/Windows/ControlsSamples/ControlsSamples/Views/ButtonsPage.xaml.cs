@@ -15,10 +15,7 @@ namespace ControlsSamples.Views
     /// </summary>
     public sealed partial class ButtonsPage : Page
     {
-        public ButtonsPage()
-        {
-            this.InitializeComponent();
-        }
+        public ButtonsPage() => this.InitializeComponent();
 
         private async void OnButtonClick(object sender, RoutedEventArgs e)
         {
