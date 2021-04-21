@@ -11,8 +11,8 @@
     <Hub SectionHeaderClick="{x:Bind OnHeaderClick}">
         <Hub.Header>
             <StackPanel Orientation="Horizontal">
-                <TextBlock>Hub Header</TextBlock>
-                <TextBlock Text="{x:Bind Info, Mode=TwoWay}" />
+                <TextBlock Margin="4,0" Text="Hub Header" />
+                <TextBlock Margin="4,0" Text="{x:Bind Info, Mode=TwoWay}" />
             </StackPanel>
         </Hub.Header>
         <HubSection Width="400" Background="LightBlue" Tag="Section 1">

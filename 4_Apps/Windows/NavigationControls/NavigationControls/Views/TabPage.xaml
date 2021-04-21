@@ -9,6 +9,6 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock Text="{x:Bind Text, Mode=OneWay}" FontSize="14" />
+        <TextBlock Text="{x:Bind Text, Mode=OneWay}" FontSize="14" Margin="16" />
     </Grid>
 </Page>

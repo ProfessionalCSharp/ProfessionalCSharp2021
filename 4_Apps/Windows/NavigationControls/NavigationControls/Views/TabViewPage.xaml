@@ -8,6 +8,6 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <TabView x:Name="tabView" AddTabButtonClick="OnAddTab" TabCloseRequested="OnTabClose" />
+    <TabView x:Name="tabView" AddTabButtonClick="OnTabAdd" TabCloseRequested="OnTabClose" />
 
 </Page>

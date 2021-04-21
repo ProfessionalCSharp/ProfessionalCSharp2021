@@ -11,6 +11,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Views\HubPage.xaml" />
+    <None Remove="Views\NavigationViewPage.xaml" />
     <None Remove="Views\TabPage.xaml" />
     <None Remove="Views\TabViewPage.xaml" />
   </ItemGroup>
@@ -25,6 +26,12 @@
   <ItemGroup>
     <FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" RuntimeFrameworkVersion="10.0.18362.16" />
     <FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" TargetingPackVersion="10.0.18362.16" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Views\NavigationViewPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>

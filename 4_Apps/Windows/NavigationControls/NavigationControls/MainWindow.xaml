@@ -7,17 +7,20 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <Grid>
+        <Grid.Resources>
+            <XamlUICommand x:Name="NavigationCommand" ExecuteRequested="OnNavigate" />
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-    <TabView IsAddTabButtonVisible="False">
-        <TabView.TabItems>
-            <TabViewItem IsClosable="False" Header="Hub">
-                <views:HubPage />
-            </TabViewItem>
-            <TabViewItem IsClosable="False" Header="TabView">
-                <views:TabViewPage />
-            </TabViewItem>
-        </TabView.TabItems>
-        
-    </TabView>
-
+        <CommandBar DefaultLabelPosition="Right" >
+            <AppBarButton Command="{StaticResource NavigationCommand}" CommandParameter="Hub" Label="Hub" />
+            <AppBarButton Command="{StaticResource NavigationCommand}" CommandParameter="Tab" Label="Tab View" />
+            <AppBarButton Command="{StaticResource NavigationCommand}" CommandParameter="Navigation" Label="Navigation View" />
+        </CommandBar>
+        <Frame x:Name="MainFrame" Grid.Row="1" />
+    </Grid>
 </Window>
