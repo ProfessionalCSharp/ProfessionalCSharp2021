@@ -1,0 +1,20 @@
+﻿@page
+
+<div>
+    @Title
+</div>
+<div>
+    @Publisher
+</div>
+
+@functions {
+    private string? Title { get; set; }
+    private string? Publisher { get; set; }
+    public void OnGet(string? title, string? publisher) =>
+        (Title, Publisher) = (title, publisher);
+
+    void Foo()
+    {
+        var x = RouteData.Values;
+    }
+}
