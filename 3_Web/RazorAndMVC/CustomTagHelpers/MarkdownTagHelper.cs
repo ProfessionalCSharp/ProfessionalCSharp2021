@@ -1,6 +1,6 @@
 ﻿using Markdig;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Razor.TagHelpers;
-using Microsoft.Extensions.Hosting;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -10,22 +10,24 @@ namespace CustomTagHelpers
     [HtmlTargetElement(Attributes = "markdownfile")]
     public class MarkdownTagHelper : TagHelper
     {
-        private readonly IHostEnvironment _env;
-        public MarkdownTagHelper(IHostEnvironment env) => _env = env;
+        private readonly IWebHostEnvironment _env;
+        public MarkdownTagHelper(IWebHostEnvironment env) => _env = env;
 
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
             string markdown;
             if (MarkdownFile is not null)
             {
-                string filename = Path.Combine(_env.ContentRootPath, MarkdownFile);
+                string filename = Path.Combine(_env.WebRootPath, MarkdownFile);
                 markdown = File.ReadAllText(filename);
             }
             else
             {
                 markdown = (await output.GetChildContentAsync()).GetContent();
             }
-            output.Content.SetHtmlContent(Markdown.ToHtml(markdown));
+
+            string html = Markdown.ToHtml(markdown);
+            output.Content.SetHtmlContent(html);
         }
 
         [HtmlAttributeName("markdownfile")]
