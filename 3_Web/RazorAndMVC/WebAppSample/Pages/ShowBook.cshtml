@@ -1,10 +1,20 @@
 ﻿@page
 
 <div>
-    @Title
-</div>
-<div>
-    @Publisher
+    <dl class="row">
+        <dt class="col-sm-2">
+            Title
+        </dt>
+        <dd class="col-sm-10">
+            @Title
+        </dd>
+        <dt class="col-sm-2">
+            Publisher
+        </dt>
+        <dd class="col-sm-10">
+            @Publisher
+        </dd>
+    </dl>
 </div>
 
 @functions {
@@ -13,8 +23,4 @@
     public void OnGet(string? title, string? publisher) =>
         (Title, Publisher) = (title, publisher);
 
-    void Foo()
-    {
-        var x = RouteData.Values;
-    }
 }

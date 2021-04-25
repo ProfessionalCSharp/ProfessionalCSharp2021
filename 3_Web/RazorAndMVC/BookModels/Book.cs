@@ -1,13 +1,14 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Runtime.InteropServices;
 
 namespace BookModels
 {
     public record Book(
+        [property: Required]
         [property: MaxLength(50)]
         [property: DisplayName("Title")]
         string Title,
+        [property: Required]
         [property:MaxLength(50)]
         [property:DisplayName("Publisher")]
         string Publisher,

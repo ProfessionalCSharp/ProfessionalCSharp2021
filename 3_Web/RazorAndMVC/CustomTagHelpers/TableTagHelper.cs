@@ -34,7 +34,7 @@ namespace CustomTagHelpers
                     foreach (var prop in properties)
                     {
                         var td = new TagBuilder("td");
-                        td.InnerHtml.Append(prop.GetValue(item)?.ToString());
+                        td.InnerHtml.Append(prop.GetValue(item)?.ToString() ?? string.Empty);
                         tr.InnerHtml.AppendHtml(td);
                     }
                     table.InnerHtml.AppendHtml(tr);

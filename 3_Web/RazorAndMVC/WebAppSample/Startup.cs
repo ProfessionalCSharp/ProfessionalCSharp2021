@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebAppSample.Models;
 using WebAppSample.Services;
 
 namespace WebAppSample
@@ -33,6 +34,7 @@ namespace WebAppSample
                 options.UseSqlServer(connectionString);
             });
             services.AddRazorPages();
+            services.AddSingleton<MenuSamplesService>();
             services.AddSingleton<IEventsService, Formula1Events>();
         }
 

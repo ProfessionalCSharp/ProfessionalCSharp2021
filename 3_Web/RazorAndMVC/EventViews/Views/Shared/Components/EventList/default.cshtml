@@ -1,0 +1,21 @@
+﻿@using EventViews.Models
+@model IEnumerable<Event>
+
+<h5>Dates with the UI from the library</h5>
+<table class="table">
+    <thead>
+        <tr>
+            <td>Date</td>
+            <td>Text</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ev in Model)
+        {
+            <tr>
+                <td>@ev.Date.ToString("d")</td>
+                <td>@ev.Text</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksViews", "..\BooksViews
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomTagHelpers", "..\CustomTagHelpers\CustomTagHelpers.csproj", "{F0B32515-4C61-4F3D-9452-A52D30EE8A91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventViews", "..\EventViews\EventViews.csproj", "{3CA91E4C-5403-4BA8-A735-D9BC3C808B23}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventViews", "..\EventViews\EventViews.csproj", "{3CA91E4C-5403-4BA8-A735-D9BC3C808B23}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
