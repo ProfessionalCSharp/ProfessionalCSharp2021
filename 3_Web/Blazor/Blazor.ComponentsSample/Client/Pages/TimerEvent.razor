@@ -1,0 +1,40 @@
+﻿@using System.Timers
+
+<h4>TimerEvent</h4>
+
+<div>inner: @message</div>
+
+@code {
+
+    string? message;
+
+    [Parameter]
+    public int DelaySeconds { get; set; } = 10;
+
+    [Parameter]
+    public EventCallback<TimerEventArgs> OnTimerCallback { get; set; }
+
+    public void Start()
+    {
+        timer?.Start();
+    }
+
+    public void Stop()
+    {
+        timer?.Stop();
+    }
+
+    private Timer? timer;
+    protected override void OnInitialized()
+    {
+        message = "init ";
+        timer = new()
+        {
+            Interval = 1000 * DelaySeconds
+        };
+        timer.Elapsed += async (sender, e) =>
+        {
+            await OnTimerCallback.InvokeAsync(new TimerEventArgs { Seconds = DelaySeconds });
+        };
+    }
+}
