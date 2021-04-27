@@ -1,0 +1,30 @@
+﻿@page "/binding"
+<h3>Binding</h3>
+
+
+
+<label for="input1">text1</label>
+@*two-way bind to the value attribute and a change event to the onchange attribute*@
+<input id="input1" @bind="text1" />  
+
+
+<div>@text1</div>
+
+<label for="input2">text2</label>
+<input id="input2" @bind-value="text2" @bind-value:event="oninput" />
+
+<div>@text2</div>
+
+@code {
+
+    private List<string> cars = new List<string> { "Ferrari", "McLaren", "Mercedes", "Red Bull Racing", "Aston Martin" };
+    private string text1 = string.Empty;
+    private string text2 = string.Empty;
+
+    protected override void OnInitialized()
+    {
+
+    }
+
+
+}
