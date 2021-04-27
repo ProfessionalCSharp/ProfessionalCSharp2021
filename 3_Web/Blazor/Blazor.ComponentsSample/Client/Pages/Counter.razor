@@ -9,8 +9,11 @@
 @code {
     private int currentCount = 0;
 
+    [Parameter]
+    public int Incrementor { get; set; } = 1;
+
     private void IncrementCount()
     {
-        currentCount++;
+        currentCount += Incrementor;
     }
 }
