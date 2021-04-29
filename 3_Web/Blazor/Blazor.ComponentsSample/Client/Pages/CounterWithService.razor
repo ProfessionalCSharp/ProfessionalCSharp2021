@@ -1,0 +1,18 @@
+@page "/counterwithservice"
+@inject CounterService CounterService
+
+<h1>Counter</h1>
+
+<p>Current count: @CounterService?.Counter</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    [Parameter]
+    public int Incrementor { get; set; } = 1;
+
+    private void IncrementCount()
+    {
+        CounterService.Counter += Incrementor;
+    }
+}
