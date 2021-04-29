@@ -1,0 +1,13 @@
+﻿@page "/cascade"
+<h3>Cascade1</h3>
+
+<input type="text" @bind-value="SomeValue" @bind-value:event="oninput" />
+
+<CascadingValue Value="@SomeValue" Name="Value1">
+    <Cascade2 />
+</CascadingValue>
+
+@code {
+    [Parameter]
+    public string SomeValue { get; set; } = string.Empty;
+}
