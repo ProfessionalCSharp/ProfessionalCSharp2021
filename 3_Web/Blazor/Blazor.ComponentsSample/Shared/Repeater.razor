@@ -1,0 +1,20 @@
+﻿@typeparam TItem
+
+<div>
+    <div>@HeaderTemplate</div>
+    @foreach (var item in Items ?? Array.Empty<TItem>())
+    {
+        <div>@ItemTemplate(item)</div>
+    }
+</div>
+
+@code {
+ #nullable disable
+    [Parameter]
+    public RenderFragment HeaderTemplate { get; set; }
+    [Parameter]
+    public RenderFragment<TItem> ItemTemplate { get; set; }
+ #nullable restore
+    [Parameter]
+    public IEnumerable<TItem>? Items { get; set; }
+}
