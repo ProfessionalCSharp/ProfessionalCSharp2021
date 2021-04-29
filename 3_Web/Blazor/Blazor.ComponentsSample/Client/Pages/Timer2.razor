@@ -1,0 +1,28 @@
+﻿@page "/timer"
+@using System.Timers
+@implements IDisposable
+
+<h4>Timer Event</h4>
+
+<p>@counter</p>
+
+<button @onclick="(() => timer.Start())">Start</button>
+
+<button @onclick="(() => timer.Stop())">Stop</button>
+
+@code {
+    private int counter = 0;
+
+    private Timer timer = new(1000);
+
+    protected override void OnInitialized()
+    {
+        timer.Elapsed += (sender, e) =>
+        {
+            counter++;
+            StateHasChanged();
+        };
+    }
+
+    public void Dispose() => timer.Dispose();
+}
