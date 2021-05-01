@@ -1,4 +1,4 @@
-# Readme - Code Samples for Chapter 26, Entity Framework Core
+# Readme - Code Samples for Chapter 21, Entity Framework Core
 
 The sample code for this chapter contains this solution:
 
@@ -7,7 +7,6 @@ The sample code for this chapter contains this solution:
 consisting of these sample projects
 
 * Intro (introduction to EF Core with models, contexts, creating the database, read, write, update, delete, logging)
-* UsingDependencyInjection (using Microsoft.Extensions.DependencyInjection to create the context) 
 * MenusSample (model with a relation, self contained type configuration, tracking, batch)
 * MenusWithDataAnnotations (using data annotation to create a model)
 * ScaffoldSmaple (using `dotnet ef` for scaffolding)
@@ -24,16 +23,11 @@ consisting of these sample projects
 * TransactionsSample (explicit transactions)
 * MigrationsLib/ConsoleApp/WebApp (migrations with dependency injection and a library)
 
-To build and run the .NET Core samples, please install
-
-* Visual Studio 2019 Update 8 with the .NET Core workload
 
 To access the database, you can use the **Azure Data Studio** on Winodws, MacOS, and Linux:
 [Download and install Azure Data Studio](https://docs.microsoft.com/en-us/sql/azure-data-studio/download-azure-data-studio)
-
-Please download and install the tools from [.NET Core downloads](https://www.microsoft.com/net/core).
  
-For code comments and issues please check [Professional C#'s GitHub Repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp7)
+For code comments and issues please check [Professional C#'s GitHub Repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021)
 
 Please check my blog [csharp.christiannagel.com](https://csharp.christiannagel.com "csharp.christiannagel.com") for additional information for topics covered in the book.
 

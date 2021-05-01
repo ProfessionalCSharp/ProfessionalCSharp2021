@@ -1,10 +1,10 @@
 ﻿using System;
 
-public class Menu
+public class MenuItem
 {
-    public Menu(string text, Guid menuId = default) => (Text, MenuId) = (text, menuId);
+    public MenuItem(string text, int menuId = default) => (Text, MenuId) = (text, menuId);
 
-    public Guid MenuId { get; set; }
+    public int MenuId { get; set; }
     public string Text { get; set; }
     public decimal? Price { get; set; }
     private MenuCard? _menuCard;
@@ -13,5 +13,5 @@ public class Menu
         get => _menuCard ?? throw new InvalidOperationException($"{nameof(MenuCard)} not initialized");
         init => _menuCard = value;
     }
-    public override string ToString() => Text;
+    public override string ToString() => $"{Text} {MenuId}";
 }

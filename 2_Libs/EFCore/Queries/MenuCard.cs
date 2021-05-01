@@ -7,6 +7,6 @@ public class MenuCard
 
     public int MenuCardId { get; set; }
     public string Title { get; set; }
-    public ICollection<Menu> Menus { get; } = new List<Menu>();
+    public ICollection<MenuItem> Menus { get; } = new List<MenuItem>();
     public override string ToString() => Title;
 }

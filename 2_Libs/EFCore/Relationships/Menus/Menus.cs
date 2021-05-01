@@ -1,11 +1,11 @@
-﻿public class Menu
+﻿public class MenuItem
 {
-    public Menu(string title, int menuId = 0)
+    public MenuItem(string title, int menuItemId = 0)
     {
         Title = title;
-        MenuId = menuId;
+        MenuItemId = menuItemId;
     }
-    public int MenuId { get; set; }
+    public int MenuItemId { get; set; }
     public string Title { get; set; }
     public string? Subtitle { get; set; }
     public decimal Price { get; set; }
@@ -17,5 +17,5 @@ public class MenuDetails
     public int MenuDetailsId { get; set; }
     public string? KitchenInfo { get; set; }
     public int MenusSold { get; set; }
-    public Menu? Menu { get; set; }
+    public MenuItem? Menu { get; set; }
 }

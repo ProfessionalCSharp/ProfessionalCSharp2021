@@ -23,19 +23,19 @@ class Runner
         using var context = _menusContextFactory.CreateDbContext();
         MenuCard soupCard = new("Soups");
 
-        Menu[] soups = new[]
+        MenuItem[] soups = new[]
         {
-            new Menu("Consommé Célestine (with shredded pancake)")
+            new MenuItem("Consommé Célestine (with shredded pancake)")
             {
                 Price = 4.8m,
                 MenuCard = soupCard
             },
-            new Menu("Baked Potato Soup")
+            new MenuItem("Baked Potato Soup")
             {
                 Price = 4.8m,
                 MenuCard = soupCard
             },
-            new Menu("Cheddar Broccoli Soup")
+            new MenuItem("Cheddar Broccoli Soup")
             {
                 Price = 4.8m,
                 MenuCard = soupCard
@@ -69,10 +69,10 @@ class Runner
     {
         using var context = _menusContextFactory.CreateDbContext();
         Console.WriteLine(nameof(ObjectTrackingAsync));
-        var m1 = await (from m in context.Menus
+        var m1 = await (from m in context.MenusItems
                         where m.Text.StartsWith("Con")
                         select m).FirstOrDefaultAsync();
-        var m2 = await (from m in context.Menus
+        var m2 = await (from m in context.MenusItems
                         where m.Text.Contains("(")
                         select m).FirstOrDefaultAsync();
         if (object.ReferenceEquals(m1, m2))
@@ -91,43 +91,43 @@ class Runner
     public async Task UpdateRecordsAsync()
     {
         using var context = _menusContextFactory.CreateDbContext();
-        Menu menu = await context.Menus
+        MenuItem menu = await context.MenusItems
           .Skip(1)
           .FirstOrDefaultAsync();
 
         ShowState(context);
         menu.Price += 0.2m;
         ShowState(context);
-        int records = context.SaveChanges();
+        int records = await context.SaveChangesAsync();
         Console.WriteLine($"{records} updated");
         ShowState(context);
     }
 
     public async Task UpdateRecordUntrackedAsync()
     {
-        Task<Menu> GetMenuAsync()
+        Task<MenuItem> GetMenuItemAsync()
         {
             using var context = _menusContextFactory.CreateDbContext();
-            return context.Menus
+            return context.MenusItems
                 .Skip(2)
                 .FirstOrDefaultAsync();
         }
 
-        async Task UpdateMenuAsync(Menu menu)
+        async Task UpdateMenuItemAsync(MenuItem menu)
         {
             using var context = _menusContextFactory.CreateDbContext();
             ShowState(context);
             // EntityEntry<Menu> entry = context.Menus.Attach(m);
             // entry.State = EntityState.Modified;
-            context.Menus.Update(menu);
+            context.MenusItems.Update(menu);
             ShowState(context);
             await context.SaveChangesAsync();
         }
 
-        var menu = await GetMenuAsync();
+        var menu = await GetMenuItemAsync();
         menu.Price += 0.7m;
 
-        await UpdateMenuAsync(menu);
+        await UpdateMenuItemAsync(menu);
     }
 
     public async Task DeleteDatabaseAsync()

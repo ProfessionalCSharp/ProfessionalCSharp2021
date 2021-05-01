@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using static ColumnNames;
 
-internal class MenuConfiguration : IEntityTypeConfiguration<Menu>
+internal class MenuConfiguration : IEntityTypeConfiguration<MenuItem>
 {
-    public void Configure(EntityTypeBuilder<Menu> builder)
+    public void Configure(EntityTypeBuilder<MenuItem> builder)
     {
         builder.ToTable("Menus")
             .HasKey(m => m.MenuId);

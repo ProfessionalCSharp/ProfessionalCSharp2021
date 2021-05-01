@@ -20,15 +20,15 @@ class Runner
     public async Task FindByKeyAsync(int id)
     {
         Console.WriteLine(nameof(FindByKeyAsync));
-        Menu? menu = await _menusContext.Menus.FindAsync(id);
-        Console.WriteLine(menu);
+        MenuItem? menuItem = await _menusContext.MenuItems.FindAsync(id);
+        Console.WriteLine(menuItem);
         Console.WriteLine();
     }
 
     public async Task SingleOrDefaultAsync(string text)
     {
         Console.WriteLine(nameof(SingleOrDefaultAsync));
-        Menu? menu = await _menusContext.Menus.TagWith("SingleOrDefault").SingleOrDefaultAsync(m => m.Text == text);
+        MenuItem? menu = await _menusContext.MenuItems.TagWith("SingleOrDefault").SingleOrDefaultAsync(m => m.Text == text);
         Console.WriteLine(menu);
         Console.WriteLine();
     }
@@ -36,7 +36,7 @@ class Runner
     public async Task FirstOrDefaultAsync(string title)
     {
         Console.WriteLine(nameof(SingleOrDefaultAsync));
-        Menu? menu = await _menusContext.Menus.TagWith("FirstOrDefault").FirstOrDefaultAsync(m => m.Text == title);
+        MenuItem? menu = await _menusContext.MenuItems.TagWith("FirstOrDefault").FirstOrDefaultAsync(m => m.Text == title);
         Console.WriteLine(menu);
         Console.WriteLine();
     }
@@ -44,10 +44,10 @@ class Runner
     public async Task WhereAsync()
     {
         Console.WriteLine(nameof(WhereAsync));
-        var menus = await _menusContext.Menus.Where(m => m.Text.Contains("menu")).TagWith("Where").ToListAsync();
-        foreach (var menu in menus)
+        var menuItems = await _menusContext.MenuItems.Where(m => m.Text.Contains("menu")).TagWith("Where").ToListAsync();
+        foreach (var menuItem in menuItems)
         {
-            Console.WriteLine(menu);
+            Console.WriteLine(menuItem);
         }
         Console.WriteLine();
     }
@@ -55,15 +55,15 @@ class Runner
     public async Task PagingAsync(int skip, int take)
     {
         Console.WriteLine(nameof(PagingAsync));
-        var menus = await _menusContext.Menus
+        var menuItems = await _menusContext.MenuItems
             .OrderBy(m => m.MenuId)
             .Skip(skip)
             .Take(take)
             .TagWith("SkipAndTake")
             .ToListAsync();
-        foreach (var menu in menus)
+        foreach (var menuItem in menuItems)
         {
-            Console.WriteLine(menu);
+            Console.WriteLine(menuItem);
         }
 
         Console.WriteLine();
@@ -71,8 +71,8 @@ class Runner
 
     public async Task GetAllMenusUsingAsyncStream()
     {
-        IAsyncEnumerable<Menu> menus = _menusContext.Menus.AsAsyncEnumerable();
-        await foreach (var menu in menus)
+        IAsyncEnumerable<MenuItem> menuItems = _menusContext.MenuItems.AsAsyncEnumerable();
+        await foreach (var menu in menuItems)
         {
             Console.WriteLine(menu);
         }
@@ -81,8 +81,8 @@ class Runner
     public async Task RawSqlAsync(string term)
     {
         Console.WriteLine(nameof(RawSqlAsync));
-        var menus = await _menusContext.Menus.FromSqlInterpolated($"SELECT * FROM [mc].[Menus] WHERE TEXT = '{term}'").TagWith("RawSQL").ToListAsync();
-        foreach (var menu in menus)
+        var menuItems = await _menusContext.MenuItems.FromSqlInterpolated($"SELECT * FROM [mc].[Menus] WHERE TEXT = '{term}'").TagWith("RawSQL").ToListAsync();
+        foreach (var menu in menuItems)
         {
             Console.WriteLine(menu);
         }
@@ -93,8 +93,8 @@ class Runner
     public void UseCompiledQuery()
     {
         Console.WriteLine(nameof(UseCompiledQuery));
-        var menus = _menusContext.MenusByText("menu 26");
-        foreach (var menu in menus)
+        var menuItems = _menusContext.MenuItemsByText("menu 26");
+        foreach (var menu in menuItems)
         {
             Console.WriteLine(menu);
         }
@@ -105,9 +105,9 @@ class Runner
     {
         Console.WriteLine(nameof(UseCompiledQueryAsync));
 
-        await foreach (var menu in _menusContext.MenusByTextAsync("menu 26"))
+        await foreach (var menuItem in _menusContext.MenuItemsByTextAsync("menu 26"))
         {
-            Console.WriteLine(menu);
+            Console.WriteLine(menuItem);
         }
         Console.WriteLine();
     }
@@ -116,10 +116,10 @@ class Runner
         Console.WriteLine(nameof(UseEFCunctions));
         string likeExpression = $"%{textSegment}%";
 
-        var menus = await _menusContext.Menus.Where(m => EF.Functions.Like(m.Text, likeExpression)).ToListAsync();
-        foreach (var menu in menus)
+        var menuItems = await _menusContext.MenuItems.Where(m => EF.Functions.Like(m.Text, likeExpression)).ToListAsync();
+        foreach (var menuItem in menuItems)
         {
-            Console.WriteLine(menu);
+            Console.WriteLine(menuItem);
         }
         Console.WriteLine();
     }

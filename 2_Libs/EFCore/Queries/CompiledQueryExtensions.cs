@@ -5,32 +5,32 @@ using System.Linq;
 
 static class CompiledQueryExtensions
 {
-    private static Func<MenusContext, string, IEnumerable<Menu>>? s_menusByText;
+    private static Func<MenusContext, string, IEnumerable<MenuItem>>? s_menuItemsByText;
 
-    private static Func<MenusContext, string, IEnumerable<Menu>> CompileMenusByTextQuery() 
+    private static Func<MenusContext, string, IEnumerable<MenuItem>> CompileMenusByTextQuery() 
         => EF.CompileQuery((MenusContext context, string text)
-                => context.Menus.Where(m => m.Text == text));
+                => context.MenuItems.Where(m => m.Text == text));
 
-    public static IEnumerable<Menu> MenusByText(this MenusContext menusContext, string text)
+    public static IEnumerable<MenuItem> MenuItemsByText(this MenusContext menusContext, string text)
     {
-        if (s_menusByText is null)
+        if (s_menuItemsByText is null)
         {
-            s_menusByText = CompileMenusByTextQuery();
+            s_menuItemsByText = CompileMenusByTextQuery();
         }
-        return s_menusByText(menusContext, text);
+        return s_menuItemsByText(menusContext, text);
     }
 
-    private static Func<MenusContext, string, IAsyncEnumerable<Menu>>? s_menusByTextAsync;
-    private static Func<MenusContext, string, IAsyncEnumerable<Menu>> CompileMenusByTextAsyncQuery() 
+    private static Func<MenusContext, string, IAsyncEnumerable<MenuItem>>? s_menuItemsByTextAsync;
+    private static Func<MenusContext, string, IAsyncEnumerable<MenuItem>> CompileMenuItemsByTextAsyncQuery() 
         => EF.CompileAsyncQuery((MenusContext context, string text)
-            => context.Menus.Where(m => m.Text == text));
+            => context.MenuItems.Where(m => m.Text == text));
 
-    public static IAsyncEnumerable<Menu> MenusByTextAsync(this MenusContext menusContext, string text)
+    public static IAsyncEnumerable<MenuItem> MenuItemsByTextAsync(this MenusContext menusContext, string text)
     {
-        if (s_menusByTextAsync is null)
+        if (s_menuItemsByTextAsync is null)
         {
-            s_menusByTextAsync = CompileMenusByTextAsyncQuery();
+            s_menuItemsByTextAsync = CompileMenuItemsByTextAsyncQuery();
         }
-        return s_menusByTextAsync(menusContext, text);
+        return s_menuItemsByTextAsync(menusContext, text);
     }
 }

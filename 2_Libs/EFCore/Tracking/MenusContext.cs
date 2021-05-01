@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using static ColumnNames;
 
 class MenusContext : DbContext
 {
@@ -12,7 +7,7 @@ class MenusContext : DbContext
         : base(options) {}
 
     public DbSet<MenuCard> MenuCards => Set<MenuCard>();
-    public DbSet<Menu> Menus => Set<Menu>();
+    public DbSet<MenuItem> MenusItems => Set<MenuItem>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
