@@ -1,31 +1,24 @@
 # Readme - Code Samples for Chapter 21, Entity Framework Core
 
-The sample code for this chapter contains this solution:
+The sample code for this chapter contains of these sample projects:
 
-* EFCoreSamples
-
-consisting of these sample projects
-
-* Intro (introduction to EF Core with models, contexts, creating the database, read, write, update, delete, logging)
-* MenusSample (model with a relation, self contained type configuration, tracking, batch)
-* MenusWithDataAnnotations (using data annotation to create a model)
+* Intro (introduction to EF Core with models, classes and records, contexts, creating the database, read, write, update, delete, logging)
+* Models (relations, mapping, self contained type configuration, mapping to fields, shadow properties)
 * ScaffoldSmaple (using `dotnet ef` for scaffolding)
-* BooksSample (mapping to fields, shadow properties, basic queries, client and server evaluation, raw SQL queries, compiled queries, global query filters, EF.Functions, last one wins)
-* RelationUsingConventions (defining relations using conventions, explicit and eager loading)
-* RelationUsingAnnotations (defining relations using annotations)
-* RelationUsingFluentAPI (defining relations using the fluent API)
-* TPHWithConventions (table per hierarchy with conventions)
-* TPHWithFluentAPI (table per hierarchy with the fluent API)
-* TableSplitting (table splitting)
-* OwnedEntities (owned entities)
-* ConflictHandlingSample (first one wins)
-* ContextPoolSample (using a context pool)
-* TransactionsSample (explicit transactions)
-* MigrationsLib/ConsoleApp/WebApp (migrations with dependency injection and a library)
+* MigrationsApp (migrations)
+* Queries (basic queries, asynchronous streams, raw SQL queries, compiled queries, global query filters, EF.functions)
+* LoadedRelatedData (eager loading, filtered include, explicit loading, lazy loading)
+* Relationships (many-to-many, table splitting, owned entities, table per hierarchy)
+* Tracking (tracking ojects, updating objects)
+* ConflictHandling-LastWins
+* ConflictHandling-FirstWins
+* Transactions (implicit transactions, explicit transactions, ambient transactions)
+* Cosmos (using Cosmos DB)
 
+See this script to create an Azure SQL database: [createazuresql.sh](createazuresql.sh)
 
-To access the database, you can use the **Azure Data Studio** on Winodws, MacOS, and Linux:
-[Download and install Azure Data Studio](https://docs.microsoft.com/en-us/sql/azure-data-studio/download-azure-data-studio)
+To access the database, you can use the **Azure Data Studio** on Windows, MacOS, and Linux:
+[Download and install Azure Data Studio](https://docs.microsoft.com/sql/azure-data-studio/download-azure-data-studio)
  
 For code comments and issues please check [Professional C#'s GitHub Repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021)
 
