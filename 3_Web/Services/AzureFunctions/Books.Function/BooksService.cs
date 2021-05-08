@@ -24,7 +24,7 @@ namespace Books.Function
             FunctionContext executionContext)
         {
             var logger = executionContext.GetLogger("BooksService");
-            logger.LogInformation("Function AddChhapter invoked.");
+            logger.LogInformation("Function AddChapter invoked.");
 
             var chapter = await req.ReadFromJsonAsync<BookChapter>();
             if (chapter is null)
