@@ -4,7 +4,6 @@ This Chapter contains the following code samples:
 
 * SimpleArrays (creating simple arrays, two-dimensional arrays, three-dimensional arrays, jagged arrays)
 * SortingSample (sorting collections using IComparable, IComparer)
-* ArraySegment (using ArraySegment<T>)
 * YieldSample (using the *yield* keyword)
 * SpanSample (using Span with arrays)
 * IndicesAndRanges (indices and ranges operators with arrays)
