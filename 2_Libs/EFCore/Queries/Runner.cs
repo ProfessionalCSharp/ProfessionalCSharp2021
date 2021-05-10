@@ -111,9 +111,9 @@ class Runner
         }
         Console.WriteLine();
     }
-    public async Task UseEFCunctions(string textSegment)
+    public async Task UseEFunctions(string textSegment)
     {
-        Console.WriteLine(nameof(UseEFCunctions));
+        Console.WriteLine(nameof(UseEFunctions));
         string likeExpression = $"%{textSegment}%";
 
         var menuItems = await _menusContext.MenuItems.Where(m => EF.Functions.Like(m.Text, likeExpression)).ToListAsync();

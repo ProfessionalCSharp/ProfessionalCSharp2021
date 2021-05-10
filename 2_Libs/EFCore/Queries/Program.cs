@@ -30,7 +30,7 @@ await runner.GetAllMenusUsingAsyncStream();
 // await runner.RawSqlAsync("menu 27");
 runner.UseCompiledQuery();
 await runner.UseCompiledQueryAsync();
-await runner.UseEFCunctions("24");
+await runner.UseEFunctions("24");
 
 await runner.DeleteDatabaseAsync();
 
