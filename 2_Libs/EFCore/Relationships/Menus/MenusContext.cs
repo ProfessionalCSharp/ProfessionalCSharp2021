@@ -11,7 +11,7 @@ public class MenusContext : DbContext
 
         modelBuilder.Entity<MenuItem>()
           .HasOne<MenuDetails>(m => m.Details!)
-          .WithOne(d => d.Menu!)
+          .WithOne(d => d.MenuItem!)
           .HasForeignKey<MenuDetails>(d => d.MenuDetailsId);
         modelBuilder.Entity<MenuItem>().ToTable("MenuItems");
         modelBuilder.Entity<MenuDetails>().ToTable("MenuItems");

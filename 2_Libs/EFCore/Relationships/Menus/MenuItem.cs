@@ -17,5 +17,5 @@ public class MenuDetails
     public int MenuDetailsId { get; set; }
     public string? KitchenInfo { get; set; }
     public int MenusSold { get; set; }
-    public MenuItem? Menu { get; set; }
+    public MenuItem? MenuItem { get; set; }
 }

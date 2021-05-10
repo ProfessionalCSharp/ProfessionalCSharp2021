@@ -56,7 +56,7 @@ class Runner
     {
         Console.WriteLine(nameof(PagingAsync));
         var menuItems = await _menusContext.MenuItems
-            .OrderBy(m => m.MenuId)
+            .OrderBy(m => m.MenuItemId)
             .Skip(skip)
             .Take(take)
             .TagWith("SkipAndTake")

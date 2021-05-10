@@ -19,7 +19,7 @@ class MenusContext : DbContext
     {
         modelBuilder.HasDefaultSchema("mc")
             .ApplyConfiguration(new MenuCardConfiguration())
-            .ApplyConfiguration(new MenuConfiguration())
+            .ApplyConfiguration(new MenuItemConfiguration())
             .ApplyConfiguration(new RestaurantConfiguration());
 
         SeedData(modelBuilder);
@@ -54,7 +54,7 @@ class MenusContext : DbContext
         DateTime now = DateTime.Now;
         return Enumerable.Range(start, count).Select(id => new
         {
-            MenuId = id,
+            MenuItemId = id,
             Text = $"menu {id}",
             Price = 6.5M,
             IsDeleted = false,
