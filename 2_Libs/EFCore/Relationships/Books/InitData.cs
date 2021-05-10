@@ -22,7 +22,7 @@ internal class InitData
             "Professional C# 2005", // CN, Bill Evjen, Jay Glynn, Karli Watson, Morgan Skinner, Allen Jones
             "Professional C# 2005 with .NET 3.0", // CN, Bill Evjen, Jay Glynn, Karli Watson, Morgan Skinner
             "Professional C# 2008", // CN, Bill Evjen, Karli Watson, Morgan Skinner, Jay Glynn
-            "Professional C# 4 and .NET 4", // CN, Bill Evjen, jay glynn, karli, morgan
+            "Professional C# 4 and .NET 4", // CN, Bill Evjen, Jay Glynn, Karli Watson, Morgan Skinner
             "Professional C# 2012 and .NET 4.5", // CN, Jay Glynn, Morgan Skinner
             "Professional C# 5.0 and .NET 4.5.1", // CN, Jay Glynn, Morgan Skinner
             "Professional C# 6 and .NET Core 1.0", // CN
@@ -53,9 +53,36 @@ internal class InitData
     public object[] GetBooksAuthors()
         => new object[] 
         {
-            new { WrittenBooksBookId = 1, AuthorsPersonId = 1 },
-            new { WrittenBooksBookId = 1, AuthorsPersonId = 2 },
-            new { WrittenBooksBookId = 2, AuthorsPersonId =  1 }
+            new { WrittenBooksBookId = 1, AuthorsPersonId = 4 },
+            new { WrittenBooksBookId = 1, AuthorsPersonId = 10 },
+            new { WrittenBooksBookId = 1, AuthorsPersonId = 9 },
+            new { WrittenBooksBookId = 1, AuthorsPersonId = 5 },
+            new { WrittenBooksBookId = 1, AuthorsPersonId = 3 },
+            new { WrittenBooksBookId = 1, AuthorsPersonId = 5 },
+            new { WrittenBooksBookId = 1, AuthorsPersonId = 12 },
+            new { WrittenBooksBookId = 1, AuthorsPersonId = 6 },
+            new { WrittenBooksBookId = 2, AuthorsPersonId = 4 },
+            new { WrittenBooksBookId = 2, AuthorsPersonId = 10 },
+            new { WrittenBooksBookId = 2, AuthorsPersonId = 7 },
+            new { WrittenBooksBookId = 2, AuthorsPersonId = 9 },
+            new { WrittenBooksBookId = 2, AuthorsPersonId = 5 },
+            new { WrittenBooksBookId = 2, AuthorsPersonId = 11 },
+            new { WrittenBooksBookId = 2, AuthorsPersonId = 3 },
+            new { WrittenBooksBookId = 2, AuthorsPersonId = 8 },
+            new { WrittenBooksBookId = 2, AuthorsPersonId = 6 },
+            new { WrittenBooksBookId = 3, AuthorsPersonId = 4 },
+            new { WrittenBooksBookId = 3, AuthorsPersonId = 10 },
+            new { WrittenBooksBookId = 3, AuthorsPersonId = 6 },
+            new { WrittenBooksBookId = 3, AuthorsPersonId = 8 },
+            new { WrittenBooksBookId = 3, AuthorsPersonId = 2 },
+            new { WrittenBooksBookId = 4, AuthorsPersonId = 4 },
+            new { WrittenBooksBookId = 4, AuthorsPersonId = 2 },
+            new { WrittenBooksBookId = 4, AuthorsPersonId = 5 },
+            new { WrittenBooksBookId = 4, AuthorsPersonId = 6 },
+            new { WrittenBooksBookId = 4, AuthorsPersonId = 8 },
+            new { WrittenBooksBookId = 4, AuthorsPersonId = 1 },
+            new { WrittenBooksBookId = 5, AuthorsPersonId = 4 },
+            new { WrittenBooksBookId = 5, AuthorsPersonId = 2 }
         };
 
     private Person[] InitializeAuthors()
@@ -72,7 +99,8 @@ internal class InitData
             new ("Morgan", "Skinner", 8),
             new ("Ollie", "Cornes", 9),
             new ("Simon", "Robinson", 10),
-            new ("Zach", "Greenvoss", 11)
+            new ("Zach", "Greenvoss", 11),
+            new ("Craig", "McQueen", 12)
         };
         return authors;
     }

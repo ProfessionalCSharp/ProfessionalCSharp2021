@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
 
 using var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((context, services) =>
@@ -12,7 +11,17 @@ using var host = Host.CreateDefaultBuilder(args)
         {
             options.UseSqlServer(connectionString);
         });
+        services.AddDbContext<BankContext>(options =>
+        {
+            options.UseSqlServer(connectionString);
+        });
+        services.AddDbContext<MenusContext>(options =>
+        {
+            options.UseSqlServer(connectionString);
+        });
         services.AddScoped<BooksRunner>();
+        services.AddScoped<BankRunner>();
+        services.AddScoped<MenusRunner>();
     })
     .Build();
 
@@ -23,5 +32,12 @@ using (var scope = host.Services.CreateScope())
     await booksRunner.CreateTheDatabaseAsync();
     await booksRunner.GetBooksForAuthorAsync();
 
+    var bankRunner = scope.ServiceProvider.GetRequiredService<BankRunner>();
+    await bankRunner.CreateTheDatabaseAsync();
+    await bankRunner.AddSampleDataAsync();
+    await bankRunner.QuerySampleAsync();
+
+    var menusRunner = scope.ServiceProvider.GetRequiredService<MenusRunner>();
+    await menusRunner.CreateTheDatabaseAsync();
 }
 

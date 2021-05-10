@@ -7,10 +7,7 @@ using System.Threading.Tasks;
 class Runner
 {
     private readonly MenusContext _menusContext;
-    public Runner(MenusContext menusContext)
-    {
-        _menusContext = menusContext;
-    }
+    public Runner(MenusContext menusContext) => _menusContext = menusContext;
 
     public Task CreateDatabaseAsync()
     {
@@ -123,8 +120,6 @@ class Runner
         }
         Console.WriteLine();
     }
-
-
 
     public async Task DeleteDatabaseAsync()
     {
