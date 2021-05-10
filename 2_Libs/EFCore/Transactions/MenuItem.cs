@@ -1,10 +1,10 @@
 ﻿using System;
 
-public class Menu
+public class MenuItem
 {
-    public Menu(string text, Guid menuId = default) => (Text, MenuId) = (text, menuId);
+    public MenuItem(string text, Guid menuItemId = default) => (Text, MenuItemId) = (text, menuItemId);
 
-    public Guid MenuId { get; set; }
+    public Guid MenuItemId { get; set; }
     public string Text { get; set; }
     public decimal? Price { get; set; }
     public Guid MenuCardId { get; internal set; }

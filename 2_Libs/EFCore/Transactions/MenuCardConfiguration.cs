@@ -14,7 +14,7 @@ internal class MenuCardConfiguration : IEntityTypeConfiguration<MenuCard>
             .ValueGeneratedOnAdd();
         builder.Property(c => c.Title)
             .HasMaxLength(50);
-        builder.HasMany(c => c.Menus)
+        builder.HasMany(c => c.MenuItems)
             .WithOne(m => m.MenuCard);
 
         // shadow property

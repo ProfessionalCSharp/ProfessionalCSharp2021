@@ -26,19 +26,19 @@ class Runner
             var card = context.MenuCards
                 .OrderBy(mc => mc.MenuCardId)
                 .First();
-            Menu m1 = new("added")
+            MenuItem m1 = new("added")
             {
                 MenuCardId = card.MenuCardId,
                 Price = 99.99m
             };
 
             var notExistingCard = Guid.NewGuid();
-            Menu mInvalid = new("invalid")
+            MenuItem mInvalid = new("invalid")
             {
                 MenuCardId = notExistingCard,
                 Price = 999.99m
             };
-            context.Menus.AddRange(m1, mInvalid);
+            context.MenuItems.AddRange(m1, mInvalid);
             int records = await context.SaveChangesAsync();
             Console.WriteLine($"{records} records added");
 
@@ -60,22 +60,22 @@ class Runner
             var card = context.MenuCards
                 .OrderBy(mc => mc.MenuCardId)
                 .First();
-            Menu m1 = new Menu("added")
+            MenuItem m1 = new MenuItem("added")
             {
                 MenuCardId = card.MenuCardId,
                 Price = 99.99m
             };
-            context.Menus.Add(m1);
+            context.MenuItems.Add(m1);
             int records = context.SaveChanges();
             Console.WriteLine($"{records} records added");
 
             var notExistingCard = Guid.NewGuid();
-            Menu mInvalid = new("invalid")
+            MenuItem mInvalid = new("invalid")
             {
                 MenuCardId = notExistingCard,
                 Price = 999.99m
             };
-            context.Menus.Add(mInvalid);
+            context.MenuItems.Add(mInvalid);
             records = await context.SaveChangesAsync();
             Console.WriteLine($"{records} records added");
 
@@ -98,22 +98,22 @@ class Runner
             var card = context.MenuCards
                 .OrderBy(mc => mc.MenuCardId)
                 .First();
-            Menu m1 = new("added with explicit tx")
+            MenuItem m1 = new("added with explicit tx")
             {
                 MenuCardId = card.MenuCardId,
                 Price = 99.99m
             };
-            context.Menus.Add(m1);
+            context.MenuItems.Add(m1);
             int records = await context.SaveChangesAsync();
             Console.WriteLine($"{records} records added");
 
             var notExistingCard = Guid.NewGuid();
-            Menu mInvalid = new("invalid")
+            MenuItem mInvalid = new("invalid")
             {
                 MenuCardId = notExistingCard,
                 Price = 999.99m
             };
-            context.Menus.Add(mInvalid);
+            context.MenuItems.Add(mInvalid);
             records = await context.SaveChangesAsync();
 
             Console.WriteLine($"{records} records added");
@@ -148,22 +148,22 @@ class Runner
             var card = context.MenuCards
                 .OrderBy(mc => mc.MenuCardId)
                 .First();
-            Menu m1 = new("added with explicit tx")
+            MenuItem m1 = new("added with explicit tx")
             {
                 MenuCardId = card.MenuCardId,
                 Price = 99.99m
             };
-            context.Menus.Add(m1);
+            context.MenuItems.Add(m1);
             int records = await context.SaveChangesAsync();
             Console.WriteLine($"{records} records added");
 
             var notExistingCard = Guid.NewGuid();
-            Menu mInvalid = new("invalid")
+            MenuItem mInvalid = new("invalid")
             {
                 MenuCardId = notExistingCard,
                 Price = 999.99m
             };
-            context.Menus.Add(mInvalid);
+            context.MenuItems.Add(mInvalid);
             records = await context.SaveChangesAsync();
 
             Console.WriteLine($"{records} records added");
