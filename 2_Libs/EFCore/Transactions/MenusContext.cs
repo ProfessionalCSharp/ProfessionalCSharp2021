@@ -32,20 +32,15 @@ class MenusContext : DbContext
         modelBuilder.Entity<MenuItem>().HasData(menus);
     }
 
-    private IEnumerable<object> GetInitialMenuItems(dynamic card, Guid restaurantId)
-    {
-        DateTime now = DateTime.Now;
-        return Enumerable.Range(1, 20).Select(id => new
+    private IEnumerable<object> GetInitialMenuItems(dynamic card, Guid restaurantId) =>
+        Enumerable.Range(1, 20).Select(id => new
         {
             MenuItemId = Guid.NewGuid(),
             Text = $"menu {id}",
             Price = 6.5M,
             IsDeleted = false,
-            LastUpdated = now,
+            LastUpdated = DateTime.Now,
             MenuCardId = card.MenuCardId,
             RestaurantId = restaurantId
         }).ToArray();
-    }
-
 }
-
