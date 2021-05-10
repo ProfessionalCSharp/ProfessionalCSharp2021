@@ -17,7 +17,7 @@ internal class MenuConfiguration : IEntityTypeConfiguration<MenuItem>
             .HasColumnType("Money");
 
         builder.HasOne(m => m.MenuCard)
-            .WithMany(c => c.Menus)
+            .WithMany(c => c.MenuItems)
             .HasForeignKey(MenuCardId);
 
         builder.Property<Guid>(RestaurantId);

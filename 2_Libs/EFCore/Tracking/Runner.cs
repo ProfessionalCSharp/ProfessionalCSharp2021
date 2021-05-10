@@ -44,7 +44,7 @@ class Runner
 
         foreach (var soup in soups)
         {
-            soupCard.Menus.Add(soup);
+            soupCard.MenuItems.Add(soup);
         }
 
         context.MenuCards.Add(soupCard);
@@ -84,7 +84,7 @@ class Runner
             Console.WriteLine("not the same");
         }
         ShowState(context);
-        
+
         Console.WriteLine();
     }
 
@@ -105,12 +105,12 @@ class Runner
 
     public async Task UpdateRecordUntrackedAsync()
     {
-        Task<MenuItem> GetMenuItemAsync()
+        async Task<MenuItem> GetMenuItemAsync()
         {
             using var context = _menusContextFactory.CreateDbContext();
-            return context.MenusItems
+            return await context.MenusItems
                 .Skip(2)
-                .FirstOrDefaultAsync();
+                .FirstAsync();
         }
 
         async Task UpdateMenuItemAsync(MenuItem menu)
@@ -126,7 +126,6 @@ class Runner
 
         var menu = await GetMenuItemAsync();
         menu.Price += 0.7m;
-
         await UpdateMenuItemAsync(menu);
     }
 

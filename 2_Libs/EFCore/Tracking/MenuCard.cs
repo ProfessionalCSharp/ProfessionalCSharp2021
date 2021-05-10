@@ -8,6 +8,6 @@ public class MenuCard
 
     public Guid MenuCardId { get; set; }
     public string Title { get; set; }
-    public ICollection<MenuItem> Menus { get; } = new List<MenuItem>();
+    public ICollection<MenuItem> MenuItems { get; } = new List<MenuItem>();
     public override string ToString() => Title;
 }
