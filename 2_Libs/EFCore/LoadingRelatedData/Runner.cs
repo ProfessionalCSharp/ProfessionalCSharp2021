@@ -99,6 +99,11 @@ public class Runner
             Console.WriteLine(book.Title);
             Console.WriteLine($"{book.Author?.FirstName} {book.Author?.LastName}");
 
+            if (book.Author is null)
+            {
+                Console.WriteLine("configure the proxy for lazy loading");
+                return;
+            }
             Console.WriteLine($"{book.Author!.Address!.Country}");
             foreach (var chapter in book.Chapters)
             {
