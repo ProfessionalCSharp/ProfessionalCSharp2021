@@ -50,7 +50,7 @@ class MenusContext : DbContext
         DateTime now = DateTime.Now;
         return Enumerable.Range(1, 20).Select(id => new
         {
-            MenuId = id,
+            MenuItemId = id,
             Text = $"menu {id}",
             Price = 6.5M,
             IsDeleted = false,
