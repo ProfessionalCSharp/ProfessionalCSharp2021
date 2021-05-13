@@ -1,5 +1,6 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls.Primitives;
 using System;
 using System.Runtime.InteropServices;
 using Windows.UI.Popups;
@@ -20,8 +21,7 @@ namespace ControlsSamples.Views
         private async void OnButtonClick(object sender, RoutedEventArgs e)
         {
             // TODO: change to (with version 0.8):
-            // await new MessageDialog("Button clicked").ShowAsync();
-
+            // await new MessageDialog("Button clicked").ShowAsync();           
             MessageDialog dlg = new("button 1 clicked");
             var handle = GetActiveWindow();
             if (handle == IntPtr.Zero)

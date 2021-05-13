@@ -42,7 +42,6 @@
       <Extensions>
         <uap:Extension Category="windows.shareTarget">
           <uap:ShareTarget Description="Sample">
-            <uap:SupportedFileTypes/>
             <uap:DataFormat>Text</uap:DataFormat>
           </uap:ShareTarget>
         </uap:Extension>

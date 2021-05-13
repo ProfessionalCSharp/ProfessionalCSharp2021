@@ -38,7 +38,7 @@
   <PropertyGroup>
     <ProjectGuid>834766a5-27f1-415d-9da7-1f0185d13858</ProjectGuid>
     <TargetPlatformVersion>10.0.19041.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <TargetPlatformMinVersion>10.0.19041.0</TargetPlatformMinVersion>
     <DefaultLanguage>en-US</DefaultLanguage>
     <AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
     <EntryPointProjectUniqueName>..\HelloWindows\HelloWindows.csproj</EntryPointProjectUniqueName>

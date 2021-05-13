@@ -1,10 +1,8 @@
 ﻿using DataBindingSamples.Models;
 using DataBindingSamples.Services;
 using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Input;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Input;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.

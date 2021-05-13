@@ -13,8 +13,8 @@ namespace NavigationControls.Views
     {
         public TabViewPage()
         {
-            this.InitializeComponent();
-            this.Loaded += OnLoaded;
+            InitializeComponent();
+            Loaded += OnLoaded;
         }
 
         private int _tabNumber = 0;

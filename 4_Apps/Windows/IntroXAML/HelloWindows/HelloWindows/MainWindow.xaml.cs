@@ -10,10 +10,7 @@ namespace HelloWindows
     /// </summary>
     public sealed partial class MainWindow : Window
     {
-        public MainWindow()
-        {
-            this.InitializeComponent();
-        }
+        public MainWindow() => InitializeComponent();
 
         private void myButton_Click(object sender, RoutedEventArgs e)
         {
