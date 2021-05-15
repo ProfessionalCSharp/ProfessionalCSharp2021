@@ -22,6 +22,8 @@ namespace BooksLib.ViewModels
 
         private async void OnDeleteBook()
         {
+            if (Item is null) return;
+
             await _booksService.DeleteAsync(Item);
         }
     }

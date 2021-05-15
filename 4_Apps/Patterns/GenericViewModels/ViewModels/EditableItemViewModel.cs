@@ -91,7 +91,7 @@ namespace GenericViewModels.ViewModels
         public async virtual void CancelEdit()
         {
             IsEditMode = false;
-            EditItem = default(TItem);
+            EditItem = default;
             await _itemsService.RefreshAsync();
             await OnEndEditAsync();
         }
@@ -100,7 +100,7 @@ namespace GenericViewModels.ViewModels
         {
             using var _ = StartInProgress();
             await OnSaveAsync();
-            EditItem = default(TItem);
+            EditItem = default;
             IsEditMode = false;
             await _itemsService.RefreshAsync();
             await OnEndEditAsync();

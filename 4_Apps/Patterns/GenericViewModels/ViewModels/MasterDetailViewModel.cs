@@ -55,7 +55,7 @@ namespace GenericViewModels.ViewModels
             get
             {
                 var selectedItem = _itemsService.SelectedItem;
-                if (selectedItem is null) return default(TItemViewModel);
+                if (selectedItem is null) return default;
                 return ToViewModel(selectedItem);
             }
 

@@ -6,15 +6,12 @@ using GenericViewModels.ViewModels;
 using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BooksApp.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        private Dictionary<string, Type> _pages = new()
+        private readonly Dictionary<string, Type> _pages = new()
         {
             [PageNames.BooksPage] = typeof(BooksPage),
             [PageNames.BookDetailPage] = typeof(BookDetailPage)

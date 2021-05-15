@@ -57,7 +57,6 @@ namespace BooksApp
                     {
                         builder.AddDebug();
                     }).BuildServiceProvider());
-
         }
 
         private Window? m_window;

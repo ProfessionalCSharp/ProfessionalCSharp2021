@@ -33,6 +33,6 @@ namespace BooksLib.ViewModels
             SelectedItem = newBook;
         }
 
-        protected override BookItemViewModel ToViewModel(Book item) => new BookItemViewModel(item, _booksService);
+        protected override BookItemViewModel ToViewModel(Book item) => new(item, _booksService);
     }
 }

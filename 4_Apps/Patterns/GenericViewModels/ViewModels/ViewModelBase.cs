@@ -8,7 +8,7 @@ namespace GenericViewModels.ViewModels
     {
         private class StateSetter : IDisposable
         {
-            private Action _end;
+            private readonly Action _end;
             public StateSetter(Action start, Action end)
             {
                 start?.Invoke();

@@ -11,7 +11,7 @@ namespace BooksLib.Services
 {
     public class BooksService : ObservableObject, IItemsService<Book>
     {
-        private ObservableCollection<Book> _books = new ObservableCollection<Book>();
+        private readonly ObservableCollection<Book> _books = new();
         private readonly IBooksRepository _booksRepository;
 
         public event EventHandler<Book>? SelectedItemChanged;

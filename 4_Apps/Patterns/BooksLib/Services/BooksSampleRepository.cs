@@ -7,7 +7,7 @@ namespace BooksLib.Services
 {
     public class BooksSampleRepository : IBooksRepository
     {
-        private List<Book> _books;
+        private readonly List<Book> _books;
         public BooksSampleRepository() =>
             _books = GetSampleBooks();
 
