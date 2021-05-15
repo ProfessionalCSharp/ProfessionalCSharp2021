@@ -22,7 +22,7 @@ using var scope = host.Services.CreateScope();
 var runner = scope.ServiceProvider.GetRequiredService<Runner>();
 await runner.CreateDatabaseAsync();
 
-// await runner.AddMenuCardAsync();
+await runner.AddMenuCardAsync();
 await runner.AddAddtionalCardsAsync();
 await runner.ShowCardsAsync();
 await runner.DeleteDatabaseAsync();

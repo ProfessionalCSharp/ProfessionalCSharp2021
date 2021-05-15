@@ -10,7 +10,7 @@ void CancelTask()
 {
     Console.WriteLine(nameof(CancelTask));
     CancellationTokenSource cts = new(millisecondsDelay: 500);
-    cts.Token.Register(() => Console.WriteLine("*** task cancelled"));
+    cts.Token.Register(() => Console.WriteLine("*** task canceled"));
 
     Task t1 = Task.Run(() =>
     {
@@ -50,7 +50,7 @@ void CancelParallelFor()
 {
     Console.WriteLine(nameof(CancelParallelFor));
     CancellationTokenSource cts = new(millisecondsDelay: 500);
-    cts.Token.Register(() => Console.WriteLine("*** token cancelled"));
+    cts.Token.Register(() => Console.WriteLine("*** cancellation activated"));
 
     try
     {

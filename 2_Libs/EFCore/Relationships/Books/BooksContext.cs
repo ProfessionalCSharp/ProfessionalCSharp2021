@@ -7,14 +7,9 @@ public class BooksContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.HasDefaultSchema("books");
+        modelBuilder.HasDefaultSchema("bk");
 
         modelBuilder.ApplyConfiguration<Person>(new PersonConfiguration());
-
-        modelBuilder.Entity<Location>().Property(l => l.City).HasMaxLength(30);
-        modelBuilder.Entity<Location>().Property(l => l.Country).HasMaxLength(30);
-        modelBuilder.Entity<Address>().Property(a => a.LineOne).HasMaxLength(50);
-        modelBuilder.Entity<Address>().Property(a => a.LineTwo).HasMaxLength(50);
 
         InitData data = new();
         modelBuilder.Entity<Book>()

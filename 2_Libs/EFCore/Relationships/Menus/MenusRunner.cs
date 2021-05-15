@@ -12,4 +12,9 @@ public class MenusRunner
         await _menusContext.Database.MigrateAsync();
     }
 
+    public async Task DeleteTheDatabaseAsync()
+    {
+        await _menusContext.Database.EnsureDeletedAsync();
+    }
+
 }

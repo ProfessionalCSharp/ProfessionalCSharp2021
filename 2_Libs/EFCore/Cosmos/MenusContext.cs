@@ -17,7 +17,7 @@ internal class MenusContext : DbContext
     {
         modelBuilder.HasDefaultContainer("menucards");
 
-        modelBuilder.Entity<MenuCard>().OwnsMany(c => c.Menus);
+        modelBuilder.Entity<MenuCard>().OwnsMany(c => c.MenuItems);
         modelBuilder.Entity<MenuCard>().HasKey(c => c.MenuCardId);
 
         modelBuilder.Entity<MenuCard>().HasPartitionKey(c => c.RestaurantId);

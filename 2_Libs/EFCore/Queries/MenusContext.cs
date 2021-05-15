@@ -12,14 +12,14 @@ class MenusContext : DbContext
         : base(options) {}
 
     public DbSet<MenuCard> MenuCards => Set<MenuCard>();
-    public DbSet<Menu> Menus => Set<Menu>();
+    public DbSet<MenuItem> MenuItems => Set<MenuItem>();
     public DbSet<Restaurant> Restaurants => Set<Restaurant>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.HasDefaultSchema("mc")
             .ApplyConfiguration(new MenuCardConfiguration())
-            .ApplyConfiguration(new MenuConfiguration())
+            .ApplyConfiguration(new MenuItemConfiguration())
             .ApplyConfiguration(new RestaurantConfiguration());
 
         SeedData(modelBuilder);
@@ -44,9 +44,9 @@ class MenusContext : DbContext
         var menus1 = GetInitialMenus(card1, restaurantId, 1, 20);
         var menus2 = GetInitialMenus(card2, restaurantId, 21, 20);
         modelBuilder.Entity<MenuCard>().HasData(card1);
-        modelBuilder.Entity<Menu>().HasData(menus1);
+        modelBuilder.Entity<MenuItem>().HasData(menus1);
         modelBuilder.Entity<MenuCard>().HasData(card2);
-        modelBuilder.Entity<Menu>().HasData(menus2);
+        modelBuilder.Entity<MenuItem>().HasData(menus2);
     }
 
     private IEnumerable<dynamic> GetInitialMenus(dynamic card, Guid restaurantId, int start, int count)
@@ -54,7 +54,7 @@ class MenusContext : DbContext
         DateTime now = DateTime.Now;
         return Enumerable.Range(start, count).Select(id => new
         {
-            MenuId = id,
+            MenuItemId = id,
             Text = $"menu {id}",
             Price = 6.5M,
             IsDeleted = false,
@@ -68,7 +68,7 @@ class MenusContext : DbContext
     {
         ChangeTracker.DetectChanges();
 
-        foreach (var item in ChangeTracker.Entries<Menu>()
+        foreach (var item in ChangeTracker.Entries<MenuItem>()
             .Where(e => e.State == EntityState.Added
             || e.State == EntityState.Modified
             || e.State == EntityState.Deleted))

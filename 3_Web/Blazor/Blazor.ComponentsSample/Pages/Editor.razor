@@ -1,0 +1,41 @@
+﻿@page "/editor"
+<h3>Editor</h3>
+
+<EditForm Model="@bookEditModel" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <p>
+        <label>
+            Title:
+            <InputText @bind-Value="bookEditModel.Title" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Type:
+            <InputSelect @bind-Value="bookEditModel.Type">
+                <option value="Hardcover">Hardcover</option>
+                <option value="Ebook">Ebook</option>
+            </InputSelect>
+        </label>
+    </p>
+    <p>
+        <label>
+            Release date:
+            <InputDate @bind-Value="bookEditModel.ReleaseDate" />
+        </label>
+    </p>
+
+    <button type="submit">Submit</button>
+    <div>@validText</div>
+</EditForm>
+
+@code {
+    private BookEditModel bookEditModel = new();
+    private string validText = string.Empty;
+
+    private void HandleValidSubmit(EditContext context)
+    {
+        validText = "Input is valid, ready to send it to the server";
+    }
+}

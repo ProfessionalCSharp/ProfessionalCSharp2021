@@ -9,14 +9,14 @@ public class MenusContext : DbContext
     {
         modelBuilder.HasDefaultSchema("ms");
 
-        modelBuilder.Entity<Menu>()
+        modelBuilder.Entity<MenuItem>()
           .HasOne<MenuDetails>(m => m.Details!)
-          .WithOne(d => d.Menu!)
+          .WithOne(d => d.MenuItem!)
           .HasForeignKey<MenuDetails>(d => d.MenuDetailsId);
-        modelBuilder.Entity<Menu>().ToTable("Menus");
-        modelBuilder.Entity<MenuDetails>().ToTable("Menus");
+        modelBuilder.Entity<MenuItem>().ToTable("MenuItems");
+        modelBuilder.Entity<MenuDetails>().ToTable("MenuItems");
     }
 
-    public DbSet<Menu> Menus => Set<Menu>();
+    public DbSet<MenuItem> MenuItems => Set<MenuItem>();
     public DbSet<MenuDetails> MenuDetails => Set<MenuDetails>();
 }

@@ -14,9 +14,9 @@ namespace Relationships.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasDefaultSchema("books")
+                .HasDefaultSchema("bk")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.3")
+                .HasAnnotation("ProductVersion", "5.0.5")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Book", b =>
@@ -273,11 +273,13 @@ namespace Relationships.Migrations
                                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                             b1.Property<string>("LineOne")
-                                .HasColumnType("nvarchar(max)")
+                                .HasMaxLength(50)
+                                .HasColumnType("nvarchar(50)")
                                 .HasColumnName("AddressLineOne");
 
                             b1.Property<string>("LineTwo")
-                                .HasColumnType("nvarchar(max)")
+                                .HasMaxLength(50)
+                                .HasColumnType("nvarchar(50)")
                                 .HasColumnName("AddressLineTwo");
 
                             b1.HasKey("PersonId");
@@ -295,11 +297,13 @@ namespace Relationships.Migrations
                                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                                     b2.Property<string>("City")
-                                        .HasColumnType("nvarchar(max)")
+                                        .HasMaxLength(30)
+                                        .HasColumnType("nvarchar(30)")
                                         .HasColumnName("BusinessCity");
 
                                     b2.Property<string>("Country")
-                                        .HasColumnType("nvarchar(max)")
+                                        .HasMaxLength(30)
+                                        .HasColumnType("nvarchar(30)")
                                         .HasColumnName("BusinessCountry");
 
                                     b2.HasKey("AddressPersonId");
@@ -319,10 +323,12 @@ namespace Relationships.Migrations
                                 .HasColumnType("int");
 
                             b1.Property<string>("LineOne")
-                                .HasColumnType("nvarchar(max)");
+                                .HasMaxLength(50)
+                                .HasColumnType("nvarchar(50)");
 
                             b1.Property<string>("LineTwo")
-                                .HasColumnType("nvarchar(max)");
+                                .HasMaxLength(50)
+                                .HasColumnType("nvarchar(50)");
 
                             b1.HasKey("PersonId");
 
@@ -337,11 +343,13 @@ namespace Relationships.Migrations
                                         .HasColumnType("int");
 
                                     b2.Property<string>("City")
-                                        .HasColumnType("nvarchar(max)")
+                                        .HasMaxLength(30)
+                                        .HasColumnType("nvarchar(30)")
                                         .HasColumnName("City");
 
                                     b2.Property<string>("Country")
-                                        .HasColumnType("nvarchar(max)")
+                                        .HasMaxLength(30)
+                                        .HasColumnType("nvarchar(30)")
                                         .HasColumnName("Country");
 
                                     b2.HasKey("AddressPersonId");

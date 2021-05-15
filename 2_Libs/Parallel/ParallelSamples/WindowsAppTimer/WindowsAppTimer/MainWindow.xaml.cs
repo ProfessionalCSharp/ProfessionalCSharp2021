@@ -25,7 +25,7 @@ namespace WindowsAppTimer
             _timer.Interval = TimeSpan.FromSeconds(1);
         }
 
-        private void OnTimer() => _timer.Start();
+        private void OnStartTimer() => _timer.Start();
 
         private double _timerAngle;
         public double TimerAngle
@@ -41,12 +41,8 @@ namespace WindowsAppTimer
             }
         }
 
-        private void OnTick(object? sender, object e)
-        {
-            double newAngle = TimerAngle + 6;
-            if (newAngle >= 360) newAngle = 0;
-            TimerAngle = newAngle;
-        }
+        private void OnTick(object? sender, object e) =>
+            TimerAngle = (TimerAngle + 6) % 360;
 
         private void OnStopTimer() => _timer.Stop();
     }

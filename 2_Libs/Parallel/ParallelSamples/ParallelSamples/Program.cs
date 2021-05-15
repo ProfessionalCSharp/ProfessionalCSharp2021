@@ -42,7 +42,7 @@ namespace ParallelSamples
 
         public static void ParallelInvoke()
         {
-            Parallel.Invoke(Foo, Bar);
+            Parallel.Invoke(Foo, Bar, Foo, Bar, Foo, Bar);
         }
 
         private static void Foo() =>

@@ -1,0 +1,19 @@
+﻿@page
+@model WebAppSample.Pages.UseViewComponentModel
+
+@addTagHelper *, EventViews
+
+<h2>Formula 1 Calendar</h2>
+<form method="post">
+    <label asp-for="DateSelection.From" class="control-label"></label>
+    <input asp-for="DateSelection.From" class="form-control" />
+    <br />
+    <label asp-for="DateSelection.To" class="control-label"></label>
+    <input asp-for="DateSelection.To" class="form-control" />
+    <input type="submit" value="submit" />
+</form>
+
+@if (Model.ShowEvents)
+{
+<vc:event-list from="@Model.DateSelection.From" to="@Model.DateSelection.To" />
+}

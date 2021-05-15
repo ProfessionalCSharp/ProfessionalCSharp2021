@@ -1,0 +1,31 @@
+﻿@using System.Timers
+@implements IDisposable
+
+<h4>Timer Event</h4>
+
+@code {
+    [Parameter]
+    public int DelaySeconds { get; set; } = 10;
+
+    [Parameter]
+    public EventCallback<DateTime> OnTimerCallback { get; set; }
+
+    public void Start() => timer?.Start();
+
+    public void Stop() => timer?.Stop();
+
+    private Timer? timer;
+    protected override void OnInitialized()
+    {
+        timer = new()
+        {
+            Interval = 1000 * DelaySeconds
+        };
+        timer.Elapsed += async (sender, e) =>
+        {
+            await OnTimerCallback.InvokeAsync(e.SignalTime);
+        };
+    }
+
+    public void Dispose() => timer?.Dispose();
+}

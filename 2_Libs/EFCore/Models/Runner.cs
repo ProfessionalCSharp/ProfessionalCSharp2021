@@ -18,24 +18,24 @@ class Runner
         return _menusContext.Database.EnsureCreatedAsync();
     }
 
-    public async Task DeleteMenuAsync(int id)
+    public async Task DeleteMenuItemsAsync(int id)
     {
-        Menu? menu = await _menusContext.Menus.FindAsync(id);
-        if (menu is null) return;
+        MenuItem? menuItem = await _menusContext.MenuItems.FindAsync(id);
+        if (menuItem is null) return;
 
-        _menusContext.Remove(menu);
+        _menusContext.Remove(menuItem);
         int records = await _menusContext.SaveChangesAsync();
         Console.WriteLine($"{records} deleted");
     }
 
-    public async Task QueryDeletedMenusAsync()
+    public async Task QueryDeletedMenuItemsAsync()
     {
-        IEnumerable<Menu> deletedMenus =
-          await _menusContext.Menus
+        IEnumerable<MenuItem> deletedMenuItems =
+          await _menusContext.MenuItems
             .Where(b => EF.Property<bool>(b, IsDeleted))
             .ToListAsync();
 
-        foreach (var menu in deletedMenus)
+        foreach (var menu in deletedMenuItems)
         {
             Console.WriteLine($"deleted: {menu}");
         }

@@ -2,9 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using static ColumnNames;
 
 class MenusContext : DbContext
 {
@@ -12,13 +9,13 @@ class MenusContext : DbContext
         : base(options) {}
 
     public DbSet<MenuCard> MenuCards => Set<MenuCard>();
-    public DbSet<Menu> Menus => Set<Menu>();
+    public DbSet<MenuItem> MenuItems => Set<MenuItem>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.HasDefaultSchema("mc")
             .ApplyConfiguration(new MenuCardConfiguration())
-            .ApplyConfiguration(new MenuConfiguration())
+            .ApplyConfiguration(new MenuItemConfiguration())
             .ApplyConfiguration(new RestaurantConfiguration());
 
         var restaurantId = Guid.Parse("{FDCD4390-48AD-42F1-AC6A-596F56731795}");
@@ -30,25 +27,20 @@ class MenusContext : DbContext
             RestaurantId = restaurantId,
         };
 
-        var menus = GetInitialMenus(card1, restaurantId);
+        var menus = GetInitialMenuItems(card1, restaurantId);
         modelBuilder.Entity<MenuCard>().HasData(card1);
-        modelBuilder.Entity<Menu>().HasData(menus);
+        modelBuilder.Entity<MenuItem>().HasData(menus);
     }
 
-    private IEnumerable<object> GetInitialMenus(dynamic card, Guid restaurantId)
-    {
-        DateTime now = DateTime.Now;
-        return Enumerable.Range(1, 20).Select(id => new
+    private IEnumerable<object> GetInitialMenuItems(dynamic card, Guid restaurantId) =>
+        Enumerable.Range(1, 20).Select(id => new
         {
-            MenuId = Guid.NewGuid(),
+            MenuItemId = Guid.NewGuid(),
             Text = $"menu {id}",
             Price = 6.5M,
             IsDeleted = false,
-            LastUpdated = now,
+            LastUpdated = DateTime.Now,
             MenuCardId = card.MenuCardId,
             RestaurantId = restaurantId
         }).ToArray();
-    }
-
 }
-

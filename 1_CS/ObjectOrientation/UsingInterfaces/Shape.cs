@@ -17,6 +17,6 @@ public abstract class Shape
 
     protected virtual void DisplayShape()
     {
-        Logger.Log($"Shape with{Position} and {Size}");
+        Logger.Log($"Shape with {Position} and {Size}");
     }
 }

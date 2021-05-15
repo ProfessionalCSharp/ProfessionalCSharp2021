@@ -142,7 +142,7 @@ namespace WebSampleApp
                         ("header", "GET") => service.GetHeaderInformation(context.Request),
                         ("add", "GET") => service.QueryParameters(context.Request),
                         ("content", "GET") => service.Content(context.Request),
-                        ("form", "GET" or "POST") => service.GetForm(context.Request),
+                        ("form", "GET" or "POST") => service.Form(context.Request),
                         ("writecookie", "GET") => service.WriteCookie(context.Response),
                         ("readcookie", "GET") => service.ReadCookie(context.Request),
                         ("json", "GET") => service.GetJson(context.Response),

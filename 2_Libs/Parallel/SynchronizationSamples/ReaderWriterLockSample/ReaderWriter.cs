@@ -11,7 +11,7 @@ sealed class ReaderWriter : IDisposable
 
     public void ReaderMethod(object? reader)
     {
-        Console.WriteLine($"Startring reader {reader}");
+        Console.WriteLine($"Starting reader {reader}");
         try
         {
             _rwl.EnterReadLock();

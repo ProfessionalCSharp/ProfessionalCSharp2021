@@ -58,7 +58,7 @@ namespace WebSampleApp.Services
         public string Content(HttpRequest request) =>
             request.Query["data"];
 
-        public string GetForm(HttpRequest request) =>
+        public string Form(HttpRequest request) =>
             request.Method switch
             {
                 "GET" => GetForm(),

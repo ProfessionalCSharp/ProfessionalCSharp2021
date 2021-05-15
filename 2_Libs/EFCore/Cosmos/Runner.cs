@@ -31,17 +31,17 @@ internal class Runner
         Console.WriteLine(nameof(AddMenuCardAsync));
         MenuCard soupCard = new("Soups", _restaurantId);
 
-        Menu[] soups = new[]
+        MenuItem[] soups = new MenuItem[]
         {
-            new Menu("Consommé Célestine (with shredded pancake)")
+            new("Consommé Célestine (with shredded pancake)")
             {
                 Price = 4.8m
             },
-            new Menu("Baked Potato Soup")
+            new("Baked Potato Soup")
             {
                 Price = 4.8m
             },
-            new Menu("Cheddar Broccoli Soup")
+            new("Cheddar Broccoli Soup")
             {
                 Price = 4.8m
             }
@@ -49,7 +49,7 @@ internal class Runner
 
         foreach (var soup in soups)
         {
-            soupCard.Menus.Add(soup);
+            soupCard.MenuItems.Add(soup);
         }
 
         _menusContext.MenuCards.Add(soupCard);
@@ -62,8 +62,8 @@ internal class Runner
     public async Task AddAddtionalCardsAsync()
     {
         Random random = new();
-        var menus = Enumerable.Range(1, 10).Select(i => new Menu($"menu {i}") { Price = random.Next(8) }).ToList();
-        var cards = Enumerable.Range(1, 5).Select(i => new MenuCard($"card {i}", _restaurantId) { Menus = menus });
+        var menus = Enumerable.Range(1, 10).Select(i => new MenuItem($"menu {i}") { Price = random.Next(8) }).ToList();
+        var cards = Enumerable.Range(1, 5).Select(i => new MenuCard($"card {i}", _restaurantId) { MenuItems = menus });
 
         await _menusContext.MenuCards.AddRangeAsync(cards);
         await _menusContext.SaveChangesAsync();
@@ -79,9 +79,9 @@ internal class Runner
         foreach (var card in cards)
         {
             Console.WriteLine(card.Title);
-            foreach (var menu in card.Menus)
+            foreach (var menuItem in card.MenuItems)
             {
-                Console.WriteLine(menu.Text);
+                Console.WriteLine(menuItem.Text);
             }
         }
     }
@@ -97,7 +97,4 @@ internal class Runner
             Console.WriteLine($"database {deletionInfo}");
         }
     }
-
-
 }
-

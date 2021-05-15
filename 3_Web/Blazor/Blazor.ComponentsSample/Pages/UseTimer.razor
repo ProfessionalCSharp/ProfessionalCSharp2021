@@ -1,0 +1,49 @@
+﻿@page "/usetimer"
+
+<h3>UseTimer</h3>
+
+<div>@timeMessage</div>
+
+<TimerEvent @ref="myTimer" DelaySeconds="3" OnTimerCallback="@ShowTimer" />
+
+<button @onclick="StartTimer" disabled="@disableStartTimerButton">Start</button>
+
+<button @onclick="StopTimer" disabled="@disableStopTimerButton">Stop</button>
+
+<button @onclick="Clear">Clear</button>
+
+<div>@message</div>
+
+@code {
+    private string timeMessage = string.Empty;
+    private bool disableStartTimerButton = false;
+    private bool disableStopTimerButton = true;
+
+    string message = string.Empty;
+    private void ShowTimer(DateTime time)
+    {
+        message += ".";
+        timeMessage = time.ToLongTimeString();
+    }
+
+    private void DisableStartTimerButton(bool disable = true)
+    {
+        disableStartTimerButton = disable;
+        disableStopTimerButton = !disable;
+    }
+
+    private void Clear() => message = string.Empty;
+
+    private TimerEvent? myTimer;
+    private void StartTimer()
+    {
+        myTimer?.Start();
+        DisableStartTimerButton();
+    }
+
+    private void StopTimer()
+    {
+        myTimer?.Stop();
+        DisableStartTimerButton(false);
+    }
+}
