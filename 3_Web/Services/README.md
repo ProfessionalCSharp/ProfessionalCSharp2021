@@ -20,6 +20,10 @@ To use Azure Functions with .NET 5, install the *Azure Functions Core Tools*
 
 At the time of this writing, you can't start the Azure Function with .NET 5 from Visual Studio. Instead, use the Azure Functions Core Tools. 
 
+To create a .NET 5 Azure Functions project use:
+
+> func init --worker-runtime dotnetIsolated
+
 For code comments and issues please check [Professional C#'s GitHub Repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021)
 
 Please check my blog [csharp.christiannagel.com](https://csharp.christiannagel.com "csharp.christiannagel.com") for additional information for topics covered in the book.
