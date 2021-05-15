@@ -10,12 +10,12 @@ namespace Animations
 {
     public sealed partial class EasingFunctionsControl : UserControl
     {
-        private EasingFunctionsManager _easingFunctions = new();
+        private readonly EasingFunctionsManager _easingFunctions = new();
         private const int AnimationTimeSeconds = 6;
 
         public EasingFunctionsControl()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             foreach (var easingFunctionModel in _easingFunctions.EasingFunctionModels)
             {
                 comboEasingFunctions.Items.Add(easingFunctionModel);
@@ -31,8 +31,7 @@ namespace Animations
 
         private void OnStartAnimation(object sender, RoutedEventArgs e)
         {
-            var easingFunctionModel = comboEasingFunctions.SelectedItem as EasingFunctionModel;
-            if (easingFunctionModel != null)
+            if (comboEasingFunctions.SelectedItem is EasingFunctionModel easingFunctionModel)
             {
                 EasingFunctionBase easingFunction = easingFunctionModel.EasingFunction;
                 easingFunction.EasingMode = GetEasingMode();
@@ -56,8 +55,7 @@ namespace Animations
             Storyboard.SetTarget(ellipseMove, translate1);
            
             Storyboard.SetTargetProperty(ellipseMove, "X");
-            // TODO: element not found, ok with UWP, issue with WinUI
-            // ellipseMove.BeginTime = TimeSpan.FromSeconds(0.5); // start animation in 0.5 seconds
+            ellipseMove.BeginTime = TimeSpan.FromSeconds(0.5); // start animation in 0.5 seconds
             ellipseMove.FillBehavior = FillBehavior.HoldEnd; // keep position after animation
 
             storyboard.Children.Add(ellipseMove);

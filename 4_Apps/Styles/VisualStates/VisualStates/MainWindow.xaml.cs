@@ -10,10 +10,7 @@ namespace VisualStates
     /// </summary>
     public sealed partial class MainWindow : Window
     {
-        public MainWindow()
-        {
-            this.InitializeComponent();
-        }
+        public MainWindow() => InitializeComponent();
 
         private void OnEnable(object sender, RoutedEventArgs e)
         {

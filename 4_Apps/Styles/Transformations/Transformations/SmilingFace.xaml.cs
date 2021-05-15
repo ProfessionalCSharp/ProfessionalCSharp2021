@@ -7,9 +7,6 @@ namespace Transformations
 {
     public sealed partial class SmilingFace : UserControl
     {
-        public SmilingFace()
-        {
-            this.InitializeComponent();
-        }
+        public SmilingFace() => InitializeComponent();
     }
 }

@@ -6,7 +6,7 @@ namespace Animations
 {
     public class EasingFunctionsManager
     {
-        private static IEnumerable<EasingFunctionBase> s_easingFunctions = new List<EasingFunctionBase>()
+        private readonly static List<EasingFunctionBase> s_easingFunctions = new()
         {
             new BackEase(),
             new SineEase(),

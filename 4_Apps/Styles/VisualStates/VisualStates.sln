@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31213.239
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "VisualStates (Package)", "VisualStates (Package)\VisualStates (Package).wapproj", "{C4B38D07-8FA9-4E94-875A-29B0E0DBDAE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisualStates", "VisualStates\VisualStates.csproj", "{B1835B46-6F4D-4B4F-B62E-0B7931F1D8CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VisualStates", "VisualStates\VisualStates.csproj", "{B1835B46-6F4D-4B4F-B62E-0B7931F1D8CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

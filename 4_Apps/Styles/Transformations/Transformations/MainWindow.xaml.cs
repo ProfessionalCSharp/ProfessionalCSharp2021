@@ -10,9 +10,6 @@ namespace Transformations
     /// </summary>
     public sealed partial class MainWindow : Window
     {
-        public MainWindow()
-        {
-            this.InitializeComponent();
-        }
+        public MainWindow() => InitializeComponent();
     }
 }

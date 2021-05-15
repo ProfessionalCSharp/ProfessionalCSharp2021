@@ -25,6 +25,7 @@
                 <Setter Property="Margin" Value="12" />
             </Style>
             <Style TargetType="TextBlock">
+                <Setter Property="FontSize" Value="18" />
                 <Setter Property="HorizontalAlignment" Value="Center" />
                 <Setter Property="VerticalAlignment" Value="Center" />
                 <Setter Property="Margin" Value="12" />
@@ -87,7 +88,7 @@
                 <AcrylicBrush BackgroundSource="Backdrop" TintColor="#FFFF0000" TintOpacity="{x:Bind acrylicOpacitySlider.Value, Mode=OneWay}" FallbackColor="Orange" />
             </Ellipse.Fill>
         </Ellipse>
-        <TextBlock Text="Acrylic Brush" Grid.Row="0" Grid.Column="1" />
+        <TextBlock Text="Acrylic Brush" Grid.Row="3" Grid.Column="1" />
 
     </Grid>
 </Window>
