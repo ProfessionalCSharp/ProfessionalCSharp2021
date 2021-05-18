@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
-using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -11,7 +10,7 @@ namespace LoggingSample
         // activity is span
         // activity?.SetTag("foo", foo);
         // https://docs.microsoft.com/en-us/dotnet/core/diagnostics/distributed-tracing-collection-walkthroughs#collect-traces-using-opentelemetry
-        private static readonly ActivitySource s_activitySource = new("LoggingSample.DistributedTracing");
+
         private readonly ILogger<NetworkService> _logger;
         private readonly HttpClient _httpClient;
         public NetworkService(
@@ -27,9 +26,9 @@ namespace LoggingSample
         {
             try
             {
-                using var activity = s_activitySource.StartActivity("NetworkRequest");
+                using var activity = Runner.ActivitySource.StartActivity("NetworkRequestSample");
                 _logger.LogInformation(LoggingEvents.Networking, "NetworkRequestSampleAsync started with uri {uri}", requestUri.AbsoluteUri);
-                
+
                 string result = await _httpClient.GetStringAsync(requestUri);
            
                 Console.WriteLine($"{result[..50]}");

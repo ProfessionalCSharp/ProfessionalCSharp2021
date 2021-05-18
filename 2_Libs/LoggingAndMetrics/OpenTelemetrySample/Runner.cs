@@ -1,11 +1,13 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
-namespace MetricsSample
+namespace LoggingSample
 {
     class Runner
     {
+        internal readonly static ActivitySource ActivitySource = new("LoggingSample.DistributedTracing");
         private readonly ILogger _logger;
         private readonly NetworkService _networkSevice;
         public Runner(NetworkService networkService, ILogger<Runner> logger)
@@ -16,14 +18,19 @@ namespace MetricsSample
 
         public async Task RunAsync()
         {
+            using var activity = ActivitySource.StartActivity("Run");
             _logger.LogDebug("RunAsync started");
             bool exit = false;
             do
             {
-                Console.Write("Please enter a URI or 'exit' to exit: ");
-                string url = Console.ReadLine() ?? throw new InvalidOperationException("null returned from Console.ReadLine");
-                using var _ = _logger.BeginScope("RunAsync iteration, url: {url}", url);
-                if (url.ToLower() != "exit")
+                Console.Write("Please enter a URI or enter to exit: ");
+                string? url = Console.ReadLine();
+                using var urlActivity = ActivitySource.StartActivity("Starting URL Request");
+                if (string.IsNullOrEmpty(url))
+                {
+                    exit = true;
+                }
+                else
                 {
                     try
                     {
@@ -34,10 +41,6 @@ namespace MetricsSample
                     {
                         _logger.LogError(ex, ex.Message);
                     }
-                }
-                else
-                {
-                    exit = true;
                 }
             } while (!exit);
         }

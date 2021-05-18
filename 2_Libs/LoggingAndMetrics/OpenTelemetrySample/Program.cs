@@ -1,36 +1,28 @@
 ﻿using LoggingSample;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using OpenTelemetry;
+using OpenTelemetry.Logs;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 using System;
-using System.Runtime.InteropServices;
-using Microsoft.Extensions.Logging.EventLog;
+using System.Diagnostics;
+
+Activity.DefaultIdFormat = ActivityIdFormat.W3C;  // default since .NET 5
+
+using var tracerProvider = Sdk.CreateTracerProviderBuilder()
+    .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("OpenTelemetrySample"))
+    .AddSource("LoggingSample.DistributedTracing")
+    .AddConsoleExporter()
+    .Build();
 
 using var host = Host.CreateDefaultBuilder(args)
     .ConfigureLogging((hostingContext, logging) =>
     {
         logging.ClearProviders();
-        bool isWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
-
-        if (isWindows)
-        {
-            logging.AddFilter<EventLogLoggerProvider>(level => level >= LogLevel.Warning);
-        }
-
-        logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
-        logging.AddConsole();
-        logging.AddSimpleConsole(configure =>
-        {
-            configure.IncludeScopes = true;
-        });
-        logging.AddDebug();
-        logging.AddEventSourceLogger();
-        logging.AddApplicationInsights("d1209381-de59-4cbb-bf49-005a408d75e0");
-
-        if (isWindows)
-        {
-            logging.AddEventLog(); // EventLogLoggerProvider
-        }
+        logging.AddFilter(level => level >= LogLevel.Trace);
+        logging.AddOpenTelemetry(options => options.AddConsoleExporter());
 
         logging.Configure(options =>
         {
