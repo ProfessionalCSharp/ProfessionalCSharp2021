@@ -18,10 +18,10 @@ using var host = Host.CreateDefaultBuilder(args)
         }
 
         logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
-        //logging.AddConsole();
+        logging.AddConsole();
         logging.AddSimpleConsole(configure =>
         {
-            configure.IncludeScopes = true;            
+            configure.IncludeScopes = true;
         });
         logging.AddDebug();
         logging.AddEventSourceLogger();
