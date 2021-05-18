@@ -18,7 +18,6 @@ namespace MetricsSample
             _logger.LogTrace("ILogger injected into {0}", nameof(NetworkService));
         }
 
-
         public async Task NetworkRequestSampleAsync(Uri requestUri)
         {
             var stopWatch = MetricsSampleSource.Log.RequestStart();

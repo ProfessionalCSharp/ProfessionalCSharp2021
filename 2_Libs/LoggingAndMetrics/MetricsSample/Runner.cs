@@ -22,12 +22,11 @@ namespace MetricsSample
             {
                 Console.Write("Please enter a URI or 'exit' to exit: ");
                 string url = Console.ReadLine() ?? throw new InvalidOperationException("null returned from Console.ReadLine");
-                using var _ = _logger.BeginScope("RunAsync iteration, url: {0}", url);
+                using var _ = _logger.BeginScope("RunAsync iteration, url: {url}", url);
                 if (url.ToLower() != "exit")
                 {
                     try
                     {
-
                         Uri uri = new(url);
                         await _networkSevice.NetworkRequestSampleAsync(uri);
                     }
