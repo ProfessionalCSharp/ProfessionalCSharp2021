@@ -13,7 +13,7 @@ namespace WindowsAppTimer
     /// </summary>
     public sealed partial class MainWindow : Window, INotifyPropertyChanged
     {
-        private DispatcherTimer _timer = new();
+        private readonly DispatcherTimer _timer = new();
 
         public event PropertyChangedEventHandler? PropertyChanged;
 

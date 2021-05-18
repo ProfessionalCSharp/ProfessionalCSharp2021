@@ -41,7 +41,6 @@
     <TargetPlatformMinVersion>10.0.19041.0</TargetPlatformMinVersion>
     <DefaultLanguage>en-US</DefaultLanguage>
     <AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
-    <AppxTargetsLocation Condition="'$(AppxTargetsLocation)'==''">$(MSBuildThisFileDirectory)build\</AppxTargetsLocation>
     <EntryPointProjectUniqueName>..\WindowsAppTimer\WindowsAppTimer.csproj</EntryPointProjectUniqueName>
   </PropertyGroup>
   <ItemGroup>
@@ -64,10 +63,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.ProjectReunion" Version="[0.5.0]">
-      <IncludeAssets>build</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.ProjectReunion.WinUI" Version="[0.5.0]">
+    <PackageReference Include="Microsoft.ProjectReunion" Version="[0.5.7]">
       <IncludeAssets>build</IncludeAssets>
     </PackageReference>
   </ItemGroup>
