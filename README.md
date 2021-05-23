@@ -50,17 +50,17 @@ Here's the list of chapters and the folders for the code samples:
 
 ## Part 3 (Web Apps and Services)
 
-* Chapter 24 - ASP.NET Core (AspNetCore)
-* Chapter 25 - Services (Services)
-* Chapter 26 - Razor Pages and MVC (RazorAndMVC)
-* Chapter 27 - Blazor (Blazor)
-* Chapter 28 - SignalR (SignalR)
+* Chapter 24 - ASP.NET Core ([AspNetCore](3_Web/ASPNETCore/Readme.md))
+* Chapter 25 - Services ([Services](3_Web/Services/Readme.md))
+* Chapter 26 - Razor Pages and MVC ([RazorAndMVC](3_Web/RazorAndMVC/Readme.md))
+* Chapter 27 - Blazor ([Blazor](3_Web/Blazor/Readme.md))
+* Chapter 28 - SignalR ([SignalR](3_Web/SignalR/Readme.md))
 
 ## Part 4 (Windows Apps)
 
-* Chapter 29 - Windows Apps (WinUI)
-* Chapter 30 - Patterns with XAML Apps
-* Chapter 31 - Styling Windows Apps (Styling)
+* Chapter 29 - Windows Apps ([Windows](4_Apps/Windows/Readme.md))
+* Chapter 30 - Patterns with XAML Apps ([Patterns](4_Apps/Patterns/Readme.md))
+* Chapter 31 - Styling Windows Apps ([Styles](4_Apps/Styles/Readme.md))
 
 In case you've some issues to compile and run the samples, create an issue in the [Professional C# and .NET (2021) GitHub repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021).
 
