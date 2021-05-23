@@ -21,7 +21,9 @@ See [updates](Updates.md) for issues and updates.
 
 ## Errors and Issues
 
-In case you find some problems with the source code, please create an [issue](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021/issues). In case you have some questions about code samples, please use [Discussions](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021/discussions).
+In case you find some problems with the source code, to compile and run the samples, please create an [issue](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021/issues). 
+
+In case you have some questions about code samples, please use [Discussions](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021/discussions).
 
 For questions that are not related to the book and the code samples of the book, it's better to use [StackOverflow](https://stackoverflow.com/).
 
@@ -78,7 +80,9 @@ Here's the list of chapters and the folders for the code samples:
 * Chapter 30 - Patterns with XAML Apps ([Patterns](4_Apps/Patterns/Readme.md))
 * Chapter 31 - Styling Windows Apps ([Styles](4_Apps/Styles/Readme.md))
 
-In case you've some issues to compile and run the samples, create an issue in the [Professional C# and .NET (2021) GitHub repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021).
+## Code of conduct
+
+See [Code of conduct](CODE_OF_CONDUCT.md)
 
 > Have fun coding and enjoy the book!
 
