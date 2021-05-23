@@ -15,11 +15,27 @@ ASP.NET Core samples need this workload: **ASP.NET and web development**.
 
 See the [WinUI.md](WinUI.md) for the requirements of building and running the WinUI samples.
 
+## Updates
+
 See [updates](Updates.md) for issues and updates.
+
+## Errors and Issues
+
+In case you find some problems with the source code, please create an [issue](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021/issues). In case you have some questions about code samples, please use [Discussions](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021/discussions).
+
+For questions that are not related to the book and the code samples of the book, it's better to use [StackOverflow](https://stackoverflow.com/).
+
+## Slides
+
+I'm offering training and consulting programming .NET applications and services. For academic use, slides are available for free in a separate private repository. Just send me an email using your university / high school account, tell me  how you intent to use the book to get access to the available, and send me your github account. You'll get access to this repository.
+
+If you are interested for commercial use of the presentations, get in contact for a commercial offering.
+
+## Source Code
 
 Here's the list of chapters and the folders for the code samples:
 
-## Part 1 (The Language)
+### Part 1 (The Language)
 
 * Chapter 1 - .NET Applications and Tools ([HelloWorld](1_CS/HelloWorld/Readme.md))
 * Chapter 2 - Core C# ([CoreCsharp](1_CS/CoreCSharp/Readme.md))
@@ -35,7 +51,7 @@ Here's the list of chapters and the folders for the code samples:
 * Chapter 12 - Reflection, Metadata, and Source Generators ([ReflectionAndSourceGenerators](1_CS/ReflectionAndSourceGenerators/Readme.md))
 * Chapter 13 - Managed and Umanaged Memory ([Memory](1_CS/Memory/Readme.md))
 
-## Part 2  (The Libraries)
+### Part 2  (The Libraries)
 
 * Chapter 14 - Libraries, Assemblies, Packages, and NuGet ([Libraries](2_Libs/Libraries/Readme.md))
 * Chapter 15 - Dependency Injection and Configuration ([DependencyInjectionAndConfiguration](2_Libs/DependencyInjectionAndConfiguration/Readme.md))
@@ -48,7 +64,7 @@ Here's the list of chapters and the folders for the code samples:
 * Chapter 22 - Localization ([Localization](2_Libs/Localization/Readme.md))
 * Chapter 23 - Tests ([Tests](2_Libs/Tests/Readme.md))
 
-## Part 3 (Web Apps and Services)
+### Part 3 (Web Apps and Services)
 
 * Chapter 24 - ASP.NET Core ([AspNetCore](3_Web/ASPNETCore/Readme.md))
 * Chapter 25 - Services ([Services](3_Web/Services/Readme.md))
@@ -56,7 +72,7 @@ Here's the list of chapters and the folders for the code samples:
 * Chapter 27 - Blazor ([Blazor](3_Web/Blazor/Readme.md))
 * Chapter 28 - SignalR ([SignalR](3_Web/SignalR/Readme.md))
 
-## Part 4 (Windows Apps)
+### Part 4 (Windows Apps)
 
 * Chapter 29 - Windows Apps ([Windows](4_Apps/Windows/Readme.md))
 * Chapter 30 - Patterns with XAML Apps ([Patterns](4_Apps/Patterns/Readme.md))
