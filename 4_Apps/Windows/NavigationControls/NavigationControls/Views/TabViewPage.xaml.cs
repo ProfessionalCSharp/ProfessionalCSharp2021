@@ -27,7 +27,7 @@ namespace NavigationControls.Views
             }
         }
 
-        private TabViewItem CreateNewTab(int index)
+        private static TabViewItem CreateNewTab(int index)
         {
             TabViewItem newItem = new() { Header = $"Header {index}", Tag = $"Tag{index}", IconSource = new SymbolIconSource() { Symbol = Symbol.Document } };
             Frame frame = new();

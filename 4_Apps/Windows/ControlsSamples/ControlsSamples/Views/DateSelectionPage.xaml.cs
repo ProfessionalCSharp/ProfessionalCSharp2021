@@ -102,7 +102,7 @@ namespace ControlsSamples.Views
             }
         }
 
-        private List<DateTimeOffset> currentDatesSelected = new List<DateTimeOffset>();
+        private readonly List<DateTimeOffset> currentDatesSelected = new();
 
         private async void OnDatesChanged(CalendarView sender, CalendarViewSelectedDatesChangedEventArgs args)
         {

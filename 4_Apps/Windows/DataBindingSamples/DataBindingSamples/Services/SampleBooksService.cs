@@ -5,7 +5,7 @@ namespace DataBindingSamples.Services
 {
     public class SampleBooksService
     {
-        private List<Book> _books = new()
+        private readonly List<Book> _books = new()
         {
             new(1, "Professional C# and .NET - 2021 Edition", "Wrox Press", "Christian Nagel"),
             new(2, "Professional C# 7 and .NET Core 2", "Wrox Press", "Christian Nagel"),

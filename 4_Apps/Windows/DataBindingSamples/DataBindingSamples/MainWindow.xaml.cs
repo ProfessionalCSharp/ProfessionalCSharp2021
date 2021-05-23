@@ -14,7 +14,7 @@ namespace DataBindingSamples
     /// </summary>
     public sealed partial class MainWindow : Window
     {
-        private BooksService _booksService = new();
+        private readonly BooksService _booksService = new();
         public MainWindow() => InitializeComponent();
 
         public ObservableCollection<Book> Books => _booksService.Books;
