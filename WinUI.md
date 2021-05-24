@@ -3,7 +3,7 @@
 Requirements:
 
 * Windows 10
-* Visual Studio 2019 16.10.0 Preview 1
+* Visual Studio 2019 16.10.0 Preview 4 (16.9 does not support all WinUI 3 tooling features, see [WinUI Visual Studio Support](https://docs.microsoft.com/en-us/windows/apps/project-reunion/update-existing-projects-to-the-latest-release))
 
 [Install Project Reunion 0.5 (March 2021)](https://docs.microsoft.com/windows/apps/project-reunion/)
 
@@ -11,7 +11,7 @@ Requirements:
 
 [Set up your development environment](https://docs.microsoft.com/en-us/windows/apps/project-reunion/get-started-with-project-reunion#set-up-your-development-environment)
 
-[Upgrade projects to Project Reunion 0.5.5 (April 2021)](https://docs.microsoft.com/en-us/windows/apps/project-reunion/update-existing-projects-to-the-latest-release)
+[Upgrade projects to Project Reunion 0.5.7 (April 2021)](https://docs.microsoft.com/en-us/windows/apps/project-reunion/update-existing-projects-to-the-latest-release)
 
 The sample applications use WinUI 3 for desktop apps:
 
@@ -21,4 +21,4 @@ The sample applications use WinUI 3 for desktop apps:
 
 ## Windows 10 Developer Mode
 
-[Developer Mode features and debugging]https://docs.microsoft.com/en-us/windows/apps/get-started/developer-mode-features-and-debugging)
+[Developer Mode features and debugging](https://docs.microsoft.com/en-us/windows/apps/get-started/developer-mode-features-and-debugging)
