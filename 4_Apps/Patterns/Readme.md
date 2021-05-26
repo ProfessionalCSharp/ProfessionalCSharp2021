@@ -1,5 +1,7 @@
 # Readme - Code Samples for Chapter 30, Patterns with XAML Apps
 
+**Patterns with XAML Apps** gives you the information you need to use the MVVM pattern and how you can share as much code as possible between different XAML-based technologies such as WinUI, WPF, and .NET MAUI.
+
 The sample code for this chapter contains these project:
 
 * BooksApp
