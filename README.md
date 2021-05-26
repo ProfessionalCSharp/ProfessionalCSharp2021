@@ -15,17 +15,23 @@ ASP.NET Core samples need this workload: **ASP.NET and web development**.
 
 See the [WinUI.md](WinUI.md) for the requirements of building and running the WinUI samples.
 
-## Updates
+## Updates and .NET 6
 
 See [updates](Updates.md) for issues and updates.
 
-## Errors and Issues
+With the *main* branch every sample should compile and run successfully (with the deadlock and race-conditions samples, *successfully* means that a deadlock and a race-condition occurs).
 
-In case you find some problems with the source code, to compile and run the samples, please create an [issue](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021/issues). 
+The *dotnet6* branch will be used to show some early changes with C# 10 and .NET 6 using previews of C# 10 and .NET 6. Previews might not run with the next preview available.
 
-In case you have some questions about code samples, please use [Discussions](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021/discussions).
+After .NET 6 is released, the .NET 5 version of the code might move to a different branch, but it will be kept available.
 
-For questions that are not related to the book and the code samples of the book, it's better to use [StackOverflow](https://stackoverflow.com/).
+## Issues and Discussions
+
+If you find some problems with the source code, issues to compile and run the samples, please create an [issue](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021/issues). 
+
+If you have some questions about the code samples, or just want to drop a message, you're welcome to use [Discussions](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021/discussions).
+
+For questions with your source code that are not related to the book and the code samples, it's better to use [StackOverflow](https://stackoverflow.com/).
 
 ## Slides
 
