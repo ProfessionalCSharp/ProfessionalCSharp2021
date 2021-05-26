@@ -1,6 +1,8 @@
 # Readme - Code Samples for Chapter 24, ASP.NET Core
 
-This chapter contains these samples:
+**ASP.NET Core** gives you the foundation of ASP.NET Core. Based on the dependency injection container you learned about in Part II, this chapter shows how ASP.NET Core makes use of middleware to add functionality to every HTTP request and define routes with ASP.NET Core endpoint routing.
+
+This chapter contains these major samples:
 
 * Simple Host (custom host )
 * WebSampleApp (showing ASP.NET Core features including health checking)

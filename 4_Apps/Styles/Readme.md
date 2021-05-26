@@ -1,5 +1,7 @@
 # Readme - Code Samples for Chapter 31, Styling Windows Apps
 
+**Styling Windows Apps** explains XAML shapes and geometry elements, dives into styles, and control templates, gives you information on creating animations, and explains how you can use the Visual State Manager with your XAML-based applications.
+
 The sample code for this chapter contains this solution:
 
 * Shapes (Canvas, Ellipse, Path)
