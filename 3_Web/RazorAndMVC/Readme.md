@@ -1,5 +1,7 @@
 # Readme - Code Samples for Chapter 26, Razor Pages and MVC
 
+**Razor Pages and MVC** is about interacting with users with ASP.NET Core technologies. It covers Razor pages, Razor views, and functionality such as tag helpers and view components.
+
 This chapter contains these samples:
 
 * WebAppSample (Razor Pages Project)

@@ -1,5 +1,7 @@
 # Readme - Code Samples for Chapter 25, Services
 
+**Services** dives into creating microservices using different technologies such as ASP.NET Core as well as using Azure Functions and gRPC for binary communication.
+
 This chapter contains these samples:
 
 * BooksApi (ASP.NET Core Web API and a .NET client)

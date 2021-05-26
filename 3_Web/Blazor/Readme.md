@@ -1,5 +1,7 @@
 # Readme - Code Samples for Chapter 27, Blazor
 
+**Blazor** is about the newest enhancement of ASP.NET Core with Razor components, which either allows you to implement C# code running either on the server or in the client using WebAssembly. You learn about the differences between Blazor Server and Blazor WebAssembly, what the restrictions are with these technologies, and the built-in components available.
+
 This chapter contains these samples:
 
 * Blazor.ServerSample

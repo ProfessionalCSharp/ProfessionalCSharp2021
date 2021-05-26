@@ -1,5 +1,7 @@
 # Readme - Code Samples for Chapter 19, Networking
 
+In **Networking** you learn about foundational classes for network programming, such as the `Socket` class and how to create applications using TCP and UDP. You also use the HttpClient factory pattern to create `HttpClient` objects with automatic retries if transient errors occur.
+
 This chapter contains the following code samples:
 
 * Utilities
