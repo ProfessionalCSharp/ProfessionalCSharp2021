@@ -1,5 +1,7 @@
 # Readme - Code Samples for Chapter 23, Tests
 
+**Tests** covers creating unit tests, analyzing code coverage with the .NET CLI, using a mocking library when creating unit tests, and what features are offered by ASP.NET Core to create integration tests.
+
 This chapter contains the following code samples:
 
 * UnitTestingSamples

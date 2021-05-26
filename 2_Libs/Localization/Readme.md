@@ -1,5 +1,7 @@
 # Readme - Code Samples for Chapter 22, Localization
 
+In **Localization** you learn to localize applications using techniques that are important both for Windows and web applications.
+
 This chapter contains the following code samples:
 
 * NumberAndDateFormatting (localized format strings)

@@ -1,5 +1,7 @@
 # Readme - Code Samples for Chapter 21, Entity Framework Core
 
+**Entity Framework Core** covers reading and writing data from a database—including the many features offered from EF Core, such as shadow properties, global query filters, many-to-many relations, and what metric information is now offered by EF Core—including and reading and writing to Azure Cosmos DB with EF Core.
+
 The sample code for this chapter contains of these sample projects:
 
 * Intro (introduction to EF Core with models, classes and records, contexts, creating the database, read, write, update, delete, logging)

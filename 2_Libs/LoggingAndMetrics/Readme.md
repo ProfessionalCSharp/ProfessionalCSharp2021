@@ -1,5 +1,7 @@
 # Readme - Code Samples for Chapter 16, Diagnostics and Metrics
 
+**Diagnostics and Metrics** continues using the Host class to configure logging options. You also learn about reading metric information that’s offered from some NET providers, using Visual Studio App Center, and extending logging for distributed tracing with OpenTelemetry.
+
 This chapter contains the following code samples:
 
 * LoggingSample (`ILogger`)

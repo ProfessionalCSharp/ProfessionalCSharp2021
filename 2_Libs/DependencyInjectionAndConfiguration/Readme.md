@@ -1,5 +1,7 @@
 # Readme - Code Samples for Chapter 15, Dependency Injection and configuration
 
+**Dependency Injection and Configuration** gives detail about how the Host class is used to configure a dependency injection container and the built-in options to retrieve configuration information from a .NET application with different configuration providers, including Azure App Configuration and user secrets.
+
 This chapter contains the following code samples:
 
 * WithDIContainer (with the DI container Microsoft.Extensions.DependencyInjection)

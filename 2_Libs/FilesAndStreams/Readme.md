@@ -1,5 +1,7 @@
 # Readme - Code Samples for Chapter 18, Files and Streams
 
+**Files and Streams** not only covers reading and writing from the file system with new stream APIs that allow using the Span type but also covers the new .NET JSON serializer with classes in the `System.Text.Json` namespace.
+
 This chapter contains the following code samples:
 
 * FilesAndFolders (using `DriveInfo`, `Path`)
@@ -12,16 +14,12 @@ This chapter contains the following code samples:
 * JsonSample (JSON serialization, reader, writer, DOM access)
 * WindowsAppEditor (an editor using WinUI)
 
-See [WinUI](../../WinUI.md) for installing and using WinUI.
+The WindowsAppEditor sample needs to have WinUI installed. See [WinUI](../../WinUI.md) for information on installing and using the WinUI samples.
 
-The sammple code uses a picker which currently (Project Reunion 0.5) needs to set the active window. See the InitializeActiveWindow method in MainWindow.xaml.cs. This will change with a future version and will be updated here.
-
-The WindowsAppEditor sample needs Windows 10 and Visual Studio 2017 with the Universal Windows Platform development workload. The other samples can be used on other platforms.
-
-Please download and install the tools from [.NET Core downloads](https://www.microsoft.com/net/core).
+The sammple code uses a picker which currently (Project Reunion 0.5.7) needs to set the active window. See the `InitializeActiveWindow` method in `MainWindow.xaml.cs`. This will change with a future version and will be updated here.
  
 For code comments and issues please check [Professional C#'s GitHub Repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021)
 
-Please check my blog [csharp.christiannagel.com](https://csharp.christiannagel.com "csharp.christiannagel.com") for additional information for topics covered in the book.
+Please check my blog [csharp.christiannagel.com](https://csharp.christiannagel.com) for additional information for topics covered in the book.
 
 Thank you!
