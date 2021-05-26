@@ -1,5 +1,7 @@
 # Readme - Code Samples for Chapter 9, Language Integrated Query
 
+**Language Integrated Query** gives you the C# language integrated query features to query data from your collections. You also learn how to use multiple CPU cores with a query and what’s behind expression trees that are used when you use LINQ to access your database with Entity Framework Core.
+
 This chapter contains the following code samples:
 
 * LinqIntro (showing the foundations of LINQ, showing LINQ clauses, and LINQ with extension methods)

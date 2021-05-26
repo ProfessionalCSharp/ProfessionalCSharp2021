@@ -1,5 +1,7 @@
 # Readme - Code Samples for Chapter 1, .NET Applications and Tools
 
+**.NET Applications and Tools** covers what you need to know to create .NET applications. You learn about the .NET CLI and create a Hello World application using C# 9 top-level statements.
+
 This chapter contains the following code samples:
 
 * HelloWorld (.NET Core Console App)

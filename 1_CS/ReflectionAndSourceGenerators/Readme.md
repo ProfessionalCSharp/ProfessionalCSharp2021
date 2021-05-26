@@ -1,5 +1,7 @@
 # Readme - Code Samples for Chapter 12, Reflection, Metadata, and Source Generators
 
+**Reflection, Metadata, and Source Generators** covers using and reading attributes with C#. The attributes will not just be read using reflection, but you’ll also see the functionality of source generators that allow creating source code during compile time.
+
 This chapter contains the following code samples:
 
 * Reflection
@@ -16,7 +18,7 @@ This chapter contains the following code samples:
     * CodeGenerationSample
     * SampleApp
  
-For code comments and issues please check [Professional C#'s GitHub Repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp7)
+For code comments and issues please check [Professional C#'s GitHub Repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021)
 
 Please check my blog [csharp.christiannagel.com](https://csharp.christiannagel.com "csharp.christiannagel.com") for additional information for topics covered in the book.
 

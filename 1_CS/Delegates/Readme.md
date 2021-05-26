@@ -1,5 +1,7 @@
 # Readme - Code Samples for Chapter 7, Delegates, Lambdas, and Events
 
+**Delegates, Lambdas, and Events** covers .NET pointers to methods, lambda expressions with closures, and .NET events.
+
 This chapter contains the following code samples:
 
 * GetAStringDemo (declaring a *delegate* to a simple method)

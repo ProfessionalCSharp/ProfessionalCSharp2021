@@ -1,5 +1,7 @@
 # Readme - Code Samples for Chapter 11, Tasks and Asynchronous Programming
 
+**Tasks and Asynchronous Programming** shows the C# keywords async and await in action— not only with the task-based async pattern but also with async streams, which is a new feature since C# 8.
+
 This chapter contains these samples:
 
 * TaskBasedAsyncPattern
@@ -9,10 +11,7 @@ This chapter contains these samples:
 * AsyncStreams
 * AsyncWindowsDesktopApp (Windows app using the asynchronous pattern, ConfigureAwait, deadlock, IAsyncOperation)
 
-
-The **AsyncWindowsDesktopApp** is currently built with Project Reunion 0.5. Check for updates as newer versions are available! 
-
-See [WinUI](../../WinuI.md) for requirements with WinUI.
+See [WinUI](../../WinuI.md) for requirements building and deploying with WinUI.
 
 For code comments and issues please check [Professional C#'s GitHub Repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021)
 

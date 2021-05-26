@@ -1,5 +1,7 @@
 # Readme - Code Samples for Chapter 6, Arrays
 
+**Arrays** doesn’t stop with simple arrays;, you learn using multidimensional and jagged arrays, use the `Span` type to access arrays, 
+
 This Chapter contains the following code samples:
 
 * SimpleArrays (creating simple arrays, two-dimensional arrays, three-dimensional arrays, jagged arrays)
