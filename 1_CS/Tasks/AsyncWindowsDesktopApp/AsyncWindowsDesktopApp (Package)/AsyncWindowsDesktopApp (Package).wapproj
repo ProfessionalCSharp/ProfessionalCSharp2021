@@ -64,7 +64,7 @@
   </ItemGroup>
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
   <ItemGroup>
-    <PackageReference Include="Microsoft.ProjectReunion" Version="[0.5.7]">
+    <PackageReference Include="Microsoft.ProjectReunion" Version="[0.8.0-preview]">
       <IncludeAssets>build</IncludeAssets>
     </PackageReference>
   </ItemGroup>
