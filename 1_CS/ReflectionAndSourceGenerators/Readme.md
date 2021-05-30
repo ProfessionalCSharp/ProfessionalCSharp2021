@@ -17,6 +17,28 @@ This chapter contains the following code samples:
 * Source Generator
     * CodeGenerationSample
     * SampleApp
+* SourceGeneratorAsNuGet (configure the source generator package to be used as a NuGet package and not as analyzer)
+
+## Additional information on source generators (use as NuGet package):
+
+To automatically create a NuGet package on build (see folder `SourceGeneratorAsNuGet`):
+
+```xml
+<PropertyGroup>
+  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  <IncludeBuildOutput>false</IncludeBuildOutput> <!-- Do not include as a lib dependency -->
+</PropertyGroup>
+```
+
+Adding the library to the `analyzers/dotnet/cs` folder, the source generator is automatically used as analyzer :
+
+```xml
+<ItemGroup>
+  <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+</ItemGroup>
+```
+
+## More Information
  
 For code comments and issues please check [Professional C#'s GitHub Repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021)
 
