@@ -8,7 +8,7 @@ Console.WriteLine(result);
 
 static ServiceProvider GetServiceProvider()
 {
-    var services = new ServiceCollection();
+    ServiceCollection services = new();
     services.AddSingleton<IGreetingService, GreetingService>();
     services.AddTransient<HomeController>();
     return services.BuildServiceProvider();
