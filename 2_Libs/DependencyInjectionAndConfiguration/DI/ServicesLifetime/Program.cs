@@ -41,7 +41,7 @@ class Program
         using var host = Host.CreateDefaultBuilder()
             .ConfigureServices(services =>
             {
-                var numberService = new NumberService();
+                NumberService numberService = new();
 
                 services.AddSingleton<INumberService>(numberService);  // add existing
                 services.Configure<ConfigurationB>(config => config.Mode = "factory");
