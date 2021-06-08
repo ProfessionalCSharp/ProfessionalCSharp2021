@@ -6,11 +6,13 @@ This chapter contains the following code samples:
 
 * LoggingSample (`ILogger`)
 * OpenTelemetrySample (logging and distributed tracing)
-* MetricsSample (`EventSource`, event counters )
+* MetricsSample (`EventSource`, event counters)
 * WindowsAppAnalytics (WinUI application with Visual Studio AppCenter)
 * WebAppWithAppInsights (Application Insights)
 
 See [WinUI](../../WinUI.md) for building and running WinUI applications.
+
+> Using App Insights with WinUI 3 and desktop apps is currently not supported. It's working with WinUI 3 UWP (which is in preview at this time). See [Appcenter-SDK-Dotnet, WinUI 3 support](https://github.com/microsoft/appcenter-sdk-dotnet/issues/1523) for progress updates.
 
 For code comments and issues please check [Professional C#'s GitHub Repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021)
 
