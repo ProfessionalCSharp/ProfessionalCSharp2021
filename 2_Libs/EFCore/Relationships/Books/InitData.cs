@@ -58,7 +58,6 @@ internal class InitData
             new { WrittenBooksBookId = 1, AuthorsPersonId = 9 },
             new { WrittenBooksBookId = 1, AuthorsPersonId = 5 },
             new { WrittenBooksBookId = 1, AuthorsPersonId = 3 },
-            new { WrittenBooksBookId = 1, AuthorsPersonId = 5 },
             new { WrittenBooksBookId = 1, AuthorsPersonId = 12 },
             new { WrittenBooksBookId = 1, AuthorsPersonId = 6 },
             new { WrittenBooksBookId = 2, AuthorsPersonId = 4 },
