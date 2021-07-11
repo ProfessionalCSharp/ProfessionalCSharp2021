@@ -19,15 +19,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.ProjectReunion" Version="0.5.7" />
-    <PackageReference Include="Microsoft.ProjectReunion.Foundation" Version="0.5.7" />
-    <PackageReference Include="Microsoft.ProjectReunion.WinUI" Version="0.5.7" />
+    <PackageReference Include="Microsoft.ProjectReunion" Version="0.8.0" />
+    <PackageReference Include="Microsoft.ProjectReunion.Foundation" Version="0.8.0" />
+    <PackageReference Include="Microsoft.ProjectReunion.WinUI" Version="0.8.0" />
     <Manifest Include="$(ApplicationManifest)" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" RuntimeFrameworkVersion="10.0.18362.16" />
-    <FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" TargetingPackVersion="10.0.18362.16" />
   </ItemGroup>
 
   <ItemGroup>
