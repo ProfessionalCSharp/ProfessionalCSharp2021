@@ -8,6 +8,8 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <Platforms>x86;x64;arm64</Platforms>
     <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
+    <EnforceCodeStyleInBuild>false</EnforceCodeStyleInBuild>
+    <EnableNETAnalyzers>false</EnableNETAnalyzers>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="msbuild.jpg" />
@@ -17,9 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.ProjectReunion" Version="0.5.7" />
-    <PackageReference Include="Microsoft.ProjectReunion.Foundation" Version="0.5.7" />
-    <PackageReference Include="Microsoft.ProjectReunion.WinUI" Version="0.5.7" />
+    <PackageReference Include="Microsoft.ProjectReunion" Version="0.8.0" />
+    <PackageReference Include="Microsoft.ProjectReunion.Foundation" Version="0.8.0" />
+    <PackageReference Include="Microsoft.ProjectReunion.WinUI" Version="0.8.0" />
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
 </Project>
