@@ -22,15 +22,15 @@ See [WinUI](../../WinUI.md) for information what's needed to create, build, and 
 
 To create WinUI applications, use this template with Visual Studio: **Blank App, Packaged (WinUI 3 in Desktop)**
 
-## Workarounds with Project Reunion 0.5.7:
+## Workarounds with Project Reunion 0.8:
 
-`MessageDialog` needs a Windows initialization (as shown in the IntroXAML sample)
+`MessageDialog` needs a Windows initialization (as shown in the XAMLIntro sample)
 
 See [MessageDialog is no longer functional](https://github.com/microsoft/microsoft-ui-xaml/issues/4167)
 
 ## More
  
-For code comments and issues please check [Professional C#'s GitHub Repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp7)
+For code comments and issues please check [Professional C#'s GitHub Repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021)
 
 Please check my blog [csharp.christiannagel.com](https://csharp.christiannagel.com "csharp.christiannagel.com") for additional information for topics covered in the book.
 
