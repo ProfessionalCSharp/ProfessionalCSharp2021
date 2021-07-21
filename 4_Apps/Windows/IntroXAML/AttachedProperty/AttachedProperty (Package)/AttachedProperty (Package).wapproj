@@ -63,10 +63,13 @@
       <PublishProfile>Properties\PublishProfiles\win10-$(Platform).pubxml</PublishProfile>
     </ProjectReference>
   </ItemGroup>
+  <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
   <ItemGroup>
-    <PackageReference Include="Microsoft.ProjectReunion" Version="[0.5.7]">
+    <PackageReference Include="Microsoft.ProjectReunion" Version="[0.8.0]">
+      <IncludeAssets>build</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.ProjectReunion.WinUI" Version="[0.8.0]">
       <IncludeAssets>build</IncludeAssets>
     </PackageReference>
   </ItemGroup>
-  <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
 </Project>
