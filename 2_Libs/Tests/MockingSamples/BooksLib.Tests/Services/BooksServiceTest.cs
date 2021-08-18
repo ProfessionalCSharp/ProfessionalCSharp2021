@@ -14,7 +14,7 @@ namespace BooksLib.Services
         public const string APublisher = "A Publisher";
         private BooksService _booksService;
 
-        private Book _newBook = new Book
+        private Book _newBook = new()
         {
             BookId = 0,
             Title = TestTitle,
