@@ -23,3 +23,14 @@ To see all templates available with `dotnet new`:
 
 [`Microsoft.Net.Sdk` adds implicit namespaces](https://docs.microsoft.com/en-us/dotnet/core/compatibility/sdk/6.0/implicit-namespaces)
 
+### Self Contained Hello World
+
+Page 22 - The option --self-contained is now required:
+
+```
+dotnet publish --self-contained -c Release -r win10-x64
+dotnet publish --self-contained -c Release -r osx.10.11-x64
+dotnet publish --self-contained -c Release -r ubuntu-x64
+```
+
+Creating single executables, ready to run, trimming - no changes required
