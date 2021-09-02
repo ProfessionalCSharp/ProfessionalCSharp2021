@@ -1,7 +1,7 @@
 ﻿namespace ProCSharp.MathLib;
 ///<summary>
 /// ProCSharp.MathLib.Calculator class.
-/// Provides a method to add two doublies.
+/// Provides a method to add two doubles.
 ///</summary>
 public static class Calculator
 {
