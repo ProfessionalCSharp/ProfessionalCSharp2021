@@ -1,6 +1,4 @@
-﻿using System;
-
-// string s1 = null; // compiler warning - CS8600: Converting a null literal or a possible null value to non-nullable type
+﻿// string s1 = null; // compiler warning - CS8600: Converting a null literal or a possible null value to non-nullable type
 
 string ? s1 = null;
 // string s2 = s1.ToUpper(); // compiler warning

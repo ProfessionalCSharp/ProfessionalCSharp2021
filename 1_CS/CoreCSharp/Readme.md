@@ -21,3 +21,21 @@ For code comments and issues please check [Professional C#'s GitHub Repository](
 Please check my blog [csharp.christiannagel.com](https://csharp.christiannagel.com "csharp.christiannagel.com") for additional information on topics covered in the book.
 
 Thank you!
+
+## Updates with C# 10
+
+### Implicit Namespaces
+
+[Microsoft.Net.Sdk adds implicit namespaces](https://docs.microsoft.com/en-us/dotnet/core/compatibility/sdk/6.0/implicit-namespaces)
+
+### Global Using Directive
+
+[global using directive](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-10.0/globalusingdirective)
+
+See the *StringSample* project which references `System.Text` (which is not included with implicit namespaces) using the **global using directive** (int the file GlobalUsings.cs).
+
+### File-Scoped Namespace
+
+[GitHub Proposal File-Scoped Namespace](https://github.com/dotnet/csharplang/issues/137)
+
+See the *Math* project which uses a global using in the `Calculator.cs` file.
