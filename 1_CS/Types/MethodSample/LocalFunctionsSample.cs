@@ -1,7 +1,4 @@
-﻿using System;
-
-
-class LocalFunctionsSample
+﻿class LocalFunctionsSample
 {
     private int myVar;
 
@@ -36,4 +33,3 @@ class LocalFunctionsSample
         int Add(int x, int y) => x + y + z;
     }
 }
-

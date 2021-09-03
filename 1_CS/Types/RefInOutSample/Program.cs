@@ -1,6 +1,4 @@
-﻿using System;
-
-// pass int by reference
+﻿// pass int by reference
 int a = 1;
 ChangeAValueType(ref a);
 Console.WriteLine($"the value of a changed to {a}");

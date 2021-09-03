@@ -1,6 +1,4 @@
-﻿using System;
-
-// Call static members
+﻿// Call static members
 int x = Math.GetSquareOf(5);
 Console.WriteLine($"Square of 5 is {x}");
 
