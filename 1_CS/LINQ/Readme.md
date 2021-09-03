@@ -14,3 +14,7 @@ For code comments and issues please check [Professional C#'s GitHub Repository](
 Please check my blog [csharp.christiannagel.com](https://csharp.christiannagel.com "csharp.christiannagel.com") for additional information for topics covered in the book.
 
 Thank you!
+
+## Updates with C# 10
+
+See [Updates with C# 10](../../Dotnet6Updates.md)
