@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Runtime.CompilerServices;
-using System.Threading;
-using System.Threading.Tasks;
-
-record Command(string Option, string Text, Action Action);
+﻿record Command(string Option, string Text, Action Action);
 
 class Program
 {

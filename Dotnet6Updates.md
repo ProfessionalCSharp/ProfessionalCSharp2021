@@ -26,4 +26,5 @@ See chapter 3, StructsSample
 
 New LINQ methods - see [LINQ](1_CS/LINQ/Readme.md)
 
+> WinUI samples will be updated to .NET 6/C# 10 syntax at a later time
 

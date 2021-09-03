@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Threading;
-using System.Threading.Tasks;
-
-public record SensorData(int Value1, int Value2);
+﻿public record SensorData(int Value1, int Value2);
 
 public class ADevice
 {
