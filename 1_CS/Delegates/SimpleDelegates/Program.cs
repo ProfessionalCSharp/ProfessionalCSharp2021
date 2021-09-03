@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 decimal d1 = 7.94m;
 decimal d2 = d1 * d1;
 Console.WriteLine(d2);

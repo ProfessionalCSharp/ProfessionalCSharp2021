@@ -1,6 +1,4 @@
-﻿using System;
-
-string mid = ", middle part,";
+﻿string mid = ", middle part,";
 
 Func<string, string> anonDel = delegate (string param)
 {
