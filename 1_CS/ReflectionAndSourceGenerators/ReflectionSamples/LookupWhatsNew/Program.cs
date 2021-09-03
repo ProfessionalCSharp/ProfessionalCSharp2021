@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using WhatsNewAttributes;
-
-StringBuilder outputText = new(1000);
+﻿StringBuilder outputText = new(1000);
 DateTime backDateTo = new(2019, 2, 1);
 
 Assembly theAssembly = Assembly.Load(new AssemblyName("VectorClass"));

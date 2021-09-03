@@ -1,9 +1,4 @@
-﻿using DynamicSample;
-using System;
-using System.Collections.Generic;
-using System.Dynamic;
-
-dynamic dyn = 100;
+﻿dynamic dyn = 100;
 Console.WriteLine(dyn.GetType());
 Console.WriteLine(dyn);
 
