@@ -1,7 +1,5 @@
-﻿using System;
+﻿namespace Wrox.ProCSharp.Arrays;
 
-namespace Wrox.ProCSharp.Arrays
-{
     class Program
     {
         static void Main()
@@ -61,4 +59,3 @@ namespace Wrox.ProCSharp.Arrays
             }
         }
     }
-}

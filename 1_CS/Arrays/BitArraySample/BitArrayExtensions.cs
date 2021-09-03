@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Text;
-
-public static class BitArrayExtensions
+﻿public static class BitArrayExtensions
 {
     public static string FormatString(this BitArray bits)
     {

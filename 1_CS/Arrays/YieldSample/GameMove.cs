@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-
-public class GameMoves
+﻿public class GameMoves
 {
     private IEnumerator _cross;
     private IEnumerator _circle;

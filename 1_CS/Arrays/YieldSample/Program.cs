@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-
-HelloWorld();
+﻿HelloWorld();
 MusicTitles();
 
 var game = new GameMoves();
