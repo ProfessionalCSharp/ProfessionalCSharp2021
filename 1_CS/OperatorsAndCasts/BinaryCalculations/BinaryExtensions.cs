@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-
-public static class BinaryExtensions
+﻿public static class BinaryExtensions
 {
     public static string ToBinaryString(this uint number) => Convert.ToString(number, toBase: 2).PadLeft(sizeof(uint) << 3, '0');
     public static string ToBinaryString(this int number) => Convert.ToString(number, toBase: 2).PadLeft(sizeof(int) << 3, '0');

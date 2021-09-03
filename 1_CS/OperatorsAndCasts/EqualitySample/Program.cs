@@ -1,6 +1,4 @@
-﻿using System;
-
-Book book1 = new("Professional C#", "Wrox Press");
+﻿Book book1 = new("Professional C#", "Wrox Press");
 Book book2 = new("Professional C#", "Wrox Press");
 
 if (!object.ReferenceEquals(book1, book2))
