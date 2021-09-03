@@ -1,6 +1,4 @@
-﻿using System;
-
-try
+﻿try
 {
     ThrowWithErrorCode(405);
 }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-
-public class ColdCallFileReader : IDisposable
+﻿public class ColdCallFileReader : IDisposable
 {
     private FileStream? _fileStream;
     private StreamReader? _streamReader;
