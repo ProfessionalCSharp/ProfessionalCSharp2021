@@ -24,18 +24,10 @@ Thank you!
 
 ## Updates with C# 10
 
-### Implicit Namespaces
+See [Updates with C# 10](../..Dotnet6Updates.md)
 
-[Microsoft.Net.Sdk adds implicit namespaces](https://docs.microsoft.com/en-us/dotnet/core/compatibility/sdk/6.0/implicit-namespaces)
+Source code in this chapter:
 
-### Global Using Directive
-
-[global using directive](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-10.0/globalusingdirective)
-
-See the *StringSample* project which references `System.Text` (which is not included with implicit namespaces) using the **global using directive** (int the file GlobalUsings.cs).
-
-### File-Scoped Namespace
-
-[GitHub Proposal File-Scoped Namespace](https://github.com/dotnet/csharplang/issues/137)
-
-See the *Math* project which uses a global using in the `Calculator.cs` file.
+* Implicit Namespaces
+* Global Using Directive (StringSample)
+* File-Scoped Namespace (Math project)
