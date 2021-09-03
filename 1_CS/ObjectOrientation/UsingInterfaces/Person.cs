@@ -1,6 +1,4 @@
-﻿using System;
-
-public record Person(string FirstName, string LastName) : IComparable<Person>
+﻿public record Person(string FirstName, string LastName) : IComparable<Person>
 {
     public int CompareTo(Person? other)
     {

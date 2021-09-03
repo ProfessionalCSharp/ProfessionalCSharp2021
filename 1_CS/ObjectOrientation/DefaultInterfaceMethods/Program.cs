@@ -1,6 +1,4 @@
-﻿using System;
-
-ILogger logger = new ConsoleLogger();
+﻿ILogger logger = new ConsoleLogger();
 logger.Log("message");
 logger.Log(new Exception("sample exception"));
 

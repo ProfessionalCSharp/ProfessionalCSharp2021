@@ -1,6 +1,4 @@
-﻿using System;
-
-public record Rectangle(Position Position, Size Size) : Shape(Position, Size)
+﻿public record Rectangle(Position Position, Size Size) : Shape(Position, Size)
 {
     protected override void DisplayShape()
     {
