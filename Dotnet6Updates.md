@@ -22,4 +22,8 @@ Chapter 3, Math Sample
 
 See chapter 3, StructsSample
 
+## LINQ
+
+New LINQ methods - see [LINQ](1_CS/LINQ/Readme.md)
+
 

@@ -14,6 +14,16 @@ internal class LinqSamples
         Console.WriteLine();
     }
 
+    public static void Prepend()
+    {
+        Console.WriteLine("Adding a racer before the result");
+        var racersAndFirst = Formula1.GetChampions().Where(r => r.Country == "Austria").Prepend(new Racer("first", "First", "first", 0, 0));
+        foreach (var r in racersAndFirst)
+        {
+            Console.WriteLine(r);
+        }
+    }
+
     public static void Except()
     {
         Console.WriteLine("Show the list of Formula 1 drives that have been in the top 3 but never a world champion");
@@ -172,6 +182,44 @@ internal class LinqSamples
             foreach (var name in racers)
             {
                 Console.WriteLine(name);
+            }
+            Console.WriteLine();
+        }
+    }
+
+    public static void Range()
+    {
+        Console.WriteLine("return the last three");
+
+        var racers =
+           (from r in Formula1.GetChampions()
+            orderby r.LastName, r.FirstName
+            select r.FirstName + " " + r.LastName)
+            .Take(^3..);
+
+        foreach (var name in racers)
+        {
+            Console.WriteLine(name);
+        }
+        Console.WriteLine();
+    }
+
+    public static void Chunks()
+    {
+        Console.WriteLine("Create 5 element chunks");
+
+        var racersArray = Formula1.GetChampions()
+            .OrderBy(r => r.LastName)
+            .ThenBy(r => r.FirstName)
+            .Select(r => $"{r.FirstName} {r.LastName}")
+            .Chunk(5);
+
+        foreach (var chunk in racersArray)
+        {
+            Console.WriteLine("chunk...");
+            foreach (var racer in chunk)
+            {
+                Console.WriteLine(racer);
             }
             Console.WriteLine();
         }

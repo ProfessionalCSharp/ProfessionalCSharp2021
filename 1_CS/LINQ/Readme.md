@@ -18,3 +18,15 @@ Thank you!
 ## Updates with C# 10
 
 See [Updates with C# 10](../../Dotnet6Updates.md)
+
+The *EnumerableSample* has been updated to use new LINQ methods:
+
+* Range operator `..` with the `Take` method
+* `Chunk` method 
+
+New LINQ methods:
+* TryGetNonEnumeratedCount
+* ExceptBy
+* IntersectBy
+* UnionBy
+* Chunk
