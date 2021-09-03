@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-Racer graham = new(7, "Graham", "Hill", "UK", 14);
+﻿Racer graham = new(7, "Graham", "Hill", "UK", 14);
 Racer emerson = new(13, "Emerson", "Fittipaldi", "Brazil", 14);
 Racer mario = new(16, "Mario", "Andretti", "USA", 12);
 

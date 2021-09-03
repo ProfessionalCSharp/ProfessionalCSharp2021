@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-public class DocumentManager
+﻿public class DocumentManager
 {
     private readonly object _syncQueue = new object();
 

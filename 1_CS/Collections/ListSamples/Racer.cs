@@ -1,6 +1,4 @@
-﻿using System;
-
-public record Racer(int Id, string FirstName, string LastName, string Country, int Wins) : IComparable<Racer>, IFormattable
+﻿public record Racer(int Id, string FirstName, string LastName, string Country, int Wins) : IComparable<Racer>, IFormattable
 {
     public Racer(int Id, string firstName, string lastName, string country)
       : this(Id, firstName, lastName, country, Wins: 0)

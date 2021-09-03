@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-public enum CompareType
+﻿public enum CompareType
 {
     FirstName,
     LastName,

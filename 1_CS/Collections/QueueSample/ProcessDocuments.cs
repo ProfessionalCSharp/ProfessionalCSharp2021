@@ -1,8 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.Threading.Tasks;
-
-public class ProcessDocuments
+﻿public class ProcessDocuments
 {
     public static Task StartAsync(DocumentManager dm) =>
         Task.Run(new ProcessDocuments(dm).RunAsync);

@@ -1,6 +1,4 @@
-﻿using System;
-
-public class EmployeeIdException : Exception
+﻿public class EmployeeIdException : Exception
 {
     public EmployeeIdException(string message) : base(message) { }
 }

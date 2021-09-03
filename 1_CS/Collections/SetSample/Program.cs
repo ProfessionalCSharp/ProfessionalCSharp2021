@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-HashSet<string> companyTeams = new() { "Ferrari", "McLaren", "Mercedes" };
+﻿HashSet<string> companyTeams = new() { "Ferrari", "McLaren", "Mercedes" };
 HashSet<string> traditionalTeams = new() { "Ferrari", "McLaren" };
 HashSet<string> privateTeams = new() { "Red Bull", "Lotus", "Toro Rosso", "Force India", "Sauber" };
 
