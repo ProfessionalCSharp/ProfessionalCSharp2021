@@ -26,5 +26,11 @@ See chapter 3, StructsSample
 
 New LINQ methods - see [LINQ](1_CS/LINQ/Readme.md)
 
+## Memory
+
+Instead of using the `Marshal` class to allocate native memory, the `NativeMemory` class can be used. See the *SpanSample* in Chapter 13, "Managed and Unmanaged Memory"
+
+Instead of using Marshal.GetLastWin32Error, Marshal.GetLastPInvokeError can be used. See the PInvokeSampleLib in Chapter 13, "Managed and Unmanaged Memory"
+
 > WinUI samples will be updated to .NET 6/C# 10 syntax at a later time
 

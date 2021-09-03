@@ -1,6 +1,4 @@
-﻿using System;
-
-unsafe class FunctionPointerSample
+﻿unsafe class FunctionPointerSample
 {
     public static void Calc(delegate* managed<int, int, int> func)
     {
