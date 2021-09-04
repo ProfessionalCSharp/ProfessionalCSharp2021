@@ -1,8 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using System;
-
-using var host = Host.CreateDefaultBuilder()
+﻿using var host = Host.CreateDefaultBuilder()
     .ConfigureServices((context, services) =>
     {
         var configuration = context.Configuration;

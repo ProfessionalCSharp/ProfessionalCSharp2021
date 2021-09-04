@@ -1,48 +1,52 @@
-using Azure.Identity;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.AzureAppConfiguration;
-using Microsoft.Extensions.Hosting;
-using System;
-
-namespace AzureAppConfigWebApp
+var builder = WebApplication.CreateBuilder(args);
+builder.Configuration.AddAzureAppConfiguration(options =>
 {
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
-        }
+    var endpoint = builder.Configuration["AppConfigEndpoint"];
+    DefaultAzureCredential credential = new();
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.ConfigureAppConfiguration((context, config) =>
-                    {
-                        // configuration is already needed from within setting up config
-                        var settings = config.Build(); 
-                        config.AddAzureAppConfiguration(options =>
-                        {
-                            // DefaultAzureCredential credential = new(includeInteractiveCredentials: true);
-                            VisualStudioCredential credential = new();
-                            var endpoint = settings["AppConfigEndpoint"];                            
-                            options.Connect(new Uri(endpoint), credential)
-                                .Select(KeyFilter.Any, LabelFilter.Null)
-                                .Select(KeyFilter.Any, context.HostingEnvironment.EnvironmentName)
-                                .ConfigureRefresh(refresh =>
-                                {
-                                    refresh.Register("AppConfigurationSample:Settings:Sentinel",
-                                        refreshAll: true)
-                                    .SetCacheExpiration(TimeSpan.FromMinutes(5));
-                                })
-                                .ConfigureKeyVault(kv =>
-                                {
-                                    kv.SetCredential(credential);
-                                });
-                        });                  
-                    });
-                    webBuilder.UseStartup<Startup>();
-                });
-    }
+    options.Connect(new Uri(endpoint), credential)
+        .Select(KeyFilter.Any, LabelFilter.Null)
+        .Select(KeyFilter.Any, builder.Environment.EnvironmentName)
+        .ConfigureRefresh(refresh =>
+        {
+            refresh.Register("AppConfigurationSample:Settings:Sentinel",
+                refreshAll: true)
+            .SetCacheExpiration(TimeSpan.FromMinutes(5));
+        })
+        .ConfigureKeyVault(kv =>
+        {
+            kv.SetCredential(credential);
+        });
+});
+
+// Add services to the container.
+builder.Services.AddRazorPages();
+builder.Services.Configure<IndexAppSettings>(builder.Configuration.GetSection("AppConfigurationSample:Settings"));
+builder.Services.AddAzureAppConfiguration();
+builder.Services.AddFeatureManagement().AddFeatureFilter<PercentageFilter>();
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
 }
+else
+{
+    app.UseExceptionHandler("/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseAzureAppConfiguration();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
+app.MapRazorPages();
+
+app.Run();

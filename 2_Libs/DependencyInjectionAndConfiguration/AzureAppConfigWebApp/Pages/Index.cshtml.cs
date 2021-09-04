@@ -1,25 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-
-namespace AzureAppConfigWebApp.Pages
+﻿namespace AzureAppConfigWebApp.Pages;
+public class IndexModel : PageModel
 {
-    public class IndexModel : PageModel
+    private readonly ILogger<IndexModel> _logger;
+
+    public IndexModel(IOptionsSnapshot<IndexAppSettings> options, ILogger<IndexModel> logger, IConfiguration configuration)
     {
-        private readonly ILogger<IndexModel> _logger;
+        _logger = logger;
+        Config1 = options.Value.Config1 ?? "no value";
+    }
 
-        public IndexModel(IOptionsSnapshot<IndexAppSettings> options, ILogger<IndexModel> logger, IConfiguration configuration)
-        {
-            _logger = logger;
-            Config1 = options.Value.Config1 ?? "no value";
-        }
+    public string Config1 { get; }
 
-        public string Config1 { get; }
+    public void OnGet()
+    {
 
-        public void OnGet()
-        {
-
-        }
     }
 }
