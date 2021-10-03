@@ -43,11 +43,9 @@ public class GenerateHtml
             }
             catch (TargetInvocationException ex)
             {
-                _logger.LogInformation("property name: {0}: message {1}", property.Name, ex.Message);
-                if (ex.InnerException != null)
-                {
-                    _logger.LogInformation("\tinner exception: {0}", ex.InnerException.Message);
-                }
+                // the Form property throws
+                string message = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
+                values.Add((property.Name, message));
             }
         }
         return values.Select(v => $"<div>{v.Key}: {v.Value}</div>");

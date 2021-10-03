@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace HttpServerSample;
+﻿namespace HttpServerSample;
 
 public record Racer(string FirstName, string LastName, string Country, int Starts, int Wins, IEnumerable<int> Years, IEnumerable<string> Cars) : IComparable<Racer>, IFormattable
 {

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace HttpServerSample;
+﻿namespace HttpServerSample;
 
 public class Formula1
 {
