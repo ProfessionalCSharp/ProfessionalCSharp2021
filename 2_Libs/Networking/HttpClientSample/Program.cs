@@ -1,16 +1,13 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+
 using Polly;
-using Polly.Extensions.Http;
-using System;
+
 using System.CommandLine;
 using System.CommandLine.Builder;
 using System.CommandLine.Hosting;
 using System.CommandLine.Invocation;
 using System.CommandLine.Parsing;
-using System.Net;
-using System.Net.Http;
-using System.Threading;
 
 await BuildCommandLine()
     .UseHost(_ => GetHostBuilder())
@@ -52,11 +49,11 @@ IHostBuilder GetHostBuilder() =>
                 policy => policy.WaitAndRetryAsync(new[] { TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(3), TimeSpan.FromSeconds(5) }));
         });
 
-IAsyncPolicy<HttpResponseMessage> GetRetryPolicy()
-    => HttpPolicyExtensions
-        .HandleTransientHttpError()
-        .OrResult(message => message.StatusCode == HttpStatusCode.TooManyRequests)
-        .WaitAndRetryAsync(5, retryAttempt => TimeSpan.FromSeconds(Math.Pow(4, retryAttempt)));
+//IAsyncPolicy<HttpResponseMessage> GetRetryPolicy()
+//    => HttpPolicyExtensions
+//        .HandleTransientHttpError()
+//        .OrResult(message => message.StatusCode == HttpStatusCode.TooManyRequests)
+//        .WaitAndRetryAsync(5, retryAttempt => TimeSpan.FromSeconds(Math.Pow(4, retryAttempt)));
 
 CommandLineBuilder BuildCommandLine()
 {
