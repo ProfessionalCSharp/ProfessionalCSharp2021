@@ -5,10 +5,7 @@ namespace HttpServerSample;
 public class GenerateHtml
 {
     private readonly ILogger _logger;
-    public GenerateHtml(ILogger<GenerateHtml> logger)
-    {
-        _logger = logger;
-    }
+    public GenerateHtml(ILogger<GenerateHtml> logger) => _logger = logger;
 
     private static string s_htmlFormat =
         "<!DOCTYPE html>\r\n<html><head><title>{0}</title></head>" +

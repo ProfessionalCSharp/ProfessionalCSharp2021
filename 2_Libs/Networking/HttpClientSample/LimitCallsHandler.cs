@@ -15,6 +15,9 @@ public class LimitCallsHandler : DelegatingHandler
     private int _numberCalls = 0;
     public LimitCallsHandler(IOptions<LimitCallsHandlerOptions> options, ILogger<LimitCallsHandler> logger)
     {
+        ArgumentNullException.ThrowIfNull(options);
+        ArgumentNullException.ThrowIfNull(logger);
+
         _limitCount = options.Value.LimitCalls;
         _logger = logger;
     }
