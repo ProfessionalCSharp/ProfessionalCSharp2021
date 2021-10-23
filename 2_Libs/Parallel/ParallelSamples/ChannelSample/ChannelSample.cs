@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Channels;
-using System.Threading.Tasks;
+﻿using System.Threading.Channels;
 
 class ChannelSample
 {
@@ -79,6 +77,5 @@ class ChannelSample
             {
                 Console.WriteLine("channel closed");
             }
-        });
-    
+        });   
 }

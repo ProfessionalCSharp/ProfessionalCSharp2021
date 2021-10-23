@@ -1,25 +1,22 @@
-﻿using System;
+﻿namespace ThreadingIssues;
 
-namespace ThreadingIssues
+public class TaskWithRaceCondition
 {
-    public class TaskWithRaceCondition
+    public void RaceCondition(object o)
     {
-        public void RaceCondition(object o)
+        if (o is not StateObject state) throw new ArgumentException("o must be a StateObject");
+        else
         {
-            if (o is not StateObject state) throw new ArgumentException("o must be a StateObject");
-            else
-            {
-                Console.WriteLine("starting RaceCondition - when does the issue occur?");
+            Console.WriteLine("starting RaceCondition - when does the issue occur?");
 
-                int i = 0;
-                while (true)
+            int i = 0;
+            while (true)
+            {
+                // lock (state) // no race condition with this lock
                 {
-                    // lock (state) // no race condition with this lock
+                    if (!state.ChangeState(i++))
                     {
-                        if (!state.ChangeState(i++))
-                        {
-                            i = 0;
-                        }
+                        i = 0;
                     }
                 }
             }

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Channels;
-using System.Threading.Tasks;
+﻿using System.Threading.Channels;
 
 await UsingTheUnboundedChannelAsync();
 await UsingTheBoundedChannelAsync();

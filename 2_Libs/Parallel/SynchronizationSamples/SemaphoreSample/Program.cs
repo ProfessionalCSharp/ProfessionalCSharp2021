@@ -1,8 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-
-int taskCount = 6;
+﻿int taskCount = 6;
 int semaphoreCount = 3;
 using SemaphoreSlim semaphore = new(semaphoreCount, semaphoreCount);
 

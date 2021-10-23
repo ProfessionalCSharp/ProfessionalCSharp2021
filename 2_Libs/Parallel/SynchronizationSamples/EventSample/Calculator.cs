@@ -1,8 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-
-public class Calculator
+﻿public class Calculator
 {
     private ManualResetEventSlim _mEvent;
 
