@@ -1,4 +1,9 @@
-﻿if (args.Length != 2)
+﻿using Windows.Win32;
+using Windows.Win32.Security;
+
+[assembly:System.Runtime.Versioning.SupportedOSPlatform("Windows")]
+
+if (args.Length != 2)
 {
     Console.WriteLine("start using [existingFile] [newFile]");
     return;
