@@ -1,8 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 
 public class Runner
 {
@@ -64,7 +61,7 @@ public class Runner
                 if (entry.Entity is Book b)
                 {
                     PropertyEntry pe = entry.Property("Timestamp");
-                    Console.WriteLine($"{b.Title} {BitConverter.ToString((byte[])pe.CurrentValue)}");
+                    Console.WriteLine($"{b.Title} {pe.TimestampToString()}");
                     ShowChanges(_selectedBook.BookId, _booksContext.Entry(_selectedBook));
                 }
             }
@@ -85,6 +82,17 @@ public class Runner
     public async Task<string> GetUpdatedTitleAsyc(int id)
     {
         var book = await _booksContext.Books.FindAsync(id);
+        if (book is null) return string.Empty;
         return $"{book.Title} with id {book.BookId}";
+    }
+}
+
+internal static class Converter
+{
+    public static string TimestampToString(this PropertyEntry entry)
+    {
+        if (entry.CurrentValue is null) return string.Empty;
+        byte[] data = (byte[])entry.CurrentValue;
+        return BitConverter.ToString(data);
     }
 }
