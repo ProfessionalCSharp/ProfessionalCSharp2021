@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
 
 public class MenusRunner
 {
@@ -16,5 +15,4 @@ public class MenusRunner
     {
         await _menusContext.Database.EnsureDeletedAsync();
     }
-
 }

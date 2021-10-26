@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-internal class InitData
+﻿internal class InitData
 {
     public InitData()
     {

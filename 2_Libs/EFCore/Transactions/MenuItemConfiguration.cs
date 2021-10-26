@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
+
 using static ColumnNames;
 
 internal class MenuItemConfiguration : IEntityTypeConfiguration<MenuItem>
@@ -23,4 +23,3 @@ internal class MenuItemConfiguration : IEntityTypeConfiguration<MenuItem>
         builder.Property<Guid>(RestaurantId);
     }
 }
-

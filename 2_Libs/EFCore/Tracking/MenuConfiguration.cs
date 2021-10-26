@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
+
 using static ColumnNames;
 
 internal class MenuConfiguration : IEntityTypeConfiguration<MenuItem>
