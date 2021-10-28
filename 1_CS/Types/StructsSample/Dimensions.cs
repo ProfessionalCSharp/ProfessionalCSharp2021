@@ -1,6 +1,4 @@
-﻿using System;
-
-public readonly struct Dimensions
+﻿public readonly struct Dimensions
 {
     public double Length { get; }
     public double Width { get; }
