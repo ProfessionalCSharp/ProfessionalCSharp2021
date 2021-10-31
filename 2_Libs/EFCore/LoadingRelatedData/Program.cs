@@ -17,7 +17,7 @@ using var host = Host.CreateDefaultBuilder(args)
     })
     .Build();
 
-using (var scope = host.Services.CreateScope())
+await using (var scope = host.Services.CreateAsyncScope())
 {
     var runner = scope.ServiceProvider.GetRequiredService<Runner>();
 
@@ -27,13 +27,13 @@ using (var scope = host.Services.CreateScope())
     await runner.FilteredIncludeAsync();
 }
 
-using (var scope = host.Services.CreateScope())
+await using (var scope = host.Services.CreateAsyncScope())
 {
     var runner = scope.ServiceProvider.GetRequiredService<Runner>();
     await runner.ExplicitLoadingAsync();
 }
 
-using (var scope = host.Services.CreateScope())
+await using (var scope = host.Services.CreateAsyncScope())
 {
     var runner = scope.ServiceProvider.GetRequiredService<Runner>();
     await runner.LazyLoadingAsync();

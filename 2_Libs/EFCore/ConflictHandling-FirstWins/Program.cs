@@ -23,8 +23,8 @@ using (var scope = host.Services.CreateScope())
 }
 
 // different scopes for the users and prepare update
-using var user1Scope = host.Services.CreateScope();
-using var user2Scope = host.Services.CreateScope();
+await using var user1Scope = host.Services.CreateAsyncScope();
+await using var user2Scope = host.Services.CreateAsyncScope();
 var user1Runner = user1Scope.ServiceProvider.GetRequiredService<Runner>();
 var user2Runner = user2Scope.ServiceProvider.GetRequiredService<Runner>();
 int bookId = await user1Runner.PrepareUpdateAsync("user1");
@@ -35,7 +35,7 @@ await user1Runner.UpdateAsync();
 await user2Runner.UpdateAsync();
 
 // check for the winner
-using var checkScope = host.Services.CreateScope();
+await using var checkScope = host.Services.CreateAsyncScope();
 var runner = checkScope.ServiceProvider.GetRequiredService<Runner>();
 string updatedTitle = await runner.GetUpdatedTitleAsyc(bookId);
 Console.Write("this is the winner: ");

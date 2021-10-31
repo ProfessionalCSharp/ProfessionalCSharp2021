@@ -6,6 +6,6 @@
     })
     .Build();
 
-using var scope = host.Services.CreateScope();
+await using var scope = host.Services.CreateAsyncScope();
 var context = scope.ServiceProvider.GetRequiredService<BooksContext>();
 await context.Database.MigrateAsync();
