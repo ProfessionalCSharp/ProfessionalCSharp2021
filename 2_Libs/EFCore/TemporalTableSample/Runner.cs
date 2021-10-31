@@ -116,6 +116,16 @@ public class Runner
     }
 #endif
 
+    public async Task TemporalQueryAsync()
+    {
+        await _booksContext.Books.TemporalAll().ForEachAsync(b =>
+        {
+            var entry = _booksContext.Entry(b);
+            Console.WriteLine($"{b.Title} {entry.State}");
+        });
+
+    }
+
     public async Task DeleteBooksAsync()
     {
         List<Book> books = await _booksContext.Books.ToListAsync();

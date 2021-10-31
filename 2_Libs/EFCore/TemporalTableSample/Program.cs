@@ -24,5 +24,6 @@ await runner.AddBooksAsync();
 await runner.ReadBooksAsync();
 await runner.QueryBooksAsync();
 await runner.UpdateBookAsync();
+await runner.TemporalQueryAsync();
 await runner.DeleteBooksAsync();
 await runner.DeleteDatabaseAsync();
