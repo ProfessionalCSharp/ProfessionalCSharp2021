@@ -1,6 +1,4 @@
-﻿using System;
-
-DigitSeparators();
+﻿DigitSeparators();
 BinaryNumbers();
 
 static void DigitSeparators()
