@@ -42,7 +42,6 @@ void HelloWorld()
     }
 }
 
-
 class HelloCollection
 {
     public IEnumerator<string> GetEnumerator()
