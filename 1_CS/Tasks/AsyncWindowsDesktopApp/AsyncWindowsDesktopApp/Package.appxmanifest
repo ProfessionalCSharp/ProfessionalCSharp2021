@@ -8,18 +8,18 @@
 
   <Identity
     Name="5b633b73-8e40-43a3-9866-6c5f45c24bcc"
-    Publisher="CN=chris"
+    Publisher="CN=christian"
     Version="1.0.0.0" />
 
   <Properties>
-    <DisplayName>AsyncWindowsDesktopApp (Package)</DisplayName>
-    <PublisherDisplayName>chris</PublisherDisplayName>
+    <DisplayName>AsyncWindowsDesktopApp</DisplayName>
+    <PublisherDisplayName>Christian Nagel</PublisherDisplayName>
     <Logo>Images\StoreLogo.png</Logo>
   </Properties>
 
   <Dependencies>
-    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
-    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.14393.0" MaxVersionTested="10.0.14393.0" />
+    <TargetDeviceFamily Name="Windows.Universal"  MinVersion="10.0.17763.0" MaxVersionTested="10.0.19041.0" />
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.17763.0" MaxVersionTested="10.0.19041.0" />
   </Dependencies>
 
   <Resources>
@@ -31,19 +31,18 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="AsyncWindowsDesktopApp (Package)"
-        Description="AsyncWindowsDesktopApp (Package)"
+        DisplayName="AsyncWindowsDesktopApp"
+        Description="AsyncWindowsDesktopApp"
         BackgroundColor="transparent"
-        Square150x150Logo="Images\Square150x150Logo.png"
-        Square44x44Logo="Images\Square44x44Logo.png">
-        <uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png" />
-        <uap:SplashScreen Image="Images\SplashScreen.png" />
+        Square150x150Logo="Assets\Square150x150Logo.png"
+        Square44x44Logo="Assets\Square44x44Logo.png">
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" />
+        <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
     </Application>
   </Applications>
 
   <Capabilities>
-    <Capability Name="internetClient" />
     <rescap:Capability Name="runFullTrust" />
   </Capabilities>
 </Package>

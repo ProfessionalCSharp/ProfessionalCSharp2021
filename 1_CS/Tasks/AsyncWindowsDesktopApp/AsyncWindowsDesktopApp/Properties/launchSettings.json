@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "AsyncWindowsDesktopApp (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "AsyncWindowsDesktopApp (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
