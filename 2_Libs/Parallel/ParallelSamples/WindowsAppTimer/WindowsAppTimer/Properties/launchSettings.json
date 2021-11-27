@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "WindowsAppTimer (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "WindowsAppTimer (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

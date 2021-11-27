@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30804.86
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParallelSamples", "ParallelSamples\ParallelSamples.csproj", "{4C4AE31B-0FA7-4A55-BA04-DD81B19BC497}"
 EndProject
@@ -14,8 +14,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimersSample", "TimersSample\TimersSample.csproj", "{8B1F79BC-6545-4677-9707-75FCAAFC1B1F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChannelSample", "ChannelSample\ChannelSample.csproj", "{C78FD4CE-A6A8-478E-A62A-CFDA8227E551}"
-EndProject
-Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "WindowsAppTimer (Package)", "WindowsAppTimer\WindowsAppTimer (Package)\WindowsAppTimer (Package).wapproj", "{24786032-8777-48AA-8941-BD60AE4A1D61}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WindowsAppTimer", "WindowsAppTimer\WindowsAppTimer\WindowsAppTimer.csproj", "{2A3173D5-02D5-4C0F-BBED-396FB91EEBBC}"
 EndProject
@@ -153,32 +151,9 @@ Global
 		{C78FD4CE-A6A8-478E-A62A-CFDA8227E551}.Release|x64.Build.0 = Release|Any CPU
 		{C78FD4CE-A6A8-478E-A62A-CFDA8227E551}.Release|x86.ActiveCfg = Release|Any CPU
 		{C78FD4CE-A6A8-478E-A62A-CFDA8227E551}.Release|x86.Build.0 = Release|Any CPU
-		{24786032-8777-48AA-8941-BD60AE4A1D61}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{24786032-8777-48AA-8941-BD60AE4A1D61}.Debug|Any CPU.Build.0 = Debug|x86
-		{24786032-8777-48AA-8941-BD60AE4A1D61}.Debug|Any CPU.Deploy.0 = Debug|x86
-		{24786032-8777-48AA-8941-BD60AE4A1D61}.Debug|ARM.ActiveCfg = Debug|x86
-		{24786032-8777-48AA-8941-BD60AE4A1D61}.Debug|arm64.ActiveCfg = Debug|arm64
-		{24786032-8777-48AA-8941-BD60AE4A1D61}.Debug|arm64.Build.0 = Debug|arm64
-		{24786032-8777-48AA-8941-BD60AE4A1D61}.Debug|arm64.Deploy.0 = Debug|arm64
-		{24786032-8777-48AA-8941-BD60AE4A1D61}.Debug|x64.ActiveCfg = Debug|x64
-		{24786032-8777-48AA-8941-BD60AE4A1D61}.Debug|x64.Build.0 = Debug|x64
-		{24786032-8777-48AA-8941-BD60AE4A1D61}.Debug|x64.Deploy.0 = Debug|x64
-		{24786032-8777-48AA-8941-BD60AE4A1D61}.Debug|x86.ActiveCfg = Debug|x86
-		{24786032-8777-48AA-8941-BD60AE4A1D61}.Debug|x86.Build.0 = Debug|x86
-		{24786032-8777-48AA-8941-BD60AE4A1D61}.Debug|x86.Deploy.0 = Debug|x86
-		{24786032-8777-48AA-8941-BD60AE4A1D61}.Release|Any CPU.ActiveCfg = Release|x86
-		{24786032-8777-48AA-8941-BD60AE4A1D61}.Release|ARM.ActiveCfg = Release|x86
-		{24786032-8777-48AA-8941-BD60AE4A1D61}.Release|arm64.ActiveCfg = Release|arm64
-		{24786032-8777-48AA-8941-BD60AE4A1D61}.Release|arm64.Build.0 = Release|arm64
-		{24786032-8777-48AA-8941-BD60AE4A1D61}.Release|arm64.Deploy.0 = Release|arm64
-		{24786032-8777-48AA-8941-BD60AE4A1D61}.Release|x64.ActiveCfg = Release|x64
-		{24786032-8777-48AA-8941-BD60AE4A1D61}.Release|x64.Build.0 = Release|x64
-		{24786032-8777-48AA-8941-BD60AE4A1D61}.Release|x64.Deploy.0 = Release|x64
-		{24786032-8777-48AA-8941-BD60AE4A1D61}.Release|x86.ActiveCfg = Release|x86
-		{24786032-8777-48AA-8941-BD60AE4A1D61}.Release|x86.Build.0 = Release|x86
-		{24786032-8777-48AA-8941-BD60AE4A1D61}.Release|x86.Deploy.0 = Release|x86
 		{2A3173D5-02D5-4C0F-BBED-396FB91EEBBC}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{2A3173D5-02D5-4C0F-BBED-396FB91EEBBC}.Debug|Any CPU.Build.0 = Debug|x86
+		{2A3173D5-02D5-4C0F-BBED-396FB91EEBBC}.Debug|Any CPU.Deploy.0 = Debug|x86
 		{2A3173D5-02D5-4C0F-BBED-396FB91EEBBC}.Debug|ARM.ActiveCfg = Debug|x86
 		{2A3173D5-02D5-4C0F-BBED-396FB91EEBBC}.Debug|arm64.ActiveCfg = Debug|arm64
 		{2A3173D5-02D5-4C0F-BBED-396FB91EEBBC}.Debug|arm64.Build.0 = Debug|arm64
