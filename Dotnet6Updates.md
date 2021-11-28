@@ -34,3 +34,16 @@ Instead of using Marshal.GetLastWin32Error, Marshal.GetLastPInvokeError can be u
 
 > WinUI samples will be updated to .NET 6/C# 10 syntax at a later time
 
+## Testing with ASP.NET Core 6 using the `WebApplication` class
+
+See chapter 23, Tests, sample ASPNETCoreSample
+
+The Web application project needs to give access for the unit testing project (ASPNETCoreSample.csproj):
+
+```xml
+	<ItemGroup>
+		<InternalsVisibleTo Include="ASPNETCoreSample.IntegrationTest"/>
+	</ItemGroup>
+```
+
+See how the `WebApplicationFactory` is now used to access the `Program` class from the ASP.NET Core project in the test project *ASPNETCoreSample.IntegrationTest*

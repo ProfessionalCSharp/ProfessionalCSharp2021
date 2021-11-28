@@ -20,6 +20,7 @@ public class ASPNETCoreSampleTest
         // arrange
         var app = new WebApplication();
         var client = app.CreateClient();
+
         // act
         var response = await client.GetAsync("/");
 
