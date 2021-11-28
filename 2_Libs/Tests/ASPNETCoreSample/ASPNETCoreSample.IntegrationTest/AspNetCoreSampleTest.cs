@@ -4,18 +4,22 @@ using Xunit;
 namespace ASPNETCoreSample.IntegrationTest;
 
 public class ASPNETCoreSampleTest
-    : IClassFixture<WebApplicationFactory<ASPNETCoreSample.Startup>>
+    : IClassFixture<WebApplicationFactory<Program>>
 {
-    private readonly WebApplicationFactory<ASPNETCoreSample.Startup> _factory;
-
-    public ASPNETCoreSampleTest(WebApplicationFactory<ASPNETCoreSample.Startup> factory)
-        => _factory = factory;
+    class WebApplication : WebApplicationFactory<Program>
+    {
+        protected override IHost CreateHost(IHostBuilder builder)
+        {
+            return base.CreateHost(builder);
+        }
+    }
 
     [Fact]
     public async Task ReturnHelloWorld()
     {
         // arrange
-        var client = _factory.CreateClient();
+        var app = new WebApplication();
+        var client = app.CreateClient();
         // act
         var response = await client.GetAsync("/");
 
