@@ -1,6 +1,4 @@
-﻿using System;
-
-while (true)
+﻿while (true)
 {
     try
     {

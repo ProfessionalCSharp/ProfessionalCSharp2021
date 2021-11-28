@@ -1,6 +1,4 @@
-﻿using System;
-
-IfStatement();
+﻿IfStatement();
 Book b = new("Professional C#");
 PatternMatching(b);
 

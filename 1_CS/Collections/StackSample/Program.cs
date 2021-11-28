@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-
-Stack<char> alphabet = new();
+﻿Stack<char> alphabet = new();
 alphabet.Push('A');
 alphabet.Push('B');
 alphabet.Push('C');

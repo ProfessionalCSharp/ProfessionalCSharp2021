@@ -1,6 +1,4 @@
-﻿using System;
-
-class A
+﻿class A
 {
     internal void Foo() { }
     class B

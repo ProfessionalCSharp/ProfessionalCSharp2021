@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-EmployeeId idKyle = new("J18");
+﻿EmployeeId idKyle = new("J18");
 Employee kyle = new Employee(idKyle, "Kyle Bush", 138_000.00m );
 
 EmployeeId idMartin = new("J19");

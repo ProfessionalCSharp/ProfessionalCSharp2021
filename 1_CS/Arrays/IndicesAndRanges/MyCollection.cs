@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-
-public class MyCollection
+﻿public class MyCollection
 {
     private int[] _array = Enumerable.Range(1, 100).ToArray();
 

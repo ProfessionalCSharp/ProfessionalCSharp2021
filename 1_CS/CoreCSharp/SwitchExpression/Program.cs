@@ -1,6 +1,4 @@
-﻿using System;
-
-string? input = Console.ReadLine();
+﻿string? input = Console.ReadLine();
 
 string result = input switch
 {

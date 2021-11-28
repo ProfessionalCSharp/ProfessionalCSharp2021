@@ -1,6 +1,4 @@
-﻿using System;
-
-// This loop iterates through rows
+﻿// This loop iterates through rows
 for (int i = 0; i < 100; i += 10)
 {
     // This loop iterates through columns

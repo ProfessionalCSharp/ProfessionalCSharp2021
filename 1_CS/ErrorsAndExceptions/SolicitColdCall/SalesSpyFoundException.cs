@@ -1,6 +1,4 @@
-﻿using System;
-
-public class SalesSpyFoundException : Exception
+﻿public class SalesSpyFoundException : Exception
 {
     public SalesSpyFoundException(string spyName)
       : base($"Sales spy found, with name {spyName}") { }

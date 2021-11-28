@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-List<Racer> racers = new();
+﻿List<Racer> racers = new();
 racers.Add(new Racer(26, "Jacques", "Villeneuve", "Canada", 11));
 racers.Add(new Racer(18, "Alan", "Jones", "Australia", 12));
 racers.Add(new Racer(11, "Jackie", "Stewart", "United Kingdom", 27));

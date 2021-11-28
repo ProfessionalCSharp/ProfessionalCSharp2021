@@ -1,6 +1,4 @@
-﻿using System;
-
-AStruct x1 = new() { A = 1 };
+﻿AStruct x1 = new() { A = 1 };
 AStruct x2 = x1;
 x2.A = 2;
 Console.WriteLine($"original didn't change with a struct: {x1.A}");

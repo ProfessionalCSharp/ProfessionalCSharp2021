@@ -1,6 +1,4 @@
-﻿using System;
-
-public class ColdCallFileFormatException : Exception
+﻿public class ColdCallFileFormatException : Exception
 {
     public ColdCallFileFormatException(string message)
         : base(message) {}

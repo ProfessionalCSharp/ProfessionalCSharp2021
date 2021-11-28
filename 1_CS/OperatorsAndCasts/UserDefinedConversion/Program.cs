@@ -1,6 +1,4 @@
-﻿using System;
-
-try
+﻿try
 {
     Currency balance = new(50, 35);
 

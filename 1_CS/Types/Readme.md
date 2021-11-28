@@ -10,6 +10,7 @@ This chapter contains the following code samples:
 * MethodSample (instance and static methods)
 * ExtensionMethods (declaring and using *extension methods*)
 * RecordsSample (records)
+* StructsSample (structs)
 * EnumSample (using the *enum* keyword)
 * RefInOutSample
 * TuplesSample
@@ -20,3 +21,15 @@ For code comments and issues please check [Professional C#'s GitHub Repository](
 Please check my blog [csharp.christiannagel.com](https://csharp.christiannagel.com "csharp.christiannagel.com") for additional information for topics covered in the book.
 
 Thank you!
+
+## Updates with C# 10
+
+See [Updates with C# 10](../../Dotnet6Updates.md)
+
+New sample:
+
+* StructRecordSample (record struct)
+
+Udpated sample:
+
+* StructsSample (parameterless constructor)

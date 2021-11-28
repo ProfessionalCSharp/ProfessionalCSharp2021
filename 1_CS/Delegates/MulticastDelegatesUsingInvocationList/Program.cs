@@ -1,6 +1,4 @@
-﻿using System;
-
-static void One()
+﻿static void One()
 {
     Console.WriteLine("One");
     throw new Exception("Error in One");

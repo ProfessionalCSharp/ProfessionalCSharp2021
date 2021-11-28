@@ -1,6 +1,4 @@
-﻿using System;
-
-Book theBook = new("Professional C#") 
+﻿Book theBook = new("Professional C#") 
 { 
     Publisher = "Wrox Press" 
 };

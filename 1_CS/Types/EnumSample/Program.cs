@@ -1,6 +1,4 @@
-﻿using System;
-
-ColorSamples();
+﻿ColorSamples();
 DaysOfWeekSamples();
 
 UsingEnumClass();
