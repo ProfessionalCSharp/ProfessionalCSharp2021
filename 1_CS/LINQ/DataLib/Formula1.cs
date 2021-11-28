@@ -1,4 +1,4 @@
-﻿namespace DataLib;
+namespace DataLib;
 
 public static class Formula1
 {
@@ -61,7 +61,6 @@ public static class Formula1
         new("Red Bull Racing", 2010, 2011, 2012, 2013),
         new("Mercedes", 2014, 2015, 2016, 2017, 2018, 2019, 2020)
     };
-
 
     private static List<Championship>? s_championships;
     public static IEnumerable<Championship> GetChampionships() => s_championships ??= new()

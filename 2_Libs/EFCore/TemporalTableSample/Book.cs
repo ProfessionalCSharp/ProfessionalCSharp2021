@@ -1,6 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BooksLib;
+#if USERECORDS
+
+public record Book(
+    [property: StringLength(50)] string Title,
+    [property: StringLength(30)] string? Publisher = default,
+    int BookId = 0);
+
+#else
 
 public class Book
 {
@@ -15,6 +22,6 @@ public class Book
     [StringLength(30)]
     public string? Publisher { get; set; }
     public int BookId { get; set; }
-    [StringLength(20)]
-    public string? Isbn { get; set; }
 }
+
+#endif

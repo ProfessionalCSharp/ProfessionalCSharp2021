@@ -74,7 +74,8 @@ public class Runner
             await bookEntry.Reference(b => b.Author).LoadAsync();
             Console.WriteLine($"{book.Author?.FirstName} {book.Author?.LastName}");
 
-            await _booksContext.Entry(book.Author).Reference(a => a!.Address).LoadAsync();
+            if (book.Author is null) continue; // no author, fix CS8634 warning
+            await _booksContext.Entry(book.Author).Reference(a => a.Address).LoadAsync();
             Console.WriteLine($"{book.Author!.Address!.Country}");
 
             await bookEntry.Collection(b => b.Chapters).LoadAsync();

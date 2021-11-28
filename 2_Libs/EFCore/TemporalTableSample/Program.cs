@@ -6,8 +6,8 @@ using Microsoft.Extensions.Hosting;
 using var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((context, services) =>
     {
-        var connectionString = context.Configuration.GetConnectionString("TPHConnection");
-        services.AddDbContext<BankContext>(options =>
+        var connectionString = context.Configuration.GetConnectionString("BooksConnection");
+        services.AddDbContext<BooksContext>(options =>
         {
             options.UseSqlServer(connectionString);
         });
@@ -18,7 +18,12 @@ using var host = Host.CreateDefaultBuilder(args)
 using var scope = host.Services.CreateScope();
 var runner = scope.ServiceProvider.GetRequiredService<Runner>();
 
-await runner.CreateDatabaseAsync();
-await runner.AddSampleDataAsync();
-runner.QuerySample();
+await runner.CreateTheDatabaseAsync();
+await runner.AddBookAsync("Professional C# and .NET", "Wrox Press");
+await runner.AddBooksAsync();
+await runner.ReadBooksAsync();
+await runner.QueryBooksAsync();
+await runner.UpdateBookAsync();
+await runner.TemporalQueryAsync();
+await runner.DeleteBooksAsync();
 await runner.DeleteDatabaseAsync();

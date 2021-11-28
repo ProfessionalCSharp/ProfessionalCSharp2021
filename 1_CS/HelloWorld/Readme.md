@@ -5,7 +5,7 @@
 This chapter contains the following code samples:
 
 * HelloWorld (.NET Core Console App)
-* WebApp (Tool-generated ASP.NET Core MVC Web App)
+* WebApp (Tool-generated ASP.NET Core Web App)
 * SelfContainedHelloWorld (Console App configured for self-contained deployment)
 * TrimmedHelloWorld
  
