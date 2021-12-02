@@ -1,5 +1,4 @@
 ﻿using Books.Models;
-
 using System.Collections.Concurrent;
 
 namespace BooksApi.Services;
