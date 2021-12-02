@@ -1,13 +1,12 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace WebAppWithADSample
+namespace WebAppWithADSample;
+
+[Authorize(Policy = "Developers")]
+public class DeveloperPageModel : PageModel
 {
-    [Authorize(Policy="Developers")]
-    public class DeveloperPageModel : PageModel
+    public void OnGet()
     {
-        public void OnGet()
-        {
-        }
     }
 }

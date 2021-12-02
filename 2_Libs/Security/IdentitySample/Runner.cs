@@ -1,8 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
+
 using Id = Microsoft.Identity.Client;
 
 internal static class IdentityLogLevelExtensions
