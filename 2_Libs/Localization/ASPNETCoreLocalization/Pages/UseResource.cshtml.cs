@@ -1,14 +1,10 @@
-using Microsoft.AspNetCore.Localization;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Localization;
-
 namespace ASPNETCoreLocalization.Pages;
 
-public class UseResourceModel : PageModel
+internal class UseResourceModel : PageModel
 {
     private readonly IStringLocalizer _localizer;
     private readonly IStringLocalizer _sharedLocalizer;
-    public UseResourceModel(IStringLocalizer<UseResourceModel> localizer, IStringLocalizer<Startup> sharedLocalizer)
+    public UseResourceModel(IStringLocalizer<UseResourceModel> localizer, IStringLocalizer<Program> sharedLocalizer)
     {
         _localizer = localizer;
         _sharedLocalizer = sharedLocalizer;

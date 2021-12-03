@@ -1,7 +1,3 @@
-using ASPNETCoreLocalization.Models;
-
-using Microsoft.AspNetCore.Mvc.RazorPages;
-
 namespace ASPNETCoreLocalization.Pages;
 
 public class EditBookModel : PageModel

@@ -1,6 +1,3 @@
-using Microsoft.AspNetCore.Mvc.Localization;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-
 namespace ASPNETCoreLocalization.Pages;
 
 public class UseViewLocalizerModel : PageModel
