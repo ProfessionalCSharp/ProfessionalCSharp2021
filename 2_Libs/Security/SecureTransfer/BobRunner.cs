@@ -1,9 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-
-using System.Security.Cryptography;
-using System.Text;
-
-class BobRunner
+﻿sealed class BobRunner
 {
     private readonly ILogger _logger;
     private ECDiffieHellman _algorithm;

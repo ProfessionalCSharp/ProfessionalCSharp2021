@@ -1,9 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-
-using System;
-using System.Security.Cryptography;
-
-class BobRunner : IDisposable
+﻿sealed class BobRunner : IDisposable
 {
     private readonly ILogger _logger;
     private ECDsa _signAlgorithm;
