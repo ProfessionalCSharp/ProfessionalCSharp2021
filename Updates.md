@@ -1,3 +1,11 @@
 # Book Updates
 
-> Here, updates to the book will be added. It's not printed yet, so no updates are availabe.
+## Chapter 20, Security
+
+Page 560, the command
+
+> az app list --display-name ProCSharpIdentityApp --query [].appId
+
+should be:
+
+> az ad app list --display-name ProCSharpIdentityApp --query [].appId
