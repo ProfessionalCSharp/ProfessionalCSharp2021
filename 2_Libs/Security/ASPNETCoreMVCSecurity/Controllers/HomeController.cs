@@ -19,15 +19,9 @@ public class HomeController : Controller
         _settings = configuration;
     }
 
-    public IActionResult Index()
-    {
-        return View();
-    }
+    public IActionResult Index() => View();
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
+    public IActionResult Privacy() => View();
 
     public string Echo(string x) => x;
 

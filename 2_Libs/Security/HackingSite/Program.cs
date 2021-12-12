@@ -1,19 +1,12 @@
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
+var builder = WebApplication.CreateBuilder();
+var app = builder.Build();
 
-namespace HackingSite;
+app.UseStaticFiles();
 
-public class Program
+app.Map("/", async context =>
 {
-    public static void Main(string[] args)
-    {
-        CreateHostBuilder(args).Build().Run();
-    }
+    await context.Response.WriteAsync("Invoke the static pages from this site while the site to be hacked is active");
 
-    public static IHostBuilder CreateHostBuilder(string[] args) =>
-        Host.CreateDefaultBuilder(args)
-            .ConfigureWebHostDefaults(webBuilder =>
-            {
-                webBuilder.UseStartup<Startup>();
-            });
-}
+});
+
+app.Run();
