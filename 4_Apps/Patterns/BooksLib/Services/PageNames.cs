@@ -1,8 +1,7 @@
-﻿namespace BooksLib.Services
+﻿namespace BooksLib.Services;
+
+public class PageNames
 {
-    public class PageNames
-    {
-        public const string BooksPage = nameof(BooksPage);
-        public const string BookDetailPage = nameof(BookDetailPage);
-    }
+    public const string BooksPage = nameof(BooksPage);
+    public const string BookDetailPage = nameof(BookDetailPage);
 }

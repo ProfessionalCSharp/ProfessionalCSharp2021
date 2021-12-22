@@ -1,7 +1,6 @@
-﻿namespace GenericViewModels.ViewModels
+﻿namespace GenericViewModels.ViewModels;
+
+public interface IItemViewModel<out T>
 {
-    public interface IItemViewModel<out T>
-    {
-        T? Item { get; }
-    }
+    T? Item { get; }
 }

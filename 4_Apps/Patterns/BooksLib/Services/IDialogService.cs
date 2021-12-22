@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
 
-namespace BooksLib.Services
+namespace BooksLib.Services;
+
+public interface IDialogService
 {
-    public interface IDialogService
-    {
-        Task ShowMessageAsync(string message);
-    }
+    Task ShowMessageAsync(string message);
 }
