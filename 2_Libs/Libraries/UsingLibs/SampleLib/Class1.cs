@@ -1,8 +1,5 @@
-﻿using System;
+﻿namespace SampleLib;
 
-namespace SimpleLib
+public class Class1
 {
-    public class Class1
-    {
-    }
 }

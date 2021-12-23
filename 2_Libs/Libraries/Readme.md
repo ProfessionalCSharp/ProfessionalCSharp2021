@@ -11,13 +11,15 @@ This chapter contains the following code samples:
 * CreateNuGet
     * SampleLib
     * ConsoleApp 
+
+> With .NET 6, the CreateNuGet sample has been updated to build a NuGet package for .NET Standard 2.0, .NET 5, and .NET 6.
  
+## More Information
+
 For code comments and issues please check [Professional C#'s GitHub Repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021)
+
+[Predefined symbols for target frameworks](https://docs.microsoft.com/dotnet/csharp/language-reference/preprocessor-directives)
 
 Please check my blog [csharp.christiannagel.com](https://csharp.christiannagel.com "csharp.christiannagel.com") for additional information for topics covered in the book.
 
 Thank you!
-
-
-
-
