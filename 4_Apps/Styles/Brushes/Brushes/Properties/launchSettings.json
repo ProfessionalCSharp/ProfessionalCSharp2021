@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Brushes (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Brushes (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
