@@ -30,7 +30,6 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.MapControllers();
 
-
 app.MapGet("/init", async (SampleChapters sampleChapters, HttpContext context) =>
 {
     sampleChapters.CreateSampleChapters();
