@@ -1,9 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using System.IO;
-
-using var host = Host.CreateDefaultBuilder(args)
+﻿using var host = Host.CreateDefaultBuilder(args)
     .ConfigureAppConfiguration(config =>
     {
         config.SetBasePath(Directory.GetCurrentDirectory());
@@ -24,4 +19,3 @@ service.ShowDynamicValue();
 
 var service2 = host.Services.GetRequiredService<EnvironmentSampleService>();
 service2.ShowHostEnvironment();
-

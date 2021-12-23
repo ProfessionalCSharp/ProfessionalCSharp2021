@@ -1,7 +1,6 @@
-﻿namespace AzureAppConfigWebApp
+﻿namespace AzureAppConfigWebApp;
+
+public enum SampleFeatureFlags
 {
-    public enum SampleFeatureFlags
-    {
-        FeatureX
-    }
+    FeatureX
 }

@@ -1,6 +1,4 @@
-﻿using System;
-
-public sealed class ControllerX : IDisposable
+﻿public sealed class ControllerX : IDisposable
 {
     private readonly IServiceA _serviceA;
     private readonly IServiceB _serviceB;
