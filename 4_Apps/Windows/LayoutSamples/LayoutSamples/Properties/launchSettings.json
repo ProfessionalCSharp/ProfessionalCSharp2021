@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "LayoutSamples (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "LayoutSamples (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
