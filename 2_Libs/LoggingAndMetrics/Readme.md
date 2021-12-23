@@ -12,7 +12,7 @@ This chapter contains the following code samples:
 
 See [WinUI](../../WinUI.md) for building and running WinUI applications.
 
-> Using App Insights with WinUI 3 and desktop apps is currently not supported. It's working with WinUI 3 UWP (which is in preview at this time). See [Appcenter-SDK-Dotnet, WinUI 3 support](https://github.com/microsoft/appcenter-sdk-dotnet/issues/1523) for progress updates.
+> Starting with version 4.4 of the App Insights libraries, WinUI is supported! After library updates, the WinUI sample application is functional (after you add your App Insights id) with App Insights!
 
 For code comments and issues please check [Professional C#'s GitHub Repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021)
 

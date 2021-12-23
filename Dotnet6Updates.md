@@ -32,5 +32,26 @@ Instead of using the `Marshal` class to allocate native memory, the `NativeMemor
 
 Instead of using Marshal.GetLastWin32Error, Marshal.GetLastPInvokeError can be used. See the PInvokeSampleLib in Chapter 13, "Managed and Unmanaged Memory"
 
-> WinUI samples will be updated to .NET 6/C# 10 syntax at a later time
+## Security
 
+Sample code: **X509CertificateSample**
+
+With .NET 6, the `Key` property of the `PublicKey` property is deprecated. The sample code is changed to use the `GetKeyAlgorithm` method instead.
+
+## Localization
+
+With Windows App SDK 1.0, the namespace for MRT Core changed. See [Access app resources with MRT Core](https://docs.microsoft.com/windows/apps/windows-app-sdk/mrtcore/mrtcore-overview#access-app-resources-with-mrt-core) and chapter 22, Localization, sample **WinUILocalization**.
+
+## Testing with ASP.NET Core 6 using the `WebApplication` class
+
+See chapter 23, Tests, sample ASPNETCoreSample
+
+The Web application project needs to give access for the unit testing project (ASPNETCoreSample.csproj):
+
+```xml
+<ItemGroup>
+  <InternalsVisibleTo Include="ASPNETCoreSample.IntegrationTest"/>
+</ItemGroup>
+```
+
+See how the `WebApplicationFactory` is now used to access the `Program` class from the ASP.NET Core project in the test project *ASPNETCoreSample.IntegrationTest*

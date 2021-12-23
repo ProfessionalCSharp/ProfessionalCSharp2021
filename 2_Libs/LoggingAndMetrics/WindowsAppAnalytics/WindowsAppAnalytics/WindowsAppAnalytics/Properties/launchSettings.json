@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "WindowsAppAnalytics (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "WindowsAppAnalytics (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
