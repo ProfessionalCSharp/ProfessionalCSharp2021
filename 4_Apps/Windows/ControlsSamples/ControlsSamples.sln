@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31213.239
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "ControlsSamples (Package)", "ControlsSamples (Package)\ControlsSamples (Package).wapproj", "{E2B551B1-C725-46C6-9797-12C0347E61E8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlsSamples", "ControlsSamples\ControlsSamples.csproj", "{2E635DF0-09FD-44F1-9D6E-792A0C7EDC73}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControlsSamples", "ControlsSamples\ControlsSamples.csproj", "{2E635DF0-09FD-44F1-9D6E-792A0C7EDC73}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,28 +15,11 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E2B551B1-C725-46C6-9797-12C0347E61E8}.Debug|arm64.ActiveCfg = Debug|arm64
-		{E2B551B1-C725-46C6-9797-12C0347E61E8}.Debug|arm64.Build.0 = Debug|arm64
-		{E2B551B1-C725-46C6-9797-12C0347E61E8}.Debug|arm64.Deploy.0 = Debug|arm64
-		{E2B551B1-C725-46C6-9797-12C0347E61E8}.Debug|x64.ActiveCfg = Debug|x64
-		{E2B551B1-C725-46C6-9797-12C0347E61E8}.Debug|x64.Build.0 = Debug|x64
-		{E2B551B1-C725-46C6-9797-12C0347E61E8}.Debug|x64.Deploy.0 = Debug|x64
-		{E2B551B1-C725-46C6-9797-12C0347E61E8}.Debug|x86.ActiveCfg = Debug|x86
-		{E2B551B1-C725-46C6-9797-12C0347E61E8}.Debug|x86.Build.0 = Debug|x86
-		{E2B551B1-C725-46C6-9797-12C0347E61E8}.Debug|x86.Deploy.0 = Debug|x86
-		{E2B551B1-C725-46C6-9797-12C0347E61E8}.Release|arm64.ActiveCfg = Release|arm64
-		{E2B551B1-C725-46C6-9797-12C0347E61E8}.Release|arm64.Build.0 = Release|arm64
-		{E2B551B1-C725-46C6-9797-12C0347E61E8}.Release|arm64.Deploy.0 = Release|arm64
-		{E2B551B1-C725-46C6-9797-12C0347E61E8}.Release|x64.ActiveCfg = Release|x64
-		{E2B551B1-C725-46C6-9797-12C0347E61E8}.Release|x64.Build.0 = Release|x64
-		{E2B551B1-C725-46C6-9797-12C0347E61E8}.Release|x64.Deploy.0 = Release|x64
-		{E2B551B1-C725-46C6-9797-12C0347E61E8}.Release|x86.ActiveCfg = Release|x86
-		{E2B551B1-C725-46C6-9797-12C0347E61E8}.Release|x86.Build.0 = Release|x86
-		{E2B551B1-C725-46C6-9797-12C0347E61E8}.Release|x86.Deploy.0 = Release|x86
 		{2E635DF0-09FD-44F1-9D6E-792A0C7EDC73}.Debug|arm64.ActiveCfg = Debug|arm64
 		{2E635DF0-09FD-44F1-9D6E-792A0C7EDC73}.Debug|arm64.Build.0 = Debug|arm64
 		{2E635DF0-09FD-44F1-9D6E-792A0C7EDC73}.Debug|x64.ActiveCfg = Debug|x64
 		{2E635DF0-09FD-44F1-9D6E-792A0C7EDC73}.Debug|x64.Build.0 = Debug|x64
+		{2E635DF0-09FD-44F1-9D6E-792A0C7EDC73}.Debug|x64.Deploy.0 = Debug|x64
 		{2E635DF0-09FD-44F1-9D6E-792A0C7EDC73}.Debug|x86.ActiveCfg = Debug|x86
 		{2E635DF0-09FD-44F1-9D6E-792A0C7EDC73}.Debug|x86.Build.0 = Debug|x86
 		{2E635DF0-09FD-44F1-9D6E-792A0C7EDC73}.Release|arm64.ActiveCfg = Release|arm64
