@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "MarkupExtensions (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "MarkupExtensions (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

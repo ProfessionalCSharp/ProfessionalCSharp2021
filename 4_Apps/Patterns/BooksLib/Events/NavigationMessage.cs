@@ -1,14 +1,13 @@
 ﻿using Microsoft.Toolkit.Mvvm.Messaging.Messages;
 
-namespace BooksLib.Events
+namespace BooksLib.Events;
+
+public class NavigationInfo
 {
-    public class NavigationInfo
-    {
-        public bool UseNavigation { get; set; }
-    }
-    public class NavigationMessage : ValueChangedMessage<NavigationInfo>
-    {
-        public NavigationMessage(NavigationInfo navigationInfo)
-            : base(navigationInfo) {  }
-    }
+    public bool UseNavigation { get; set; }
+}
+public class NavigationMessage : ValueChangedMessage<NavigationInfo>
+{
+    public NavigationMessage(NavigationInfo navigationInfo)
+        : base(navigationInfo) { }
 }

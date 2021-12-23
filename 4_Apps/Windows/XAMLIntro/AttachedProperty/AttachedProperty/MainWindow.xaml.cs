@@ -1,42 +1,33 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media;
-using System;
-using System.Collections.Generic;
 
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
+namespace AttachedProperty;
 
-namespace AttachedProperty
+public sealed partial class MainWindow : Window
 {
-    /// <summary>
-    /// An empty window that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class MainWindow : Window
+    public MainWindow()
     {
-        public MainWindow()
+        this.InitializeComponent();
+
+        MyAttachedPropertyProvider.SetMySample(button1, "sample value");
+
+        foreach (var item in GetChildren(grid1,
+            e => MyAttachedPropertyProvider.GetMySample(e) != string.Empty))
         {
-            this.InitializeComponent();
-
-            MyAttachedPropertyProvider.SetMySample(button1, "sample value");
-
-            foreach (var item in GetChildren(grid1,
-                e => MyAttachedPropertyProvider.GetMySample(e) != string.Empty))
-            {
-                list1.Items.Add(
-                  $"{item.Name}: {MyAttachedPropertyProvider.GetMySample(item)}");
-            }
+            list1.Items.Add(
+              $"{item.Name}: {MyAttachedPropertyProvider.GetMySample(item)}");
         }
+    }
 
-        private IEnumerable<FrameworkElement> GetChildren(FrameworkElement element, Func<FrameworkElement, bool> pred)
+    private IEnumerable<FrameworkElement> GetChildren(FrameworkElement element, Func<FrameworkElement, bool> pred)
+    {
+        int childrenCount = VisualTreeHelper.GetChildrenCount(element);
+        for (int i = 0; i < childrenCount; i++)
         {
-            int childrenCount = VisualTreeHelper.GetChildrenCount(element);
-            for (int i = 0; i < childrenCount; i++)
+            var child = VisualTreeHelper.GetChild(element, i) as FrameworkElement;
+            if (child != null && pred(child))
             {
-                var child = VisualTreeHelper.GetChild(element, i) as FrameworkElement;
-                if (child != null && pred(child))
-                {
-                    yield return child;
-                }
+                yield return child;
             }
         }
     }

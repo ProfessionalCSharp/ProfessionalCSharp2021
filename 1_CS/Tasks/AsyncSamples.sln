@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30804.86
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4034038A-8C68-483D-9931-733C9079A9AF}"
 EndProject
@@ -14,8 +14,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskBasedAsyncPattern", "TaskBasedAsyncPattern\TaskBasedAsyncPattern.csproj", "{E366EB35-E7F2-41BD-9DB4-8D564E5BCF4C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsyncWindowsDesktopApp", "AsyncWindowsDesktopApp\AsyncWindowsDesktopApp\AsyncWindowsDesktopApp.csproj", "{0BC9ADB4-7C2F-4A23-850E-3F09C311E430}"
-EndProject
-Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "AsyncWindowsDesktopApp (Package)", "AsyncWindowsDesktopApp\AsyncWindowsDesktopApp (Package)\AsyncWindowsDesktopApp (Package).wapproj", "{628785CE-45D6-4AFD-941C-D266CC626DF1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskCancellation", "TaskCancellation\TaskCancellation.csproj", "{103DDDC9-497E-46BF-9568-7DE7623753A7}"
 EndProject
@@ -113,8 +111,9 @@ Global
 		{E366EB35-E7F2-41BD-9DB4-8D564E5BCF4C}.Release|x64.Build.0 = Release|Any CPU
 		{E366EB35-E7F2-41BD-9DB4-8D564E5BCF4C}.Release|x86.ActiveCfg = Release|Any CPU
 		{E366EB35-E7F2-41BD-9DB4-8D564E5BCF4C}.Release|x86.Build.0 = Release|Any CPU
-		{0BC9ADB4-7C2F-4A23-850E-3F09C311E430}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{0BC9ADB4-7C2F-4A23-850E-3F09C311E430}.Debug|Any CPU.Build.0 = Debug|x86
+		{0BC9ADB4-7C2F-4A23-850E-3F09C311E430}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{0BC9ADB4-7C2F-4A23-850E-3F09C311E430}.Debug|Any CPU.Build.0 = Debug|x64
+		{0BC9ADB4-7C2F-4A23-850E-3F09C311E430}.Debug|Any CPU.Deploy.0 = Debug|x64
 		{0BC9ADB4-7C2F-4A23-850E-3F09C311E430}.Debug|ARM.ActiveCfg = Debug|x86
 		{0BC9ADB4-7C2F-4A23-850E-3F09C311E430}.Debug|arm64.ActiveCfg = Debug|arm64
 		{0BC9ADB4-7C2F-4A23-850E-3F09C311E430}.Debug|arm64.Build.0 = Debug|arm64
@@ -130,30 +129,6 @@ Global
 		{0BC9ADB4-7C2F-4A23-850E-3F09C311E430}.Release|x64.Build.0 = Release|x64
 		{0BC9ADB4-7C2F-4A23-850E-3F09C311E430}.Release|x86.ActiveCfg = Release|x86
 		{0BC9ADB4-7C2F-4A23-850E-3F09C311E430}.Release|x86.Build.0 = Release|x86
-		{628785CE-45D6-4AFD-941C-D266CC626DF1}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{628785CE-45D6-4AFD-941C-D266CC626DF1}.Debug|Any CPU.Build.0 = Debug|x86
-		{628785CE-45D6-4AFD-941C-D266CC626DF1}.Debug|Any CPU.Deploy.0 = Debug|x86
-		{628785CE-45D6-4AFD-941C-D266CC626DF1}.Debug|ARM.ActiveCfg = Debug|x86
-		{628785CE-45D6-4AFD-941C-D266CC626DF1}.Debug|arm64.ActiveCfg = Debug|arm64
-		{628785CE-45D6-4AFD-941C-D266CC626DF1}.Debug|arm64.Build.0 = Debug|arm64
-		{628785CE-45D6-4AFD-941C-D266CC626DF1}.Debug|arm64.Deploy.0 = Debug|arm64
-		{628785CE-45D6-4AFD-941C-D266CC626DF1}.Debug|x64.ActiveCfg = Debug|x64
-		{628785CE-45D6-4AFD-941C-D266CC626DF1}.Debug|x64.Build.0 = Debug|x64
-		{628785CE-45D6-4AFD-941C-D266CC626DF1}.Debug|x64.Deploy.0 = Debug|x64
-		{628785CE-45D6-4AFD-941C-D266CC626DF1}.Debug|x86.ActiveCfg = Debug|x86
-		{628785CE-45D6-4AFD-941C-D266CC626DF1}.Debug|x86.Build.0 = Debug|x86
-		{628785CE-45D6-4AFD-941C-D266CC626DF1}.Debug|x86.Deploy.0 = Debug|x86
-		{628785CE-45D6-4AFD-941C-D266CC626DF1}.Release|Any CPU.ActiveCfg = Release|x86
-		{628785CE-45D6-4AFD-941C-D266CC626DF1}.Release|ARM.ActiveCfg = Release|x86
-		{628785CE-45D6-4AFD-941C-D266CC626DF1}.Release|arm64.ActiveCfg = Release|arm64
-		{628785CE-45D6-4AFD-941C-D266CC626DF1}.Release|arm64.Build.0 = Release|arm64
-		{628785CE-45D6-4AFD-941C-D266CC626DF1}.Release|arm64.Deploy.0 = Release|arm64
-		{628785CE-45D6-4AFD-941C-D266CC626DF1}.Release|x64.ActiveCfg = Release|x64
-		{628785CE-45D6-4AFD-941C-D266CC626DF1}.Release|x64.Build.0 = Release|x64
-		{628785CE-45D6-4AFD-941C-D266CC626DF1}.Release|x64.Deploy.0 = Release|x64
-		{628785CE-45D6-4AFD-941C-D266CC626DF1}.Release|x86.ActiveCfg = Release|x86
-		{628785CE-45D6-4AFD-941C-D266CC626DF1}.Release|x86.Build.0 = Release|x86
-		{628785CE-45D6-4AFD-941C-D266CC626DF1}.Release|x86.Deploy.0 = Release|x86
 		{103DDDC9-497E-46BF-9568-7DE7623753A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{103DDDC9-497E-46BF-9568-7DE7623753A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{103DDDC9-497E-46BF-9568-7DE7623753A7}.Debug|ARM.ActiveCfg = Debug|Any CPU
