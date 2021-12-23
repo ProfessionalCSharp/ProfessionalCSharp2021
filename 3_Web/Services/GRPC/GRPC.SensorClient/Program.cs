@@ -1,7 +1,7 @@
 ﻿using GRPCService;
+
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
 
 using var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((context, services) =>

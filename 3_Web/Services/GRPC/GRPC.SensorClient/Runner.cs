@@ -1,10 +1,10 @@
 ﻿using Google.Protobuf.WellKnownTypes;
+
 using Grpc.Core;
+
 using GRPCService;
+
 using Microsoft.Extensions.Logging;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 
 public class Runner
 {
