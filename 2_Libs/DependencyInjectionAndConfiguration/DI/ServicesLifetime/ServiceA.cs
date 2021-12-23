@@ -1,7 +1,4 @@
-﻿using Microsoft.Extensions.Options;
-using System;
-
-public class ConfigurationA
+﻿public class ConfigurationA
 {
     public string? Mode { get; set; }
 }

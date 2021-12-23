@@ -1,6 +1,4 @@
-﻿using System;
-
-SortWithIComparable();
+﻿SortWithIComparable();
 DependencyInjection();
 
 void SortWithIComparable()

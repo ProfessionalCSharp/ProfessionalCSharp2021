@@ -21,9 +21,9 @@ See [updates](Updates.md) for issues and updates.
 
 With the *main* branch every sample should compile and run successfully (with the deadlock and race-conditions samples, *successfully* means that a deadlock and a race-condition occurs).
 
-The *dotnet6* branch will be used to show some early changes with C# 10 and .NET 6 using previews of C# 10 and .NET 6. Previews might not run with the next preview available.
+The *dotnet6* branch is used to show changes with C# 10 and .NET 6.
 
-After .NET 6 is released, the .NET 5 version of the code might move to a different branch, but it will be kept available.
+The *dotnet5* branch is used to show the samples how they appear in the printed book.
 
 ## Issues and Discussions
 

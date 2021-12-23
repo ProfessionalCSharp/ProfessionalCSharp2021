@@ -1,6 +1,4 @@
-﻿using System;
-
-Span<int> span1 = IntroSpans();
+﻿Span<int> span1 = IntroSpans();
 Span<int> span2 = CreateSlices(span1);
 ChangeValues(span1, span2);
 ReadonlySpan(span1);
@@ -72,4 +70,3 @@ Span<int> IntroSpans()
     Console.WriteLine();
     return span1;
 }
-

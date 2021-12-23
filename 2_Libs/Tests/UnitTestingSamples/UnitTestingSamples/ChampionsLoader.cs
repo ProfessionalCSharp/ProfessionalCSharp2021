@@ -1,9 +1,8 @@
 ﻿using System.Xml.Linq;
 
-namespace UnitTestingSamples
+namespace UnitTestingSamples;
+
+public class ChampionsLoader : IChampionsLoader
 {
-    public class ChampionsLoader : IChampionsLoader
-    {
-        public XElement LoadChampions() => XElement.Load(F1Addresses.RacersUrl);
-    }
+    public XElement LoadChampions() => XElement.Load(F1Addresses.RacersUrl);
 }

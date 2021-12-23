@@ -1,7 +1,4 @@
-﻿using System;
-using System.Runtime;
-
-public class SomeInnerResource : IDisposable
+﻿public class SomeInnerResource : IDisposable
 {
     public SomeInnerResource() =>
         Console.WriteLine("simulation to allocate native memory");

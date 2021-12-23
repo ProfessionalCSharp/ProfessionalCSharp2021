@@ -1,6 +1,4 @@
-﻿using System;
-
-string s1 = new string("Hello, World!");
+﻿string s1 = new string("Hello, World!");
 string s2 = "Hello, World!";
 var s3 = "Hello, World!";
 string s4 = new("Hello, World!");

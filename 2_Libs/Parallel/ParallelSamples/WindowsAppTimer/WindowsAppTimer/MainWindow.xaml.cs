@@ -1,6 +1,4 @@
 ﻿using Microsoft.UI.Xaml;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -19,8 +17,8 @@ namespace WindowsAppTimer
 
         public MainWindow()
         {
-            this.Title = "WinUI Dispatcher Timer App";
-            this.InitializeComponent();
+            Title = "WinUI Dispatcher Timer App";
+            InitializeComponent();
             _timer.Tick += OnTick;
             _timer.Interval = TimeSpan.FromSeconds(1);
         }

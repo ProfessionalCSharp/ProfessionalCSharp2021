@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using SynchronizatonSamples;
+﻿using SynchronizatonSamples;
 
 int numTasks = 20;
 SharedState state = new();

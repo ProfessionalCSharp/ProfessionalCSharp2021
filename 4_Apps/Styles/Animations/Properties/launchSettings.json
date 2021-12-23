@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Animations (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Animations (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

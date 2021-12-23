@@ -2,19 +2,18 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 
-namespace DataBindingSamples.Utilities
-{
-    public class BookTemplateSelector : DataTemplateSelector
-    {
-        public DataTemplate? WroxTemplate { get; set; }
-        public DataTemplate? DefaultTemplate { get; set; }
+namespace DataBindingSamples.Utilities;
 
-        protected override DataTemplate? SelectTemplateCore(object item) =>
-            item switch
-            {
-                Book { Publisher: "Wrox Press"} => WroxTemplate,
-                Book => DefaultTemplate,
-                _ => null
-            };
-    }
+public class BookTemplateSelector : DataTemplateSelector
+{
+    public DataTemplate? WroxTemplate { get; set; }
+    public DataTemplate? DefaultTemplate { get; set; }
+
+    protected override DataTemplate? SelectTemplateCore(object item) =>
+        item switch
+        {
+            Book { Publisher: "Wrox Press" } => WroxTemplate,
+            Book => DefaultTemplate,
+            _ => null
+        };
 }

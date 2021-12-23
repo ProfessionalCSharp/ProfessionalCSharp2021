@@ -1,8 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 
 class Runner
 {
@@ -91,9 +88,14 @@ class Runner
     public async Task UpdateRecordsAsync()
     {
         using var context = _menusContextFactory.CreateDbContext();
-        MenuItem menu = await context.MenusItems
+        MenuItem? menu = await context.MenusItems
           .Skip(1)
           .FirstOrDefaultAsync();
+        if (menu is null)
+        {
+            Console.WriteLine("no menu available");
+            return;
+        }
 
         ShowState(context);
         menu.Price += 0.2m;

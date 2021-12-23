@@ -1,6 +1,4 @@
-﻿using System;
-
-Vector vect1, vect2, vect3;
+﻿Vector vect1, vect2, vect3;
 
 vect1 = new(3.0, 3.0, 1.0);
 vect2 = new(2.0, -4.0, -4.0);

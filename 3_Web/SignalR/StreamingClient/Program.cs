@@ -1,7 +1,4 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 
 Console.WriteLine($"Wait for service - press return to start");
 Console.ReadLine();
@@ -29,6 +26,5 @@ catch (OperationCanceledException)
 await connection.StopAsync();
 
 Console.WriteLine("Completed");
-
 
 public record SensorData(int Val1, int Val2, DateTime TimeStamp);

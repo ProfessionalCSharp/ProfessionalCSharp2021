@@ -1,6 +1,4 @@
-﻿using System;
-
-long myLongNumber = 333333423;
+﻿long myLongNumber = 333333423;
 object myObject = (object)myLongNumber;
 int myIntNumber = (int)(long)myObject;
 

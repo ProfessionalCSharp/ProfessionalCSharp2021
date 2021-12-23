@@ -1,19 +1,18 @@
-﻿namespace SynchronizatonSamples
+﻿namespace SynchronizatonSamples;
+
+public class Job
 {
-    public class Job
+    private readonly SharedState _sharedState;
+
+    public Job(SharedState sharedState) => _sharedState = sharedState;
+
+    public void DoTheJob()
     {
-        private readonly SharedState _sharedState;
-
-        public Job(SharedState sharedState) => _sharedState = sharedState;
-
-        public void DoTheJob()
+        for (int i = 0; i < 50000; i++)
         {
-            for (int i = 0; i < 50000; i++)
+            // lock (_sharedState)
             {
-                // lock (_sharedState)
-                {
-                    _sharedState.State += 1;
-                }
+                _sharedState.State += 1;
             }
         }
     }

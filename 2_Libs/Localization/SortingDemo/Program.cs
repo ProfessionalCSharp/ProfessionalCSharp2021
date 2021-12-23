@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using System.Globalization;
 
 string[] countries = { "Österreich", "België", "България", "Hrvatska", "Česko", "Danmark", "Eesti", "Suomi", "France",

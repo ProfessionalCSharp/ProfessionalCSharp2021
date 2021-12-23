@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Linq;
-
-SimpleArrayDemo();
+﻿SimpleArrayDemo();
 ImmutableList<Account> accounts = CreateImmutableList();
 UsingABuilder(accounts);
 LinqDemo();

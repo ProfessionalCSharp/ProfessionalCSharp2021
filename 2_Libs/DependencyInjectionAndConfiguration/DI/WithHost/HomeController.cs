@@ -1,6 +1,4 @@
-﻿using System;
-
-public class HomeController
+﻿public class HomeController
 {
     private readonly IGreetingService _greetingService;
     public HomeController(IGreetingService greetingService)

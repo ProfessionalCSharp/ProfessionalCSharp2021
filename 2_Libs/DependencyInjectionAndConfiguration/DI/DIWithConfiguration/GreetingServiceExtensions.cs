@@ -1,8 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-
-public static class GreetingServiceExtensions
+﻿public static class GreetingServiceExtensions
 {
     public static IServiceCollection AddGreetingService(this IServiceCollection services, IConfiguration config)
     {

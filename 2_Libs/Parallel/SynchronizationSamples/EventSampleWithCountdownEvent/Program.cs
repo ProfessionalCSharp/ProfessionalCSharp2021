@@ -1,8 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-
-const int taskCount = 4;
+﻿const int taskCount = 4;
 
 CountdownEvent cEvent = new(taskCount);
 Calculator[] calcs = new Calculator[taskCount];

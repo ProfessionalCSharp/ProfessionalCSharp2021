@@ -8,15 +8,10 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Viewbox>
-            <StackPanel Orientation="Vertical">
-                <CheckBox Margin="8" IsChecked="True" Checked="OnAnalyticsChanged" Unchecked="OnAnalyticsChanged">Allow Analytics</CheckBox>
-                <TextBox Name="textState" />
-                <Button Margin="8" Click="OnButtonClick">Send Event</Button>
-            </StackPanel>
-        </Viewbox>
-
-
-
+        <StackPanel Orientation="Vertical">
+            <CheckBox Margin="8" IsChecked="True" Checked="OnAnalyticsChanged" Unchecked="OnAnalyticsChanged">Allow Analytics</CheckBox>
+            <TextBox Name="textState" />
+            <Button Margin="8" Click="OnButtonClick">Send Event</Button>
+        </StackPanel>
     </Grid>
 </Window>

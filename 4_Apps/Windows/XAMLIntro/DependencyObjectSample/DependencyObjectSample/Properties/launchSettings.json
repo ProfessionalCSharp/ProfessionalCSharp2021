@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "DependencyObjectSample (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "DependencyObjectSample (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

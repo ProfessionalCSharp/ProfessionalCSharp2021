@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "WinUILocalization (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "WinUILocalization (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

@@ -1,12 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿namespace GenericViewModels.Services;
 
-namespace GenericViewModels.Services
+public interface INavigationService
 {
-    public interface INavigationService
-    {
-        bool UseNavigation { get; set; }
-        Task NavigateToAsync(string pageName);
-        Task GoBackAsync();
-        string CurrentPage { get; }
-    }
+    bool UseNavigation { get; set; }
+    Task NavigateToAsync(string pageName);
+    Task GoBackAsync();
+    string CurrentPage { get; }
 }

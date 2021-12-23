@@ -1,15 +1,4 @@
-﻿using System;
-using System.CommandLine;
-using System.CommandLine.Builder;
-using System.CommandLine.Invocation;
-using System.CommandLine.Parsing;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-string SampleDataFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "samplefile.data");
+﻿string SampleDataFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "samplefile.data");
 
 await BuildCommandLine()
     .UseDefaults()

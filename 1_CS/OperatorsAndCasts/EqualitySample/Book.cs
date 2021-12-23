@@ -1,6 +1,4 @@
-﻿using System;
-
-class Book : IEquatable<Book>
+﻿class Book : IEquatable<Book>
 {
     public Book(string title, string publisher)
     {

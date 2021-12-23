@@ -1,7 +1,6 @@
-﻿namespace AzureAppConfigWebApp
+﻿namespace AzureAppConfigWebApp;
+
+public class IndexAppSettings
 {
-    public class IndexAppSettings
-    {
-        public string? Config1 { get; set; }
-    }
+    public string? Config1 { get; set; }
 }

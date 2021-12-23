@@ -1,39 +1,34 @@
 ﻿using Microsoft.UI.Xaml.Data;
-using System;
+
 using System.Globalization;
 using System.Text;
 
-#nullable enable
+namespace WinUICultureDemo.Converters;
 
-namespace WinUICultureDemo.Converters
+public class CalendarTypeToCalendarInformationConverter : IValueConverter
 {
-    public class CalendarTypeToCalendarInformationConverter : IValueConverter
+    public object? Convert(object? value, Type targetType, object? parameter, string? language)
     {
-        public object? Convert(object? value, Type targetType, object? parameter, string? language)
+        if (value is Calendar cal)
         {
-            if (value is Calendar cal)
+            StringBuilder calText = new(50);
+            calText.Append(cal.ToString());
+            calText.Remove(0, 21);
+            calText.Replace("Calendar", "");
+            if (cal is GregorianCalendar gregCal)
             {
-                StringBuilder calText = new(50);
-                calText.Append(cal.ToString());
-                calText.Remove(0, 21);
-                calText.Replace("Calendar", "");
-                if (cal is GregorianCalendar gregCal)
-                {
-                    calText.Append($" {gregCal.CalendarType}");
-                }
-                return calText.ToString();
+                calText.Append($" {gregCal.CalendarType}");
             }
-            else
-            {
-                return null;
-            }
+            return calText.ToString();
         }
-
-        public object? ConvertBack(object value, Type targetType, object parameter, string language)
+        else
         {
-            throw new NotImplementedException();
+            return null;
         }
     }
-}
 
-#nullable restore
+    public object? ConvertBack(object value, Type targetType, object parameter, string language)
+    {
+        throw new NotImplementedException();
+    }
+}

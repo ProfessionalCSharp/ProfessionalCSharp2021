@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-
-DocumentManager dm = new();
+﻿DocumentManager dm = new();
 
 Task processDocuments = ProcessDocuments.StartAsync(dm);
 

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Buffers;
-
-for (int i = 0; i < 10; i++)
+﻿for (int i = 0; i < 10; i++)
 {
     int arrayLength = (i + 1) << 10;
     int[] arr = ArrayPool<int>.Shared.Rent(arrayLength);

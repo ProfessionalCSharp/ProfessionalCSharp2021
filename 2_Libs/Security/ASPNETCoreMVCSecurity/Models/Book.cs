@@ -1,5 +1,3 @@
-﻿namespace ASPNETCoreMVCSecurity.Models
-{
-    public record Book(string Title, string? Publisher);
+﻿namespace ASPNETCoreMVCSecurity.Models;
 
-}
+public record Book(string Title, string? Publisher);

@@ -1,11 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using System;
-using System.IO;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-
-class AliceRunner : IDisposable
+﻿sealed class AliceRunner : IDisposable
 {
     private readonly ILogger _logger;
     private ECDiffieHellman _algorithm;

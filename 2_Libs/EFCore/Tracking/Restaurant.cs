@@ -1,6 +1,4 @@
-﻿using System;
-
-public class Restaurant
+﻿public class Restaurant
 {
     public Restaurant(string name, Guid id = default) => (_name, _id) = (name, id);
 

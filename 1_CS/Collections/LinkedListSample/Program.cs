@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-LinkedList<Document> list = new();
+﻿LinkedList<Document> list = new();
 LinkedListNode<Document> first = list.AddFirst(new Document(1, "first"));
 list.AddAfter(first, new Document(2, "after first"));
 LinkedListNode<Document> last = list.AddLast(new Document(3, "Last"));

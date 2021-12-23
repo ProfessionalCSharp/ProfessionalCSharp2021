@@ -1,8 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Text;
-
-ReadFileUsingReader("./Program.cs");
+﻿ReadFileUsingReader("./Program.cs");
 Console.WriteLine();
 string textFile = Path.ChangeExtension(Path.Combine(Path.GetTempPath(), Path.GetRandomFileName()), "txt");
 WriteFileUsingWriter(textFile, new string[] { "one", "two" });

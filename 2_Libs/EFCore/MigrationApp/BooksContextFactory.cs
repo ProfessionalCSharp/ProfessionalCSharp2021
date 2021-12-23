@@ -1,7 +1,4 @@
-﻿using BooksLib;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
-using System;
+﻿using Microsoft.EntityFrameworkCore.Design;
 
 public class BooksContextFactory : IDesignTimeDbContextFactory<BooksContext>
 {

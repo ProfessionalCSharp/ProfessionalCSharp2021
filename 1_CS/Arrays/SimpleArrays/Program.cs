@@ -1,6 +1,4 @@
-﻿using System;
-
-SimpleArrays();
+﻿SimpleArrays();
 TwoDim();
 ThreeDim();
 Jagged();
@@ -10,10 +8,11 @@ CopyArrays();
 
 void CopyArrays()
 {
-    Person[] beatles = {
-                     new ("John", "Lennon"),
-                     new ("Paul", "McCartney")
-                   };
+    Person[] beatles = 
+        {
+            new ("John", "Lennon"),
+            new ("Paul", "McCartney")
+        };
 
     Person[] beatlesClone = (Person[])beatles.Clone();
 }

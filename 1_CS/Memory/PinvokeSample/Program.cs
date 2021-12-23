@@ -1,8 +1,4 @@
-﻿using PInvokeSample;
-using System;
-using System.IO;
-
-if (args.Length != 2)
+﻿if (args.Length != 2)
 {
     Console.WriteLine("usage: PInvokeSample existingfilename newfilename");
     return;

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.IO.Compression;
-using System.Text;
-
-CompressFile("./test.txt", "./test.txt.gzip");
+﻿CompressFile("./test.txt", "./test.txt.gzip");
 DecompressFile("./test.txt.gzip");
 
 CompressFileWithBrotli("./test.txt", "./test.txt.brotli");

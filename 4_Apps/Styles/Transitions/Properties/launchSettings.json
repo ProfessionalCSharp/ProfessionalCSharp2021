@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Transitions (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Transitions (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

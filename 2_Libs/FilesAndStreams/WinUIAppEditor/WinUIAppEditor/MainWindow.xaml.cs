@@ -1,7 +1,4 @@
 ﻿using Microsoft.UI.Xaml;
-using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 using Windows.Storage;
@@ -13,159 +10,155 @@ using WinRT;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
-namespace WinUIAppEditor
+namespace WinUIAppEditor;
+
+/// <summary>
+/// An empty window that can be used on its own or navigated to within a Frame.
+/// </summary>
+public sealed partial class MainWindow : Window
 {
-    /// <summary>
-    /// An empty window that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class MainWindow : Window
+    [ComImport, Guid("3E68D4BD-7135-4D10-8018-9FB6D9F33FA1"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    public interface IInitializeWithWindow
     {
-        [ComImport, System.Runtime.InteropServices.Guid("3E68D4BD-7135-4D10-8018-9FB6D9F33FA1"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-        public interface IInitializeWithWindow
-        {
-            void Initialize([In] IntPtr hwnd);
-        }
+        void Initialize([In] IntPtr hwnd);
+    }
 
-        [DllImport("user32.dll", ExactSpelling = true, CharSet = CharSet.Auto, PreserveSig = true, SetLastError = false)]
-        public static extern IntPtr GetActiveWindow();
+    [DllImport("user32.dll", ExactSpelling = true, CharSet = CharSet.Auto, PreserveSig = true, SetLastError = false)]
+    public static extern IntPtr GetActiveWindow();
 
-        public MainWindow()
-        {
-            this.InitializeComponent();
-        }
+    public MainWindow() => InitializeComponent();
 
-        private void InitializeActiveWindow(ICustomQueryInterface picker)
-        {
-            IInitializeWithWindow initializeWithWindowWrapper = picker.As<IInitializeWithWindow>();
-            IntPtr hwnd = GetActiveWindow();
-            initializeWithWindowWrapper.Initialize(hwnd);
-        }
+    private void InitializeActiveWindow(ICustomQueryInterface picker)
+    {
+        IInitializeWithWindow initializeWithWindowWrapper = picker.As<IInitializeWithWindow>();
+        IntPtr hwnd = GetActiveWindow();
+        initializeWithWindowWrapper.Initialize(hwnd);
+    }
 
-        public async void OnOpen()
+    public async void OnOpen()
+    {
+        try
         {
-            try
+            FileOpenPicker picker = new()
             {
-                FileOpenPicker picker = new()
-                {
-                    ViewMode = PickerViewMode.Thumbnail,
-                    SuggestedStartLocation = PickerLocationId.DocumentsLibrary
-                };
-                picker.FileTypeFilter.Add(".txt");
-                picker.FileTypeFilter.Add(".md");
+                ViewMode = PickerViewMode.Thumbnail,
+                SuggestedStartLocation = PickerLocationId.DocumentsLibrary
+            };
+            picker.FileTypeFilter.Add(".txt");
+            picker.FileTypeFilter.Add(".md");
 
-                InitializeActiveWindow(picker);
+            InitializeActiveWindow(picker);
 
-                StorageFile file = await picker.PickSingleFileAsync();
-                if (file != null)
-                {
-                    IRandomAccessStreamWithContentType stream = await file.OpenReadAsync();
-                    using DataReader reader = new(stream);
-                    await reader.LoadAsync((uint)stream.Size);
-
-                    text1.Text = reader.ReadString((uint)stream.Size);
-                }
-            }
-            catch (Exception ex)
+            StorageFile file = await picker.PickSingleFileAsync();
+            if (file != null)
             {
-                MessageDialog dlg = new(ex.Message, "Error");
-                await dlg.ShowAsync();
+                IRandomAccessStreamWithContentType stream = await file.OpenReadAsync();
+                using DataReader reader = new(stream);
+                await reader.LoadAsync((uint)stream.Size);
+
+                text1.Text = reader.ReadString((uint)stream.Size);
             }
         }
-
-        public async void OnOpenDotnet()
+        catch (Exception ex)
         {
-            try
-            {
-                FileOpenPicker picker = new()
-                {
-                    ViewMode = PickerViewMode.Thumbnail,
-                    SuggestedStartLocation = PickerLocationId.DocumentsLibrary
-                };
-                picker.FileTypeFilter.Add(".txt");
-                picker.FileTypeFilter.Add(".md");
+            MessageDialog dlg = new(ex.Message, "Error");
+            await dlg.ShowAsync();
+        }
+    }
 
-                InitializeActiveWindow(picker);
-
-                StorageFile file = await picker.PickSingleFileAsync();
-                if (file != null)
-                {
-                    IRandomAccessStreamWithContentType wrtStream = await file.OpenReadAsync();
-                    Stream stream = wrtStream.AsStreamForRead();
-                    StreamReader reader = new(stream);
-                    text1.Text = await reader.ReadToEndAsync();
-                }
-            }
-            catch (Exception ex)
+    public async void OnOpenDotnet()
+    {
+        try
+        {
+            FileOpenPicker picker = new()
             {
-                MessageDialog dlg = new(ex.Message, "Error");
-                await dlg.ShowAsync();
+                ViewMode = PickerViewMode.Thumbnail,
+                SuggestedStartLocation = PickerLocationId.DocumentsLibrary
+            };
+            picker.FileTypeFilter.Add(".txt");
+            picker.FileTypeFilter.Add(".md");
+
+            InitializeActiveWindow(picker);
+
+            StorageFile file = await picker.PickSingleFileAsync();
+            if (file != null)
+            {
+                IRandomAccessStreamWithContentType wrtStream = await file.OpenReadAsync();
+                Stream stream = wrtStream.AsStreamForRead();
+                StreamReader reader = new(stream);
+                text1.Text = await reader.ReadToEndAsync();
             }
         }
-
-        public async void OnSaveDotnet()
+        catch (Exception ex)
         {
-            try
-            {
-                FileSavePicker picker = new()
-                {
-                    SuggestedStartLocation = PickerLocationId.DocumentsLibrary,
-                    SuggestedFileName = "New Document"
-                };
-                picker.FileTypeChoices.Add("Plain Text", new List<string>() { ".txt" });
+            MessageDialog dlg = new(ex.Message, "Error");
+            await dlg.ShowAsync();
+        }
+    }
 
-                InitializeActiveWindow(picker);
-
-                StorageFile file = await picker.PickSaveFileAsync();
-                if (file != null)
-                {
-                    using StorageStreamTransaction tx = await file.OpenTransactedWriteAsync();
-                    Stream stream = tx.Stream.AsStreamForWrite();
-                    using var writer = new StreamWriter(stream);
-                    byte[] preamble = Encoding.UTF8.GetPreamble();
-                    await stream.WriteAsync(preamble, 0, preamble.Length);
-                    await writer.WriteAsync(text1.Text);
-                    await writer.FlushAsync();
-                    tx.Stream.Size = (ulong)stream.Length;
-                    await tx.CommitAsync();
-                }
-            }
-            catch (Exception ex)
+    public async void OnSaveDotnet()
+    {
+        try
+        {
+            FileSavePicker picker = new()
             {
-                MessageDialog dlg = new(ex.Message, "Error");
-                await dlg.ShowAsync();
+                SuggestedStartLocation = PickerLocationId.DocumentsLibrary,
+                SuggestedFileName = "New Document"
+            };
+            picker.FileTypeChoices.Add("Plain Text", new List<string>() { ".txt" });
+
+            InitializeActiveWindow(picker);
+
+            StorageFile file = await picker.PickSaveFileAsync();
+            if (file != null)
+            {
+                using StorageStreamTransaction tx = await file.OpenTransactedWriteAsync();
+                Stream stream = tx.Stream.AsStreamForWrite();
+                using var writer = new StreamWriter(stream);
+                byte[] preamble = Encoding.UTF8.GetPreamble();
+                await stream.WriteAsync(preamble, 0, preamble.Length);
+                await writer.WriteAsync(text1.Text);
+                await writer.FlushAsync();
+                tx.Stream.Size = (ulong)stream.Length;
+                await tx.CommitAsync();
             }
         }
-
-        public async void OnSave()
+        catch (Exception ex)
         {
-            try
-            {
-                FileSavePicker picker = new()
-                {
-                    SuggestedStartLocation = PickerLocationId.DocumentsLibrary,
-                    SuggestedFileName = "New Document"
-                };
-                picker.FileTypeChoices.Add("Plain Text", new List<string>() { ".txt" });
+            MessageDialog dlg = new(ex.Message, "Error");
+            await dlg.ShowAsync();
+        }
+    }
 
-                InitializeActiveWindow(picker);
-
-                StorageFile file = await picker.PickSaveFileAsync();
-                if (file != null)
-                {
-                    using StorageStreamTransaction tx = await file.OpenTransactedWriteAsync();
-                    IRandomAccessStream stream = tx.Stream;
-                    stream.Seek(0);
-                    using DataWriter writer = new(stream);
-                    writer.WriteString(text1.Text);
-                    tx.Stream.Size = await writer.StoreAsync();
-                    await tx.CommitAsync();
-                }
-            }
-            catch (Exception ex)
+    public async void OnSave()
+    {
+        try
+        {
+            FileSavePicker picker = new()
             {
-                MessageDialog dlg = new(ex.Message, "Error");
-                await dlg.ShowAsync();
+                SuggestedStartLocation = PickerLocationId.DocumentsLibrary,
+                SuggestedFileName = "New Document"
+            };
+            picker.FileTypeChoices.Add("Plain Text", new List<string>() { ".txt" });
+
+            InitializeActiveWindow(picker);
+
+            StorageFile file = await picker.PickSaveFileAsync();
+            if (file != null)
+            {
+                using StorageStreamTransaction tx = await file.OpenTransactedWriteAsync();
+                IRandomAccessStream stream = tx.Stream;
+                stream.Seek(0);
+                using DataWriter writer = new(stream);
+                writer.WriteString(text1.Text);
+                tx.Stream.Size = await writer.StoreAsync();
+                await tx.CommitAsync();
             }
+        }
+        catch (Exception ex)
+        {
+            MessageDialog dlg = new(ex.Message, "Error");
+            await dlg.ShowAsync();
         }
     }
 }

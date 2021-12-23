@@ -1,8 +1,4 @@
-﻿using System;
-using System.IO;
-
-
-Console.Write("Please type in the name of the file " +
+﻿Console.Write("Please type in the name of the file " +
     "containing the names of the people to be cold called > ");
 string? fileName = Console.ReadLine();
 if (fileName != null)

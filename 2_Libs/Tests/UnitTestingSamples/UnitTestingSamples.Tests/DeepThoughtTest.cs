@@ -1,22 +1,21 @@
 using Xunit;
 
-namespace UnitTestingSamples.xUnit.Tests
+namespace UnitTestingSamples.xUnit.Tests;
+
+public class DeepThoughtTest
 {
-    public class DeepThoughtTest
+    [Fact]
+    public void ResultOfTheAnswerToTheUltimateQuestionOfLifeTheUniverseAndEverything()
     {
-        [Fact]
-        public void ResultOfTheAnswerToTheUltimateQuestionOfLifeTheUniverseAndEverything()
-        {
-            // arrange
-            int expected = 42;
-            var dt = new DeepThought();
+        // arrange
+        int expected = 42;
+        var dt = new DeepThought();
 
-            // act
-            int actual =
-              dt.TheAnswerToTheUltimateQuestionOfLifeTheUniverseAndEverything();
+        // act
+        int actual =
+          dt.TheAnswerToTheUltimateQuestionOfLifeTheUniverseAndEverything();
 
-            // assert
-            Assert.Equal(expected, actual);
-        }
+        // assert
+        Assert.Equal(expected, actual);
     }
 }

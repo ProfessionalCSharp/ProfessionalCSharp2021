@@ -1,6 +1,4 @@
-﻿using System;
-
-var point = new Dimensions(3, 6);
+﻿Dimensions point = new(3, 6);
 Console.WriteLine(point);
 
 Console.ReadLine();

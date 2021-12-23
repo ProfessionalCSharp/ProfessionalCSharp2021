@@ -1,6 +1,4 @@
-﻿using System;
-
-int[] data = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+﻿int[] data = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
 // indices and the hat operator
 
@@ -54,6 +52,3 @@ MyCollection coll = new();
 int n = coll[^20];
 Console.WriteLine($"Item from the collection: {n}");
 ShowRange("Using custom collection", coll[45..^40]);
-
-
-

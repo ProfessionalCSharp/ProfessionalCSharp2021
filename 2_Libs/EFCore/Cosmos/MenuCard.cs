@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-public class MenuCard
+﻿public class MenuCard
 {
     public MenuCard(string title, string restaurantId, Guid menuCardId = default) 
         => (Title, RestaurantId, MenuCardId) = (title, restaurantId, menuCardId);

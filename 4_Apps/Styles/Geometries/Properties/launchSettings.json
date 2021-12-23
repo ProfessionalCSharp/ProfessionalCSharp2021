@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Geometries (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Geometries (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "AttachedProperty (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "AttachedProperty (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
