@@ -1,8 +1,7 @@
-﻿namespace Models
+﻿namespace Models;
+
+public interface ICountry
 {
-    public interface ICountry
-    {
-        string? ImagePath { get; }
-        string Name { get; }
-    }
+    string? ImagePath { get; }
+    string Name { get; }
 }
