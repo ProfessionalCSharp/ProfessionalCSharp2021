@@ -19,4 +19,3 @@ service.ShowDynamicValue();
 
 var service2 = host.Services.GetRequiredService<EnvironmentSampleService>();
 service2.ShowHostEnvironment();
-
