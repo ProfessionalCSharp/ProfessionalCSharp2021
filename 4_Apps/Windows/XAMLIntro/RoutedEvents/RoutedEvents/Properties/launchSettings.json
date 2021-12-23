@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "RoutedEvents (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "RoutedEvents (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
