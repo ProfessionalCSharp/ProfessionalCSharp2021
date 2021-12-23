@@ -1,6 +1,4 @@
-﻿using System;
-
-public class MenuItem
+﻿public class MenuItem
 {
     public MenuItem(string text, Guid menuItemId = default) => (Text, MenuItemId) = (text, menuItemId);
 

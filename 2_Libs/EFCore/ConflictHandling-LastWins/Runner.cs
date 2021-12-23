@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 public class Runner
 {
@@ -60,6 +55,7 @@ public class Runner
     public async Task<string> GetUpdatedTitleAsyc(int id)
     {
         var book = await _booksContext.Books.FindAsync(id);
+        if (book is null) return String.Empty;
         return $"{book.Title} with id {book.BookId}";
     }
 }

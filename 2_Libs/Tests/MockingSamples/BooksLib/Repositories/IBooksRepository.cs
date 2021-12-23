@@ -1,15 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using BooksLib.Models;
+﻿using BooksLib.Models;
 
-namespace BooksLib.Repositories
+namespace BooksLib.Repositories;
+
+public interface IBooksRepository
 {
-    public interface IBooksRepository
-    {
-        Task<Book> AddAsync(Book item);
-        Task<bool> DeleteAsync(int id);
-        Task<Book?> GetItemAsync(int id);
-        Task<IEnumerable<Book>> GetItemsAsync();
-        Task<Book?> UpdateAsync(Book item);
-    }
+    Task<Book> AddAsync(Book item);
+    Task<bool> DeleteAsync(int id);
+    Task<Book?> GetItemAsync(int id);
+    Task<IEnumerable<Book>> GetItemsAsync();
+    Task<Book?> UpdateAsync(Book item);
 }

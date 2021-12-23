@@ -52,6 +52,5 @@ The Web application project needs to give access for the unit testing project (A
 <ItemGroup>
   <InternalsVisibleTo Include="ASPNETCoreSample.IntegrationTest"/>
 </ItemGroup>
-```
 
 See how the `WebApplicationFactory` is now used to access the `Program` class from the ASP.NET Core project in the test project *ASPNETCoreSample.IntegrationTest*

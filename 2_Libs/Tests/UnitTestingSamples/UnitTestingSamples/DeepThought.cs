@@ -1,7 +1,6 @@
-﻿namespace UnitTestingSamples
+﻿namespace UnitTestingSamples;
+
+public class DeepThought
 {
-    public class DeepThought
-    {
-        public int TheAnswerToTheUltimateQuestionOfLifeTheUniverseAndEverything() =>  42;
-    }
+    public int TheAnswerToTheUltimateQuestionOfLifeTheUniverseAndEverything() => 42;
 }

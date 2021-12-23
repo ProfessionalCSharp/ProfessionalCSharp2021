@@ -1,10 +1,4 @@
-﻿using BooksLib;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-
-using var host = Host.CreateDefaultBuilder(args)
+﻿using var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((context, services) =>
     {
         var connectionString = context.Configuration.GetConnectionString("BooksConnection");
@@ -12,6 +6,6 @@ using var host = Host.CreateDefaultBuilder(args)
     })
     .Build();
 
-using var scope = host.Services.CreateScope();
+await using var scope = host.Services.CreateAsyncScope();
 var context = scope.ServiceProvider.GetRequiredService<BooksContext>();
 await context.Database.MigrateAsync();

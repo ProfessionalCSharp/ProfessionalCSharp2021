@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-
-sealed class ReaderWriter : IDisposable
+﻿sealed class ReaderWriter : IDisposable
 {
     private List<int> _items = new() { 0, 1, 2, 3, 4, 5 };
     private ReaderWriterLockSlim _rwl = new();
