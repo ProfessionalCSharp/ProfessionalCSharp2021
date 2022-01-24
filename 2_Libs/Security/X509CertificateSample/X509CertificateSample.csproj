@@ -1,17 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <UserSecretsId>080d7485-fc68-4aa9-a3f0-4bd93efef352</UserSecretsId>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UserSecretsId>080d7485-fc68-4aa9-a3f0-4bd93efef352</UserSecretsId>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Azure.Identity" Version="1.5.0" />
-    <PackageReference Include="Azure.Security.KeyVault.Certificates" Version="4.2.0" />
-    <PackageReference Include="Azure.Security.KeyVault.Secrets" Version="4.2.0" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
-  </ItemGroup>
-  
+	<ItemGroup>
+		<PackageReference Include="Azure.Identity" Version="1.5.0" />
+		<PackageReference Include="Azure.Security.KeyVault.Certificates" Version="4.2.0" />
+		<PackageReference Include="Azure.Security.KeyVault.Secrets" Version="4.2.0" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
+	</ItemGroup>
+
 </Project>

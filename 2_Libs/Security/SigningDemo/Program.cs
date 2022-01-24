@@ -14,3 +14,5 @@ var bob = host.Services.GetRequiredService<BobRunner>();
 var keyAlice = alice.GetPublicKey();
 var aliceData = alice.GetDocumentAndSignature();
 bob.VerifySignature(aliceData.Data, aliceData.Sign, keyAlice);
+
+Console.ReadLine();
