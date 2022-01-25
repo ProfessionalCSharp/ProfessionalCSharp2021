@@ -1,10 +1,9 @@
 ﻿using LoggingSample;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Runtime.InteropServices;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.EventLog;
+using System.Runtime.InteropServices;
 
 using var host = Host.CreateDefaultBuilder(args)
     .ConfigureLogging((hostingContext, logging) =>
