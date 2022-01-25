@@ -1,15 +1,13 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration.UserSecrets;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Reflection;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 
 using var host = Host
     .CreateDefaultBuilder(args)
-    .ConfigureAppConfiguration(config =>
-    {
-        config.AddUserSecrets("080d7485-fc68-4aa9-a3f0-4bd93efef352");
-    })
     .ConfigureServices(services =>
     {
         services.AddSingleton<KeyVaultService>();
