@@ -36,7 +36,10 @@ Instead of using Marshal.GetLastWin32Error, Marshal.GetLastPInvokeError can be u
 
 Sample code: **X509CertificateSample**
 
-With .NET 6, the `Key` property of the `PublicKey` property is deprecated. The sample code is changed to use the `GetKeyAlgorithm` method instead.
+With .NET 6, the `Key` property of the `PublicKey` property is deprecated. The sample code is changed to use the `GetRSAPublicKey` method instead - using the `RSA` class and accessing its members.
+
+See chapter 20, Security for updates.
+
 
 ## Localization
 
@@ -54,3 +57,7 @@ The Web application project needs to give access for the unit testing project (A
 </ItemGroup>
 
 See how the `WebApplicationFactory` is now used to access the `Program` class from the ASP.NET Core project in the test project *ASPNETCoreSample.IntegrationTest*
+
+## Blazor
+
+See chapter 27, Blazor for changes replacing the `Startup` class with top-level statements and the new `WebApplicationBuilder` class.
