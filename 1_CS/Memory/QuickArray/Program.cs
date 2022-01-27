@@ -1,6 +1,4 @@
-﻿using System;
-
-class Program
+﻿class Program
 {
     unsafe public static void Main()
     {

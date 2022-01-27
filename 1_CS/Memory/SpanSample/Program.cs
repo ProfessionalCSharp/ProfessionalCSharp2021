@@ -1,7 +1,4 @@
-﻿using System;
-using System.Runtime.InteropServices;
-
-SpanOnTheHeap();
+﻿SpanOnTheHeap();
 SpanOnTheStack();
 SpanOnNativeMemory();
 SpanExtensions();
@@ -10,7 +7,7 @@ unsafe void SpanOnNativeMemory()
 {
     Console.WriteLine(nameof(SpanOnNativeMemory));
     const int nbytes = 100;
-    nint p = Marshal.AllocHGlobal(nbytes);
+    nint p = (nint)NativeMemory.Alloc(nbytes);
     try
     {
         int* p2 = (int*)p;
@@ -27,7 +24,7 @@ unsafe void SpanOnNativeMemory()
     }
     finally
     {
-        Marshal.FreeHGlobal(p);
+        NativeMemory.Free((void*)p);
     }
     Console.WriteLine();
 }

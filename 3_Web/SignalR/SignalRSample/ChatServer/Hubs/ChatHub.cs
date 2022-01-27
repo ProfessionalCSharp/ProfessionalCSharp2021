@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.SignalR;
-using System.Threading.Tasks;
+
 using System.Web;
 
-namespace ChatServer.Hubs
+namespace ChatServer.Hubs;
+
+public class ChatHub : Hub
 {
-    public class ChatHub : Hub
-    {
-        public Task Send(string name, string message) =>
-            Clients.All.SendAsync("BroadcastMessage", HttpUtility.HtmlEncode(name), HttpUtility.HtmlEncode(message));
-    }
+    public Task Send(string name, string message) =>
+        Clients.All.SendAsync("BroadcastMessage", HttpUtility.HtmlEncode(name), HttpUtility.HtmlEncode(message));
 }

@@ -1,9 +1,4 @@
-﻿using DataLib;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-LINQQuery();
+﻿LINQQuery();
 ExtensionMethods();
 DeferredQuery();
 

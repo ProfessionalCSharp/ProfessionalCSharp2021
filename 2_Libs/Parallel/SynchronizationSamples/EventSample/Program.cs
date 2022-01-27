@@ -1,8 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-
-const int taskCount = 4;
+﻿const int taskCount = 4;
 
 ManualResetEventSlim[] mEvents = new ManualResetEventSlim[taskCount];
 WaitHandle[] waitHandles = new WaitHandle[taskCount];
@@ -37,4 +33,3 @@ for (int i = 0; i < taskCount; i++)
     mEvents[i].Dispose();
     waitHandles[i].Dispose();
 }
-

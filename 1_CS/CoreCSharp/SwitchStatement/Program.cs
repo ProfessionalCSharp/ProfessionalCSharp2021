@@ -1,9 +1,7 @@
-﻿using System;
-
-SwitchSample(2);
+﻿SwitchSample(2);
 SwitchWithPatternMatching(null);
 
-void SwitchWithPatternMatching(object o)
+void SwitchWithPatternMatching(object? o)
 {
     switch (o)
     {

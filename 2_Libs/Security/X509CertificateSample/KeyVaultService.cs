@@ -5,10 +5,8 @@ using Azure.Security.KeyVault.Certificates;
 using Azure.Security.KeyVault.Secrets;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Diagnostics.Tracing;
 using System.Security.Cryptography.X509Certificates;
-using System.Threading.Tasks;
 
 static class EventLevelExtensions
 {
@@ -56,7 +54,6 @@ class KeyVaultService : IDisposable
         string secretName = secretId.Segments[2].Trim('/');
         string version = secretId.Segments[3].TrimEnd('/');
         
-
         SecretClient secretClient = new(new Uri(_vaultUri), _credential);
         Response<KeyVaultSecret> responseSecret = await secretClient.GetSecretAsync(secretName, version);
         KeyVaultSecret secret = responseSecret.Value;

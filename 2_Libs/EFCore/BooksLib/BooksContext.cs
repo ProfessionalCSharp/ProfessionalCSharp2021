@@ -1,18 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace BooksLib
+namespace BooksLib;
+
+public class BooksContext : DbContext
 {
+    public BooksContext(DbContextOptions<BooksContext> options)
+        : base(options) { }
 
-    public class BooksContext : DbContext
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        public BooksContext(DbContextOptions<BooksContext> options)
-            : base(options) { }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder);
-        }
-
-        public DbSet<Book> Books => Set<Book>();
+        base.OnConfiguring(optionsBuilder);
     }
+
+    public DbSet<Book> Books => Set<Book>();
 }

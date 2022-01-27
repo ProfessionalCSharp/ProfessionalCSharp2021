@@ -1,29 +1,25 @@
-﻿using System;
+﻿namespace WhatsNewAttributes;
 
-namespace WhatsNewAttributes
+[AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Class | AttributeTargets.Method | AttributeTargets.Property | AttributeTargets.Constructor, AllowMultiple = true, Inherited = false)]
+public class LastModifiedAttribute : Attribute
 {
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method | AttributeTargets.Property | AttributeTargets.Constructor, AllowMultiple = true, Inherited = false)]
-    public class LastModifiedAttribute : Attribute
+    private readonly DateTime _dateModified;
+    private readonly string _changes;
+
+    public LastModifiedAttribute(string dateModified, string changes)
     {
-        private readonly DateTime _dateModified;
-        private readonly string _changes;
-
-        public LastModifiedAttribute(string dateModified, string changes)
-        {
-            _dateModified = DateTime.Parse(dateModified);
-            _changes = changes;
-        }
-
-        public DateTime DateModified => _dateModified;
-
-        public string Changes => _changes;
-
-        public string? Issues { get; set; }
+        _dateModified = DateTime.Parse(dateModified);
+        _changes = changes;
     }
 
-    [AttributeUsage(AttributeTargets.Assembly)]
-    public class SupportsWhatsNewAttribute : Attribute
-    {
-    }
+    public DateTime DateModified => _dateModified;
+
+    public string Changes => _changes;
+
+    public string? Issues { get; set; }
 }
 
+[AttributeUsage(AttributeTargets.Assembly)]
+public class SupportsWhatsNewAttribute : Attribute
+{
+}

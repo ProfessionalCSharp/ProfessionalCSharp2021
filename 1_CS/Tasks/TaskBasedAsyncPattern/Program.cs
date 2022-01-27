@@ -1,8 +1,4 @@
-﻿using System;
-using System.Net.Http;
-using System.Threading.Tasks;
-
-string uri = (args.Length >= 1) ? args[0] : string.Empty;
+﻿string uri = (args.Length >= 1) ? args[0] : string.Empty;
 if (string.IsNullOrEmpty(uri))
 {
     Console.Write("enter an URL (e.g. https://csharp.christiannagel.com): ");

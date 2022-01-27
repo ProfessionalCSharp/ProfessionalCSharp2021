@@ -1,6 +1,4 @@
-﻿using System;
-
-LinkedList<int> list1 = new();
+﻿LinkedList<int> list1 = new();
 list1.AddLast(1);
 list1.AddLast(3);
 list1.AddLast(2);

@@ -1,58 +1,50 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BookModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using BookModels;
 
-namespace BooksViews
+namespace BooksViews;
+
+public class DeleteModel : PageModel
 {
-    public class DeleteModel : PageModel
+    private readonly BooksContext _context;
+
+    public DeleteModel(BooksContext context) => _context = context;
+
+    [BindProperty]
+    public Book? Book { get; set; }
+
+    public async Task<IActionResult> OnGetAsync(int? id)
     {
-        private readonly BookModels.BooksContext _context;
-
-        public DeleteModel(BookModels.BooksContext context)
+        if (id == null)
         {
-            _context = context;
+            return NotFound();
         }
 
-        [BindProperty]
-        public Book? Book { get; set; }
+        Book = await _context.Books.FirstOrDefaultAsync(m => m.BookId == id);
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        if (Book == null)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            return NotFound();
+        }
+        return Page();
+    }
 
-            Book = await _context.Books.FirstOrDefaultAsync(m => m.BookId == id);
-
-            if (Book == null)
-            {
-                return NotFound();
-            }
-            return Page();
+    public async Task<IActionResult> OnPostAsync(int? id)
+    {
+        if (id is null)
+        {
+            return NotFound();
         }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
+        Book = await _context.Books.FindAsync(id);
+
+        if (Book is not null)
         {
-            if (id is null)
-            {
-                return NotFound();
-            }
-
-            Book = await _context.Books.FindAsync(id);
-
-            if (Book is not null)
-            {
-                _context.Books.Remove(Book);
-                await _context.SaveChangesAsync();
-            }
-
-            return RedirectToPage("./Index");
+            _context.Books.Remove(Book);
+            await _context.SaveChangesAsync();
         }
+
+        return RedirectToPage("./Index");
     }
 }

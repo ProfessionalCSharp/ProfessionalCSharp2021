@@ -1,13 +1,13 @@
 ﻿using System.Xml.Linq;
 using Xunit;
 
-namespace UnitTestingSamples.xUnit.Tests
+namespace UnitTestingSamples.xUnit.Tests;
+
+public class Formula1Tests
 {
-    public class Formula1Tests
+    internal static string Formula1SampleData()
     {
-        internal static string Formula1SampleData()
-        {
-            return @"
+        return @"
 <Racers>
   <Racer>
     <Firstname>Nino</Firstname>
@@ -213,30 +213,29 @@ namespace UnitTestingSamples.xUnit.Tests
     <Wins>20</Wins>
   </Racer>
 </Racers>";
-        }
+    }
 
-        internal static XElement Formula1VerificationData()
-        {
-            return XElement.Parse(@"
+    internal static XElement Formula1VerificationData()
+    {
+        return XElement.Parse(@"
 <Racers>
   <Racer Name=""Mika Hakkinen"" Country=""Finland"" Wins=""20"" />
   <Racer Name=""Kimi Raikkonen"" Country=""Finland"" Wins=""20"" />
   <Racer Name=""Keke Rosberg"" Country=""Finland"" Wins=""5"" />
 </Racers>");
-        }
+    }
 
-        public class F1TestLoader : IChampionsLoader
-        {
-            public XElement LoadChampions() => XElement.Parse(Formula1SampleData());
-        }
+    public class F1TestLoader : IChampionsLoader
+    {
+        public XElement LoadChampions() => XElement.Parse(Formula1SampleData());
+    }
 
-        [Fact]
-        public void ChampionsByCountryFilterFinland()
-        {
-            Formula1 f1 = new(new F1TestLoader());
-            XElement actual = f1.ChampionsByCountry("Finland");
-            Assert.Equal(Formula1VerificationData().ToString(),
-              actual.ToString());
-        }
+    [Fact]
+    public void ChampionsByCountryFilterFinland()
+    {
+        Formula1 f1 = new(new F1TestLoader());
+        XElement actual = f1.ChampionsByCountry("Finland");
+        Assert.Equal(Formula1VerificationData().ToString(),
+          actual.ToString());
     }
 }

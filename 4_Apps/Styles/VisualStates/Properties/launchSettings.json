@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "VisualStates (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "VisualStates (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

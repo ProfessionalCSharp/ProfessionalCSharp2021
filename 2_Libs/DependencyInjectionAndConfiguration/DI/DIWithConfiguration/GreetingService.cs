@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Options;
-
-public class GreetingService : IGreetingService
+﻿public class GreetingService : IGreetingService
 {
     public GreetingService(IOptions<GreetingServiceOptions> options)
     {

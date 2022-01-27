@@ -1,8 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-
-using Mutex mutex = new(false, "SingletonAppMutex", out bool mutexCreated);
+﻿using Mutex mutex = new(false, "SingletonAppMutex", out bool mutexCreated);
 if (!mutexCreated)
 {
     Console.WriteLine("You can only start one instance of the application.");

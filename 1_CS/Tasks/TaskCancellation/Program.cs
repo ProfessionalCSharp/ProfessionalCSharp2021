@@ -1,8 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-
-CancellationTokenSource cancellation = new(TimeSpan.FromSeconds(5));
+﻿CancellationTokenSource cancellation = new(TimeSpan.FromSeconds(5));
 
 try
 {

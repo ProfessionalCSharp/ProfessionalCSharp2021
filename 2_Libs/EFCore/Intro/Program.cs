@@ -15,7 +15,7 @@ using var host = Host.CreateDefaultBuilder(args)
     })
     .Build();
 
-using var scope = host.Services.CreateScope();
+await using var scope = host.Services.CreateAsyncScope();
 var runner = scope.ServiceProvider.GetRequiredService<Runner>();
 
 await runner.CreateTheDatabaseAsync();

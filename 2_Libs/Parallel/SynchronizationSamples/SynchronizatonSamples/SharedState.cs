@@ -1,7 +1,6 @@
-﻿namespace SynchronizatonSamples
+﻿namespace SynchronizatonSamples;
+
+public class SharedState
 {
-    public class SharedState
-    {
-        public int State { get; set; }
-    }
+    public int State { get; set; }
 }

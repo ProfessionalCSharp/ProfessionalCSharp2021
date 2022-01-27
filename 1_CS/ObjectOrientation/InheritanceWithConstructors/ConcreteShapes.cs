@@ -1,6 +1,4 @@
-﻿using System;
-
-public class Rectangle : Shape
+﻿public class Rectangle : Shape
 {
     public Rectangle(int x, int y, int width, int height)
         : base(x, y, width, height) { }

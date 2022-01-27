@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "WinAppChatClient (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "WinAppChatClient (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

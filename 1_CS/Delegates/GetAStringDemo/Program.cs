@@ -1,6 +1,4 @@
-﻿using System;
-
-int x = 40;
+﻿int x = 40;
 GetAString firstStringMethod = new GetAString(x.ToString);
 Console.WriteLine($"String is {firstStringMethod()}");
 // With firstStringMethod initialized to x.ToString(),

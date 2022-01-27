@@ -1,7 +1,4 @@
-﻿using System;
-using System.Runtime.InteropServices;
-
-public readonly struct Currency
+﻿public readonly struct Currency
 {
     public readonly uint Dollars;
     public readonly ushort Cents;

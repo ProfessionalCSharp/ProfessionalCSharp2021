@@ -1,11 +1,10 @@
 ﻿using Books.Models;
+
 using Google.Protobuf.WellKnownTypes;
+
 using GRPCService;
+
 using Microsoft.Extensions.Logging;
-using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 
 static class ChapterExtensions
 {

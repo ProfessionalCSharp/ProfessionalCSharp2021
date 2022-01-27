@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System;
-
-SortedList<string, string> books = new();
+﻿SortedList<string, string> books = new();
 books.Add("Front-end Development with ASP.NET Core", "978-1-119-18140-8");
 books.Add("Beginning C# 7 Programming", "978-1-119-45866-1");
 
@@ -34,4 +31,3 @@ foreach (string title in books.Keys)
         Console.WriteLine($"{title} found: {isbn}");
     }
 }
-

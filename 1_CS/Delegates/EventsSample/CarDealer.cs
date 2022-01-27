@@ -1,6 +1,4 @@
-﻿using System;
-
-public class CarInfoEventArgs : EventArgs
+﻿public class CarInfoEventArgs : EventArgs
 {
     public CarInfoEventArgs(string car) => Car = car;
 

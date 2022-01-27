@@ -1,6 +1,3 @@
-﻿using System;
+﻿namespace ParallelSamples;
 
-namespace ParallelSamples
-{
-    public record Command(string Option, string Text, Action Action) { }
-}
+public record Command(string Option, string Text, Action Action) { }

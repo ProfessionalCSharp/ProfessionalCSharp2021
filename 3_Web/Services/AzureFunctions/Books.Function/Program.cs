@@ -1,9 +1,9 @@
 using Books.Data;
 using Books.Services;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
 
 using var host = new HostBuilder()
     .ConfigureFunctionsWorkerDefaults()

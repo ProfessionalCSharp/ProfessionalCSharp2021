@@ -1,6 +1,4 @@
-﻿using System;
-
-int? n1 = null;
+﻿int? n1 = null;
 if (n1.HasValue)
 {
     int n2 = n1.Value;

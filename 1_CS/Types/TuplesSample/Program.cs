@@ -1,6 +1,4 @@
-﻿using System;
-
-IntroTuples();
+﻿IntroTuples();
 TuplesDeconstruction();
 ReturningTuples();
 

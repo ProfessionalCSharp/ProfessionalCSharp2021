@@ -16,3 +16,21 @@ For code comments and issues please check [Professional C#'s GitHub Repository](
 Please check my blog [csharp.christiannagel.com](https://csharp.christiannagel.com "csharp.christiannagel.com") for additional information for topics covered in the book.
 
 Thank you!
+
+## Updates with C# 10
+
+See [Updates with C# 10](../../Dotnet6Updates.md)
+
+### SpanSample
+
+Marshal.AllocHGlobal has been replaced with NativeMemory.Alloc
+
+Marshal.FreeHGlobal has been replaced with NativeMemory.Free
+
+### PInvokeSampleLib
+
+Marshal.GetLastWin32Error has been replaced with Marshal.GetLastPInvokeError
+
+### Win32InteropSample
+
+The additional sample to show using a Source Generator to generate PInvoke functionality uses different namespaces with the new version.

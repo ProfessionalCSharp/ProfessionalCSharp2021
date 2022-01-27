@@ -1,6 +1,4 @@
-﻿using System;
-
-public class SomeResource : IDisposable
+﻿public class SomeResource : IDisposable
 {
     private SomeInnerResource _innerResource;
 

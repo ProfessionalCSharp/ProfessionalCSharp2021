@@ -1,6 +1,4 @@
-﻿using System;
-
-public class Rectangle : Shape
+﻿public class Rectangle : Shape
 {
     protected override void DisplayShape()
     {

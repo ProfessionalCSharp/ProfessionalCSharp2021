@@ -1,6 +1,4 @@
-﻿using System;
-
-public class UnexpectedException : Exception
+﻿public class UnexpectedException : Exception
 {
     public UnexpectedException(string message)
         : base(message)

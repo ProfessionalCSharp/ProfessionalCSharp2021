@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
+﻿namespace EventViews.Models;
 
-namespace EventViews.Models
+public interface IEventsService
 {
-    public interface IEventsService
-    {
-        IEnumerable<Event> Events { get; }
-    }
+    IEnumerable<Event> Events { get; }
 }

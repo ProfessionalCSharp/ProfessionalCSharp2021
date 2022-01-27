@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using static TrafficLight;
+﻿using static TrafficLight;
 
 var previousLight = Red;
 var currentLight = Red;

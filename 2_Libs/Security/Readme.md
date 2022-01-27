@@ -12,11 +12,20 @@ This chapter contains the following code samples:
 * Web Security
     * ASPNETCoreMVCSecurity (encoding, injection, XSRF)
 
+## .NET 6 Updates
+
+Code sample X509CertificateSample:
+
+The `Key` property (X509Certificate2.PublicKey.Key) is obsolete. The method has been changed to use the `GetRSAPublicKey` method, and accessing members of the `RSA` class instead.
+
+## Configure Azure Key Vault
 
 To configure the Azure Key Vault and create certificates using the Azure CLI see these bash scripts:
 
 * [prepare key vault](preparekeyvault.sh)
 * [create certificates](createcertificates.sh)
+
+## More Information
  
 For code comments and issues please check [Professional C#'s GitHub Repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021)
 

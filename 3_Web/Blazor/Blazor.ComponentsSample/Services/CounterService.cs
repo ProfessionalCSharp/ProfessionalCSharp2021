@@ -1,7 +1,6 @@
-﻿namespace Blazor.ComponentsSample.Client.Services
+﻿namespace Blazor.ComponentsSample.Services;
+
+public class CounterService
 {
-    public class CounterService
-    {
-        public int Counter { get; set; }
-    }
+    public int Counter { get; set; }
 }

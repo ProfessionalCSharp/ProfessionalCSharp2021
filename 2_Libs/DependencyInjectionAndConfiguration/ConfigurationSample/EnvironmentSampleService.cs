@@ -1,7 +1,4 @@
-﻿using Microsoft.Extensions.Hosting;
-using System;
-
-public class EnvironmentSampleService
+﻿public class EnvironmentSampleService
 {
     private readonly IHostEnvironment _hostEnvironment;
 

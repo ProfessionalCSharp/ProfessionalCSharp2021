@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Transformations (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Transformations (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

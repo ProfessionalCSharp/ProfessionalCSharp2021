@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "StylesAndResources (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "StylesAndResources (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

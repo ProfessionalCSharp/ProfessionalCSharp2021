@@ -1,6 +1,4 @@
-﻿using System;
-
-Book2 book2 = new("Professional C#", "Wrox Press");
+﻿Book2 book2 = new("Professional C#", "Wrox Press");
 Console.WriteLine(book2);
 
 Book1 book1a = new() { Title = "Professional C#", Publisher = "Wrox Press" };

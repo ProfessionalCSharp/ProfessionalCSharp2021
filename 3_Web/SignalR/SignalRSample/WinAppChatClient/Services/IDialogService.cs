@@ -1,9 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿namespace WindowsAppChatClient.Services;
 
-namespace WindowsAppChatClient.Services
+public interface IDialogService
 {
-    public interface IDialogService
-    {
-        Task ShowMessageAsync(string message);
-    }
+    Task ShowMessageAsync(string message);
 }

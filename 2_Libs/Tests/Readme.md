@@ -15,3 +15,7 @@ For code comments and issues please check [Professional C#'s GitHub Repository](
 Please check my blog [csharp.christiannagel.com](https://csharp.christiannagel.com) for additional information, e.g. to use UI and end-to-end tests with Appium and Playwrigth.
 
 Thank you!
+
+## .NET 6 updates with ASP.NET Core
+
+See [Dotnet6Updates.md](../../Dotnet6Updates.md)

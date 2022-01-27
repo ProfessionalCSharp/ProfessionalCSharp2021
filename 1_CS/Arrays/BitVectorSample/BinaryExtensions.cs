@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-
-public static class BinaryExtensions
+﻿public static class BinaryExtensions
 {
     public static string AddSeparators(this string number) =>
         number.Length <= 4 ? number :

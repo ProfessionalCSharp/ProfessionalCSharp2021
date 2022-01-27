@@ -1,6 +1,4 @@
-﻿using System;
-
-public record Position(int X, int Y);
+﻿public record Position(int X, int Y);
 
 public record Size(int Width, int Height);
 

@@ -1,9 +1,8 @@
 ﻿using System.Xml.Linq;
 
-namespace UnitTestingSamples
+namespace UnitTestingSamples;
+
+public interface IChampionsLoader
 {
-    public interface IChampionsLoader
-    {
-        XElement LoadChampions();
-    }
+    XElement LoadChampions();
 }

@@ -1,9 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net5.0;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net6.0;net5.0;netstandard2.0</TargetFrameworks>
     <Nullable>enable</Nullable>
-    <LangVersion>9.0</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>10.0</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -17,11 +18,16 @@
     <RepositoryType>Git</RepositoryType>
     <PackageTags>CSharp; .NET Core; NuGet</PackageTags>
     <PackageReleaseNotes>Sample for Professional C# and .NET - 2021 Edition</PackageReleaseNotes>
-    <Version>5.0.1</Version>
-    <AssemblyVersion>5.0.1.0</AssemblyVersion>
-    <ProductVersion>5.0</ProductVersion>
+    <Version>6.0.1</Version>
+    <AssemblyVersion>6.0.1.0</AssemblyVersion>
+    <ProductVersion>6.0</ProductVersion>
   </PropertyGroup>
 
+  <!-- 
+  For .NET Standard 2, the predefined constant NETSTANDARD2_0 is defined; .NET 5 defines NET5_0.
+  See https://docs.microsoft.com/dotnet/csharp/language-reference/preprocessor-directives
+  -->
+  
   <PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
     <DefineConstants>NETSTANDARD20</DefineConstants>
   </PropertyGroup>
@@ -30,12 +36,20 @@
     <DefineConstants>NET50</DefineConstants>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(TargetFramework)'=='net6.0'">
+    <DefineConstants>NET60</DefineConstants>
+  </PropertyGroup>
+
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <PackageReference Include="System.Text.Json" Version="5.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net5.0'">
     <PackageReference Include="System.Text.Json" Version="5.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Text.Json" Version="6.0.1" />
   </ItemGroup>
 
 </Project>

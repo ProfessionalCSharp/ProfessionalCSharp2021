@@ -1,8 +1,7 @@
 ﻿using BooksLib.Models;
 
-namespace BooksLib.Services
+namespace BooksLib.Services;
+
+public interface IBooksRepository : IQueryRepository<Book, int>, IUpdateRepository<Book, int>
 {
-    public interface  IBooksRepository : IQueryRepository<Book, int>, IUpdateRepository<Book, int>
-    {
-    }
 }

@@ -1,6 +1,4 @@
-﻿using System;
-
-// Try calling some static functions.
+﻿// Try calling some static functions.
 Console.WriteLine($"Pi is {Math.GetPi()}");
 int x = Math.GetSquareOf(5);
 Console.WriteLine($"Square of 5 is {x}");

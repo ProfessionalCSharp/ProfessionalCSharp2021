@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-public class Person
+﻿public class Person
 {
     public Person(string firstName, string lastName, int personId = 0)
     {

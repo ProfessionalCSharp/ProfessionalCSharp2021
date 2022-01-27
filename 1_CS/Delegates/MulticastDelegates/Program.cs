@@ -1,6 +1,4 @@
-﻿using System;
-
-Action<double> operations = MathOperations.MultiplyByTwo;
+﻿Action<double> operations = MathOperations.MultiplyByTwo;
 operations += MathOperations.Square;
 
 ProcessAndDisplayNumber(operations, 2.0);
