@@ -6,33 +6,46 @@ using OpenTelemetry;
 using OpenTelemetry.Logs;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
-using System;
 using System.Diagnostics;
 
 Activity.DefaultIdFormat = ActivityIdFormat.W3C;  // default since .NET 5
 
 using var tracerProvider = Sdk.CreateTracerProviderBuilder()
     .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("OpenTelemetrySample"))
-    .AddSource("LoggingSample.DistributedTracing")
+    .AddSource(Runner.SourceName)
+    .AddHttpClientInstrumentation()
     .AddConsoleExporter()
     .Build();
 
+
 using var host = Host.CreateDefaultBuilder(args)
-    .ConfigureLogging((hostingContext, logging) =>
+    .ConfigureLogging(logging =>
     {
         logging.ClearProviders();
         logging.AddFilter(level => level >= LogLevel.Trace);
-        logging.AddOpenTelemetry(options => options.AddConsoleExporter());
-
-        logging.Configure(options =>
+        logging.AddOpenTelemetry(options =>
         {
-            options.ActivityTrackingOptions = ActivityTrackingOptions.SpanId
-                                            | ActivityTrackingOptions.TraceId
-                                            | ActivityTrackingOptions.ParentId;
+            options.AddConsoleExporter();
         });
     })
     .ConfigureServices(services =>
     {
+        services.AddOpenTelemetryMetrics();
+        services.AddOpenTelemetryTracing(builder =>
+        {
+            builder.AddConsoleExporter()
+                .AddSource(Runner.SourceName)
+                .SetResourceBuilder(
+                    ResourceBuilder.CreateDefault()
+                        .AddService(serviceName: "OpenTelemetrySample", serviceVersion: "1.0.0"))
+                .AddHttpClientInstrumentation();
+        });
+        services.Configure<OpenTelemetryLoggerOptions>(options =>
+        {
+            options.IncludeScopes = true;
+            options.ParseStateValues = true;
+            options.IncludeFormattedMessage = true;
+        });
         services.AddHttpClient<NetworkService>(client =>
         {
         }).AddTypedClient<NetworkService>();
