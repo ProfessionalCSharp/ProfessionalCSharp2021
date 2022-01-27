@@ -24,21 +24,24 @@ CommandLineBuilder BuildCommandLine()
     outputFileOption.AddAlias("-o");
     RootCommand rootCommand = new("WorkingWithFilesAndDirectories");
     Command readWithStreamCommand = new("readwithstream") { fileOption };
-    readWithStreamCommand.Handler = CommandHandler.Create<string>(ReadUsingFileStream);
-    Command writeTextFileCommand = new("writetext") { Handler = CommandHandler.Create(WriteTextFile) };
+    readWithStreamCommand.SetHandler<string>(file => ReadUsingFileStream(file), inputFileOption);
+    Command writeTextFileCommand = new("writetext");
+    writeTextFileCommand.SetHandler(WriteTextFile);
     Command copyCommand = new("copy") { inputFileOption, outputFileOption };
-    copyCommand.Handler = CommandHandler.Create<string, string>(CopyUsingStreams);
+    copyCommand.SetHandler<string, string>((inputFile, ouptutFile) => CopyUsingStreams(inputFile, ouptutFile), inputFileOption, outputFileOption);
     Command copy2Command = new("copy2") { inputFileOption, outputFileOption };
-    copy2Command.Handler = CommandHandler.Create<string, string>(CopyUsingStreams2);
+    copy2Command.SetHandler<string, string>((inputFile, outputFile) => CopyUsingStreams2(inputFile, outputFile), inputFileOption, outputFileOption);
+    Option<int> countOption = new("--count")
+    {
+        IsRequired = true
+    };
     Command createSampleFile = new("samplefile")
     {
-        new Option<int>("--count")
-        {
-            IsRequired = true
-        }
+        countOption
     };
-    createSampleFile.Handler = CommandHandler.Create<int>(CreateSampleFileAsync);
-    Command randomAccessCommand = new("random") { Handler = CommandHandler.Create(RandomAccessSampleAsync) };
+    createSampleFile.SetHandler<int>(async count => await CreateSampleFileAsync(count), countOption); ;
+    Command randomAccessCommand = new("random");
+    randomAccessCommand.SetHandler(RandomAccessSampleAsync);
 
     rootCommand.AddCommand(readWithStreamCommand);
     rootCommand.AddCommand(writeTextFileCommand);
