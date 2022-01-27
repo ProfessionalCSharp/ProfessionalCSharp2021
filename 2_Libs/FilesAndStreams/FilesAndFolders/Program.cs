@@ -15,29 +15,34 @@ CommandLineBuilder BuildCommandLine()
         IsRequired = true
     };
     RootCommand rootCommand = new("FilesAndFolders");
-    Command showDrivesCommand = new("showdrives") { Handler = CommandHandler.Create(ShowDrivesInformation) };
-    Command specialFoldersCommand = new("specialfolders") { Handler = CommandHandler.Create(ShowSpecialFolders) };
+    Command showDrivesCommand = new("showdrives");
+    showDrivesCommand.SetHandler(ShowDrivesInformation);
+    Command specialFoldersCommand = new("specialfolders");
+    specialFoldersCommand.SetHandler(ShowSpecialFolders);
     Command createFileCommand = new("createfile") { fileOption };
-    createFileCommand.Handler = CommandHandler.Create<string>(CreateFile);
+    createFileCommand.SetHandler<string>(CreateFile, fileOption);
     Command fileInfoCommand = new("fileinfo") { fileOption };
-    fileInfoCommand.Handler = CommandHandler.Create<string>(FileInformation);
+    fileInfoCommand.SetHandler<string>(FileInformation, fileOption);
     Command changePropertiesCommand = new("changeprops") { fileOption };
-    changePropertiesCommand.Handler = CommandHandler.Create<string>(ChangeFileProperties);
+    changePropertiesCommand.SetHandler<string>(ChangeFileProperties, fileOption);
     Command readLinesCommand = new("readlines") { fileOption };
-    readLinesCommand.Handler = CommandHandler.Create<string>(ReadLineByLine);
-    Command writeFileCommand = new("writefile") { Handler = CommandHandler.Create(WriteAFile) };
+    readLinesCommand.SetHandler<string>(ReadLineByLine, fileOption);
+    Command writeFileCommand = new("writefile");
+    writeFileCommand.SetHandler(WriteAFile);
+    Option<string> directoryOption = new("--dir")
+    {
+        IsRequired = true
+    };
+    Option<bool> checkOnlyOption = new("--checkOnly")
+    {
+        IsRequired = false
+    };
     Command deleteDuplicateFilesCommand = new("deleteduplicate")
     {
-        new Option<string>("--dir")
-        {
-            IsRequired = true
-        },
-        new Option<bool>("--checkOnly")
-        {
-            IsRequired = false
-        }
+        directoryOption,
+        checkOnlyOption
     };
-    deleteDuplicateFilesCommand.Handler = CommandHandler.Create<string, bool?>((dir, checkOnly) => DeleteDuplicateFiles(dir, checkOnly ?? true));
+    deleteDuplicateFilesCommand.SetHandler<string, bool?>((dir, checkOnly) => DeleteDuplicateFiles(dir, checkOnly ?? true), directoryOption, checkOnlyOption);
 
     rootCommand.AddCommand(showDrivesCommand);
     rootCommand.AddCommand(specialFoldersCommand);
