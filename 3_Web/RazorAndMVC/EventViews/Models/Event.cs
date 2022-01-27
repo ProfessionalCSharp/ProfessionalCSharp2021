@@ -1,6 +1,3 @@
-﻿using System;
+﻿namespace EventViews.Models;
 
-namespace EventViews.Models
-{
-    public record Event(string Text, DateTime Date);
-}
+public record Event(string Text, DateTime Date);

@@ -1,26 +1,19 @@
 ﻿using BookModels;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
-namespace BooksViews
+namespace BooksViews;
+
+public class IndexModel : PageModel
 {
-    public class IndexModel : PageModel
+    private readonly BooksContext _context;
+
+    public IndexModel(BooksContext context) => _context = context;
+
+    public IList<Book>? Books { get;set; }
+
+    public async Task OnGetAsync()
     {
-        private readonly BookModels.BooksContext _context;
-
-        public IndexModel(BookModels.BooksContext context)
-        {
-            _context = context;
-        }
-
-        public IList<Book>? Books { get;set; }
-
-        public async Task OnGetAsync()
-        {
-            Books = await _context.Books.ToListAsync();
-        }
+        Books = await _context.Books.ToListAsync();
     }
 }

@@ -1,39 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BookModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using BookModels;
 
-namespace BooksViews
+namespace BooksViews;
+
+public class DetailsModel : PageModel
 {
-    public class DetailsModel : PageModel
+    private readonly BooksContext _context;
+
+    public DetailsModel(BooksContext context) => _context = context;
+
+    public Book? Book { get; set; }
+
+    public async Task<IActionResult> OnGetAsync(int? id)
     {
-        private readonly BookModels.BooksContext _context;
-
-        public DetailsModel(BookModels.BooksContext context)
+        if (id == null)
         {
-            _context = context;
+            return NotFound();
         }
 
-        public Book? Book { get; set; }
+        Book = await _context.Books.FirstOrDefaultAsync(m => m.BookId == id);
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        if (Book == null)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            Book = await _context.Books.FirstOrDefaultAsync(m => m.BookId == id);
-
-            if (Book == null)
-            {
-                return NotFound();
-            }
-            return Page();
+            return NotFound();
         }
+        return Page();
     }
 }

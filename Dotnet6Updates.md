@@ -58,6 +58,6 @@ The Web application project needs to give access for the unit testing project (A
 
 See how the `WebApplicationFactory` is now used to access the `Program` class from the ASP.NET Core project in the test project *ASPNETCoreSample.IntegrationTest*
 
-## Blazor
+## ASP.NET Core
 
-See chapter 27, Blazor for changes replacing the `Startup` class with top-level statements and the new `WebApplicationBuilder` class.
+See the chapters 24, **ASP.NET Core"", 25 **Services**, 26 **Razor Pages and MVC**, and 27, **Blazor** for changes replacing the `Startup` class with top-level statements and the new `WebApplicationBuilder` class.
