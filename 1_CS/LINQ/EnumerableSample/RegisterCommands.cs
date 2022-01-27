@@ -15,14 +15,13 @@ public static class RegisterCommands
 
         foreach (var method in methods)
         {
-            command.AddCommand(new(method.Name.ToLower())
+            Command featureCommand = new(method.Name.ToLower());
+            featureCommand.SetHandler(() =>
             {
-                Handler = CommandHandler.Create(() =>
-                {
-                    MethodInfo m = method;
-                    m.Invoke(null, null);
-                })
+                MethodInfo m = method;
+                m.Invoke(null, null);
             });
+            command.AddCommand(featureCommand);
         }
 
         rootCommand.AddCommand(command);
