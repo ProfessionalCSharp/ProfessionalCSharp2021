@@ -59,7 +59,7 @@ CommandLineBuilder BuildCommandLine()
 {
     RootCommand rootCommand = new("HttpClientSample");
     Command simpleCommand = new("simple");
-    simpleCommand.Handler = CommandHandler.Create<IHost>(async (host) =>
+    simpleCommand.SetHandler<IHost>(async host =>
     {
         var service = host.Services.GetRequiredService<HttpClientSamples>();
         await service.SimpleGetRequestAsync();
@@ -67,7 +67,7 @@ CommandLineBuilder BuildCommandLine()
     rootCommand.AddCommand(simpleCommand);
 
     Command httpRequestMessageCommand = new("httprequest");
-    httpRequestMessageCommand.Handler = CommandHandler.Create<IHost>(async (host) =>
+    httpRequestMessageCommand.SetHandler<IHost>(async host =>
     {
         var service = host.Services.GetRequiredService<HttpClientSamples>();
         await service.UseHttpRequestMessageAsync();
@@ -75,7 +75,7 @@ CommandLineBuilder BuildCommandLine()
     rootCommand.AddCommand(httpRequestMessageCommand);
 
     Command exceptionCommand = new("exception");
-    exceptionCommand.Handler = CommandHandler.Create<IHost>(async (host) =>
+    exceptionCommand.SetHandler<IHost>(async host =>
     {
         var service = host.Services.GetRequiredService<HttpClientSamples>();
         await service.ThrowExceptionAsync();
@@ -83,7 +83,7 @@ CommandLineBuilder BuildCommandLine()
     rootCommand.AddCommand(exceptionCommand);
 
     Command headerCommand = new("headers");
-    headerCommand.Handler = CommandHandler.Create<IHost>(async (host) =>
+    headerCommand.SetHandler<IHost>(async host =>
     {
         var service = host.Services.GetRequiredService<HttpClientSamples>();
         await service.AddHttpHeadersAsync();
@@ -91,7 +91,7 @@ CommandLineBuilder BuildCommandLine()
     rootCommand.AddCommand(headerCommand);
 
     Command http2Command = new("http2");
-    http2Command.Handler = CommandHandler.Create<IHost>(async (host) =>
+    http2Command.SetHandler<IHost>(async host =>
     {
         var service = host.Services.GetRequiredService<HttpClientSamples>();
         await service.UseHttp2();
@@ -99,19 +99,18 @@ CommandLineBuilder BuildCommandLine()
     rootCommand.AddCommand(http2Command);
 
     Command messageHandlerCommand = new("messagehandler");
-    messageHandlerCommand.Handler = CommandHandler.Create<IHost>(async (host) =>
+    messageHandlerCommand.SetHandler<IHost>(async host =>
     {
         var service = host.Services.GetRequiredService<HttpClientSampleWithMessageHandler>();
         for (int i = 0; i < 10; i++)
         {
             await service.UseMessageHandlerAsync();
         }
-
     });
     rootCommand.AddCommand(messageHandlerCommand);
 
     Command namedClientCommand = new("named");
-    namedClientCommand.Handler = CommandHandler.Create<IHost>(async host =>
+    namedClientCommand.SetHandler<IHost>(async host =>
     {
         var service = host.Services.GetRequiredService<NamedClientSample>();
         await service.RunAsync();
@@ -119,7 +118,7 @@ CommandLineBuilder BuildCommandLine()
     rootCommand.AddCommand(namedClientCommand);
 
     Command pollyCommand = new("retry");
-    pollyCommand.Handler = CommandHandler.Create<IHost>(async host =>
+    pollyCommand.SetHandler<IHost>(async host =>
     {
         var service = host.Services.GetRequiredService<FaultHandlingSample>();
         await service.RunAsync();

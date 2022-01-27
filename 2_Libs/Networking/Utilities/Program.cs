@@ -12,26 +12,28 @@ await BuildCommandLine()
 CommandLineBuilder BuildCommandLine()
 {
     RootCommand rootCommand = new("Utilities");
+    Option<string> uriOption = new("--uri")
+    {
+        IsRequired = true
+    };
     Command uriCommand = new("uri", "Show the parts of the URI, e.g. www.wrox.com")
     {
-        new Option<string>("--uri")
-        {
-            IsRequired = true
-        }
+        uriOption
     };
-    uriCommand.Handler = CommandHandler.Create<string>(UriSample);
+    uriCommand.SetHandler<string>(UriSample, uriOption);
+
+    Option<string> ipOption = new("--ip")
+    {
+        IsRequired = true
+    };
     Command ipCommand = new("ip", "Show the part of the IP address, e.g. ipaddress 234.56.78.9")
     {
-        new Option<string>("--ip")
-        {
-            IsRequired = true
-        }
+        ipOption
     };
-    ipCommand.Handler = CommandHandler.Create<string>(ip => IPAddressSample(ip));
-    Command buildUriCommand = new("builduri", "Build an URI using the UriBuilder")
-    {
-        Handler = CommandHandler.Create(BuildUri)
-    };
+    ipCommand.SetHandler<string>(ip => IPAddressSample(ip), ipOption);
+
+    Command buildUriCommand = new("builduri", "Build an URI using the UriBuilder");
+    buildUriCommand.SetHandler(BuildUri);
 
     rootCommand.AddCommand(uriCommand);
     rootCommand.AddCommand(ipCommand);
