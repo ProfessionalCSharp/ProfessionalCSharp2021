@@ -1,6 +1,6 @@
 # Book Updates
 
-See [.NET 6 Updates](Dotnet6Updates.md) for changes with .NET 6
+> See [.NET 6 Updates](Dotnet6Updates.md) for changes with .NET 6
 
 ## Chapter 20, Security
 
