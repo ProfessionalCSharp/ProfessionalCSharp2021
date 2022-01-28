@@ -31,8 +31,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tracking", "Tracking\Tracki
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cosmos", "Cosmos\Cosmos.csproj", "{3456A121-0209-42DC-8B27-C95AC50C1A84}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemporalTableSample", "TemporalTableSample\TemporalTableSample.csproj", "{8319B831-1B27-413C-9BDE-883F00911213}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -199,18 +197,6 @@ Global
 		{3456A121-0209-42DC-8B27-C95AC50C1A84}.Release|x64.Build.0 = Release|Any CPU
 		{3456A121-0209-42DC-8B27-C95AC50C1A84}.Release|x86.ActiveCfg = Release|Any CPU
 		{3456A121-0209-42DC-8B27-C95AC50C1A84}.Release|x86.Build.0 = Release|Any CPU
-		{8319B831-1B27-413C-9BDE-883F00911213}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8319B831-1B27-413C-9BDE-883F00911213}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8319B831-1B27-413C-9BDE-883F00911213}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{8319B831-1B27-413C-9BDE-883F00911213}.Debug|x64.Build.0 = Debug|Any CPU
-		{8319B831-1B27-413C-9BDE-883F00911213}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{8319B831-1B27-413C-9BDE-883F00911213}.Debug|x86.Build.0 = Debug|Any CPU
-		{8319B831-1B27-413C-9BDE-883F00911213}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8319B831-1B27-413C-9BDE-883F00911213}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8319B831-1B27-413C-9BDE-883F00911213}.Release|x64.ActiveCfg = Release|Any CPU
-		{8319B831-1B27-413C-9BDE-883F00911213}.Release|x64.Build.0 = Release|Any CPU
-		{8319B831-1B27-413C-9BDE-883F00911213}.Release|x86.ActiveCfg = Release|Any CPU
-		{8319B831-1B27-413C-9BDE-883F00911213}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
