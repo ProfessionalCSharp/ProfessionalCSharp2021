@@ -1,13 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-#if USERECORDS
-
-public record Book(
-    [property: StringLength(50)] string Title,
-    [property: StringLength(30)] string? Publisher = default,
-    int BookId = 0);
-
-#else
+namespace TemporalTableSample;
 
 public class Book
 {
@@ -23,5 +16,3 @@ public class Book
     public string? Publisher { get; set; }
     public int BookId { get; set; }
 }
-
-#endif

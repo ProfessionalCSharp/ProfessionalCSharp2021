@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace TemporalTableSample;
 
 public class Runner
 {
@@ -84,27 +81,11 @@ public class Runner
         Console.WriteLine();
     }
 
-#if USERECORDS
     public async Task UpdateBookAsync()
     {
         Book? book = await _booksContext.Books.FindAsync(1);
-
-        if (book != null)
-        {
-            // detach the existing object from the context which allows to attach it with the Update method
-            _booksContext.Entry(book).State = EntityState.Detached;
-            Book bookUpdate = book with { Title = "Professional C# and .NET - 2021 Edition" };
-            _booksContext.Update(bookUpdate);
-            int records = await _booksContext.SaveChangesAsync();
-            Console.WriteLine($"{records} record updated");
-
-        }
-        Console.WriteLine();
-    }
-#else
-    public async Task UpdateBookAsync()
-    {
-        Book? book = _booksContext.Books.Find(1);
+        Console.WriteLine("Just a short delay before updating...");
+        await Task.Delay(TimeSpan.FromSeconds(5));
 
         if (book != null)
         {
@@ -114,16 +95,40 @@ public class Runner
         }
         Console.WriteLine();
     }
-#endif
 
-    public async Task TemporalQueryAsync()
+
+    public async Task TemporalPointInTimeQueryAsync()
     {
-        await _booksContext.Books.TemporalAll().ForEachAsync(b =>
+        Book? book = await _booksContext.Books.FindAsync(1);
+        if (book is null) return;
+        // read shadow property for time
+        if (_booksContext.Entry(book).CurrentValues["PeriodStart"] is DateTime periodStart)
+        {
+            DateTime previousTime = periodStart.AddSeconds(-4);
+            var previousBook = await _booksContext.Books
+                .TemporalAsOf(previousTime)
+                .TagWith("temporalasof")
+                .SingleOrDefaultAsync(b => b.BookId == book.BookId);
+
+            Console.WriteLine($"actual: {book.BookId}: {book.Title}, {book.Publisher}");
+            if (previousBook is not null)
+            {
+                Console.WriteLine($"earlier: {previousBook.BookId}: {previousBook.Title}, " +
+                    $"{previousBook.Publisher}");
+            }
+        }
+    }
+
+    public async Task TemporalAllQueryAsync()
+    {
+        await _booksContext.Books
+            .TemporalAll()
+            .TagWith("temporalall")
+            .ForEachAsync(b =>
         {
             var entry = _booksContext.Entry(b);
             Console.WriteLine($"{b.Title} {entry.State}");
         });
-
     }
 
     public async Task DeleteBooksAsync()

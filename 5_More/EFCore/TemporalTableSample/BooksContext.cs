@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
+namespace TemporalTableSample;
+
 public class BooksContext : DbContext
 {
     public BooksContext(DbContextOptions<BooksContext> options)
@@ -7,10 +9,9 @@ public class BooksContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Book>().ToTable("Books", b => 
-            b.IsTemporal());  // creates PeriodStart, PeriodEnd columns, use overload to customize the columns
+        modelBuilder.Entity<Book>()
+            .ToTable("Books", b => b.IsTemporal());  // creates PeriodStart, PeriodEnd columns, use overload to customize the columns
     }
-
 
     public DbSet<Book> Books => Set<Book>();
 }

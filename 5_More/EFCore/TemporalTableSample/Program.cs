@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TemporalTableSample;
 
 using var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((context, services) =>
@@ -24,6 +25,7 @@ await runner.AddBooksAsync();
 await runner.ReadBooksAsync();
 await runner.QueryBooksAsync();
 await runner.UpdateBookAsync();
-await runner.TemporalQueryAsync();
+await runner.TemporalPointInTimeQueryAsync();
+await runner.TemporalAllQueryAsync();
 await runner.DeleteBooksAsync();
 await runner.DeleteDatabaseAsync();
