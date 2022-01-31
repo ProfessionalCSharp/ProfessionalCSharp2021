@@ -84,6 +84,15 @@ Here's the list of chapters and the folders for the code samples:
 * Chapter 30 - Patterns with XAML Apps ([Patterns](4_Apps/Patterns/Readme.md))
 * Chapter 31 - Styling Windows Apps ([Styles](4_Apps/Styles/Readme.md))
 
+### Part 5 (More Samples)
+
+Additional samples not in the book
+
+#### EF Core - Temporal Tables
+
+* [Temporal Tables - Article](https://csharp.christiannagel.com/2022/01/31/efcoretemporaltables/)
+* [Temporal Tables - Source Code](5_More/EFCore/TemporalTableSample)
+
 ## Code of conduct
 
 See [Code of conduct](CODE_OF_CONDUCT.md)
