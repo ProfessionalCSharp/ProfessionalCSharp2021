@@ -20,6 +20,9 @@ Book b2 = new Book("Professional C#");
 string title = b2.Title;
 string? publisher = b2.Publisher;
 
+Console.WriteLine(title);
+Console.WriteLine(publisher);
+Console.WriteLine(b1);
 
 class Book
 {
