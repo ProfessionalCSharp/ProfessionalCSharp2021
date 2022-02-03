@@ -56,7 +56,9 @@ class Program
 
     private static async void ConvertingAsyncPattern()
     {
+#pragma warning disable SYSLIB0014 // This method is used to demonstrate the old async pattern and convert it to the task-based async pattern
         HttpWebRequest? request = WebRequest.Create("http://www.microsoft.com") as HttpWebRequest;
+
         if (request == null) return;
 
         using WebResponse response = await Task.Factory.FromAsync<WebResponse>(request.BeginGetResponse(null, null), request.EndGetResponse);
@@ -65,6 +67,8 @@ class Program
         using StreamReader reader = new(stream);
         string content = reader.ReadToEnd();
         Console.WriteLine(content.Substring(0, 100));
+
+#pragma warning restore SYSLIB0014
     }
 
     private static async void MultipleAsyncMethods()
