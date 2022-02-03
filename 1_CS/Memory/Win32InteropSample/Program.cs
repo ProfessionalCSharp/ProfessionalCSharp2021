@@ -1,7 +1,7 @@
 ﻿using Windows.Win32;
 using Windows.Win32.Security;
 
-[assembly:System.Runtime.Versioning.SupportedOSPlatform("Windows")]
+[assembly:System.Runtime.Versioning.SupportedOSPlatform("windows10.0.18362")]
 
 if (args.Length != 2)
 {
