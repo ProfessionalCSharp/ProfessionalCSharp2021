@@ -17,11 +17,21 @@ The sample code for this chapter contains of these sample projects:
 * Transactions (implicit transactions, explicit transactions, ambient transactions)
 * Cosmos (using Cosmos DB)
 
+## Additional Samples
+
+[Temporal Tables with EF Core](https://csharp.christiannagel.com/2022/01/31/efcoretemporaltables/)
+
+## Create Azure SQL Database
+
 See this script to create an Azure SQL database: [createazuresql.sh](createazuresql.sh)
+
+## Tools
 
 To access the database, you can use the **Azure Data Studio** on Windows, MacOS, and Linux:
 [Download and install Azure Data Studio](https://docs.microsoft.com/sql/azure-data-studio/download-azure-data-studio)
  
+## More Information
+
 For code comments and issues please check [Professional C#'s GitHub Repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021)
 
 Please check my blog [csharp.christiannagel.com](https://csharp.christiannagel.com "csharp.christiannagel.com") for additional information for topics covered in the book.
