@@ -1,21 +1,23 @@
 global using BooksAPI.Models;
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.EntityFrameworkCore;
-global using Microsoft.OpenApi.Models;
 
-namespace BooksAPI;
+var builder = WebApplication.CreateBuilder();
+builder.Services.AddSqlServer<BooksContext>(builder.Configuration.GetConnectionString("BooksConnection"));
+builder.Services.AddControllers();
+builder.Services.AddSwaggerGen();
 
-public class Program
+var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
 {
-    public static void Main(string[] args)
-    {
-        CreateHostBuilder(args).Build().Run();
-    }
-
-    public static IHostBuilder CreateHostBuilder(string[] args) =>
-        Host.CreateDefaultBuilder(args)
-            .ConfigureWebHostDefaults(webBuilder =>
-            {
-                webBuilder.UseStartup<Startup>();
-            });
+    app.UseDeveloperExceptionPage();
+    app.UseSwagger();
+    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Books API v1"));
 }
+
+app.UseHttpsRedirection();
+app.UseAuthentication();
+app.MapControllers();
+
+app.Run();
