@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.Linq;
-
-namespace BooksAPI.Models;
+﻿namespace BooksAPI.Models;
 
 public class BooksContext : DbContext
 {
