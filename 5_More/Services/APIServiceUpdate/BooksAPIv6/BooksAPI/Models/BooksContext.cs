@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace BooksAPI.Models;
@@ -23,7 +22,4 @@ public class BooksContext : DbContext
     public DbSet<Book> Books => Set<Book>();
 }
 
-public record Book(
-    int BookId, 
-    [StringLength(50)] string Title,
-    [StringLength(20)] string Publisher);
+public record Book(int BookId, string Title, string Publisher);
