@@ -88,7 +88,11 @@ Here's the list of chapters and the folders for the code samples:
 
 Additional samples not in the book
 
-#### EF Core - Temporal Tables
+#### The Language
+
+* [C# Nullable Features thru the times](https://csharp.christiannagel.com/2022/02/14/nullable/)
+
+#### The Libraries
 
 * [Temporal Tables - Article](https://csharp.christiannagel.com/2022/01/31/efcoretemporaltables/)
 * [Temporal Tables - Source Code](5_More/EFCore/TemporalTableSample)
