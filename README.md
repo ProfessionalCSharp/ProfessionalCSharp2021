@@ -86,7 +86,7 @@ Here's the list of chapters and the folders for the code samples:
 
 ### Part 5 (More Samples)
 
-Additional samples not in the book
+Additional articles and samples related to the book
 
 #### The Language
 
@@ -94,8 +94,14 @@ Additional samples not in the book
 
 #### The Libraries
 
-* [Temporal Tables - Article](https://csharp.christiannagel.com/2022/01/31/efcoretemporaltables/)
-* [Temporal Tables - Source Code](5_More/EFCore/TemporalTableSample)
+* [EF Core: Temporal Tables - Article](https://csharp.christiannagel.com/2022/01/31/efcoretemporaltables/)
+* [EF Core: Temporal Tables - Source Code](5_More/EFCore/TemporalTableSample)
+
+### Web Apps and Services
+
+* [Using Azure Active Directory B2C with .NET](https://csharp.christiannagel.com/2022/02/09/aadb2c/)
+* [Upgrading an ASP.NET Core Web API Project to .NET 6](https://csharp.christiannagel.com/2022/02/22/upgrading-an-asp-net-core-web-api-project-to-net-6/)
+* [Upgrading an ASP.NET Core Web API Project to .NET 6 - Source Code](5_More/Services/APIServiceUpdate/)
 
 ## Code of conduct
 
