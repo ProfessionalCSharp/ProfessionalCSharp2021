@@ -34,7 +34,7 @@ public class EditModel : PageModel
     // For more details, see https://aka.ms/RazorPagesCRUD.
     public async Task<IActionResult> OnPostAsync()
     {
-        if (!ModelState.IsValid)
+        if (!ModelState.IsValid || Book is null)
         {
             return Page();
         }
