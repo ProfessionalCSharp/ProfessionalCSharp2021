@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.UI.Xaml;
-using System;
+
 using WindowsAppChatClient.Services;
 using WindowsAppChatClient.ViewModels;
 

@@ -14,17 +14,15 @@ if (!app.Environment.IsDevelopment())
 
 app.UseStaticFiles();
 
-app.UseRouting();
+app.MapHub<ChatHub>("/chat");
+app.MapHub<GroupChatHub>("/groupchat");
 
-app.UseEndpoints(endpoints =>
+app.Map("/", async (HttpContext context) =>
 {
-    endpoints.MapHub<ChatHub>("/chat");
-    endpoints.MapHub<GroupChatHub>("/groupchat");
-    endpoints.Map("/", async context =>
-    {
-        StringBuilder sb = new();
-        sb.Append("<h1>SignalR Sample</h1>");
-        sb.Append("<div>Open <a href='/ChatWindow.html'>ChatWindow</a> for communication</div>");
-        await context.Response.WriteAsync(sb.ToString());
-    });
+    StringBuilder sb = new();
+    sb.Append("<h1>SignalR Sample</h1>");
+    sb.Append("<div>Open <a href='/ChatWindow.html'>ChatWindow</a> for communication</div>");
+    await context.Response.WriteAsync(sb.ToString());
 });
+
+app.Run();
