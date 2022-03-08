@@ -19,11 +19,13 @@ See the [WinUI.md](WinUI.md) for the requirements of building and running the Wi
 
 See [updates](Updates.md) for issues and updates.
 
-With the *main* branch every sample should compile and run successfully (with the deadlock and race-conditions samples, *successfully* means that a deadlock and a race-condition occurs).
-
-The *dotnet6* branch is used to show changes with C# 10 and .NET 6.
+The *main* branch is the branch showing changes with C# 10 and .NET 6. Every sample should compile and run successfully (with the deadlock and race-conditions samples, *successfully* means that a deadlock and a race-condition occurs).
 
 The *dotnet5* branch is used to show the samples how they appear in the printed book.
+
+The *dotnet7* branch shows upcoming changes for C# 11 and .NET 7. Work in progress.
+
+Other branches are temporary branches - e.g. feature branches - which are deleted after merging with the corresponding branch.
 
 ## Issues and Discussions
 
