@@ -1,4 +1,6 @@
-﻿using ServiceProvider container = GetServiceProvider();
+﻿global using Microsoft.Extensions.DependencyInjection;
+
+using ServiceProvider container = GetServiceProvider();
 var controller = container.GetRequiredService<HomeController>();
 string result = controller.Hello("Stephanie");
 Console.WriteLine(result);

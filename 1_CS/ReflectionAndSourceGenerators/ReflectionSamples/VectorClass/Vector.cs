@@ -1,9 +1,13 @@
-﻿[assembly: SupportsWhatsNew]
+﻿using WhatsNewAttributes;
+using System.Collections;
+
+[assembly: SupportsWhatsNew]
 
 [assembly: LastModified(dateModified:"2021/9/3", "file-scoped namespace, implicit namespaces")]
 
 namespace VectorClass;
 
+[LastModified("2022/03/10", "simplification with .NET 6")]
 [LastModified("2021/2/28", "changed the LastModified dates")]
 [LastModified("2020/12/19", "updated for C# 9 and .NET 5")]
 [LastModified("2017/7/19", "updated for C# 7 and .NET Core 2")]
@@ -25,10 +29,11 @@ public class Vector : IFormattable, IEnumerable<double>
     public double Y { get; }
     public double Z { get; }
 
+    [LastModified("2022/03/10", "simplify .NET 6 ArgumentNullException")]
     [LastModified("2021/2/28", "changed for nullability")]
     public override bool Equals(object? obj)
     {
-        if (obj is null) throw new ArgumentNullException(nameof(obj));
+        ArgumentNullException.ThrowIfNull(obj);
 
         return this == (Vector)obj;
     }

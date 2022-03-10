@@ -28,7 +28,7 @@ public class BooksService : IBooksService
 
     public async Task<Book> AddOrUpdateBookAsync(Book book)
     {
-        if (book is null) throw new ArgumentNullException(nameof(book));
+        ArgumentNullException.ThrowIfNull(book);
 
         Book? updated = null;
         if (book.BookId == 0)

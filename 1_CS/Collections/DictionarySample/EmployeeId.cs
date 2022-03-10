@@ -10,7 +10,7 @@ public struct EmployeeId : IEquatable<EmployeeId>
 
     public EmployeeId(string id)
     {
-        if (id == null) throw new ArgumentNullException(nameof(id));
+        ArgumentNullException.ThrowIfNull(id);
 
         _prefix = (id.ToUpper())[0];
         int last = id.Length > 7 ? 7 : id.Length;
