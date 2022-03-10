@@ -12,9 +12,9 @@ public class StringSample
     private string _init;
     public string GetStringDemo(string first, string second)
     {
-        if (first is null) throw new ArgumentNullException(nameof(first));
-        if (string.IsNullOrEmpty(first)) throw new ArgumentException("empty string is allowed", first);
-        if (second is null) throw new ArgumentNullException(nameof(second));
+        ArgumentNullException.ThrowIfNull(first);
+        if (string.IsNullOrEmpty(first)) throw new ArgumentException("empty string is not allowed", first);
+        ArgumentNullException.ThrowIfNull(second);
         if (second.Length > first.Length) throw new ArgumentOutOfRangeException(nameof(second),
               "must be shorter than second");
 
