@@ -1,4 +1,7 @@
-﻿Expression<Func<Racer, bool>> expression = r => r.Country == "Brazil" && r.Wins > 6;
+﻿using DataLib;
+using System.Linq.Expressions;
+
+Expression<Func<Racer, bool>> expression = r => r.Country == "Brazil" && r.Wins > 6;
 
 DisplayTree(0, "Lambda", expression);
 
