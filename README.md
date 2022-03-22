@@ -102,6 +102,8 @@ Additional articles and samples related to the book
 * [Using Azure Active Directory B2C with .NET](https://csharp.christiannagel.com/2022/02/09/aadb2c/)
 * [Upgrading an ASP.NET Core Web API Project to .NET 6](https://csharp.christiannagel.com/2022/02/22/upgrading-an-asp-net-core-web-api-project-to-net-6/)
 * [Upgrading an ASP.NET Core Web API Project to .NET 6 - Source Code](5_More/Services/APIServiceUpdate/)
+* [Creating a Windows Service with .NET 6]()
+* [Creating a Windows Service with .NET 6 - Source Code](5_More/WindowsServices/)
 
 ## Code of conduct
 
