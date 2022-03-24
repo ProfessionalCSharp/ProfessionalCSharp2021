@@ -27,18 +27,18 @@
         };
         DateTime?[] dates =
         {
-            new DateTime(2001/6/1), // 1st
-            new DateTime(2003/2/28), // 2nd
-            new DateTime(2004/6/4), // 3rd
-            new DateTime(2005/11/4), // 2005
-            new DateTime(2007/3/15), // 2005 and 3.0
-            new DateTime(2008/3/28), // 2008
-            new DateTime(2010/3/5), // 4
-            new DateTime(2012/10/30), // 2012 4.5
-            new DateTime(2014/2/14), // 5
-            new DateTime(2016/4/29), // 6
-            new DateTime(2018/5/29), // 7
-            null
+            new DateTime(2001, 6, 1), // .NET 1 Beta 2
+            new DateTime(2003, 2, 28), // .NET 1
+            new DateTime(2004, 6, 4), // .NET 1.1
+            new DateTime(2005, 11, 4), // .NET 2
+            new DateTime(2007, 3, 15), // .NET 3.0
+            new DateTime(2008, 3, 28), // .NET 3.5
+            new DateTime(2010, 3, 5), // C# 4, .NET 4
+            new DateTime(2012, 10, 30), // .NET 4.5
+            new DateTime(2014, 2, 14), // C# 5
+            new DateTime(2016, 4, 29), // C# 6, .NET Core 1
+            new DateTime(2018, 5, 29), // C# 7, .NET Core 2.1
+            new DateTime(2021, 8, 31), // C# 9, .NET 5
         };
         return Enumerable.Range(0, 12).Select(i => new Book(titles[i], "Wrox Press", i + 1) { ReleaseDate = dates[i] }).ToArray();
     }
