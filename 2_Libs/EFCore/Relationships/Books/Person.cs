@@ -14,6 +14,6 @@
 
     public ICollection<Book> WrittenBooks = new HashSet<Book>();
 
-    public Address? BusinessAddress { get; set; }
+    public Address BusinessAddress { get; set; } = new Address();
     public Address? PrivateAddress { get; set; }
 }
