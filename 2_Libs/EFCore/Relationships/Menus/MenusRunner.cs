@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-public class MenusRunner
+﻿public class MenusRunner
 {
     private readonly MenusContext _menusContext;
 

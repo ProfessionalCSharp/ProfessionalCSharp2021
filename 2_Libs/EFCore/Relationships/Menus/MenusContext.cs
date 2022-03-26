@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-public class MenusContext : DbContext
+﻿public class MenusContext : DbContext
 {
     public MenusContext(DbContextOptions<MenusContext> options) 
         : base(options) { }
@@ -10,9 +8,14 @@ public class MenusContext : DbContext
         modelBuilder.HasDefaultSchema("ms");
 
         modelBuilder.Entity<MenuItem>()
-          .HasOne<MenuDetails>(m => m.Details!)
-          .WithOne(d => d.MenuItem!)
+          .HasOne<MenuDetails>(m => m.Details)
+          .WithOne(d => d.MenuItem)
           .HasForeignKey<MenuDetails>(d => d.MenuDetailsId);
+
+        modelBuilder.Entity<MenuItem>()
+            .Property(b => b.Price)
+            .HasColumnType("money");
+
         modelBuilder.Entity<MenuItem>().ToTable("MenuItems");
         modelBuilder.Entity<MenuDetails>().ToTable("MenuItems");
     }
