@@ -38,8 +38,24 @@ Sample code: **X509CertificateSample**
 
 With .NET 6, the `Key` property of the `PublicKey` property is deprecated. The sample code is changed to use the `GetRSAPublicKey` method instead - using the `RSA` class and accessing its members.
 
-See chapter 20, Security for updates.
+See chapter 20, Security for more information on security.
 
+## Ef Core
+
+New feature with EF Core 6:
+
+Temporal Tables
+
+* [Article](https://csharp.christiannagel.com/2022/01/31/efcoretemporaltables/)
+* [Source Code](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021/blob/main/5_More/EFCore/TemporalTableSample)
+
+EF Core 6 has better support for *non nullable reference types*. This allows getting rid of some uses of the *null forgiving operator*, for example with [MenusContext](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021/blob/main/2_Libs/EFCore/Relationships/Menus/MenusContext.cs).
+
+[Breaking changes with EF Core 6](https://docs.microsoft.com/en-us/ef/core/what-is-new/ef-core-6.0/breaking-changes) which requires a change with *owned entities* (see the Relationships sample). 
+One change is that owned entities can't be nullable if they contain another owned entity and are not mapped to a different table. 
+Another change is with seeding. With the Relationships sample, the Bank and Menus context use data seeding to fill initial data. With the Books context, instead of data seeding, entities are now normally added to the database which removes the requirement using anonymous types with n-to-n relations and owned entities.
+
+See chapter 21, EF Core for more information on EF Core.
 
 ## Localization
 
