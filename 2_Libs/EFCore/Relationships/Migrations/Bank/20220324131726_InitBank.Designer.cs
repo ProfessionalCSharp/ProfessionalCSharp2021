@@ -5,10 +5,12 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
+#nullable disable
+
 namespace Relationships.Migrations.Bank
 {
     [DbContext(typeof(BankContext))]
-    [Migration("20210510180804_InitBank")]
+    [Migration("20220324131726_InitBank")]
     partial class InitBank
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -16,16 +18,18 @@ namespace Relationships.Migrations.Bank
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("bank")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.5")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "6.0.3")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("Payment", b =>
                 {
                     b.Property<int>("PaymentId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PaymentId"), 1L, 1);
 
                     b.Property<decimal>("Amount")
                         .HasColumnType("Money");
@@ -41,7 +45,7 @@ namespace Relationships.Migrations.Bank
 
                     b.HasKey("PaymentId");
 
-                    b.ToTable("Payments");
+                    b.ToTable("Payments", "bank");
 
                     b.HasDiscriminator<string>("Type").HasValue("Payment");
                 });
