@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using static ColumnNames;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 internal class MenuItemConfiguration : IEntityTypeConfiguration<MenuItem>
 {

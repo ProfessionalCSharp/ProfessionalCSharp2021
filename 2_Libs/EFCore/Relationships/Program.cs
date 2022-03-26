@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿global using Microsoft.EntityFrameworkCore;
+
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -28,7 +29,6 @@ using var host = Host.CreateDefaultBuilder(args)
 using (var scope = host.Services.CreateScope())
 {
     var booksRunner = scope.ServiceProvider.GetRequiredService<BooksRunner>();
-
     await booksRunner.CreateTheDatabaseAsync();
     await booksRunner.GetBooksForAuthorAsync();
 
@@ -40,4 +40,3 @@ using (var scope = host.Services.CreateScope())
     var menusRunner = scope.ServiceProvider.GetRequiredService<MenusRunner>();
     await menusRunner.CreateTheDatabaseAsync();
 }
-

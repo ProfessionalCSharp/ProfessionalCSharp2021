@@ -111,6 +111,7 @@ class Runner
         {
             using var context = _menusContextFactory.CreateDbContext();
             return await context.MenusItems
+                .OrderBy(m => m.MenuItemId)
                 .Skip(2)
                 .FirstAsync();
         }

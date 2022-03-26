@@ -1,9 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-
-public class Runner
+﻿public class Runner
 {
     private readonly BooksContext _booksContext;
 

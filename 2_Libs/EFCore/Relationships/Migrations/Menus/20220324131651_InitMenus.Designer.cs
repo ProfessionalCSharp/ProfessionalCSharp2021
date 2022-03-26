@@ -5,10 +5,12 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
+#nullable disable
+
 namespace Relationships.Migrations.Menus
 {
     [DbContext(typeof(MenusContext))]
-    [Migration("20210510180832_InitMenus")]
+    [Migration("20220324131651_InitMenus")]
     partial class InitMenus
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -16,16 +18,15 @@ namespace Relationships.Migrations.Menus
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("ms")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.5")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "6.0.3")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("MenuDetails", b =>
                 {
                     b.Property<int>("MenuDetailsId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<string>("KitchenInfo")
                         .HasColumnType("nvarchar(max)");
@@ -35,18 +36,19 @@ namespace Relationships.Migrations.Menus
 
                     b.HasKey("MenuDetailsId");
 
-                    b.ToTable("MenuItems");
+                    b.ToTable("MenuItems", "ms");
                 });
 
             modelBuilder.Entity("MenuItem", b =>
                 {
                     b.Property<int>("MenuItemId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MenuItemId"), 1L, 1);
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("money");
 
                     b.Property<string>("Subtitle")
                         .HasColumnType("nvarchar(max)");
@@ -57,7 +59,7 @@ namespace Relationships.Migrations.Menus
 
                     b.HasKey("MenuItemId");
 
-                    b.ToTable("MenuItems");
+                    b.ToTable("MenuItems", "ms");
                 });
 
             modelBuilder.Entity("MenuDetails", b =>

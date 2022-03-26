@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-public class BankRunner
+﻿public class BankRunner
 {
     private readonly BankContext _bankContext;
 
@@ -44,6 +42,4 @@ public class BankRunner
             Console.WriteLine($"database {deletionInfo}");
         }
     }
-
-
 }

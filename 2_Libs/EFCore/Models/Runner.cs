@@ -1,11 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using static ColumnNames;
-
-class Runner
+﻿class Runner
 {
     private readonly MenusContext _menusContext;
     public Runner(MenusContext menusContext)

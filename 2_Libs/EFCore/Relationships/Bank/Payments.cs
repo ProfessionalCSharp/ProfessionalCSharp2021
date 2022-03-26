@@ -9,7 +9,7 @@ public abstract class Payment
         Amount = amount;
         PaymentId = paymentId;
     }
-    public int PaymentId { get; set; }
+    public int PaymentId { get; init; }
     [StringLength(20)]
     public string Name { get; set; }
     [Column(TypeName = "Money")]

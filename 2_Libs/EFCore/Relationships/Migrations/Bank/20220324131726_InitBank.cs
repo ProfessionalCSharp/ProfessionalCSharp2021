@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
+#nullable disable
+
 namespace Relationships.Migrations.Bank
 {
     public partial class InitBank : Migration
