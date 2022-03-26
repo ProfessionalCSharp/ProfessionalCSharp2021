@@ -8,6 +8,7 @@ public class Book
         Publisher = publisher;
         BookId = bookId;
     }
+
     [StringLength(50)]
     public string Title { get; set; }
     [StringLength(30)]
@@ -15,5 +16,5 @@ public class Book
     public int BookId { get; set; }
     public DateTime? ReleaseDate { get; set; }
 
-    public ICollection<Person> Authors = new HashSet<Person>();
+    public ICollection<Person> Authors { get; } = new HashSet<Person>();
 }
