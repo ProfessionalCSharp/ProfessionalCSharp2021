@@ -91,13 +91,14 @@ Additional articles and samples related to the book
 #### The Language
 
 * [C# Nullable Features thru the times](https://csharp.christiannagel.com/2022/02/14/nullable/)
+* [PriorityQueue - Source Code](5_More/Collections/PriorityQueueSample)
 
 #### The Libraries
 
 * [EF Core: Temporal Tables - Article](https://csharp.christiannagel.com/2022/01/31/efcoretemporaltables/)
 * [EF Core: Temporal Tables - Source Code](5_More/EFCore/TemporalTableSample)
 
-### Web Apps and Services
+#### Web Apps and Services
 
 * [Using Azure Active Directory B2C with .NET](https://csharp.christiannagel.com/2022/02/09/aadb2c/)
 * [Upgrading an ASP.NET Core Web API Project to .NET 6 - Article](https://csharp.christiannagel.com/2022/02/22/upgrading-an-asp-net-core-web-api-project-to-net-6/)
