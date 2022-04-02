@@ -20,6 +20,8 @@ Please check my blog [csharp.christiannagel.com](https://csharp.christiannagel.c
 
 Thank you!
 
-## Updates with C# 10
+## Updates with C# 10 .NET 6
 
-See [Updates with C# 10](../../Dotnet6Updates.md)
+.NET 6 contains a new PriorityQueue class which returns items based on a priority. See the new sample code [PriorityQueueSample](../../5_More/Collections/PriorityQueueSample/).
+
+Also see [Updates with C# 10](../../Dotnet6Updates.md)
