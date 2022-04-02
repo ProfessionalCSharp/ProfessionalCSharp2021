@@ -26,6 +26,12 @@ See chapter 3, StructsSample
 
 New LINQ methods - see [LINQ](1_CS/LINQ/Readme.md)
 
+## Collections
+
+See chapter 8.
+
+New `PriorityQueue` class with .NET 6 - see [Collections](1_CS/Collections/Readme.md)
+
 ## Memory
 
 Instead of using the `Marshal` class to allocate native memory, the `NativeMemory` class can be used. See the *SpanSample* in Chapter 13, "Managed and Unmanaged Memory"
