@@ -14,9 +14,19 @@ This chapter contains the following code samples:
 * JsonSample (JSON serialization, reader, writer, DOM access)
 * WindowsAppEditor (an editor using WinUI)
 
+## Updates with C# 10 and .NET 6
+
+.NET 6 contains a new API for writing JSON via DOM. See the updated sample code [JSON](../../5_More/FilesAndStreams/JsonSample/).
+
+Also see [Updates with C# 10](../../Dotnet6Updates.md)
+
+## WinUI
+
 The WindowsAppEditor sample needs to have WinUI installed. See [WinUI](../../WinUI.md) for information on installing and using the WinUI samples.
 
-The sammple code uses a picker which currently (Project Reunion 0.5.7) needs to set the active window. See the `InitializeActiveWindow` method in `MainWindow.xaml.cs`. This will change with a future version and will be updated here.
+The sample code uses a picker which currently (Project Reunion 0.5.7) needs to set the active window. See the `InitializeActiveWindow` method in `MainWindow.xaml.cs`. This will change with a future version and will be updated here.
+
+## More Information
  
 For code comments and issues please check [Professional C#'s GitHub Repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021)
 

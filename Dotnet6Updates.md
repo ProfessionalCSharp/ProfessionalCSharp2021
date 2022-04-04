@@ -38,13 +38,19 @@ Instead of using the `Marshal` class to allocate native memory, the `NativeMemor
 
 Instead of using Marshal.GetLastWin32Error, Marshal.GetLastPInvokeError can be used. See the PInvokeSampleLib in Chapter 13, "Managed and Unmanaged Memory"
 
+## Files and Streams
+
+.NET 6 adds an API for writeable JSON DOM. See the [Files and Streams](2_Libs/FilesAndStreams/Readme.md)
+
+See chapter 18, *Files and Streams* for more information on JSON.
+
 ## Security
 
 Sample code: **X509CertificateSample**
 
 With .NET 6, the `Key` property of the `PublicKey` property is deprecated. The sample code is changed to use the `GetRSAPublicKey` method instead - using the `RSA` class and accessing its members.
 
-See chapter 20, Security for more information on security.
+See chapter 20, *Security* for more information on security.
 
 ## Ef Core
 
