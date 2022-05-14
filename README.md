@@ -98,6 +98,8 @@ Additional articles and samples related to the book
 * [Files and Streams: JSON DOM Serialization - Source Code](5_More/FilesAndStreams/JsonSample/)
 * [EF Core: Temporal Tables - Article](https://csharp.christiannagel.com/2022/01/31/efcoretemporaltables/)
 * [EF Core: Temporal Tables - Source Code](5_More/EFCore/TemporalTableSample)
+* [EF Core: Using MySQL in a Docker container with EF Core - Source Code](5_More/EFCore/MySQL/)
+* [EF Core: Using MySQL in a Docker container with EF Core - Article](https://csharp.christiannagel.com)
 
 #### Web Apps and Services
 
