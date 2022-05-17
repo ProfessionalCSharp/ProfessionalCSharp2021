@@ -99,7 +99,7 @@ Additional articles and samples related to the book
 * [EF Core: Temporal Tables - Article](https://csharp.christiannagel.com/2022/01/31/efcoretemporaltables/)
 * [EF Core: Temporal Tables - Source Code](5_More/EFCore/TemporalTableSample)
 * [EF Core: Using MySQL in a Docker container with EF Core - Source Code](5_More/EFCore/MySQL/)
-* [EF Core: Using MySQL in a Docker container with EF Core - Article](https://csharp.christiannagel.com)
+* [EF Core: Using MySQL in a Docker container with EF Core - Article](https://csharp.christiannagel.com/2022/05/17/mysqlwithefcoreanddocker/)
 
 #### Web Apps and Services
 
