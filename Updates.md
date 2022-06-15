@@ -1,6 +1,16 @@
-# Book Updates
+# Book Updates and Issues
 
 > See [.NET 6 Updates](Dotnet6Updates.md) for changes with .NET 6
+
+## Chapter 7, Delegates, Lambdas and Events
+
+Page 190, the event name should be `NewCarCreated` instead of `NewCarInfo`:
+
+```csharp
+  public event EventHandler<CarInfoEventArgs>? NewCarCreated;
+```
+
+[See source code](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021/blob/main/1_CS/Delegates/EventsSample/CarDealer.cs)
 
 ## Chapter 20, Security
 
