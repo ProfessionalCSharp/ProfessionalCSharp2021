@@ -10,7 +10,9 @@ Page 190, the event name should be `NewCarCreated` instead of `NewCarInfo`:
   public event EventHandler<CarInfoEventArgs>? NewCarCreated;
 ```
 
-[See source code](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021/blob/main/1_CS/Delegates/EventsSample/CarDealer.cs)
+[See source code - CarDealer.cs](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021/blob/main/1_CS/Delegates/EventsSample/CarDealer.cs)
+
+Thanks to [@DanielNikoofar](https://github.com/DanielNikoofar) for reporting this issue!
 
 ## Chapter 20, Security
 
