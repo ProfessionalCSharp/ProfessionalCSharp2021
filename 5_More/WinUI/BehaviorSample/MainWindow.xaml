@@ -1,0 +1,21 @@
+﻿<Window
+    x:Class="BehaviorSample.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:local="using:BehaviorSample"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Border Background="LightBlue" Padding="12">
+            <i:Interaction.Behaviors>
+                <local:DragBehavior />
+            </i:Interaction.Behaviors>
+            <!--<Button x:Name="myButton" Click="myButton_Click">Drag me</Button>-->
+            <TextBlock Text="move me" />
+        </Border>
+
+    </StackPanel>
+</Window>
