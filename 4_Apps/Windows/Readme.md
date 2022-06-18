@@ -18,6 +18,10 @@ The sample code for this chapter contains this solution:
 * NavigationControls (Hub, TabView, NavigationView)
 * LayoutSamples (Grid, VariableSizedWrapGrid, RelativePanel, Adaptive Trigger, deferred loading)
 
+## Additonal Samples
+
+* [Custom Behavior](../../5_More/WinUI/BehaviorSample/)
+
 See [WinUI](../../WinUI.md) for information what's needed to create, build, and run WinUI applications.
 
 To create WinUI applications, use this template with Visual Studio: **Blank App, Packaged (WinUI 3 in Desktop)**
