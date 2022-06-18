@@ -112,6 +112,7 @@ Additional articles and samples related to the book
 ### Windows Apps
 
 * [Custom Behavior](5_More/WinUI/BehaviorSample)
+* [XamlUiCommand](5_More/WinUI/WinUIAppEditor)
 
 ## Code of conduct
 

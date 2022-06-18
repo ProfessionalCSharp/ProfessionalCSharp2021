@@ -21,6 +21,7 @@ The sample code for this chapter contains this solution:
 ## Additonal Samples
 
 * [Custom Behavior](../../5_More/WinUI/BehaviorSample/)
+* [XamlUiCommand](5_More/WinUI/WinUIAppEditor)
 
 See [WinUI](../../WinUI.md) for information what's needed to create, build, and run WinUI applications.
 
