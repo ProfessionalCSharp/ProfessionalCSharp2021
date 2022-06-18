@@ -1,4 +1,6 @@
-﻿LINQQuery();
+﻿global using DataLib;
+
+LINQQuery();
 ExtensionMethods();
 DeferredQuery();
 

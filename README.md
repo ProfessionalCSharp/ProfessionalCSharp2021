@@ -109,6 +109,10 @@ Additional articles and samples related to the book
 * [Creating a Windows Service with .NET 6 - Article](https://csharp.christiannagel.com/2022/03/22/windowsservice-2/)
 * [Creating a Windows Service with .NET 6 - Source Code](5_More/WindowsServices/)
 
+### Windows Apps
+
+* [Custom Behavior](5_More/WinUI/BehaviorSample)
+
 ## Code of conduct
 
 See [Code of conduct](CODE_OF_CONDUCT.md)
