@@ -2,6 +2,21 @@
 
 > See [.NET 6 Updates](Dotnet6Updates.md) for changes with .NET 6
 
+## Chapter 4, Object-Oriented Programming in C#
+
+Page 101, at the end of the page, the `Height`should be assigned to `Height`:
+
+```csharp
+public override Rectangle Clone()
+{
+  //...
+  r.Size.Height = Size.Height;
+  return r;
+}
+```
+
+Thanks to [@lriy816](https://github.com/lriy816) for reporting this issue by creating this [pull request](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021/pull/118)
+
 ## Chapter 7, Delegates, Lambdas and Events
 
 Page 190, the event name should be `NewCarCreated` instead of `NewCarInfo`:
