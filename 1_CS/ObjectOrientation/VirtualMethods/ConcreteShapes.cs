@@ -41,7 +41,7 @@ public class Ellipse : Shape
         e.Position.X = Position.X;
         e.Position.Y = Position.Y;
         e.Size.Width = Size.Width;
-        e.Size.Height = Size.Width;
+        e.Size.Height = Size.Height;
         return e;
     }
 
