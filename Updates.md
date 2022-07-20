@@ -4,6 +4,17 @@
 
 ## Chapter 4, Object-Oriented Programming in C#
 
+Page 98, Rectangle.Clone method - the `Height`should be assigned to `Height`:
+
+```csharp
+public override Rectangle Clone()
+{
+  //...
+  r.Size.Height = Size.Height;
+  return r;
+}
+```
+
 Page 101, at the end of the page, the `Height`should be assigned to `Height`:
 
 ```csharp
@@ -15,7 +26,10 @@ public override Rectangle Clone()
 }
 ```
 
-Thanks to [@lriy816](https://github.com/lriy816) for reporting this issue by creating this [pull request](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021/pull/118)
+Thanks to [@lriy816](https://github.com/lriy816) for reporting this issue by creating these pull requests:
+
+* [page 98](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021/pull/119)
+* [page 101](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021/pull/118)
 
 ## Chapter 7, Delegates, Lambdas and Events
 
