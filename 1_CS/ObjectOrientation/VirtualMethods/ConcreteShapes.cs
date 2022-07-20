@@ -17,7 +17,7 @@
         r.Position.X = Position.X;
         r.Position.Y = Position.Y;
         r.Size.Width = Size.Width;
-        r.Size.Height = Size.Width;
+        r.Size.Height = Size.Height;
         return r;
     }
 }
