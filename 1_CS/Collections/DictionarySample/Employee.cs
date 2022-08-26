@@ -1,4 +1,6 @@
-﻿public record Employee
+﻿namespace DictionarySample;
+
+public record Employee
 {
     private readonly string _name;
     private readonly decimal _salary;
