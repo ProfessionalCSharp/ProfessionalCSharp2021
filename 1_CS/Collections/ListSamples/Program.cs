@@ -46,6 +46,9 @@ if (!racers.Remove(graham))
     Console.WriteLine("object not found in collection");
 }
 
-List<Racer> racers2 = new(new Racer[] {
-               new(12, "Jochen", "Rindt", "Austria", 6),
-               new(22, "Ayrton", "Senna", "Brazil", 41) });
+List<Racer> racers2 = new(
+    new Racer[] 
+    {
+        new(12, "Jochen", "Rindt", "Austria", 6),
+        new(22, "Ayrton", "Senna", "Brazil", 41) 
+    });
