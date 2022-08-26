@@ -1,4 +1,6 @@
-﻿public class EmployeeIdException : Exception
+﻿namespace DictionarySample;
+
+public class EmployeeIdException : Exception
 {
     public EmployeeIdException(string message) : base(message) { }
 }

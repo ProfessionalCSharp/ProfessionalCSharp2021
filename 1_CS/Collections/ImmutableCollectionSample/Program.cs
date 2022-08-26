@@ -1,4 +1,6 @@
-﻿SimpleArrayDemo();
+﻿using System.Collections.Immutable;
+
+SimpleArrayDemo();
 ImmutableList<Account> accounts = CreateImmutableList();
 UsingABuilder(accounts);
 LinqDemo();

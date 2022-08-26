@@ -43,6 +43,20 @@ Page 190, the event name should be `NewCarCreated` instead of `NewCarInfo`:
 
 Thanks to [@DanielNikoofar](https://github.com/DanielNikoofar) for reporting this issue!
 
+## Chapter 11, Tasks and Asynchrnous Programming
+
+Page 296 shows this source code:
+
+```csharp
+private readonly static Dictionary<string, string> names = new Dictionary<string, string>();
+```
+
+With C# 9 and **target-typed new expressions**, the code can be written as shown:
+
+```csharp
+private readonly static Dictionary<string, string> names = new();
+```
+
 ## Chapter 20, Security
 
 Page 560, the command
