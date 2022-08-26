@@ -1,5 +1,7 @@
-﻿EmployeeId idKyle = new("J18");
-Employee kyle = new Employee(idKyle, "Kyle Bush", 138_000.00m );
+﻿using DictionarySample;
+
+EmployeeId idKyle = new("J18");
+Employee kyle = new(idKyle, "Kyle Bush", 138_000.00m );
 
 EmployeeId idMartin = new("J19");
 Employee martin = new(idMartin, "Martin Truex Jr", 73_000.00m);
@@ -7,8 +9,8 @@ Employee martin = new(idMartin, "Martin Truex Jr", 73_000.00m);
 EmployeeId idKevin = new("S4");
 Employee kevin = new(idKevin, "Kevin Harvick", 116_000.00m);
 
-EmployeeId idDenny = new EmployeeId("J11");
-Employee denny = new Employee(idDenny, "Denny Hamlin", 127_000.00m);
+EmployeeId idDenny = new("J11");
+Employee denny = new(idDenny, "Denny Hamlin", 127_000.00m);
 
 EmployeeId idJoey = new("T22");
 Employee joey = new(idJoey, "Joey Logano", 96_000.00m);
