@@ -1,0 +1,19 @@
+﻿<Window
+    x:Class="WindowsApp.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WindowsApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBox Header="Value 1:" x:Name="text1" />
+        <TextBox Header="Value 2:" x:Name="text2" />
+        <Button Content="Blocking Add" Click="BlockingAdd" />
+        <Button Content="Add" x:Name="addButton" Click="InvokeCalculator"  />
+        <Button Content="Subtract" x:Name="subtractButton" Click="InvokeCalculator" />
+        <TextBlock x:Name="textResult" />
+        <Button Content="Not using captured context" Click="NotUsingCapturedContext" />
+        <ListView x:Name="listStatus" />
+    </StackPanel>
+</Window>
