@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-public class Book
+﻿public class Book
 {
     public Book(string title, string? publisher = default, int bookId = default)
     {

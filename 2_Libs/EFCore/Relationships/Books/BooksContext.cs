@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-public class BooksContext : DbContext
+﻿public class BooksContext : DbContext
 {
     public BooksContext(DbContextOptions<BooksContext> options)
         : base(options) { }
@@ -9,16 +7,13 @@ public class BooksContext : DbContext
     {
         modelBuilder.HasDefaultSchema("bk");
 
-        modelBuilder.ApplyConfiguration<Person>(new PersonConfiguration());
+        modelBuilder.ApplyConfiguration(new PersonConfiguration());
 
-        InitData data = new();
         modelBuilder.Entity<Book>()
             .HasMany(b => b.Authors)
-            .WithMany(a => a.WrittenBooks)
-            .UsingEntity(ba => ba.HasData(data.GetBooksAuthors()));
+            .WithMany(a => a.WrittenBooks);
 
-        modelBuilder.Entity<Person>().HasData(data.GetAuthors());
-        modelBuilder.Entity<Book>().HasData(data.GetBooks());
+        // for data seeding with EF Core use the UsingEntity method with anonymous types
     }
 
     public DbSet<Book> Books => Set<Book>();

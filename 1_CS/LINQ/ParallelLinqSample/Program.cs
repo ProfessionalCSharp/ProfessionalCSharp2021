@@ -1,4 +1,7 @@
-﻿namespace ParallelLinqSample;
+﻿using System.Collections.Concurrent;
+using System.Diagnostics;
+
+namespace ParallelLinqSample;
 
 class Program
 {

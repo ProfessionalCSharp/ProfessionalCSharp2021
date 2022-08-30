@@ -15,15 +15,10 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseRouting();
-
-app.UseEndpoints(endpoints =>
+app.MapHub<StreamingHub>("/stream");
+app.MapGet("/", async (HttpContext context) =>
 {
-    endpoints.MapHub<StreamingHub>("/stream");
-    endpoints.MapGet("/", async context =>
-    {
-        await context.Response.WriteAsync("SignalR Streaming Sample");
-    });
+    await context.Response.WriteAsync("SignalR Streaming Sample");
 });
 
 app.Run();

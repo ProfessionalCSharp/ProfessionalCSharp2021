@@ -26,11 +26,23 @@ See chapter 3, StructsSample
 
 New LINQ methods - see [LINQ](1_CS/LINQ/Readme.md)
 
+## Collections
+
+See chapter 8.
+
+New `PriorityQueue` class with .NET 6 - see [Collections](1_CS/Collections/Readme.md)
+
 ## Memory
 
 Instead of using the `Marshal` class to allocate native memory, the `NativeMemory` class can be used. See the *SpanSample* in Chapter 13, "Managed and Unmanaged Memory"
 
 Instead of using Marshal.GetLastWin32Error, Marshal.GetLastPInvokeError can be used. See the PInvokeSampleLib in Chapter 13, "Managed and Unmanaged Memory"
+
+## Files and Streams
+
+.NET 6 adds an API for writeable JSON DOM. See the [Files and Streams](2_Libs/FilesAndStreams/Readme.md)
+
+See chapter 18, *Files and Streams* for more information on JSON.
 
 ## Security
 
@@ -38,8 +50,24 @@ Sample code: **X509CertificateSample**
 
 With .NET 6, the `Key` property of the `PublicKey` property is deprecated. The sample code is changed to use the `GetRSAPublicKey` method instead - using the `RSA` class and accessing its members.
 
-See chapter 20, Security for updates.
+See chapter 20, *Security* for more information on security.
 
+## Ef Core
+
+New feature with EF Core 6:
+
+Temporal Tables
+
+* [Article](https://csharp.christiannagel.com/2022/01/31/efcoretemporaltables/)
+* [Source Code](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021/blob/main/5_More/EFCore/TemporalTableSample)
+
+EF Core 6 has better support for *non nullable reference types*. This allows getting rid of some uses of the *null forgiving operator*, for example with [MenusContext](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021/blob/main/2_Libs/EFCore/Relationships/Menus/MenusContext.cs).
+
+[Breaking changes with EF Core 6](https://docs.microsoft.com/en-us/ef/core/what-is-new/ef-core-6.0/breaking-changes) which requires a change with *owned entities* (see the Relationships sample). 
+One change is that owned entities can't be nullable if they contain another owned entity and are not mapped to a different table. 
+Another change is with seeding. With the Relationships sample, the Bank and Menus context use data seeding to fill initial data. With the Books context, instead of data seeding, entities are now normally added to the database which removes the requirement using anonymous types with n-to-n relations and owned entities.
+
+See chapter 21, EF Core for more information on EF Core.
 
 ## Localization
 

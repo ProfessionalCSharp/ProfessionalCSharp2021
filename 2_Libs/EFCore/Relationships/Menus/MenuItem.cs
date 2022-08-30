@@ -5,7 +5,7 @@
         Title = title;
         MenuItemId = menuItemId;
     }
-    public int MenuItemId { get; set; }
+    public int MenuItemId { get; init; }
     public string Title { get; set; }
     public string? Subtitle { get; set; }
     public decimal Price { get; set; }
@@ -14,7 +14,7 @@
 
 public class MenuDetails
 {
-    public int MenuDetailsId { get; set; }
+    public int MenuDetailsId { get; init; }
     public string? KitchenInfo { get; set; }
     public int MenusSold { get; set; }
     public MenuItem? MenuItem { get; set; }

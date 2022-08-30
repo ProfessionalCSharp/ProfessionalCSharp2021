@@ -10,9 +10,15 @@ This chapter contains these samples:
 * GRPC (GRPC service and client)
 * Azure Functions
 
+## Additional Samples
+
+* [Upgrading an ASP.NET Core Web API Project to .NET 6](https://csharp.christiannagel.com/2022/02/22/upgrading-an-asp-net-core-web-api-project-to-net-6/)
+
 ## Azure Active Directory B2C
 
 For the sample *BooksApiWithB2C*, create an Azure Active Directory B2C tenant using your Microsoft Azure subscription.
+
+See [Using Azure Active Directory B2C with .NET](https://csharp.christiannagel.com/2022/02/09/aadb2c/) for more information to use Azure AD B2C
 
 ## Azure Functions
 

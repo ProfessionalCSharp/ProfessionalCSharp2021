@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations.Schema;
-
-public class Person
+﻿public class Person
 {
     public Person(string firstName, string lastName, int personId = 0)
     {

@@ -1,4 +1,7 @@
-﻿StringBuilder OutputText = new();
+﻿using System.Reflection;
+using System.Text;
+
+StringBuilder OutputText = new();
 
 // modify this line to retrieve details of any other data type
 Type t = typeof(double);

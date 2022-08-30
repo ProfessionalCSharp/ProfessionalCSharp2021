@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-public class BankContext : DbContext
+﻿public class BankContext : DbContext
 {
     public BankContext(DbContextOptions<BankContext> options)
         : base(options) {}
@@ -21,4 +19,3 @@ public class BankContext : DbContext
             .HasColumnType("Money");
     }
 }
-

@@ -1,7 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
-
-public class MenuItem
+﻿public class MenuItem
 {
     public MenuItem(string text, int menuItemId = default) => (Text, MenuItemId) = (text, menuItemId);
 
