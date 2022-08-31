@@ -10,13 +10,13 @@ public class Calculator
 
     public async Task<int> SubtractAsync(int x, int y)
     {
-        await Task.Delay(3000);
+        await Task.Delay(3000).ConfigureAwait(continueOnCapturedContext: false);
         return x - y;
     }
 
     public int BlockingAdd(int x, int y)
     {
-        Thread.Sleep(2000);
+        Thread.Sleep(4000);
         return x + y;
     }
 }

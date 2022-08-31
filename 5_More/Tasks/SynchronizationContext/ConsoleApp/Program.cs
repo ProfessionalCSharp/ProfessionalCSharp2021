@@ -1,13 +1,13 @@
-﻿SynchronizationContext? context = SynchronizationContext.Current;
+﻿ShowThreadAndTask("Started application");
+await SampleAsync().ConfigureAwait(true);
+
+ShowThreadAndTask("Top level statements after calling SampleAsync");
+
+SynchronizationContext? context = SynchronizationContext.Current;
 if (context == null)
 {
     Console.WriteLine("No synchronization context with console applications");
 }
-
-ShowThreadAndTask("Started application");
-await SampleAsync();
-
-ShowThreadAndTask("Top level statements after calling SampleAsync");
 
 Task SampleAsync()
 {
