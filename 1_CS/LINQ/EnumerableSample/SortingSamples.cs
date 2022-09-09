@@ -2,6 +2,20 @@
 
 class SortingSamples
 {
+    // .NET 7 update
+    public static void SortDefault()
+    {
+        Console.WriteLine("Sort all the racers by the default sort as implemented in the Racer type");
+        Console.WriteLine();
+
+        var racers = Formula1.GetChampions().Order().Take(10);
+
+        foreach (var racer in racers)
+        {
+            Console.WriteLine($"{racer.LastName}, {racer.FirstName}");
+        }
+    }
+
     public static void SortMultiple()
     {
         Console.WriteLine("Show the first 10 champions ordered by country, lastname, firstname");
