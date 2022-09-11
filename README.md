@@ -90,8 +90,10 @@ Additional articles and samples related to the book
 
 #### The Language
 
-* [C# Nullable Features thru the times](https://csharp.christiannagel.com/2022/02/14/nullable/)
+* [C# Nullable Features thru the times - Article](https://csharp.christiannagel.com/2022/02/14/nullable/)
 * [PriorityQueue - Source Code](5_More/Collections/PriorityQueueSample)
+* [Synchronization Context - Article](https://csharp.christiannagel.com/2022/09/06/whats-the-synchronizationcontext-used-for/)
+* [Synchronization Context - Source Code](5_More/Tasks/SynchronizationContext)
 
 #### The Libraries
 
