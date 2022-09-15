@@ -43,7 +43,7 @@ Page 190, the event name should be `NewCarCreated` instead of `NewCarInfo`:
 
 Thanks to [@DanielNikoofar](https://github.com/DanielNikoofar) for reporting this issue!
 
-## Chapter 11, Tasks and Asynchrnous Programming
+## Chapter 11, Tasks and Asynchronous Programming
 
 Page 296 shows this source code:
 
@@ -56,6 +56,18 @@ With C# 9 and **target-typed new expressions**, the code can be written as shown
 ```csharp
 private readonly static Dictionary<string, string> names = new();
 ```
+
+## Chapter 12, Reflection, Metadata, and Source Generators
+
+Page 312 (below the title *The WhatsNewAttributes Library*) has this text:
+
+> The source code is contained in the file `WhatsNewAttributes.cs` in the *WhatsNewAttributes* project of the *WhatsNewAttributes* solution in the example code for this chapter.
+
+It's the *ReflectionSamples* solution. This is the correct text:
+
+> The source code is contained in the file `WhatsNewAttributes.cs` in the *WhatsNewAttributes* project of the *ReflectionSamples* solution in the example code for this chapter.
+
+Thanks to @ShervanN for reporting this issue!
 
 ## Chapter 20, Security
 
