@@ -67,7 +67,7 @@ It's the *ReflectionSamples* solution. This is the correct text:
 
 > The source code is contained in the file `WhatsNewAttributes.cs` in the *WhatsNewAttributes* project of the *ReflectionSamples* solution in the example code for this chapter.
 
-Thanks to @ShervanN for reporting this issue!
+Thanks to [@ShervanN](https://github.com/ShervanN) for reporting this issue!
 
 ## Chapter 20, Security
 
