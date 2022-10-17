@@ -2,19 +2,16 @@
 using Microsoft.UI.Xaml.Controls;
 
 using System.Globalization;
-using System.Runtime.InteropServices;
 
 using Windows.UI;
 using Windows.UI.Popups;
 
-using WinRT;
+using WinRT.Interop;
 
 namespace ControlsSamples.Views;
 
 public sealed partial class DateSelectionPage : Page
 {
-    // TODO: remove workaround - with version 1.1 (or later) 
-
     public DateSelectionPage() => InitializeComponent();
 
     public DateTimeOffset MinDate { get; } = DateTimeOffset.Parse("1/1/1965", new CultureInfo("en-US"));
@@ -126,21 +123,8 @@ public sealed partial class DateSelectionPage : Page
     private async Task ShowMessageAsync(string message)
     {
         MessageDialog dlg = new(message);
-        var handle = GetActiveWindow();
-        if (handle == IntPtr.Zero)
-            throw new InvalidOperationException();
-        dlg.As<IInitializeWithWindow>().Initialize(handle);
+        IntPtr hwnd = WindowNative.GetWindowHandle(this);
+        InitializeWithWindow.Initialize(dlg, hwnd);
         await dlg.ShowAsync();
     }
-
-    [ComImport]
-    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    [Guid("3E68D4BD-7135-4D10-8018-9FB6D9F33FA1")]
-    internal interface IInitializeWithWindow
-    {
-        void Initialize(IntPtr hwnd);
-    }
-
-    [DllImport("user32.dll")]
-    private static extern IntPtr GetActiveWindow();
 }

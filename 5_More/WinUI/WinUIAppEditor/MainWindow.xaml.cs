@@ -9,6 +9,7 @@ using Windows.Storage.Streams;
 using Windows.UI.Popups;
 
 using WinRT;
+using WinRT.Interop;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -20,23 +21,7 @@ namespace WinUIAppEditor;
 /// </summary>
 public sealed partial class MainWindow : Window
 {
-    [ComImport, Guid("3E68D4BD-7135-4D10-8018-9FB6D9F33FA1"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    public interface IInitializeWithWindow
-    {
-        void Initialize([In] IntPtr hwnd);
-    }
-
-    [DllImport("user32.dll", ExactSpelling = true, CharSet = CharSet.Auto, PreserveSig = true, SetLastError = false)]
-    public static extern IntPtr GetActiveWindow();
-
     public MainWindow() => InitializeComponent();
-
-    private void InitializeActiveWindow(ICustomQueryInterface picker)
-    {
-        IInitializeWithWindow initializeWithWindowWrapper = picker.As<IInitializeWithWindow>();
-        IntPtr hwnd = GetActiveWindow();
-        initializeWithWindowWrapper.Initialize(hwnd);
-    }
 
     public async void OnOpen()
     {
@@ -50,7 +35,8 @@ public sealed partial class MainWindow : Window
             picker.FileTypeFilter.Add(".txt");
             picker.FileTypeFilter.Add(".md");
 
-            InitializeActiveWindow(picker);
+            IntPtr hwnd = WindowNative.GetWindowHandle(this);
+            InitializeWithWindow.Initialize(picker, hwnd);
 
             StorageFile file = await picker.PickSingleFileAsync();
             if (file != null)
@@ -81,7 +67,8 @@ public sealed partial class MainWindow : Window
             picker.FileTypeFilter.Add(".txt");
             picker.FileTypeFilter.Add(".md");
 
-            InitializeActiveWindow(picker);
+            IntPtr hwnd = WindowNative.GetWindowHandle(this);
+            InitializeWithWindow.Initialize(picker, hwnd);
 
             StorageFile file = await picker.PickSingleFileAsync();
             if (file != null)
@@ -110,7 +97,8 @@ public sealed partial class MainWindow : Window
             };
             picker.FileTypeChoices.Add("Plain Text", new List<string>() { ".txt" });
 
-            InitializeActiveWindow(picker);
+            IntPtr hwnd = WindowNative.GetWindowHandle(this);
+            InitializeWithWindow.Initialize(picker, hwnd);
 
             StorageFile file = await picker.PickSaveFileAsync();
             if (file != null)
@@ -144,7 +132,8 @@ public sealed partial class MainWindow : Window
             };
             picker.FileTypeChoices.Add("Plain Text", new List<string>() { ".txt" });
 
-            InitializeActiveWindow(picker);
+            IntPtr hwnd = WindowNative.GetWindowHandle(this);
+            InitializeWithWindow.Initialize(picker, hwnd);
 
             StorageFile file = await picker.PickSaveFileAsync();
             if (file != null)

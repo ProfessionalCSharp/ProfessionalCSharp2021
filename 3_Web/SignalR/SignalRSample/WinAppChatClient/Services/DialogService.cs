@@ -1,9 +1,9 @@
-﻿using System;
-using System.Runtime.InteropServices;
-using System.Threading.Tasks;
+﻿using System.Runtime.InteropServices;
+
 using Windows.Foundation;
 using Windows.UI.Popups;
-using WinRT;
+
+using WinRT.Interop;
 
 namespace WindowsAppChatClient.Services;
 
@@ -18,19 +18,12 @@ public class DialogService : IDialogService
     public static IAsyncOperation<IUICommand> ShowDialogAsync(string content, string? title = null)
     {
         MessageDialog dlg = new(content, title ?? "");
-        var handle = GetActiveWindow();
-        if (handle == IntPtr.Zero)
+        var hwnd = GetActiveWindow();
+        if (hwnd == IntPtr.Zero)
             throw new InvalidOperationException();
-        dlg.As<IInitializeWithWindow>().Initialize(handle);
-        return dlg.ShowAsync();
-    }
 
-    [ComImport]
-    [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    [Guid("3E68D4BD-7135-4D10-8018-9FB6D9F33FA1")]
-    internal interface IInitializeWithWindow
-    {
-        void Initialize(IntPtr hwnd);
+        InitializeWithWindow.Initialize(dlg, hwnd);
+        return dlg.ShowAsync();
     }
 
     [DllImport("user32.dll")]

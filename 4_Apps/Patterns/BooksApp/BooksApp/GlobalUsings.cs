@@ -12,9 +12,9 @@ global using GenericViewModels.ViewModels;
 
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Logging;
-global using Microsoft.Toolkit.Mvvm.ComponentModel;
-global using Microsoft.Toolkit.Mvvm.DependencyInjection;
-global using Microsoft.Toolkit.Mvvm.Messaging;
+global using CommunityToolkit.Mvvm.ComponentModel;
+global using CommunityToolkit.Mvvm.DependencyInjection;
+global using CommunityToolkit.Mvvm.Messaging;
 global using Microsoft.UI.Xaml;
 global using Microsoft.UI.Xaml.Controls;
 global using Microsoft.UI.Xaml.Data;

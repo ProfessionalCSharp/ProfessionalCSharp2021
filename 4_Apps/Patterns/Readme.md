@@ -9,6 +9,8 @@ The sample code for this chapter contains these project:
 * GenericViewModels (Generic view-model base classes)
 
 See [WinUI](../../WinUI.md) what you need to install and develop WinUI applications.
+
+> The library **Microsoft.Toolkit.Mvvm** used with the samples is now obsolete and has superseded by **CommunityToolkit.Mvvm**
  
 For code comments and issues please check [Professional C#'s GitHub Repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021)
 
