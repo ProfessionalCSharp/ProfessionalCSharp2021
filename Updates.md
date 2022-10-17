@@ -69,6 +69,22 @@ It's the *ReflectionSamples* solution. This is the correct text:
 
 Thanks to [@ShervanN](https://github.com/ShervanN) for reporting this issue!
 
+## Chapter 15, Dependency Injection and Configuration
+
+Page 394, the code snippet in the book misses a variable name. The variable `services` should be added:
+
+```csharp
+static ServiceProvider GetServiceProvider()
+{
+  ServiceCollection services = new();  // Here the variable name is missing in the book
+  services.AddSingleton<IGreetingService, GreetingService>();
+  services.AddTransient<HomeController>();
+  return services.BuildServiceProvider();
+}
+```
+
+Thanks to [@ShervanN](https://github.com/ShervanN) for reporting this issue!
+
 ## Chapter 20, Security
 
 Page 560, the command
