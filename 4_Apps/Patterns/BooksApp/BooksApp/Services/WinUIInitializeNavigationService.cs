@@ -1,6 +1,4 @@
-﻿using Microsoft.UI.Xaml.Controls;
-
-namespace BooksApp.Services;
+﻿namespace BooksApp.Services;
 
 public class WinUIInitializeNavigationService
 {
