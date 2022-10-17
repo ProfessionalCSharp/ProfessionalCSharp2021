@@ -1,4 +1,6 @@
-﻿namespace BooksApp.Views;
+﻿using CommunityToolkit.Mvvm.DependencyInjection;
+
+namespace BooksApp.Views;
 
 public sealed partial class BooksPage : Page
 {

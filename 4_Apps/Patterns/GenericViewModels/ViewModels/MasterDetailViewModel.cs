@@ -1,6 +1,6 @@
-﻿using GenericViewModels.Services;
+﻿using CommunityToolkit.Mvvm.Input;
 
-using Microsoft.Toolkit.Mvvm.Input;
+using GenericViewModels.Services;
 
 using System.Collections.ObjectModel;
 

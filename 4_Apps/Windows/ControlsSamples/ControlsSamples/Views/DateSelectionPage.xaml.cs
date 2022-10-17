@@ -2,12 +2,10 @@
 using Microsoft.UI.Xaml.Controls;
 
 using System.Globalization;
-using System.Runtime.InteropServices;
 
 using Windows.UI;
 using Windows.UI.Popups;
 
-using WinRT;
 using WinRT.Interop;
 
 namespace ControlsSamples.Views;
