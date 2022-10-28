@@ -34,7 +34,7 @@ public class Receiver
         if (_groupAddress != null)
         {
             client.JoinMulticastGroup(IPAddress.Parse(_groupAddress));
-            _logger.LogInformation("joining the multicast group {0}", IPAddress.Parse(_groupAddress));
+            _logger.LogInformation("joining the multicast group {address}", IPAddress.Parse(_groupAddress));
         }
 
         bool completed = false;
@@ -44,7 +44,7 @@ public class Receiver
             UdpReceiveResult result = await client.ReceiveAsync();
             byte[] datagram = result.Buffer;
             string dataReceived = Encoding.UTF8.GetString(datagram);
-            _logger.LogInformation("Received {0} from {1}", dataReceived, result.RemoteEndPoint);
+            _logger.LogInformation("Received {data} from {endpoint}", dataReceived, result.RemoteEndPoint);
             if (dataReceived.Equals("bye", StringComparison.CurrentCultureIgnoreCase))
             {
                 completed = true;
@@ -58,4 +58,3 @@ public class Receiver
         }
     }
 }
-
