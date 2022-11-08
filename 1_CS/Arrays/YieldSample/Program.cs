@@ -1,7 +1,7 @@
 ﻿HelloWorld();
 MusicTitles();
 
-var game = new GameMoves();
+GameMoves game = new();
 
 IEnumerator<IEnumerator> enumerator = game.Cross();
 while (enumerator.MoveNext())
