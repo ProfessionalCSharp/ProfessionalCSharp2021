@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "EnumerableSample": {
+      "commandName": "Project",
+      "commandLineArgs": "linq except"
+    }
+  }
+}
