@@ -34,11 +34,12 @@ public class Formula1
         new("Jacques", "Villeneuve", "Canada", 165, 11, new int[] { 1997 }, new string[] { "Williams" }),
         new("Mika", "Hakkinen", "Finland", 160, 20, new int[] { 1998, 1999 }, new string[] { "McLaren" }),
         new("Michael", "Schumacher", "Germany", 287, 91, new int[] { 1994, 1995, 2000, 2001, 2002, 2003, 2004 }, new string[] { "Benetton", "Ferrari" }),
-        new("Fernando", "Alonso", "Spain", 314, 32, new int[] { 2005, 2006 }, new string[] { "Renault" }),
-        new("Kimi", "Räikkönen", "Finland", 330, 21, new int[] { 2007 }, new string[] { "Ferrari" }),
-        new("Lewis", "Hamilton", "UK", 266, 95, new int[] { 2008, 2014, 2015, 2017, 2018, 2019, 2020 }, new string[] { "McLaren", "Mercedes" }),
+        new("Fernando", "Alonso", "Spain", 352, 32, new int[] { 2005, 2006 }, new string[] { "Renault" }),
+        new("Kimi", "Räikkönen", "Finland", 349, 21, new int[] { 2007 }, new string[] { "Ferrari" }),
+        new("Lewis", "Hamilton", "UK", 307, 103, new int[] { 2008, 2014, 2015, 2017, 2018, 2019, 2020 }, new string[] { "McLaren", "Mercedes" }),
         new("Jenson", "Button", "UK", 306, 16, new int[] { 2009 }, new string[] { "Brawn GP" }),
-        new("Sebastian", "Vettel", "Germany", 257, 53, new int[] { 2010, 2011, 2012, 2013 }, new string[] { "Red Bull Racing" }),
-        new("Nico", "Rosberg", "Germany", 207, 24, new int[] { 2016 }, new string[] { "Mercedes" })
+        new("Sebastian", "Vettel", "Germany", 296, 53, new int[] { 2010, 2011, 2012, 2013 }, new string[] { "Red Bull Racing" }),
+        new("Nico", "Rosberg", "Germany", 206, 24, new int[] { 2016 }, new string[] { "Mercedes" }),
+        new("Max", "Verstappen", "Netherlands", 160, 33, new int[] { 2021, 2022 }, new string[] { "Red Bull Racing" }),
     };
 }

@@ -1,7 +1,6 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 
-
 namespace NavigationControls.Views;
 
 public sealed partial class HubPage : Page

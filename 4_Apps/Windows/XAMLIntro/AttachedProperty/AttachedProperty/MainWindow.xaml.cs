@@ -7,7 +7,7 @@ public sealed partial class MainWindow : Window
 {
     public MainWindow()
     {
-        this.InitializeComponent();
+        InitializeComponent();
 
         MyAttachedPropertyProvider.SetMySample(button1, "sample value");
 

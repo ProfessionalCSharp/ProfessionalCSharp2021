@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace DataBindingSamples.Models;
+﻿namespace DataBindingSamples.Models;
 
 public class Book : ObservableObject
 {

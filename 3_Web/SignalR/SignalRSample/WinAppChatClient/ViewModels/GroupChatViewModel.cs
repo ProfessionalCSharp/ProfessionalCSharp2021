@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
-using Microsoft.Toolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Input;
 
 using System.Collections.ObjectModel;
 using System.Windows.Input;

@@ -1,9 +1,9 @@
 ﻿using BooksLib.Models;
 
+using CommunityToolkit.Mvvm.Input;
+
 using GenericViewModels.Services;
 using GenericViewModels.ViewModels;
-
-using Microsoft.Toolkit.Mvvm.Input;
 
 namespace BooksLib.ViewModels;
 
