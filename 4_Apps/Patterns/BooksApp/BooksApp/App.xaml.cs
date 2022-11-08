@@ -2,6 +2,8 @@
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
+using CommunityToolkit.Mvvm.DependencyInjection;
+
 namespace BooksApp;
 
 /// <summary>
@@ -27,8 +29,8 @@ public partial class App : Application
     {
         RegisterServices();
 
-        m_window = new MainWindow();
-        m_window.Activate();
+        _window = new MainWindow();
+        _window.Activate();
     }
 
     private void RegisterServices()
@@ -49,5 +51,5 @@ public partial class App : Application
                 }).BuildServiceProvider());
     }
 
-    private Window? m_window;
+    private Window? _window;
 }

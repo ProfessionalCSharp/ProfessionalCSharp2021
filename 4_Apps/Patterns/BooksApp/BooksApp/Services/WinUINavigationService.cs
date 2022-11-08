@@ -1,4 +1,7 @@
-﻿namespace BooksApp.Services;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Messaging;
+
+namespace BooksApp.Services;
 
 public class WinUINavigationService : ObservableObject, INavigationService, IRecipient<NavigationMessage>
 {
