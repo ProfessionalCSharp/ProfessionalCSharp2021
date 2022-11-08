@@ -1,6 +1,4 @@
-﻿using System.Text;
-
-namespace WebSampleApp.Extensions;
+﻿namespace WebSampleApp.Extensions;
 
 public static class HtmlExtensions
 {
@@ -25,14 +23,12 @@ public static class HtmlExtensions
     public static string HeadingX(this string value, int x) =>
         $"<h{x}>{value}</h{x}>";
 
-    public static string HtmlDocument(this string content, string title)
-    {
-        StringBuilder sb = new();
-        sb.Append("<!DOCTYPE HTML>");
-        sb.Append($"<head><meta charset=\"utf-8\"><title>{title}</title></head>");
-        sb.Append("<body>");
-        sb.Append(content);
-        sb.Append("</body>");
-        return sb.ToString();
-    }
+    public static string HtmlDocument(this string content, string title) =>
+        $"""
+        <!DOCTYPE HTML>
+            <head><meta charset="utf-8"><title>{title}</title></head>
+        <body>
+            {content}
+        </body>
+        """;
 }
