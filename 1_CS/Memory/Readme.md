@@ -35,6 +35,8 @@ Marshal.FreeHGlobal has been replaced with NativeMemory.Free
 
 Marshal.GetLastWin32Error has been replaced with Marshal.GetLastPInvokeError
 
+With .NET 7, the `LibraryImport` attribute is used instead of `DllImport`. This new attribute makes use of a source generator.
+
 ### Win32InteropSample
 
-The additional sample to show using a Source Generator to generate PInvoke functionality uses different namespaces with the new version.
+This sample using the experimental Microsoft.Windows.CsWin32 NuGet package that was added after the book release was removed with the .NET 7 version because .NET 7 offers a new functionality that can be used instead (`LibraryImport` attribute).
