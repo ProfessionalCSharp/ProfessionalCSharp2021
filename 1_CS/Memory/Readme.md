@@ -21,6 +21,10 @@ Thank you!
 
 See [Updates with C# 10](../../Dotnet6Updates.md)
 
+### QuickArray
+
+The Main method was replaced with top-level statements, and now uses an `unsafe` code block.
+
 ### SpanSample
 
 Marshal.AllocHGlobal has been replaced with NativeMemory.Alloc
