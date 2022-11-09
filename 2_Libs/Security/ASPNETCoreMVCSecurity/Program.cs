@@ -19,13 +19,15 @@ app.UseAuthorization();
 
 app.Map("/echo", async context =>
 {
-    string data = context.Request.Query["x"];
+    string? data = context.Request.Query["x"];
+    data ??= "no x received";
     await context.Response.WriteAsync(data);
 });
 
 app.Map("/echoenc", async context =>
 {
-    string data = context.Request.Query["x"];
+    string? data = context.Request.Query["x"];
+    data ??= "no x received";
     await context.Response.WriteAsync(HtmlEncoder.Default.Encode(data));
 });
 
