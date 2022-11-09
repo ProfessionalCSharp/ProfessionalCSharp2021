@@ -14,5 +14,5 @@ var alice = host.Services.GetRequiredService<AliceRunner>();
 var bob = host.Services.GetRequiredService<BobRunner>();
 var keyAlice = alice.GetPublicKey();
 var keyBob = bob.GetPublicKey();
-var message = await alice.GetSecretMessageAsync(keyBob);
-await bob.ReadMessageAsync(message.Iv, message.EncryptedData, keyAlice);
+(byte[] iv, byte[] encryptedData) = await alice.GetSecretMessageAsync(keyBob);
+await bob.ReadMessageAsync(iv, encryptedData, keyAlice);
