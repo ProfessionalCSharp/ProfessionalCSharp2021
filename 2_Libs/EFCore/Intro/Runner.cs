@@ -67,7 +67,7 @@
     {
         string query = _booksContext.Books.Where(b => b.Publisher == "Wrox Press").ToQueryString();
         Console.WriteLine(query);
-        await _booksContext.Books
+        await _booksContext.Books.TagWith("QueryPublisher")
             .Where(b => b.Publisher == "Wrox Press")
             .ForEachAsync(b =>
             {
