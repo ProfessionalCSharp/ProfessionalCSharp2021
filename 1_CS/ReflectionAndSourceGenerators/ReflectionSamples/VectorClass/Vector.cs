@@ -7,6 +7,7 @@ using System.Collections;
 
 namespace VectorClass;
 
+[LastModified("2022/11/10", "updated to .NET 7")]
 [LastModified("2022/03/10", "simplification with .NET 6")]
 [LastModified("2021/2/28", "changed the LastModified dates")]
 [LastModified("2020/12/19", "updated for C# 9 and .NET 5")]
@@ -103,6 +104,7 @@ public class Vector : IFormattable, IEnumerable<double>
     public double Norm() => X * X + Y * Y + Z * Z;
 
     #region enumerator class
+    [LastModified("2022/11/10", "Changed to use lambda expression with the constructor")]
     [LastModified("2015/6/6", "Change to implement the generic version IEnumerator<T>")]
     [LastModified("2010/2/14", "Class created as part of collection support for Vector")]
     private class VectorEnumerator : IEnumerator<double>
@@ -110,11 +112,8 @@ public class Vector : IFormattable, IEnumerable<double>
         readonly Vector _theVector;      // Vector object that this enumerato refers to 
         int _location;   // which element of _theVector the enumerator is currently referring to 
 
-        public VectorEnumerator(Vector theVector)
-        {
-            _theVector = theVector;
-            _location = -1;
-        }
+        public VectorEnumerator(Vector theVector) =>
+            (_theVector, _location) = (theVector, -1);
 
         public bool MoveNext()
         {
