@@ -1,4 +1,6 @@
-﻿namespace DynamicFileReader;
+﻿using System.Dynamic;
+
+namespace DynamicFileReader;
 
 public static class DynamicFileHelper
 {
