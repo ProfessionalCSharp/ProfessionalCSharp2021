@@ -7,4 +7,4 @@ using Timer t1 = new(
     dueTime: TimeSpan.FromSeconds(2),
     period: TimeSpan.FromSeconds(3));
 
-Task.Delay(15000).Wait();
+await Task.Delay(15000);
