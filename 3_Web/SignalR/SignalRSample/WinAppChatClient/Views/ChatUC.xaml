@@ -24,20 +24,24 @@
             </Style>
         </Grid.Resources>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto " />
-            <RowDefinition Height="auto " />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition Width="auto" />
         </Grid.ColumnDefinitions>
-        <TextBox Header="Name" Text="{x:Bind ViewModel.Name, Mode=TwoWay}" Grid.Row="0" Grid.Column="0" />
-        <TextBox Header="Message" Text="{x:Bind ViewModel.Message, Mode=TwoWay}" Grid.Row="1" Grid.Column="0" />
-        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.RowSpan="2">
+        <InfoBar Message="{x:Bind ViewModel.InfoText, Mode=OneWay}" IsOpen="{x:Bind ViewModel.ShowInfoBar, Mode=TwoWay}">
+           
+        </InfoBar>
+        <TextBox Header="Name" Text="{x:Bind ViewModel.Name, Mode=TwoWay}" Grid.Row="1" Grid.Column="0" />
+        <TextBox Header="Message" Text="{x:Bind ViewModel.Message, Mode=TwoWay}" Grid.Row="2" Grid.Column="0" />
+        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.RowSpan="2" Grid.Row="1">
             <Button Content="Connect" Command="{x:Bind ViewModel.ConnectCommand}"  />
             <Button Content="Send" Command="{x:Bind ViewModel.SendCommand, Mode=OneTime}" />
         </StackPanel>
-        <ListBox ItemsSource="{x:Bind ViewModel.Messages, Mode=OneWay}" Grid.Row="2" Grid.ColumnSpan="2" />
+        <ListBox ItemsSource="{x:Bind ViewModel.Messages, Mode=OneWay}" Grid.Row="3" Grid.ColumnSpan="2" />
     </Grid>
 </UserControl>

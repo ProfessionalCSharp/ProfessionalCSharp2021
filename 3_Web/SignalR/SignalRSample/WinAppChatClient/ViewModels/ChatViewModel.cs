@@ -5,6 +5,7 @@ using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 
 using WindowsAppChatClient.Services;
+using Microsoft.UI.Dispatching;
 
 namespace WindowsAppChatClient.ViewModels;
 
@@ -12,10 +13,12 @@ public class ChatViewModel : ObservableObject
 {
     private readonly IDialogService _dialogService;
     private readonly UrlService _urlService;
+    private readonly DispatcherQueue _dispatcherQueue;
     public ChatViewModel(IDialogService dialogService, UrlService urlService)
     {
         _dialogService = dialogService;
         _urlService = urlService;
+        _dispatcherQueue = DispatcherQueue.GetForCurrentThread();
 
         ConnectCommand = new RelayCommand(OnConnect);
         SendCommand = new RelayCommand(OnSendMessage);
@@ -23,6 +26,25 @@ public class ChatViewModel : ObservableObject
 
     public string? Name { get; set; }
     public string? Message { get; set; }
+    private string? _infoText;
+    public string? InfoText
+    {
+        get => _infoText;
+        set => SetProperty(ref _infoText, value);
+    }
+
+    private bool _showInfoBar;
+    public bool ShowInfoBar
+    {
+        get => _showInfoBar;
+        set => SetProperty(ref _showInfoBar, value);
+    }
+
+    private void DisplayInfoBar(string text)
+    {
+        InfoText = text;
+        ShowInfoBar = true;
+    }
 
     public ObservableCollection<string> Messages { get; } = new ObservableCollection<string>();
 
@@ -46,10 +68,13 @@ public class ChatViewModel : ObservableObject
         try
         {
             await _hubConnection.StartAsync();
-            await _dialogService.ShowMessageAsync("client connected");
+            InfoText = "client connected";
+            DisplayInfoBar("client connected");
+            // await _dialogService.ShowMessageAsync("client connected");
         }
         catch (HttpRequestException ex)
         {
+            DisplayInfoBar(ex.Message);
             await _dialogService.ShowMessageAsync(ex.Message);
         }
     }
@@ -66,15 +91,20 @@ public class ChatViewModel : ObservableObject
         }
         catch (Exception ex)
         {
-            await _dialogService.ShowMessageAsync(ex.Message);
+            DisplayInfoBar(ex.Message);
+            //await _dialogService.ShowMessageAsync(ex.Message);
         }
     }
 
-    public async void OnMessageReceived(string name, string message)
+    public void OnMessageReceived(string name, string message)
     {
         try
         {
-            Messages.Add($"{name}: {message}");
+            _dispatcherQueue.TryEnqueue(() =>
+            {
+                Messages.Add($"{name}: {message}");
+            });
+
             //_dispatcherQueue.DispatcherQueue.TryEnqueue(() =>
             //{
             //    Messages.Add($"{name}: {message}");
@@ -86,7 +116,7 @@ public class ChatViewModel : ObservableObject
         }
         catch (Exception ex)
         {
-            await _dialogService.ShowMessageAsync(ex.Message);
+            DisplayInfoBar(ex.Message);
         }
     }
 

@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 using WindowsAppChatClient.Services;
+using Microsoft.UI.Dispatching;
 
 namespace WindowsAppChatClient.ViewModels;
 
@@ -12,8 +13,11 @@ public sealed class GroupChatViewModel
 {
     private readonly IDialogService _dialogService;
     private readonly UrlService _urlService;
+    private readonly DispatcherQueue _dispatcherQueue;
+
     public GroupChatViewModel(IDialogService dialogService, UrlService urlService)
     {
+        _dispatcherQueue = DispatcherQueue.GetForCurrentThread();
         _dialogService = dialogService;
         _urlService = urlService;
 
@@ -79,7 +83,11 @@ public sealed class GroupChatViewModel
     {
         try
         {
-            Messages.Add($"{group}-{name}: {message}");
+            _dispatcherQueue.TryEnqueue(() =>
+            {
+                Messages.Add($"{group}-{name}: {message}");
+            });
+
         }
         catch (Exception ex)
         {
