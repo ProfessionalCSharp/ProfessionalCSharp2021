@@ -140,8 +140,8 @@ public static class Formula1
         new(2021, "Max Verstappen", "Lewis Hamilton", "Valtteri Bottas")
     };
 
-    private static List<Racer>? _moreRacers;
-    public static IList<Racer> GetMoreRacers() => _moreRacers ??= new()
+    private static List<Racer>? s_moreRacers;
+    public static IList<Racer> GetMoreRacers() => s_moreRacers ??= new()
     {
         new Racer("Luigi", "Fagioli", "Italy", Starts: 7, Wins: 1),
         new Racer("Jose Froilan", "Gonzalez", "Argentina", 26, 2),
