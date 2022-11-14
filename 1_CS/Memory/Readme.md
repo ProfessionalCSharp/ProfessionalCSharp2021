@@ -17,9 +17,10 @@ Please check my blog [csharp.christiannagel.com](https://csharp.christiannagel.c
 
 Thank you!
 
-## Updates with C# 10
+## Updates with C# 10 and C# 11
 
-See [Updates with C# 10](../../Dotnet6Updates.md)
+* See [Updates with C# 10 and .NET 6](../../Dotnet6Updates.md)
+* See [Updates with C# 11 and .NET 7](../../Dotnet7Updates.md)
 
 ### QuickArray
 
@@ -27,9 +28,9 @@ The Main method was replaced with top-level statements, and now uses an `unsafe`
 
 ### SpanSample
 
-Marshal.AllocHGlobal has been replaced with NativeMemory.Alloc
+Marshal.AllocHGlobal has been replaced with NativeMemory.Alloc (.NET 6)
 
-Marshal.FreeHGlobal has been replaced with NativeMemory.Free
+Marshal.FreeHGlobal has been replaced with NativeMemory.Free (.NET 6)
 
 ### PInvokeSampleLib
 
@@ -37,6 +38,9 @@ Marshal.GetLastWin32Error has been replaced with Marshal.GetLastPInvokeError
 
 With .NET 7, the `LibraryImport` attribute is used instead of `DllImport`. This new attribute makes use of a source generator.
 
-### Win32InteropSample
+See the new .NET 7 sample [PInvokeSampleLib](../../5_More/PInvoke/). This sample needs these changes:
 
-This sample using the experimental Microsoft.Windows.CsWin32 NuGet package that was added after the book release was removed with the .NET 7 version because .NET 7 offers a new functionality that can be used instead (`LibraryImport` attribute).
+*  AllowUnsafeBlocks in the project file
+* The attribute `LibraryImport` instead of `DllImport`
+* The attribute `UnmanagedCalConv` instead of the `CallingConvention` property
+* A partial class with partial methods (instead of extern methods)
