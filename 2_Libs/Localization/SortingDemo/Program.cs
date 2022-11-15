@@ -15,7 +15,7 @@ DisplayNames("Sorted using the Finnish culture", countries);
 Array.Sort(countries, Comparer.DefaultInvariant);
 DisplayNames("Sorted using the invariant culture", countries);
 
-void DisplayNames(string title, IEnumerable<string> names)
+static void DisplayNames(string title, IEnumerable<string> names)
 {
     Console.WriteLine(title);
     Console.WriteLine(string.Join("-", names));
