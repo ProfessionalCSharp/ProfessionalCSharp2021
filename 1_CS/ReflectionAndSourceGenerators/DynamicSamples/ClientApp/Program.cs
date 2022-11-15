@@ -1,4 +1,7 @@
-﻿const string CalculatorTypeName = "CalculatorLib.Calculator";
+﻿using Microsoft.CSharp.RuntimeBinder;
+using System.Reflection;
+
+const string CalculatorTypeName = "CalculatorLib.Calculator";
 
 if (args.Length != 1)
 {

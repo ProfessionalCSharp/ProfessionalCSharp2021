@@ -1,4 +1,6 @@
-﻿// create a mask using the CreateMask method
+﻿using System.Collections.Specialized;
+
+// create a mask using the CreateMask method
 BitVector32 bits1 = new();
 int bit1 = BitVector32.CreateMask();
 int bit2 = BitVector32.CreateMask(bit1);

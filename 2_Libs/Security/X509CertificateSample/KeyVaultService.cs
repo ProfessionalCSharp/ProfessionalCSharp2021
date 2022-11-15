@@ -31,7 +31,7 @@ class KeyVaultService : IDisposable
     private readonly AzureEventSourceListener _azureEventSourceListener;
     public KeyVaultService(IConfiguration configuration, ILogger<KeyVaultService> logger)
     {
-        _vaultUri = configuration["VaultUri"];
+        _vaultUri = configuration["VaultUri"] ?? throw new InvalidOperationException("VaultUri configuration missing");
         _logger = logger;
         _azureEventSourceListener = new AzureEventSourceListener((eventArgs, message) 
             => _logger.Log(eventArgs.Level.ToLogLevel(), message), EventLevel.Verbose);

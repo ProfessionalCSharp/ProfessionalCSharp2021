@@ -1,7 +1,7 @@
 ﻿sealed class AliceRunner : IDisposable
 {
     private readonly ILogger _logger;
-    private ECDiffieHellman _algorithm;
+    private readonly ECDiffieHellman _algorithm;
     public AliceRunner(ILogger<AliceRunner> logger)
     {
         _logger = logger;
@@ -16,16 +16,16 @@
     public async Task<(byte[] Iv, byte[] EncryptedData)> GetSecretMessageAsync(ECDiffieHellmanPublicKey otherPublicKey)
     {
         string message = "secret message from Alice";
-        _logger.LogInformation($"Alice sends message {message}");
+        _logger.LogInformation("Alice sends message {message}", message);
 
         byte[] plainData = Encoding.UTF8.GetBytes(message);
 
         byte[] symmKey = _algorithm.DeriveKeyMaterial(otherPublicKey);
-        _logger.LogInformation($"Alice creates this symmetric key with " +
-            $"Bobs public key information: {Convert.ToBase64String(symmKey)}");
+        _logger.LogInformation("Alice creates this symmetric key with " +
+            "Bobs public key information: {key}", Convert.ToBase64String(symmKey));
 
         using Aes aes = Aes.Create();
-        _logger.LogInformation($"Using this Aes class: {aes.GetType().Name}");
+        _logger.LogInformation("Using this Aes class: {class}", aes.GetType().Name);
         aes.Key = symmKey;
         aes.GenerateIV();
         using ICryptoTransform encryptor = aes.CreateEncryptor();
@@ -35,7 +35,7 @@
             await cs.WriteAsync(plainData.AsMemory());
         } // need to close the CryptoStream before using the MemoryStream
         byte[] encryptedData = ms.ToArray();
-        _logger.LogInformation($"Alice: message is encrypted: {Convert.ToBase64String(encryptedData)}");
+        _logger.LogInformation("Alice: message is encrypted: {message}", Convert.ToBase64String(encryptedData));
         var returnData = (aes.IV, encryptedData);
         aes.Clear();
         return returnData;

@@ -23,7 +23,7 @@ public sealed partial class MainWindow : Window
 
     private void OnActivated(object sender, WindowActivatedEventArgs args)
     {
-        void AddSubNodes(TreeViewNode parent)
+        static void AddSubNodes(TreeViewNode parent)
         {
             if (parent.Content is CultureData cd && cd.SubCultures is not null)
             {

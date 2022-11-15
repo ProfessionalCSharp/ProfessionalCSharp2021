@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using System;
+﻿namespace ConfigurationSample;
 
 public class ConfigurationSampleService
 {
@@ -12,13 +11,13 @@ public class ConfigurationSampleService
 
     public void ShowConfiguration()
     {
-        string value1 = _configuration.GetValue<string>("Key1");
+        string value1 = _configuration.GetValue<string>("Key1") ?? throw new InvalidOperationException("Key1 not found");
         Console.WriteLine(value1);
-        string value1b = _configuration["Key1"];
+        string value1b = _configuration["Key1"] ?? throw new InvalidOperationException("Key1 not found");
         Console.WriteLine(value1b);
-        string value2 = _configuration.GetSection("Section1")["Key2"];
+        string value2 = _configuration.GetSection("Section1")["Key2"] ?? throw new InvalidOperationException("Key2 not found");
         Console.WriteLine(value2);
-        string connectionString = _configuration.GetConnectionString("BooksConnection");
+        string connectionString = _configuration.GetConnectionString("BooksConnection") ?? throw new InvalidOperationException("BooksConnection not found");
         Console.WriteLine(connectionString);
         Console.WriteLine();
     }

@@ -1,4 +1,6 @@
-﻿UsingStringBuilder();
+﻿using System.Text;
+
+UsingStringBuilder();
 InterpolatedStrings();
 UsingFormattableString();
 UseStringFormat();

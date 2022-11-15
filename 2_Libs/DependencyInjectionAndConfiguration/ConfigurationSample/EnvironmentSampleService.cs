@@ -1,4 +1,6 @@
-﻿public class EnvironmentSampleService
+﻿namespace ConfigurationSample;
+
+public class EnvironmentSampleService
 {
     private readonly IHostEnvironment _hostEnvironment;
 

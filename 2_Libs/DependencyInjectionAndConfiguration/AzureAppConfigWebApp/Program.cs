@@ -1,7 +1,7 @@
 var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddAzureAppConfiguration(options =>
 {
-    var endpoint = builder.Configuration["AppConfigEndpoint"];
+    var endpoint = builder.Configuration["AppConfigEndpoint"] ?? throw new InvalidOperationException("AppConfigEndpoint not configured");
     DefaultAzureCredential credential = new();
 
     options.Connect(new Uri(endpoint), credential)

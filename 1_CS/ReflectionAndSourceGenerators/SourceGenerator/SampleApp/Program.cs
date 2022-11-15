@@ -1,5 +1,4 @@
-﻿using System;
-using SampleApp;
+﻿using SampleApp;
 
 CodeGenerationSample.HelloWorld.Hello();
 

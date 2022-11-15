@@ -1,4 +1,7 @@
-﻿BitArray bits1 = new(9);
+﻿global using System.Collections;
+global using System.Text;
+
+BitArray bits1 = new(9);
 bits1.SetAll(true);
 bits1.Set(1, false);
 bits1[5] = false;

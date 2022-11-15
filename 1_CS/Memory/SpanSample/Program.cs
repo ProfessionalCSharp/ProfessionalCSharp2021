@@ -1,4 +1,6 @@
-﻿SpanOnTheHeap();
+﻿using System.Runtime.InteropServices;
+
+SpanOnTheHeap();
 SpanOnTheStack();
 SpanOnNativeMemory();
 SpanExtensions();

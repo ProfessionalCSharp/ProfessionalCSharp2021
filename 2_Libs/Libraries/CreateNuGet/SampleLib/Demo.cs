@@ -6,13 +6,13 @@ namespace SampleLib;
 public class Demo
 {
 #if NETSTANDARD20
-        private static string s_info = ".NET Standard 2.0";
-#elif NET5_0
-    private static string s_info = ".NET 5.0";
+    private readonly static string s_info = ".NET Standard 2.0";
 #elif NET6_0
-    private static string s_info = ".NET 6.0";
+    private readonly static string s_info = ".NET 6.0";
+#elif NET7_0
+    private readonly static string s_info = ".NET 7.0";
 #else
-        private static string s_info = "Unknown";
+    private readonly static string s_info = "Unknown";
 #endif
 
     public static string Show() => s_info;

@@ -7,7 +7,7 @@ public enum PersonCompareType
 
 public class PersonComparer : IComparer<Person>
 {
-    private PersonCompareType _compareType;
+    private readonly PersonCompareType _compareType;
 
     public PersonComparer(PersonCompareType compareType) =>
         _compareType = compareType;

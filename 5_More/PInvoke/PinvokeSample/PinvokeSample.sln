@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33103.201
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PinvokeSample", "PinvokeSample.csproj", "{AE35A8C8-872E-4FCA-8A3F-250F2367B35C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PInvokeSampleLib", "..\PInvokeSampleLib\PInvokeSampleLib.csproj", "{3401A908-ABB9-4227-9E88-1CF66D897721}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AE35A8C8-872E-4FCA-8A3F-250F2367B35C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE35A8C8-872E-4FCA-8A3F-250F2367B35C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE35A8C8-872E-4FCA-8A3F-250F2367B35C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE35A8C8-872E-4FCA-8A3F-250F2367B35C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3401A908-ABB9-4227-9E88-1CF66D897721}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3401A908-ABB9-4227-9E88-1CF66D897721}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3401A908-ABB9-4227-9E88-1CF66D897721}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3401A908-ABB9-4227-9E88-1CF66D897721}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7E4F8D89-95A9-4F97-B335-28E847D8EE0C}
+	EndGlobalSection
+EndGlobal
