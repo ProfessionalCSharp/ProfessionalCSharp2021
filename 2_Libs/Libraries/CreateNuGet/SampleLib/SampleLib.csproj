@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0;net5.0;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net7.0;net6.0;netstandard2.0</TargetFrameworks>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <LangVersion>10.0</LangVersion>
+    <LangVersion>11.0</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -18,9 +18,9 @@
     <RepositoryType>Git</RepositoryType>
     <PackageTags>CSharp; .NET Core; NuGet</PackageTags>
     <PackageReleaseNotes>Sample for Professional C# and .NET - 2021 Edition</PackageReleaseNotes>
-    <Version>6.0.1</Version>
-    <AssemblyVersion>6.0.1.0</AssemblyVersion>
-    <ProductVersion>6.0</ProductVersion>
+    <Version>7.0.1</Version>
+    <AssemblyVersion>7.0.1.0</AssemblyVersion>
+    <ProductVersion>7.0</ProductVersion>
   </PropertyGroup>
 
   <!-- 
@@ -32,24 +32,20 @@
     <DefineConstants>NETSTANDARD20</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(TargetFramework)'=='net5.0'">
-    <DefineConstants>NET50</DefineConstants>
-  </PropertyGroup>
-
   <PropertyGroup Condition="'$(TargetFramework)'=='net6.0'">
     <DefineConstants>NET60</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)'=='net7.0'">
+    <DefineConstants>NET70</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <PackageReference Include="System.Text.Json" Version="5.0.0" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'net5.0'">
-    <PackageReference Include="System.Text.Json" Version="5.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="System.Text.Json" Version="6.0.1" />
+  <ItemGroup Condition="'$(TargetFramework)' != 'netstandard2.0'">
+    <PackageReference Include="System.Text.Json" Version="7.0.0" />
   </ItemGroup>
 
 </Project>
