@@ -1,7 +1,8 @@
-﻿public class MyCollection
+﻿namespace IndicesAndRanges;
+public class MyCollection
 {
-    private int[] _array = Enumerable.Range(1, 100).ToArray();
-
+    private readonly int[] _array = Enumerable.Range(1, 100).ToArray();
+    
     public int Length => _array.Length;
 
     public int this[int index]

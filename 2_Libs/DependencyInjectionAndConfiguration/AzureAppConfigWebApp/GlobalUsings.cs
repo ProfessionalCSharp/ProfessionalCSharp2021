@@ -1,9 +1,0 @@
-﻿global using Azure.Identity;
-global using AzureAppConfigWebApp;
-global using Microsoft.Extensions.Configuration.AzureAppConfiguration;
-global using Microsoft.Extensions.Options;
-global using Microsoft.FeatureManagement;
-global using Microsoft.FeatureManagement.FeatureFilters;
-global using Microsoft.AspNetCore.Mvc.RazorPages;
-global using Microsoft.AspNetCore.Mvc;
-global using System.Diagnostics;

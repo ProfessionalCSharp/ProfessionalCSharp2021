@@ -1,7 +1,7 @@
 ﻿sealed class BobRunner : IDisposable
 {
     private readonly ILogger _logger;
-    private ECDsa _signAlgorithm;
+    private readonly ECDsa _signAlgorithm;
     public BobRunner(ILogger<AliceRunner> logger)
     {
         _logger = logger;

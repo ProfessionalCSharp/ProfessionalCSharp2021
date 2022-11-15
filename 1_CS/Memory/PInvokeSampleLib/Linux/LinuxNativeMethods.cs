@@ -18,7 +18,7 @@ internal static class LinuxNativeMethods
         EMLINK = 31
     }
 
-    private static Dictionary<LinkErrors, string> _errorMessages = new()
+    private static readonly Dictionary<LinkErrors, string> _errorMessages = new()
     {
         { EPERM, "On GNU/Linux and GNU/Hurd systems and some others, you cannot make links to directories.Many systems allow only privileged users to do so." },
         { ENOENT, "The file named by oldname doesn’t exist. You can’t make a link to a file that doesn’t exist." },

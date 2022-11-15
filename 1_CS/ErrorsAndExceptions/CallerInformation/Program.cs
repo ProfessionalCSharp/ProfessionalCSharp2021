@@ -1,4 +1,6 @@
-﻿class Program
+﻿using System.Runtime.CompilerServices;
+
+class Program
 {
     static void Main()
     {

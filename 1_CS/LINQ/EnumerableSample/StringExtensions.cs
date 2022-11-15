@@ -2,9 +2,15 @@
 
 public static class StringExtensions
 {
-    public static string FirstName(this string name) =>
-        name.Substring(0, name.LastIndexOf(' '));
+    public static string FirstName(this string name)
+    {
+        int ix = name.LastIndexOf(' ');
+        return name[..ix];
+    }
 
-    public static string LastName(this string name) =>
-        name.Substring(name.LastIndexOf(' ') + 1);
+    public static string LastName(this string name)
+    {
+        int ix = name.LastIndexOf(' ') + 1;
+        return name[ix..];
+    }
 }

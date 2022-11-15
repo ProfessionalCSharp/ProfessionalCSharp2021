@@ -35,7 +35,7 @@ public class HomeController : Controller
 
     public IActionResult SqlSample(string id)
     {
-        string connectionString = _settings.GetConnectionString("InjectionConnection");
+        string connectionString = _settings.GetConnectionString("InjectionConnection") ?? throw new InvalidOperationException("can't find InjectionConnection");
         SqlConnection sqlConnection = new(connectionString);
         SqlCommand command = sqlConnection.CreateCommand();
 
