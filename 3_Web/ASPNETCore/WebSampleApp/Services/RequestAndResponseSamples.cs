@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using Microsoft.Extensions.Primitives;
+
+using System.Text;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 
@@ -56,8 +58,17 @@ public class RequestAndResponseSamples
         return $"{x} + {y} = {x + y}".Div();
     }
 
-    public string? Content(HttpRequest request) =>
-        request.Query["data"];
+    public string Content(HttpRequest request)
+    {
+        if (request.Query.TryGetValue("data", out var value))
+        {
+            return value;
+        }
+        else
+        {
+            return "no `data` value";
+        }       
+    }
 
     public string Form(HttpRequest request) =>
         request.Method switch

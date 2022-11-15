@@ -18,6 +18,10 @@ Chapter 19, Networking, page 545
 
 The *HttpServer* code sample is changed to use C# 11 **raw string literals**.
 
+Chapter 24, ASP.NET Core
+
+The sample *WebSampleApp* makes use of **raw string literals** in *Program.cs*.
+
 ## Platform Invoke
 
 Chapter 13, Managed and unmanaged Memory, Page 368

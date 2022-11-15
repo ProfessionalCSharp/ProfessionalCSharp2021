@@ -11,6 +11,8 @@ Building this sample starts with an empty ASP.NET Core Web project, and adds man
 
 For deploying a docker image to Microsoft Azure, you need an Azure subscription and Docker Desktop. See chapter 1 for more information.
 
+[.NET 7 Updates](../../Dotnet7Updates.md) with the *WebSampleApp* using **raw string literals**.
+
 [See the commands to create an Azure App Service, Azure Container Registry, and push a docker image to the registry](createappservice.sh)
 
 For code comments and issues please check [Professional C#'s GitHub Repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021)
