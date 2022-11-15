@@ -35,7 +35,7 @@ class EchoServer
 
             listener.Bind(new IPEndPoint(IPAddress.Any, _port));
             listener.Listen(backlog: 15);
-            _logger.LogTrace("EchoListener started on port {0}", _port);
+            _logger.LogTrace("EchoListener started on port {port}", _port);
             while (true)
             {
                 if (cancellationToken.IsCancellationRequested)
@@ -43,25 +43,25 @@ class EchoServer
                     cancellationToken.ThrowIfCancellationRequested();
                     break;
                 }
-                var socket = await listener.AcceptAsync();
+                var socket = await listener.AcceptAsync(cancellationToken);
                 if (!socket.Connected)
                 {
                     _logger.LogWarning("Client not connected after accept");
                     break;
                 }
 
-                _logger.LogInformation("client connected, local {0}, remote {1}", socket.LocalEndPoint, socket.RemoteEndPoint);
+                _logger.LogInformation("client connected, local {localendpoint}, remote {remoteendpoint}", socket.LocalEndPoint, socket.RemoteEndPoint);
 
-                Task _ = ProcessClientJobAsync(socket);
+                Task _ = ProcessClientJobAsync(socket, cancellationToken);
             }
         }
         catch (SocketException ex)
         {
-            _logger.LogError(ex, ex.Message);
+            _logger.LogError(ex, "Error {error}", ex.Message);
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, ex.Message);
+            _logger.LogError(ex, "Error {error}", ex.Message);
             throw;
         }
     }
@@ -89,7 +89,7 @@ class EchoServer
                 if (buffer.IsSingleSegment)
                 {
                     string data = Encoding.UTF8.GetString(buffer.FirstSpan);
-                    _logger.LogTrace("received data {0} from the client {1}", data, socket.RemoteEndPoint);
+                    _logger.LogTrace("received data {data} from the client {endpoint}", data, socket.RemoteEndPoint);
 
                     // send the data back
                     await writer.WriteAsync(buffer.First, cancellationToken);
@@ -101,7 +101,7 @@ class EchoServer
                     {
                         segmentNumber++;
                         string data = Encoding.UTF8.GetString(item.Span);
-                        _logger.LogTrace("received data {0} from the client {1} in the {2}. segment", data, socket.RemoteEndPoint, segmentNumber);
+                        _logger.LogTrace("received data {data} from the client {endpoint} in the {segment}. segment", data, socket.RemoteEndPoint, segmentNumber);
 
                         // send the data back
                         await writer.WriteAsync(item, cancellationToken);
@@ -114,17 +114,17 @@ class EchoServer
         }
         catch (SocketException ex)
         {
-            _logger.LogError(ex, ex.Message);
+            _logger.LogError(ex, "{error}", ex.Message);
         }
         catch (IOException ex) when ((ex.InnerException is SocketException socketException) && (socketException.ErrorCode is 10054))
         {
-            _logger.LogInformation("client {0} closed the connection", socket.RemoteEndPoint);
+            _logger.LogInformation("client {endpoint} closed the connection", socket.RemoteEndPoint);
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "ex.Message with client {0}", socket.RemoteEndPoint);
+            _logger.LogError(ex, "ex.Message with client {endpoint}", socket.RemoteEndPoint);
             throw;
         }
-        _logger.LogTrace("Closed stream and client socket {0}", socket.RemoteEndPoint);
+        _logger.LogTrace("Closed stream and client socket {endpoint}", socket.RemoteEndPoint);
     }
 }

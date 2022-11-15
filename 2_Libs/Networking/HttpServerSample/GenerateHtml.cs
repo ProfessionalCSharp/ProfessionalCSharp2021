@@ -7,19 +7,25 @@ public class GenerateHtml
     private readonly ILogger _logger;
     public GenerateHtml(ILogger<GenerateHtml> logger) => _logger = logger;
 
-    private static string s_htmlFormat =
-        "<!DOCTYPE html>\r\n<html><head><title>{0}</title></head>" +
-        "<body>{1}</body></html>";
+    private static readonly string s_htmlFormat = """
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>{0}</title></head>
+            <body>{1}</body></html>
+        """;
 
     public string GetHtmlContent(HttpRequest request)
     {
         string title = "Sample Listener using Kestrel";
 
-        string content = $"<h1>Hello from the server</h1>" +
-            $"<h2>Header Info</h2>" +
-            $"{string.Join(' ', GetHeaderInfo(request.Headers))}" +
-            $"<h2>Request Object Information</h2>" +
-            $"{string.Join(' ', GetRequestInfo(request))}";
+        string content = $$"""
+            <h1>Hello from the server</h1>
+            <h2>Header Info</h2>
+            {{string.Join(' ', GetHeaderInfo(request.Headers))}}
+            <h2>Request Object Information</h2>
+            {{string.Join(' ', GetRequestInfo(request))}}
+            """;
 
         return string.Format(s_htmlFormat, title, content);
     }
@@ -50,7 +56,7 @@ public class GenerateHtml
 
     private IEnumerable<string> GetHeaderInfo(IHeaderDictionary headers)
     {
-        List<(string Key, string Value)> values = new();
+        List<(string Key, string? Value)> values = new();
         var keys = headers.Keys;
         foreach (var key in keys)
         {
