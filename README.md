@@ -1,4 +1,3 @@
-
 # Professional C# and .NET - 2021 Edition
 
 Code samples for the Wrox Press book **Professional C# and .NET - 2021 Edition**
@@ -7,7 +6,7 @@ To compile and run the samples, you need Visual Studio 2019, Visual Studio for M
 
 You can download these tools here: [Visual Studio](https://www.visualstudio.com/).
 
-The console app samples can be used on Windows, Linux, or Mac. Here is the installation procedure for .NET: [.NET](https://dotnet.microsoft.comt)
+The console app samples can be used on Windows, Linux, or Mac. Here is the installation procedure for .NET: [.NET](https://dotnet.microsoft.com)
 
 If you're using Visual Studio, Version 16.9 or a later version of Visual Studio 2019 is needed. With the Visual Studio Installer you need to select this workload to compile most of the code samples: **.NET Core cross-platform development**. For working with .NET 6, you should use Visual Studio 2022.
 
@@ -15,13 +14,17 @@ ASP.NET Core samples need this workload: **ASP.NET and web development**.
 
 See the [WinUI.md](WinUI.md) for the requirements of building and running the WinUI samples.
 
-## Updates and .NET 6
+## Updates, .NET 6 and .NET 7 
 
-See [updates](Updates.md) for issues in the book and updates. See [.NET 6 Updates](Dotnet6Updates.md) for changes with .NET 6 and C# 10.
+* See [updates](Updates.md) for issues in the book and updates. 
+* See [.NET 6 Updates](Dotnet6Updates.md) for changes with .NET 6 and C# 10.
+* See [.NET 7 Updates](Dotnet7Updates.md) for changes with .NET 7 and C# 11.
 
-The *main* branch is the actual working branch with code samples updated to .NET 6 and C# 10. Every code sample should compile and run successfully (with the deadlock and race-conditions samples, *successfully* means that a deadlock and a race-condition occurs).
+The *main* branch is the actual working branch with code samples updated to .NET 7 and C# 11. Every code sample should compile and run successfully (with the deadlock and race-conditions samples, *successfully* means that a deadlock and a race-condition occurs).
 
 The *dotnet5* branch is used to show the samples how they appear in the printed book.
+
+The *dotnet6* branch is used to give you the .NET 6 (LTS) version.
 
 ## Issues and Discussions
 
