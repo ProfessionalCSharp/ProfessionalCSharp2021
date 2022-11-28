@@ -13,6 +13,12 @@ This chapter contains the following code samples:
 * AzureAppConfigWebApp (configuration with Azure App Configuration)
 
 [Bash script for Azure App Configuration](prepareappconfig.sh)
+
+## .NET 7 Updates
+
+.NET 7 includes the `HostApplicationBuilder` which simplifies creating the DI container.
+
+## More information
  
 For code comments and issues please check [Professional C#'s GitHub Repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021)
 

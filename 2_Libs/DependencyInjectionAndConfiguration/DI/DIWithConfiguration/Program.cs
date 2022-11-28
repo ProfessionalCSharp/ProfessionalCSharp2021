@@ -3,14 +3,12 @@ global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Hosting;
 global using Microsoft.Extensions.Options;
 
-using var host = Host.CreateDefaultBuilder()
-    .ConfigureServices((context, services) =>
-    {
-        var configuration = context.Configuration;
-        services.AddGreetingService(configuration.GetSection("GreetingService"));
-        services.AddSingleton<IGreetingService, GreetingService>();
-        services.AddTransient<HomeController>();
-    }).Build();
+var builder = new HostApplicationBuilder(args);
+builder.Services.AddGreetingService(builder.Configuration.GetSection("GreetingService"));
+builder.Services.AddSingleton<IGreetingService, GreetingService>();
+builder.Services.AddTransient<HomeController>();
+
+using var host = builder.Build();
 
 var controller = host.Services.GetRequiredService<HomeController>();
 string result = controller.Hello("Katharina");
