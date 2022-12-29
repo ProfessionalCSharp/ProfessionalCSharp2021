@@ -40,7 +40,7 @@ With .NET 7, the `LibraryImport` attribute is used instead of `DllImport`. This 
 
 See the new .NET 7 sample [PInvokeSampleLib](../../5_More/PInvoke/). This sample needs these changes:
 
-*  AllowUnsafeBlocks in the project file
+* AllowUnsafeBlocks in the project file
 * The attribute `LibraryImport` instead of `DllImport`
 * The attribute `UnmanagedCalConv` instead of the `CallingConvention` property
 * A partial class with partial methods (instead of extern methods)
