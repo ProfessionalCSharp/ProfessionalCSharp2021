@@ -20,7 +20,7 @@ class Runner
         {
             Console.Write("Please enter a URI or enter to exit: ");
             string? url = Console.ReadLine();
-            using var _ = _logger.BeginScope("RunAsync, url: {0}", url);
+            using var _ = _logger.BeginScope("RunAsync, url: {url}", url);
             if (string.IsNullOrEmpty(url))
             {
                 exit = true;
@@ -34,7 +34,7 @@ class Runner
                 }
                 catch (UriFormatException ex)
                 {
-                    _logger.LogError(ex, ex.Message);
+                    _logger.LogError(ex, "Error {message}", ex.Message);
                 }
             }
         } while (!exit);
