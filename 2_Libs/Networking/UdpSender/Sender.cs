@@ -56,8 +56,8 @@ public class Sender
 
                 if (address == null)
                 {
-                    Func<string> ipversion = () => _useIpv6 ? "IPv6" : "IPv4";
-                    _logger.LogWarning($"no {ipversion()} address for {_hostName}");
+                    string ipversion() => _useIpv6 ? "IPv6" : "IPv4";
+                    _logger.LogWarning("no {ipversion} address for {hostname}", ipversion(), _hostName);
                     return null;
                 }
                 endpoint = new IPEndPoint(address, _port);
@@ -73,7 +73,7 @@ public class Sender
         }
         catch (SocketException ex)
         {
-            _logger.LogError(ex, ex.Message);
+            _logger.LogError(ex, "Error {message}", ex.Message);
         }
         return endpoint;
     }
@@ -103,7 +103,7 @@ public class Sender
 
                 byte[] datagram = Encoding.UTF8.GetBytes(input);
                 int sent = await client.SendAsync(datagram, datagram.Length, endpoint);
-                _logger.LogInformation("Sent datagram using local EP {0} to {1}", client.Client.LocalEndPoint, endpoint);
+                _logger.LogInformation("Sent datagram using local EP {localendpoint} to {remoteendpoint}", client.Client.LocalEndPoint, endpoint);
             } while (!completed);
 
             if (_groupAddress != null)
@@ -113,7 +113,7 @@ public class Sender
         }
         catch (SocketException ex)
         {
-            _logger.LogError(ex, ex.Message);
+            _logger.LogError(ex, "Error {message}", ex.Message);
         }
     }
 }

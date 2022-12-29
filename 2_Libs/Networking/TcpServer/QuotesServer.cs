@@ -32,14 +32,14 @@ class QuotesServer
     public async Task RunServerAsync(CancellationToken cancellationToken = default)
     {
         TcpListener listener = new(IPAddress.Any, _port);
-        _logger.LogInformation("Quotes listener started on port {0}", _port);
+        _logger.LogInformation("Quotes listener started on port {port}", _port);
         listener.Start();
 
         while (true)
         {
             cancellationToken.ThrowIfCancellationRequested();
             using TcpClient client = await listener.AcceptTcpClientAsync();
-            _logger.LogInformation("Client connected with address and port: {0}", client.Client.RemoteEndPoint);
+            _logger.LogInformation("Client connected with address and port: {port}", client.Client.RemoteEndPoint);
             var _ = SendQuoteAsync(client, cancellationToken);
         }
     }
