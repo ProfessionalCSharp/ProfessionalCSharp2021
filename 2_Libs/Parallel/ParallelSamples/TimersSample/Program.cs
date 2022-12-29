@@ -1,4 +1,4 @@
-﻿void TimeAction(object? o) =>
+﻿static void TimeAction(object? o) =>
     Console.WriteLine($"System.Threading.Timer {DateTime.Now:T}");
 
 using Timer t1 = new(
