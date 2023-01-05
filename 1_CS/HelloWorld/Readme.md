@@ -15,20 +15,25 @@ Please check my blog [csharp.christiannagel.com](https://csharp.christiannagel.c
 
 Thank you!
 
-## Updates with C# 10
+## Updates with C# 10 and C# 11
 
-See [Updates with C# 10](../..Dotnet6Updates.md)
+* See [Updates with C# 10 and .NET 6](../..Dotnet6Updates.md)
+* See [Updates with C# 11 and .NET 7]../../Dotnet7Updates.md)
 
 To see all templates available with `dotnet new`:
 
-> dotnet new --list
+> dotnet new list
+
+With .NET 7, *--list* is deprecated (but still works), and *list* should be used instead.
 
 ### Self Contained Hello World
 
-Page 22 - The option --self-contained is now required with .NET 6:
+[.NET Runtime Identifier Catalog](https://docs.microsoft.com/dotnet/core/rid-catalog?WT.mc_id=DT-MVP-10160)
+
+Page 22 - The option --self-contained is now required with (since .NET 6):
 
 ```
 dotnet publish --self-contained -c Release -r win10-x64
-dotnet publish --self-contained -c Release -r osx.10.11-x64
-dotnet publish --self-contained -c Release -r ubuntu-x64
+dotnet publish --self-contained -c Release -r osx.10.13-x64
+dotnet publish --self-contained -c Release -r linux-x64
 ```

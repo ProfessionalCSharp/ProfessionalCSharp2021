@@ -1,4 +1,6 @@
-﻿public class InnerConfig
+﻿namespace ConfigurationSample;
+
+public class InnerConfig
 {
     public string? Key5 { get; set; }
 }

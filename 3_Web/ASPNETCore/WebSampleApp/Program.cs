@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
-using System.Text;
-
 using WebSampleApp;
 using WebSampleApp.Extensions;
 using WebSampleApp.Middleware;
@@ -79,7 +77,7 @@ app.UseEndpoints(endpoints =>
     endpoints.Map("sethealthy", async context =>
     {
         var changeHealthService = context.RequestServices.GetRequiredService<HealthSample>();
-        string healthyValue = context.Request.Query["healthy"];
+        string? healthyValue = context.Request.Query["healthy"];
         if (bool.TryParse(healthyValue, out bool healthy))
         {
             changeHealthService.SetHealthy(healthy);
@@ -96,7 +94,7 @@ app.UseEndpoints(endpoints =>
         var service = context.RequestServices.GetRequiredService<RequestAndResponseSamples>();
         string? action = context.GetRouteValue("action")?.ToString();
         string method = context.Request.Method;
-        string result = (action, method) switch
+        string? result = (action, method) switch
         {
             (null, "GET") => service.GetRequestInformation(context.Request),
             ("header", "GET") => service.GetHeaderInformation(context.Request),
@@ -108,6 +106,8 @@ app.UseEndpoints(endpoints =>
             ("json", "GET") => service.GetJson(context.Response),
             _ => string.Empty
         };
+        // TODO: check with a newer compiler version if the previous variable can be declared non-nullable
+        if (result is null) throw new InvalidOperationException("result should not be null with the previous operation");
 
         if (action is "json")
         {
@@ -135,46 +135,39 @@ app.UseEndpoints(endpoints =>
 
     endpoints.MapGet("/", async context =>
     {
-        string[] lines = new[]
-        {
-                        @"<ul>",
-                          @"<li><a href=""/hello.html"">Static Files</a> - requires UseStaticFiles</li>",
-                          @"<li><a href=""/add/37/5"">Route Constraints</a></li>",
-                          @"<li>Request and Response",
-                            @"<ul>",
-                              @"<li><a href=""/randr"">Request and Response</a></li>",
-                              @"<li><a href=""/randr/header"">Request headers</a></li>",
-                              @"<li><a href=""/randr/add?x=38&y=4"">Add</a></li>",
-                              @"<li><a href=""/randr/content?data=sample"">Content</a></li>",
-                              @"<li><a href=""/randr/content?data=<h1>Heading 1</h1>"">HTML Content</a></li>",
-                              @"<li><a href=""/randr/content?data=<script>alert('hacker');</script>"">Bad Content</a></li>",
-                              @"<li><a href=""/randr/encoded?data=<h1>sample</h1>"">Encoded content</a></li>",
-                              @"<li><a href=""/randr/encoded?data=<script>alert('hacker');</script>"">Encoded bad Content</a></li>",
-                              @"<li><a href=""/randr/form"">Form</a></li>",
-                              @"<li><a href=""/randr/writecookie"">Write cookie</a></li>",
-                              @"<li><a href=""/randr/readcookie"">Read cookie</a></li>",
-                              @"<li><a href=""/randr/json"">JSON</a></li>",
-                            @"</ul>",
-                          @"</li>",
-                          @"<li><a href=""/session"">Session</a></li>",
-                          @"<li>Health check",
-                            @"<ul>",
-                              @"<li><a href=""/health/live"">live</a></li>",
-                              @"<li><a href=""/health/ready"">ready</a></li>",
-                              @"<li><a href=""/health/allchecks"">all checks</a></li>",
-                              @"<li><a href=""/sethealthy?healthy=true"">set healthy</a></li>",
-                              @"<li><a href=""/sethealthy?healthy=false"">set unhealthy</a></li>",
-                            @"</ul>",
-                          @"</li>",
-                        @"</ul>"
-                };
-
-        StringBuilder sb = new();
-        foreach (var line in lines)
-        {
-            sb.Append(line);
-        }
-        string html = sb.ToString().HtmlDocument("Web Sample App");
+        string content = """
+            <ul>
+              <li><a href="/hello.html">Static Files</a> - requires UseStaticFiles</li>
+              <li><a href="/add/37/5">Route Constraints</a></li>
+              <li>Request and Response
+                <ul>
+                  <li><a href="/randr">Request and Response</a></li>
+                  <li><a href="/randr/header">Request headers</a></li>
+                  <li><a href="/randr/add?x=38&y=4">Add</a></li>
+                  <li><a href="/randr/content?data=sample">Content</a></li>
+                  <li><a href="/randr/content?data=<h1>Heading 1</h1>">HTML Content</a></li>
+                  <li><a href="/randr/content?data=<script>alert('hacker');</script>">Bad Content</a></li>
+                  <li><a href="/randr/encoded?data=<h1>sample</h1>">Encoded content</a></li>
+                  <li><a href="/randr/encoded?data=<script>alert('hacker');</script>">Encoded bad Content</a></li>
+                  <li><a href="/randr/form">Form</a></li>
+                  <li><a href="/randr/writecookie">Write cookie</a></li>
+                  <li><a href="/randr/readcookie">Read cookie</a></li>
+                  <li><a href="/randr/json">JSON</a></li>
+                </ul>
+              </li>
+              <li><a href="/session">Session</a></li>
+              <li>Health check
+                <ul>
+                  <li><a href="/health/live">live</a></li>
+                  <li><a href="/health/ready">ready</a></li>
+                  <li><a href="/health/allchecks">all checks</a></li>
+                  <li><a href="/sethealthy?healthy=true">set healthy</a></li>
+                  <li><a href="/sethealthy?healthy=false">set unhealthy</a></li>
+                </ul>
+              </li>
+            </ul>
+        """;
+        string html = content.HtmlDocument("Web Sample App");
 
         await context.Response.WriteAsync(html);
     });

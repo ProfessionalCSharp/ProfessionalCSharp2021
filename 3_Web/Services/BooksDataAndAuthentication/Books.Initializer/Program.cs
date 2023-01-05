@@ -9,7 +9,7 @@ using Microsoft.Extensions.Hosting;
 using var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((context, services) =>
     {
-        string booksConnection = context.Configuration.GetConnectionString("BooksConnection");
+        string booksConnection = context.Configuration.GetConnectionString("BooksConnection") ?? throw new InvalidOperationException("BooksConnection not configured");
         services.AddDbContext<BooksContext>(options =>
         {
             options.UseSqlServer(booksConnection);

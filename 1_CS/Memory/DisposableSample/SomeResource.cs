@@ -1,6 +1,6 @@
-﻿public class SomeResource : IDisposable
+﻿public sealed class SomeResource : IDisposable
 {
-    private SomeInnerResource _innerResource;
+    private readonly SomeInnerResource _innerResource;
 
     public SomeResource() =>
         _innerResource = new SomeInnerResource();
@@ -14,8 +14,9 @@
 
     #region IDisposable Support
     private bool disposedValue = false; // To detect redundant calls
-
-    protected virtual void Dispose(bool disposing)
+    
+    // declare this member protected and virtual if the containing type is not sealed
+    private void Dispose(bool disposing)
     {
         if (!disposedValue)
         {

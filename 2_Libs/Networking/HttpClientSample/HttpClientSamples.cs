@@ -55,7 +55,7 @@ public class HttpClientSamples
         }
         catch (HttpRequestException ex)
         {
-            _logger.LogError(ex, ex.Message);
+            _logger.LogError(ex, "Error {message}", ex.Message);
         }
     }
 
@@ -92,7 +92,7 @@ public class HttpClientSamples
         }
         catch (HttpRequestException ex)
         {
-            _logger.LogError(ex, ex.Message);
+            _logger.LogError(ex, "Error {message}", ex.Message);
         }
     }
 
@@ -112,7 +112,7 @@ public class HttpClientSamples
             Task<HttpResponseMessage> t2 = _httpClient.SendAsync(request2); ;
             await Task.WhenAll(t1, t2);
             stopwatch.Stop();
-            _logger.LogTrace($"UseHttp2 finished after {stopwatch.ElapsedMilliseconds} with status {t1.Result.StatusCode} {t2.Result.StatusCode}");
+            _logger.LogTrace("UseHttp2 finished after {milliseconds} with status {code1} and {code2}", stopwatch.ElapsedMilliseconds, t1.Result.StatusCode, t2.Result.StatusCode);
         }
         catch (HttpRequestException ex)
         {

@@ -67,7 +67,7 @@ class Runner
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, ex.Message);
+            _logger.LogError(ex, "Error: {error}", ex.Message);
             throw;
         }
     }

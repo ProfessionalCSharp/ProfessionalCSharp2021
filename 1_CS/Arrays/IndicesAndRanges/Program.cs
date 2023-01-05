@@ -1,4 +1,6 @@
-﻿int[] data = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+﻿using IndicesAndRanges;
+
+int[] data = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
 // indices and the hat operator
 

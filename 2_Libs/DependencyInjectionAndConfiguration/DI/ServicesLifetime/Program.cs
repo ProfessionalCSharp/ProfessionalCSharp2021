@@ -30,7 +30,7 @@ class Program
 
     private static void CustomFactories()
     {
-        IServiceB CreateServiceBFactory(IServiceProvider provider) =>
+        static IServiceB CreateServiceBFactory(IServiceProvider provider) =>
             new ServiceB(provider.GetRequiredService<INumberService>(), 
                 provider.GetRequiredService<IOptions<ConfigurationB>>());
 

@@ -23,6 +23,9 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
+            "allowedCommonJsDependencies": [
+              "oidc-client"
+            ],
             "assets": [
               "src/assets"
             ],

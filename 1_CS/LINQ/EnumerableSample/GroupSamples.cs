@@ -98,7 +98,7 @@ class GroupSamples
           .Select(g =>
           (
               Country: g.Group.Key,
-              Count: g.Count
+              g.Count
           ));
 
         foreach (var item in countries)

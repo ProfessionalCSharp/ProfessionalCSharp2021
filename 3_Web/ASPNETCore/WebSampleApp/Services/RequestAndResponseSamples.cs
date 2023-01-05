@@ -28,15 +28,16 @@ public class RequestAndResponseSamples
         sb.Append("Request headers".HeadingX(2));
         foreach (var header in request.Headers)
         {
-            sb.Append(header.Key.Div(string.Join("; ", header.Value)));
+            string? value = header.Value;
+            sb.Append(header.Key.Div(string.Join("; ", value)));
         }
         return sb.ToString();
     }
 
     public string QueryParameters(HttpRequest request)
     {
-        string xtext = request.Query["x"];
-        string ytext = request.Query["y"];
+        string? xtext = request.Query["x"];
+        string? ytext = request.Query["y"];
 
         if (xtext is null || ytext is null)
         {
@@ -55,7 +56,7 @@ public class RequestAndResponseSamples
         return $"{x} + {y} = {x + y}".Div();
     }
 
-    public string Content(HttpRequest request) =>
+    public string? Content(HttpRequest request) =>
         request.Query["data"];
 
     public string Form(HttpRequest request) =>
@@ -67,10 +68,12 @@ public class RequestAndResponseSamples
         };
 
     private static string GetForm() =>
-      "<form method=\"post\" action=\"/randr/form\">" +
-      "<input type=\"text\" name=\"text1\" />" +
-      "<input type=\"submit\" value=\"Submit\" />" +
-      "</form>";
+        """
+        <form method="post" action="/randr/form">
+          <input type="text" name="text1" />
+          <input type="submit" value="Submit" />
+        </form>    
+        """;
 
     private static string ShowForm(HttpRequest request)
     {
@@ -80,7 +83,9 @@ public class RequestAndResponseSamples
             IFormCollection coll = request.Form;
             foreach (var key in coll.Keys)
             {
-                sb.Append(key.Div(HtmlEncoder.Default.Encode(coll[key])));
+                string? value = coll[key];
+                if (value == null) continue;
+                sb.Append(key.Div(HtmlEncoder.Default.Encode(value)));
             }
             return sb.ToString();
         }

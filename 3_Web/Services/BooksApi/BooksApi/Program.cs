@@ -9,7 +9,7 @@ builder.Services.AddEndpointsApiExplorer();
 // builder.Services.AddSwaggerGen();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v4", new OpenApiInfo { Title = "BooksApi", Version = "v3" });
+    c.SwaggerDoc("v4", new OpenApiInfo { Title = "BooksApi", Version = "v4" });
 });
 
 builder.Services.AddSingleton<IBookChapterService, BookChapterService>();

@@ -12,7 +12,7 @@ class NetworkService
     {
         _httpClient = httpClient;
         _logger = logger;
-        _logger.LogTrace("ILogger injected into {0}", nameof(NetworkService));
+        _logger.LogTrace("ILogger injected into {class}", nameof(NetworkService));
     }
 
     public async Task NetworkRequestSampleAsync(Uri requestUri)
@@ -20,16 +20,16 @@ class NetworkService
         var stopWatch = MetricsSampleSource.Log.RequestStart();
         try
         {
-            _logger.LogInformation(LoggingEvents.Networking, "NetworkRequestSampleAsync started with uri {0}", requestUri.AbsoluteUri);
+            _logger.LogInformation(LoggingEvents.Networking, "NetworkRequestSampleAsync started with uri {uri}", requestUri.AbsoluteUri);
 
             string result = await _httpClient.GetStringAsync(requestUri);
             MetricsSampleSource.Log.RequestStop(stopWatch);
             Console.WriteLine($"{result[..50]}");
-            _logger.LogInformation(LoggingEvents.Networking, "NetworkRequestSampleAsync completed, received {0} characters", result.Length);
+            _logger.LogInformation(LoggingEvents.Networking, "NetworkRequestSampleAsync completed, received {number} characters", result.Length);
         }
         catch (HttpRequestException ex)
         {
-            _logger.LogError(LoggingEvents.Networking, ex, "Error in NetworkRequestSampleAsync, error message: {0}, HResult: {1}", ex.Message, ex.HResult);
+            _logger.LogError(LoggingEvents.Networking, ex, "Error in NetworkRequestSampleAsync, error message: {message}, HResult: {hresult}", ex.Message, ex.HResult);
             MetricsSampleSource.Log.Error();
         }
         finally

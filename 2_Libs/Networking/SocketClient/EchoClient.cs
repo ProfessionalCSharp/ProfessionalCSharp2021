@@ -59,11 +59,11 @@ class EchoClient
         }
         catch (SocketException ex)
         {
-            _logger.LogError(ex, ex.Message);
+            _logger.LogError(ex, "Error {message}", ex.Message);
         }
         catch (OperationCanceledException ex)
         {
-            _logger.LogInformation(ex.Message);
+            _logger.LogInformation("Error {message}", ex.Message);
         }
     }
 }

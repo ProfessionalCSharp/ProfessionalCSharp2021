@@ -6,7 +6,7 @@ using Microsoft.Extensions.Hosting;
 using var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((context, services) =>
     {
-        var connectionString = context.Configuration.GetConnectionString("MenusConnection");
+        var connectionString = context.Configuration.GetConnectionString("MenusConnection") ?? throw new InvalidOperationException("MenusConnection not configured");
         var restaurantSettings = context.Configuration.GetSection("RestaurantConfiguration");
 
         services.Configure<RestaurantConfiguration>(restaurantSettings);

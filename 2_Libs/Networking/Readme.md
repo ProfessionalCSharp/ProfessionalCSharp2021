@@ -21,6 +21,12 @@ This chapter contains the following code samples:
     * HttpServerSample (HTTP server using Kestrel)
     * HttpClientSample (HTTP client using `HttpClient`)
     * WinAppHttpClient (HTTP client with UWP app where `HttpClient` supports HTTP 2.0) 
+
+## .NET 7 Update
+
+The HttpServerSample is changed to use **raw string literals**.
+
+See [.NET 7 updates](../../Dotnet7Updates.md).
  
 For code comments and issues please check [Professional C#'s GitHub Repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021)
 

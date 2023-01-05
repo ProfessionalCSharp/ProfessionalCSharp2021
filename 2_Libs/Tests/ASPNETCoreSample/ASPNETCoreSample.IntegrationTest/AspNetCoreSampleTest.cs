@@ -18,7 +18,7 @@ public class ASPNETCoreSampleTest
     public async Task ReturnHelloWorld()
     {
         // arrange
-        var app = new WebApplication();
+        WebApplication app = new();
         var client = app.CreateClient();
 
         // act

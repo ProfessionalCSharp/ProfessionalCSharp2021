@@ -30,7 +30,7 @@ class Runner
                 }
                 catch (UriFormatException ex)
                 {
-                    _logger.LogError(ex, ex.Message);
+                    _logger.LogError(ex, "Error {message}", ex.Message);
                 }
             }
             else

@@ -14,10 +14,9 @@ This chapter contains the following code samples:
     * DynamicSamples (a custom class using *DynamicObject*)
     * ClientApp (console app loading CalculatorLib dynamically)
     * DynamicFileReader (parsing a file and making use of *dynamic*)
-* Source Generator
+* Source Generator (uses a NuGet package)
     * CodeGenerationSample
     * SampleApp
-* SourceGeneratorAsNuGet (configure the source generator package to be used as a NuGet package and not as analyzer)
 
 ## Additional information on source generators (use as NuGet package):
 
@@ -30,13 +29,58 @@ To automatically create a NuGet package on build (see folder `SourceGeneratorAsN
 </PropertyGroup>
 ```
 
-Adding the library to the `analyzers/dotnet/cs` folder, the source generator is automatically used as analyzer :
+To use the source generator a a NuGet package, copy the generated NuGet package to a folder such as c:\mypackages, and reference this package from the Visual Studio package manager.
 
-```xml
-<ItemGroup>
-  <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
-</ItemGroup>
+## .NET 7 Update
+
+The source generator sample makes use of **raw string literals**. This makes the code more readable, and the code is easier to maintain. 
+
+This is a code snippet from C# 10:
+
+```csharp
+            StringBuilder source = new($@"
+using System;
+namespace {namespaceName}
+{{
+    public partial class {typeSymbol.Name} : IEquatable<{typeSymbol.Name}>
+    {{
+        private static partial bool IsTheSame({typeSymbol.Name}? left, {typeSymbol.Name}? right);
+        public override bool Equals(object? obj) => this == obj as {typeSymbol.Name};
+        public bool Equals({typeSymbol.Name}? other) => this == other;
+        public static bool operator==({typeSymbol.Name}? left, {typeSymbol.Name}? right) => 
+            IsTheSame(left, right);
+        public static bool operator!=({typeSymbol.Name}? left, {typeSymbol.Name}? right) =>
+            !(left == right);
+    }}
+}}
+");
 ```
+
+And this is the version for C# 11:
+
+```csharp
+string source = $$"""
+    using System;
+
+    namespace {{namespaceName}};
+
+    public partial class {{typeSymbol.Name}} : IEquatable<{{typeSymbol.Name}}>
+    {
+        private static partial bool IsTheSame({{typeSymbol.Name}}? left, {{typeSymbol.Name}}? right);
+
+        public override bool Equals(object? obj) => this == obj as {{typeSymbol.Name}};
+
+        public bool Equals({{typeSymbol.Name}}? other) => this == other;
+
+        public static bool operator==({{typeSymbol.Name}}? left, {{typeSymbol.Name}}? right) => 
+            IsTheSame(left, right);
+
+        public static bool operator!=({{typeSymbol.Name}}? left, {{typeSymbol.Name}}? right) =>
+            !(left == right);
+    }
+    """;
+```
+
 
 ## More Information
  
@@ -46,6 +90,9 @@ Please check my blog [csharp.christiannagel.com](https://csharp.christiannagel.c
 
 Thank you!
 
-## Updates with C# 10
+## Updates with C# 10 and C# 11
 
-See [Updates with C# 10](../../Dotnet6Updates.md)
+* See [Updates with C# 10 and .NET 6](../../Dotnet6Updates.md)
+* See [Updates with C# 11 and .NET 7](../../Dotnet7Updates.md)
+
+

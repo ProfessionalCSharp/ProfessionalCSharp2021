@@ -1,7 +1,7 @@
 ﻿sealed class BobRunner
 {
     private readonly ILogger _logger;
-    private ECDiffieHellman _algorithm;
+    private readonly ECDiffieHellman _algorithm;
     public BobRunner(ILogger<BobRunner> logger)
     {
         _logger = logger;
@@ -16,8 +16,8 @@
     {
         _logger.LogInformation("Bob receives encrypted data");
         byte[] symmKey = _algorithm.DeriveKeyMaterial(otherPublicKey);
-        _logger.LogInformation($"Bob creates this symmetric key with " +
-            $"Alice public key information: {Convert.ToBase64String(symmKey)}");
+        _logger.LogInformation("Bob creates this symmetric key with " +
+            "Alice public key information: {key}", Convert.ToBase64String(symmKey));
 
         Aes aes = Aes.Create();
         aes.Key = symmKey;
@@ -29,7 +29,7 @@
             await cs.WriteAsync(encryptedData.AsMemory());
         } // close the cryptostream before using the memorystream 
         byte[] rawData = ms.ToArray();
-        _logger.LogInformation($"Bob decrypts message to: {Encoding.UTF8.GetString(rawData)}");
+        _logger.LogInformation("Bob decrypts message to: {data}", Encoding.UTF8.GetString(rawData));
         aes.Clear();
     }
 }

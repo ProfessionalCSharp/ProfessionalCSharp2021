@@ -1,4 +1,10 @@
-﻿string SampleDataFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "samplefile.data");
+﻿using System.Text;
+using System.CommandLine;
+using System.CommandLine.Builder;
+using System.CommandLine.Parsing;
+using System.Globalization;
+
+string SampleDataFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "samplefile.data");
 
 await BuildCommandLine()
     .UseDefaults()

@@ -1,4 +1,7 @@
-﻿dynamic dyn = 100;
+﻿using System.Dynamic;
+using DynamicSample;
+
+dynamic dyn = 100;
 Console.WriteLine(dyn.GetType());
 Console.WriteLine(dyn);
 

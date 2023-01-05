@@ -113,3 +113,5 @@ void SimpleArrays()
         new("Michael", "Schumacher")
     };
 }
+
+public record Person(string FirstName, string LastName);

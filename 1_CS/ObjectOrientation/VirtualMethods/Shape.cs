@@ -16,8 +16,8 @@ public class Size
 
 public class Shape
 {
-    public Position Position { get; } = new Position();
-    public virtual Size Size { get; } = new Size();
+    public Position Position { get; } = new();
+    public virtual Size Size { get; } = new();
 
     public void Draw() => DisplayShape();
 

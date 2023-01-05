@@ -1,4 +1,8 @@
-﻿record Command(string Option, string Text, Action Action);
+﻿using System.Net;
+using System.Threading;
+using System.Runtime.CompilerServices;
+
+record Command(string Option, string Text, Action Action);
 
 class Program
 {

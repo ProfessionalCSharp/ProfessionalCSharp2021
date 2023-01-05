@@ -2,17 +2,14 @@
 global using Microsoft.Extensions.Hosting;
 global using Microsoft.Extensions.Options;
 
-using var host = Host.CreateDefaultBuilder()
-    .ConfigureServices(services =>
-    {
-        // services.AddOptions(); // already added from host
-        services.AddGreetingService(options =>
-        {
-            options.From = "Christian";
-        });
-        services.AddSingleton<IGreetingService, GreetingService>();
-        services.AddTransient<HomeController>();
-    }).Build();
+var builder = new HostApplicationBuilder(args);
+builder.Services.AddGreetingService(options =>
+{
+    options.From = "Christian";
+});
+builder.Services.AddSingleton<IGreetingService, GreetingService>();
+builder.Services.AddTransient<HomeController>();
+using var host = builder.Build();
 
 var controller = host.Services.GetRequiredService<HomeController>();
 string result = controller.Hello("Katharina");

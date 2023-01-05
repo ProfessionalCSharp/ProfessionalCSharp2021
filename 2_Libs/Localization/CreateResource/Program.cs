@@ -2,10 +2,10 @@
 using System.Resources;
 using System.Text;
 
+const string ResourceFile = "Demo.resources";
+
 CreateResource();
 ReadResource();
-
-const string ResourceFile = "Demo.resources";
 
 void ReadResource()
 {
