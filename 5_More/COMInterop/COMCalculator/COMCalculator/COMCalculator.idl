@@ -1,0 +1,38 @@
+// COMCalculator.idl : IDL source for COMCalculator
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (COMCalculator.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(ac36563a-4a78-4e7d-8711-ba80de80c077),
+	dual,
+	nonextensible,
+	pointer_default(unique)
+]
+interface ICalculator : IDispatch
+{
+	[id(1)] HRESULT Add([in] LONG x, [in] LONG y, [out, retval] LONG* presult);
+	[id(2)] HRESULT Subtract([in] LONG x, [in] LONG y, [out, retval] LONG* presult);
+};
+[
+	uuid(f08d76e8-32c4-4895-b49c-a3b11389f7c1),
+	version(1.0),
+]
+library COMCalculatorLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(9a16b020-6ec0-4ad2-8b09-3914c2a40b0a)
+	]
+	coclass Calculator
+	{
+		[default] interface ICalculator;
+	};
+};
+
+import "shobjidl.idl";
