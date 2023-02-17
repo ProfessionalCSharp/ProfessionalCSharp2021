@@ -1,0 +1,26 @@
+HKCR
+{
+	CNILearn.Calculator.1 = s 'Calculator class'
+	{
+		CLSID = s '{9a16b020-6ec0-4ad2-8b09-3914c2a40b0a}'
+	}
+	CNILearn.Calculator = s 'Calculator class'
+	{		
+		CurVer = s 'CNILearn.Calculator.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {9a16b020-6ec0-4ad2-8b09-3914c2a40b0a} = s 'Calculator class'
+		{
+			ProgID = s 'CNILearn.Calculator.1'
+			VersionIndependentProgID = s 'CNILearn.Calculator'
+			ForceRemove Programmable
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+			TypeLib = s '{f08d76e8-32c4-4895-b49c-a3b11389f7c1}'
+			Version = s '1.0'
+		}
+	}
+}
