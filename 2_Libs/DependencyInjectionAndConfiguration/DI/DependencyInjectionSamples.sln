@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30420.98
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33402.96
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WithDIContainer", "WithDIContainer\WithDIContainer.csproj", "{F293B0B8-DA43-4F2C-AF02-BA8DEAADEA02}"
 EndProject

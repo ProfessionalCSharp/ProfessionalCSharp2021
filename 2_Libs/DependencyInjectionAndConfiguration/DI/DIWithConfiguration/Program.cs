@@ -1,4 +1,4 @@
-﻿var builder = new HostApplicationBuilder(args);
+﻿HostApplicationBuilder builder = new(args);
 builder.Services.AddGreetingService(builder.Configuration.GetSection("GreetingService"));
 builder.Services.AddSingleton<IGreetingService, GreetingService>();
 builder.Services.AddTransient<HomeController>();
