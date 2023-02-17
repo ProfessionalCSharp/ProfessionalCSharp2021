@@ -1,4 +1,6 @@
-﻿public interface IServiceC
+﻿namespace DISample;
+
+public interface IServiceC
 {
     void C();
 }

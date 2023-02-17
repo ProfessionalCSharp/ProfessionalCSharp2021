@@ -1,4 +1,6 @@
-﻿public interface IServiceB
+﻿namespace DISample;
+
+public interface IServiceB
 {
     void B();
 }

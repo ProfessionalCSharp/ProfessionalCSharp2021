@@ -1,4 +1,6 @@
-﻿public class GreetingService : IGreetingService
+﻿namespace DISample;
+
+public class GreetingService : IGreetingService
 {
     public GreetingService(IOptions<GreetingServiceOptions> options) =>
         _from = options.Value.From;

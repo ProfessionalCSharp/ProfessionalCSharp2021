@@ -1,8 +1,4 @@
-﻿global using Microsoft.Extensions.DependencyInjection;
-global using Microsoft.Extensions.Hosting;
-global using Microsoft.Extensions.Options;
-
-var builder = new HostApplicationBuilder(args);
+﻿var builder = new HostApplicationBuilder(args);
 builder.Services.AddGreetingService(options =>
 {
     options.From = "Christian";

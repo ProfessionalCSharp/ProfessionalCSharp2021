@@ -1,4 +1,6 @@
-﻿public class HomeController
+﻿namespace DISample;
+
+public class HomeController
 {
     private readonly IGreetingService _greetingService;
     public HomeController(IGreetingService greetingService) =>

@@ -1,4 +1,6 @@
-﻿public static class GreetingServiceExtensions
+﻿namespace DISample;
+
+public static class GreetingServiceExtensions
 {
     public static IServiceCollection AddGreetingService(this IServiceCollection services, IConfiguration config)
     {

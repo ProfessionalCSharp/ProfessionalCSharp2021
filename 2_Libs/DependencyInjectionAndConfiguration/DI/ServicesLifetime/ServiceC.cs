@@ -1,4 +1,6 @@
-﻿public class ConfigurationC
+﻿namespace DISample;
+
+public class ConfigurationC
 {
     public string? Mode { get; set; }
 }

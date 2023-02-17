@@ -1,4 +1,6 @@
-﻿public sealed class ControllerX : IDisposable
+﻿namespace DISample;
+
+public sealed class ControllerX : IDisposable
 {
     private readonly IServiceA _serviceA;
     private readonly IServiceB _serviceB;
