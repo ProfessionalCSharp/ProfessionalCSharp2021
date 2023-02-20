@@ -32,11 +32,4 @@
     <ProjectReference Include="..\CodeGenerationSample\CodeGenerationSample.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="HelloWorldGeneratorTests.TestEquatableAttributeGenerated.verified.txt">
-      <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0])</ParentFile>
-      <DependentUpon>HelloWorldGeneratorTests.cs</DependentUpon>
-    </None>
-  </ItemGroup>
-
 </Project>

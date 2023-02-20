@@ -2,7 +2,6 @@
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
 
-using System.Collections.Immutable;
 using System.Text;
 
 namespace CodeGenerationSample;
@@ -12,29 +11,7 @@ public class EquatableGenerator : IIncrementalGenerator
 {
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
-        static bool IsSyntaxTarget(SyntaxNode node) =>
-            node is ClassDeclarationSyntax { AttributeLists.Count: > 0 };
-
-        static ClassDeclarationSyntax? GetTargetForGeneration(GeneratorSyntaxContext context)
-        {
-            if (context.Node is ClassDeclarationSyntax classSyntax)
-            {
-                foreach (var attributeListSyntax in classSyntax.AttributeLists)
-                {    
-                    foreach (var attributeSyntax in attributeListSyntax.Attributes)
-                    {
-                        if (context.SemanticModel.GetSymbolInfo(attributeSyntax).Symbol is IMethodSymbol methodSymbol
-                                                       && methodSymbol.ContainingType.ToDisplayString() == "CodeGenerationSample.ImplementEquatableAttribute")
-                        {
-                            return classSyntax;
-                        }
-                    }
-                }
-            }
-            return null;
-        }
-
-        static ClassDeclarationSyntax? GetTargetForGeneration1(GeneratorAttributeSyntaxContext context)
+        static ClassToGenerateInfo? GetClassToGenerateInfo(GeneratorAttributeSyntaxContext context)
         {
             if (context.TargetNode is ClassDeclarationSyntax classSyntax)
             {
@@ -42,10 +19,28 @@ public class EquatableGenerator : IIncrementalGenerator
                 {
                     foreach (var attributeSyntax in attributeListSyntax.Attributes)
                     {
-                        if (context.SemanticModel.GetSymbolInfo(attributeSyntax).Symbol is IMethodSymbol methodSymbol
-                                                       && methodSymbol.ContainingType.ToDisplayString() == "CodeGenerationSample.ImplementEquatableAttribute")
+                        SymbolInfo symbolInfo = context.SemanticModel.GetSymbolInfo(attributeSyntax);
+
+                        ISymbol? symbol = symbolInfo.Symbol ?? symbolInfo.CandidateSymbols.FirstOrDefault();
+                        if (symbol is not IMethodSymbol methodSymbol)
                         {
-                            return classSyntax;
+                            continue;
+                        }
+                        if (methodSymbol.ContainingType is INamedTypeSymbol namedTypeSymbol)
+                        {
+                            string fullAttributeName = namedTypeSymbol.ToDisplayString();
+                            if (fullAttributeName == "CodeGenerationSample.ImplementEquatableAttribute")
+                            {
+                                string className = classSyntax.Identifier.ValueText;
+                                string? namespaceName = classSyntax.Parent switch
+                                {
+                                    NamespaceDeclarationSyntax nsds => nsds.Name.ToString(),
+                                    FileScopedNamespaceDeclarationSyntax fsnds => fsnds.Name.ToString(),
+                                    _ => null
+                                };
+
+                                return new ClassToGenerateInfo(className, namespaceName);
+                            }
                         }
                     }
                 }
@@ -53,79 +48,23 @@ public class EquatableGenerator : IIncrementalGenerator
             return null;
         }
 
-        static void Execute(Compilation compilation, ImmutableArray<ClassDeclarationSyntax> classDeclarations, SourceProductionContext sourceContext)
-        {
-            if (classDeclarations.IsDefaultOrEmpty) return;
-
-            var distinctClasses = classDeclarations.Distinct();
-            if (distinctClasses is null) return;
-
-            List<ClassToGenerate> classesToGenerate = GetTypesToGenerate(compilation, distinctClasses, sourceContext.CancellationToken);
-
-            if (classesToGenerate.Any())
-            {
-                foreach (var classToGenerate in classesToGenerate)
-                {
-                    string result = GenerateEquatableImlementation(classToGenerate);
-                    sourceContext.AddSource($"{classToGenerate}.g.cs", SourceText.From(result, Encoding.UTF8));
-                }
-            }
-        }
-
-        static List<ClassToGenerate> GetTypesToGenerate(Compilation compilation, IEnumerable<ClassDeclarationSyntax> classes, CancellationToken cancellationToken = default)
-        {
-            List<ClassToGenerate> classesToGenerate = new();
-
-            INamedTypeSymbol? equatableAttribute = compilation.GetTypeByMetadataName("CodeGenerationSample.ImplementEquatableAttribute");
-
-            if (equatableAttribute is null) return classesToGenerate;
-
-            foreach (ClassDeclarationSyntax @class in classes)
-            {
-                cancellationToken.ThrowIfCancellationRequested();
-
-                SemanticModel semanticModel = compilation.GetSemanticModel(@class.SyntaxTree);
-
-                if (semanticModel.GetDeclaredSymbol(@class, cancellationToken) is INamedTypeSymbol classSymbol)
-                {
-                    ClassToGenerate classToGenerate = new(classSymbol.ContainingNamespace.ToDisplayString(), classSymbol.Name);
-                    classesToGenerate.Add(classToGenerate);
-                }
-            }   
-
-            return classesToGenerate;
-        }
-
         context.RegisterPostInitializationOutput(ctx =>
             ctx.AddSource("ImplementEquatable.g.cs", SourceText.From(attributeText, Encoding.UTF8)));
 
-        IncrementalValuesProvider<ClassDeclarationSyntax?> classes =
+        IncrementalValuesProvider<ClassToGenerateInfo?> classes =
         context.SyntaxProvider.ForAttributeWithMetadataName(
             "CodeGenerationSample.ImplementEquatableAttribute",
             predicate: static (node, _) => node is ClassDeclarationSyntax,
-            transform: static (syntaxContext, _) => GetTargetForGeneration1(syntaxContext));
+            transform: static (syntaxContext, _) => GetClassToGenerateInfo(syntaxContext));
 
-        //IncrementalValueProvider<ImmutableArray<ClassDeclarationSyntax>> classes =
-        //    context.SyntaxProvider.ForAttributeWithMetadataName(
-        //        "CodeGenerationSample.ImplementEquatableAttribute",
-        //        predicate: static (node, _) => node is ClassDeclarationSyntax,
-        //        transform: static (syntaxContext, _) => GetTargetForGeneration1(syntaxContext))
-        //    .Where(c => c is not null)
-        //    .Collect()!;
+        context.RegisterSourceOutput(classes, (context, ctg) =>
+        {
+            if (ctg is not null)
+            {
+                context.AddSource($"{ctg.Value.Name}.g.cs", SourceText.From(GenerateEquatableImlementation(ctg.Value), Encoding.UTF8));
+            }
 
-        //IncrementalValueProvider<ImmutableArray<ClassDeclarationSyntax>> classes = context.SyntaxProvider
-        //    .CreateSyntaxProvider(
-        //        predicate: static (s, _) => IsSyntaxTarget(s),
-        //        transform: static (s, _) => GetTargetForGeneration(s))
-        //    .Where(c => c is not null)
-        //    .Collect()!;
-
-        //IncrementalValueProvider<(Compilation, ImmutableArray<ClassDeclarationSyntax>)> compilationAndClasses =
-        //    context.CompilationProvider.Combine(classes);
-
-        //context.RegisterSourceOutput(compilationAndClasses,
-        //    static (spc, source) =>
-        //    Execute(source.Item1, source.Item2, spc));
+        });
     }
 
     private const string attributeText = """
@@ -140,9 +79,12 @@ public class EquatableGenerator : IIncrementalGenerator
         }
         """;
 
-    public static string GenerateEquatableImlementation(ClassToGenerate classToGenerate)
+    public static string GenerateEquatableImlementation(ClassToGenerateInfo classToGenerate)
     {
         string source = $$"""
+            // <generated />
+
+            #nullable enable
             using System;
 
             namespace {{classToGenerate.Namespace}};
@@ -161,9 +103,11 @@ public class EquatableGenerator : IIncrementalGenerator
                 public static bool operator!=({{classToGenerate.Name}}? left, {{classToGenerate.Name}}? right) =>
                     !(left == right);
             }
+
+            #nullable restore
             """;
         return source;
     }
 }
 
-public readonly record struct ClassToGenerate(string Namespace, string Name);
+public readonly record struct ClassToGenerateInfo(string Name, string? Namespace = default);

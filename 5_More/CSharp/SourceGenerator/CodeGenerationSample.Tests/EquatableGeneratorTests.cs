@@ -7,7 +7,9 @@ public class EquatableGeneratorTests
     public Task TestEquatableAttributeGenerated()
     {
         var source = """
-            [CodeGenerationSample.ImplementEquatable]
+            namespace Test.Sample;
+
+            [CodeGenerationSample.ImplementEquatableAttribute()]
             public partial class Book
             {
                 public string? Title { get; set; }

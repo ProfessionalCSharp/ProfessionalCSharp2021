@@ -22,7 +22,6 @@ internal class TestHelperHello
         // Run the source generator!
         driver = driver.RunGenerators(compilation);
 
-
         // Use verify to snapshot test the source generator output!
         return Verifier.Verify(driver);
     }
