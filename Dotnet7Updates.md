@@ -32,4 +32,8 @@ With .NET 7, the `LibraryImport` attribute can be used instead of `DllImport`. T
 
 See [PInvokeSampleLib in More Samples](5_More/PInvoke/). This [Readme](1_CS/Memory/Readme.md)  gives information on changes needed.
 
+## Minimal API
 
+Chapter 25, "Services", Page 715
+
+.NET 6 added Minimal APIs. .NET 7 added TypedResults. Minimal APIs are a new feature in .NET 6 that allows you to create a web API without controllers. .NET 7 adds typed results (the TypedResults class) which adds information to the OpenAPI document.
