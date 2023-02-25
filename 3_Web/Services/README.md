@@ -32,6 +32,10 @@ To create a .NET 5 Azure Functions project use:
 
 > func init --worker-runtime dotnetIsolated
 
+## .NET 6 / .NET 7 Updates
+
+The API sample got changes to use the *Minimal API* instead of controllers. The Minimal API is a new feature in .NET 6 that allows you to create a web API without controllers. .NET 7 adds typed results (the TypedResults class).
+
 For code comments and issues please check [Professional C#'s GitHub Repository](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021)
 
 Please check my blog [csharp.christiannagel.com](https://csharp.christiannagel.com "csharp.christiannagel.com") for additional information for topics covered in the book.
