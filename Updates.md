@@ -1,6 +1,7 @@
 # Book Updates and Issues
 
-> See [.NET 6 Updates](Dotnet6Updates.md) for changes with .NET 6
+* See [.NET 6 Updates](Dotnet6Updates.md) for changes with .NET 6
+* See [.NET 7 Updates](Dotnet7Updates.md) for changes with .NET 7
 
 ## Chapter 4, Object-Oriented Programming in C#
 
@@ -80,6 +81,19 @@ static ServiceProvider GetServiceProvider()
   services.AddSingleton<IGreetingService, GreetingService>();
   services.AddTransient<HomeController>();
   return services.BuildServiceProvider();
+}
+```
+
+## Chapter 16, Diagnostics and Metrics
+
+Page 422, the code snippet in the book misses a variable name. The variable `httpClient` should be added:
+
+```csharp
+public NetworkService(HttpClient httpClient, ILogger<NetworkService> logger)
+{
+  _httpClient = httpClient;
+  _logger = logger;
+  _logger.LogTrace("ILogger injected into {service}", nameof(NetworkService));
 }
 ```
 
