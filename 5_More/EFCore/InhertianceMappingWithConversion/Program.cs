@@ -1,27 +1,24 @@
 ﻿using Codebreaker.Models;
 
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-
 var builder = Host.CreateApplicationBuilder(args);
-builder.Services.AddSqlServer<GamesContext>(builder.Configuration.GetConnectionString("GamesConnection") ?? throw new InvalidOperationException());
+builder.Services.AddDbContextFactory<GamesContext>(options 
+    => options.UseSqlServer(builder.Configuration.GetConnectionString("GamesConnection")));
 
-var app = builder.Build();
+using IHost app = builder.Build();
 
 var gameId1 = Guid.NewGuid();
 var gameId2 = Guid.NewGuid();
 
+var contextFactory = app.Services.GetRequiredService<IDbContextFactory<GamesContext>>();
+
 {
     // create two different games
-    using var gameScope = app.Services.CreateScope();
-    var context = gameScope.ServiceProvider.GetRequiredService<GamesContext>();
+    using var context = await contextFactory.CreateDbContextAsync();
 
     await context.Database.EnsureCreatedAsync();
 
     GameData gameData1 = new(gameId1, "6x4", "player1");
-    GameData gameData2 = new GameData(gameId2, "5x5x4", "player2");
+    GameData gameData2 = new(gameId2, "5x5x4", "player2");
 
     context.Games.Add(gameData1);
     context.Games.Add(gameData2);
@@ -30,8 +27,7 @@ var gameId2 = Guid.NewGuid();
 
 {
     // add moves to the games
-    using var moveScope = app.Services.CreateScope();
-    var context = moveScope.ServiceProvider.GetRequiredService<GamesContext>();
+    using var context = await contextFactory.CreateDbContextAsync();
 
     MoveData<ColorField> moveData1 = new(gameId1, Guid.NewGuid(), 1)
     {
@@ -55,10 +51,10 @@ var gameId2 = Guid.NewGuid();
         }
     };
 
-    var game1 = await context.Games.SingleAsync(g => g.GameId == gameId1);
+    GameData game1 = await context.Games.SingleAsync(g => g.GameId == gameId1);
     game1.Moves.Add(moveData1);
 
-    var game2 = await context.Games.SingleAsync(g => g.GameId == gameId2);
+    GameData game2 = await context.Games.SingleAsync(g => g.GameId == gameId2);
     game2.Moves.Add(moveData2);
 
     await context.SaveChangesAsync();   
@@ -66,26 +62,23 @@ var gameId2 = Guid.NewGuid();
 
 {
     // read the games and moves
-    using var gamesscope = app.Services.CreateScope();
-    var context = gamesscope.ServiceProvider.GetRequiredService<GamesContext>();
+    using var context = await contextFactory.CreateDbContextAsync();
     var games = await context.Games
         .Include(g => g.Moves).ToListAsync();
-    foreach ( var game in games )
+
+    foreach (var game in games )
     {
         Console.WriteLine(game.GameType);
         foreach (var move in game.Moves)
         {
-            Console.WriteLine($"move type: {TypeInforation(move)}");       
+            Console.WriteLine($"move type: {TypeInformation(move)}");       
         }
     }
 }
 
-string TypeInforation(MoveData moveData)
+static string TypeInformation(MoveData moveData) => moveData switch
 {
-    return moveData switch
-    {
-        MoveData<ColorField> => "MoveData<ColorField>",
-        MoveData<ShapeAndColorField> => "MoveData<ShapeAndColorField>",
-        _ => "unknown"
-    };
-}
+    MoveData<ColorField> => "MoveData<ColorField>",
+    MoveData<ShapeAndColorField> => "MoveData<ShapeAndColorField>",
+    _ => "unknown"
+};

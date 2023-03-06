@@ -1,12 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-namespace Codebreaker.Models;
+﻿namespace Codebreaker.Models;
 
 internal class GamesContext : DbContext
 {
     public GamesContext(DbContextOptions<GamesContext> context)
         : base(context)
-    {        
+    {
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -22,12 +20,13 @@ internal class GamesContext : DbContext
 
         modelBuilder.Entity<GameData>().Property(g => g.PlayerName)
             .HasMaxLength(20)
-            .IsRequired(true);            
+            .IsRequired(true);
 
         modelBuilder.Entity<MoveData>().ToTable("Moves");
         modelBuilder.Entity<MoveData>().HasKey(m => m.MoveId);
         modelBuilder.Entity<MoveData>().HasOne<GameData>()
-            .WithMany(g => g.Moves).HasForeignKey(m => m.GameId)
+            .WithMany(g => g.Moves)
+            .HasForeignKey(m => m.GameId)
             .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<MoveData<ColorField>>()
@@ -48,7 +47,8 @@ internal class GamesContext : DbContext
             .HasMaxLength(20)
             .IsRequired(true);
 
-        modelBuilder.Entity<MoveData>().HasDiscriminator<string>("Discriminator")
+        modelBuilder.Entity<MoveData>()
+            .HasDiscriminator<string>("Discriminator")
             .HasValue<MoveData<ColorField>>("color")
             .HasValue<MoveData<ShapeAndColorField>>("shape");
 
@@ -59,7 +59,7 @@ internal class GamesContext : DbContext
         .HasMaxLength(150)
         .HasConversion(
             fields => fields.ToFieldString(),
-            fields => 
+            fields =>
                 fields.ToFieldCollection<ShapeAndColorField>());
 
         modelBuilder.Entity<MoveData<ColorField>>()
@@ -70,7 +70,7 @@ internal class GamesContext : DbContext
             .IsRequired(true)
             .HasConversion(
                 fields => string.Join(':', fields),
-                fields => 
+                fields =>
                     fields.ToFieldCollection<ColorField>());
     }
 
