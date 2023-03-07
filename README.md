@@ -105,6 +105,8 @@ Additional articles and samples related to the book
 * [EF Core: Temporal Tables - Source Code](5_More/EFCore/TemporalTableSample)
 * [EF Core: Using MySQL in a Docker container with EF Core - Source Code](5_More/EFCore/MySQL/)
 * [EF Core: Using MySQL in a Docker container with EF Core - Article](https://csharp.christiannagel.com/2022/05/17/mysqlwithefcoreanddocker/)
+* [EF Core Mapping with Generic Types, Value Conversion, and JSON Columns - Source Code](5_More/EFCore//InhertianceMappingWithConversion/)
+* [EF Core Mapping with Generic Types, Value Conversion, and JSON Columns - Article](https://csharp.christiannagel.com/2023/03/07/ef-core-mapping-with-generic-types-value-conversion-and-json-columns/)
 
 #### Web Apps and Services
 
