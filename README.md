@@ -101,6 +101,8 @@ Additional articles and samples related to the book
 #### The Libraries
 
 * [Files and Streams: JSON DOM Serialization - Source Code](5_More/FilesAndStreams/JsonSample/)
+* [Files and Streams: System.Text.Json Serializing Hierarchical Data](5_More/FilesAndStreams/JsonInheritance/)
+* [Files and Streams: System.Text.Json Serializing Hierarchical Data with Source Generator](5_More/FilesAndStreams/JsonInheritanceWithSourceGenerator/)
 * [EF Core: Temporal Tables - Article](https://csharp.christiannagel.com/2022/01/31/efcoretemporaltables/)
 * [EF Core: Temporal Tables - Source Code](5_More/EFCore/TemporalTableSample)
 * [EF Core: Using MySQL in a Docker container with EF Core - Source Code](5_More/EFCore/MySQL/)
