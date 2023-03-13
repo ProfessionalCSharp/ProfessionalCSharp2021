@@ -4,6 +4,8 @@ namespace Codebreaker.Models;
 
 public record CreateGameRequest(string GameType, string PlayerName);
 
+public record InvalidGameRequest(string Message, string[] Information);
+
 public record CreateGameResponse(Guid GameId, string GameType, string PlayerName);
 
 // depending on the game type, set ColorFields or ShapeAndColorFields
