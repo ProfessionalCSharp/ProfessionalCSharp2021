@@ -52,7 +52,7 @@ public static class GameExtensions
         } ?? throw new InvalidOperationException();
 
         // create move
-        var move = new Move<TField, TResult>(game.GameId, Guid.NewGuid(), ++lastMove)
+        Move<TField, TResult> move = new(game.GameId, Guid.NewGuid(), ++lastMove)
         {
             Fields = fields.ToArray(),
             Results = result
