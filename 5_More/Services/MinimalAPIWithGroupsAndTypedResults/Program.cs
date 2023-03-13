@@ -15,6 +15,7 @@ builder.Services.Configure<Microsoft.AspNetCore.Mvc.JsonOptions>(options =>
 });
 builder.Services.Configure<JsonOptions>(options =>
 {
+    options.SerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault;
     options.SerializerOptions.Converters.Add(new JsonStringEnumConverter());
 });
 
