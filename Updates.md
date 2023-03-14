@@ -126,6 +126,8 @@ public static void TaskWithResultDemo()
 }
 ```
 
+Thanks to [@ShervanN](https://github.com/ShervanN) for reporting this issue!
+
 ## Chapter 20, Security
 
 Page 560, the command
