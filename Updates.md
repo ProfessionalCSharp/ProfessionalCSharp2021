@@ -99,6 +99,33 @@ public NetworkService(HttpClient httpClient, ILogger<NetworkService> logger)
 
 Thanks to [@ShervanN](https://github.com/ShervanN) for reporting this issue!
 
+## Chapter 17, Parallel Programming
+
+Page 451, the code snippet can be simplified - retrieving the result is done two times, and `Result` is already blocking:
+
+The previous code was:
+
+```csharp
+public static void TaskWithResultDemo()
+{
+  Task<(int Result, int Remainder)> t1 = new(TaskWithResult, (8, 3));
+  t1.Start();
+  Console.WriteLine(t1.Result);
+  t1.Wait();
+  Console.WriteLine($"result from task: {t1.Result.Result}, and remainder: {t1.Result.Remainder}");
+}
+
+The new code is:
+
+```csharp
+public static void TaskWithResultDemo()
+{
+  Task<(int Result, int Remainder)> t1 = new(TaskWithResult, (8, 3));
+  t1.Start();
+  Console.WriteLine($"result from task: {t1.Result.Result}, and remainder: {t1.Result.Remainder}");
+}
+```
+
 ## Chapter 20, Security
 
 Page 560, the command
