@@ -88,9 +88,7 @@ class Program
     {
         Task<(int Result, int Remainder)> t1 = new(TaskWithResult, (8, 3));
         t1.Start();
-        Console.WriteLine(t1.Result);
-        t1.Wait();
-        Console.WriteLine($"result from task: {t1.Result.Result} {t1.Result.Remainder}");
+        Console.WriteLine($"result from task: {t1.Result.Result}, and remainder: {t1.Result.Remainder}");
     }
 
     private static (int Result, int Remainder) TaskWithResult(object? division)
