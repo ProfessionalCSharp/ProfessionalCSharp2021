@@ -97,11 +97,13 @@ Additional articles and samples related to the book
 * [PriorityQueue - Source Code](5_More/Collections/PriorityQueueSample)
 * [Synchronization Context - Article](https://csharp.christiannagel.com/2022/09/06/whats-the-synchronizationcontext-used-for/)
 * [Synchronization Context - Source Code](5_More/Tasks/SynchronizationContext)
+* [Primary Constructors - Source Code](5_More/Types/PrimaryConstructors)
 
 #### The Libraries
 
 * [Files and Streams: JSON DOM Serialization - Source Code](5_More/FilesAndStreams/JsonSample/)
-* [Files and Streams: System.Text.Json Serializing Hierarchical Data](5_More/FilesAndStreams/JsonInheritance/)
+* [Files and Streams:System.Text.Json Serializing Hierarchical Data - Article](https://csharp.christiannagel.com/2023/03/14/system-text-json-serializing-hierarchical-data/)
+* [Files and Streams: System.Text.Json Serializing Hierarchical Data - Source Code](5_More/FilesAndStreams/JsonInheritance/)
 * [Files and Streams: System.Text.Json Serializing Hierarchical Data with Source Generator](5_More/FilesAndStreams/JsonInheritanceWithSourceGenerator/)
 * [EF Core: Temporal Tables - Article](https://csharp.christiannagel.com/2022/01/31/efcoretemporaltables/)
 * [EF Core: Temporal Tables - Source Code](5_More/EFCore/TemporalTableSample)
