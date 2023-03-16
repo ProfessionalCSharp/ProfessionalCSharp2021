@@ -42,10 +42,14 @@ public readonly record struct ColorResult(int Correct, int WrongPosition) : ISpa
             return destination.ToString();
         }
         else
-        { 
-            throw new FormatException(); 
+        {
+            throw new FormatException();
         }
     }
+
+    // If just IFormattable would be used - without ISpanFormattable
+    // public string ToString(string? format, IFormatProvider? formatProvider = default) => 
+    //    $"{Correct}:{WrongPosition}";
 
     public bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format = default, IFormatProvider? provider = default)
     {
