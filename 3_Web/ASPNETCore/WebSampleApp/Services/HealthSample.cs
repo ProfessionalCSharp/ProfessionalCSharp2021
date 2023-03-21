@@ -12,10 +12,8 @@ public sealed class HealthSample : IDisposable
 
         if (IsHealthy)
         {
-            if (_timer is not null)
-            {
-                _timer.Dispose();
-            }
+            _timer?.Dispose();
+
             _timer = new(o =>
             {
                 _isReady = true;
