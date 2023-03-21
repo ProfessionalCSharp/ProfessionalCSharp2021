@@ -89,7 +89,10 @@ public class RequestAndResponseSamples
             }
             return sb.ToString();
         }
-        else return "no form".Div();
+        else
+        {
+            return "no form".Div();
+        }
     }
 
     public string WriteCookie(HttpResponse response)
