@@ -21,7 +21,6 @@ builder.Services.AddHealthChecks()
 
 var app = builder.Build();
 
-
 app.Use((context, next) =>
 {
     context.Response.Headers.Add("CustomHeader1", "custom header value");
@@ -36,106 +35,102 @@ app.UseHeaderMiddleware();
 
 app.UseRouting();
 
-app.UseEndpoints(endpoints =>
+app.MapHealthChecks("/health/allchecks");
+app.MapHealthChecks("/health/live", new HealthCheckOptions()
 {
-    endpoints.MapHealthChecks("/health/allchecks");
-    endpoints.MapHealthChecks("/health/live", new HealthCheckOptions()
+    Predicate = reg => reg.Tags.Contains("liveness"),
+    ResultStatusCodes = new Dictionary<HealthStatus, int>()
     {
-        Predicate = reg => reg.Tags.Contains("liveness"),
-        ResultStatusCodes = new Dictionary<HealthStatus, int>()
-        {
-            [HealthStatus.Healthy] = StatusCodes.Status200OK,
-            [HealthStatus.Degraded] = StatusCodes.Status200OK,
-            [HealthStatus.Unhealthy] = StatusCodes.Status503ServiceUnavailable
-        },
-    });
-    endpoints.MapHealthChecks("/health/ready", new HealthCheckOptions
+        [HealthStatus.Healthy] = StatusCodes.Status200OK,
+        [HealthStatus.Degraded] = StatusCodes.Status200OK,
+        [HealthStatus.Unhealthy] = StatusCodes.Status503ServiceUnavailable
+    },
+});
+app.MapHealthChecks("/health/ready", new HealthCheckOptions
+{
+    Predicate = reg => reg.Tags.Contains("readiness"),
+    ResponseWriter = async (context, writer) =>
     {
-        Predicate = reg => reg.Tags.Contains("readiness"),
-        ResponseWriter = async (context, writer) =>
+        context.Response.StatusCode = writer.Status switch
         {
-            context.Response.StatusCode = writer.Status switch
-            {
-                HealthStatus.Healthy => StatusCodes.Status200OK,
-                HealthStatus.Degraded => StatusCodes.Status503ServiceUnavailable,
-                HealthStatus.Unhealthy => StatusCodes.Status503ServiceUnavailable,
-                _ => StatusCodes.Status503ServiceUnavailable
-            };
-
-            if (writer.Status == HealthStatus.Healthy)
-            {
-                await context.Response.WriteAsync("ready");
-            }
-            else
-            {
-                await context.Response.WriteAsync(writer.Status.ToString());
-                await context.Response.WriteAsync($"duration: {writer.TotalDuration}");
-            }
-        }
-    });
-
-    endpoints.Map("sethealthy", async context =>
-    {
-        var changeHealthService = context.RequestServices.GetRequiredService<HealthSample>();
-        string? healthyValue = context.Request.Query["healthy"];
-        if (bool.TryParse(healthyValue, out bool healthy))
-        {
-            changeHealthService.SetHealthy(healthy);
-        }
-        else
-        {
-            await context.Response.WriteAsync("Missing healthy query parameter");
-        }
-
-    });
-
-    endpoints.Map("/randr/{action?}", async context =>
-    {
-        var service = context.RequestServices.GetRequiredService<RequestAndResponseSamples>();
-        string? action = context.GetRouteValue("action")?.ToString();
-        string method = context.Request.Method;
-        string? result = (action, method) switch
-        {
-            (null, "GET") => service.GetRequestInformation(context.Request),
-            ("header", "GET") => service.GetHeaderInformation(context.Request),
-            ("add", "GET") => service.QueryParameters(context.Request),
-            ("content", "GET") => service.Content(context.Request),
-            ("form", "GET" or "POST") => service.Form(context.Request),
-            ("writecookie", "GET") => service.WriteCookie(context.Response),
-            ("readcookie", "GET") => service.ReadCookie(context.Request),
-            ("json", "GET") => service.GetJson(context.Response),
-            _ => string.Empty
+            HealthStatus.Healthy => StatusCodes.Status200OK,
+            HealthStatus.Degraded => StatusCodes.Status503ServiceUnavailable,
+            HealthStatus.Unhealthy => StatusCodes.Status503ServiceUnavailable,
+            _ => StatusCodes.Status503ServiceUnavailable
         };
-        // TODO: check with a newer compiler version if the previous variable can be declared non-nullable
-        if (result is null) throw new InvalidOperationException("result should not be null with the previous operation");
 
-        if (action is "json")
+        if (writer.Status == HealthStatus.Healthy)
         {
-            await context.Response.WriteAsync(result);
+            await context.Response.WriteAsync("ready");
         }
         else
         {
-            var doc = result.HtmlDocument("Request and Response Samples");
-            await context.Response.WriteAsync(doc);
+            await context.Response.WriteAsync(writer.Status.ToString());
+            await context.Response.WriteAsync($"duration: {writer.TotalDuration}");
         }
-    });
+    }
+});
 
-    endpoints.Map("/add/{x:int}/{y:int}", async context =>
+app.Map("sethealthy", async context =>
+{
+    var changeHealthService = context.RequestServices.GetRequiredService<HealthSample>();
+    string? healthyValue = context.Request.Query["healthy"];
+    if (bool.TryParse(healthyValue, out bool healthy))
     {
-        int x = int.Parse(context.GetRouteValue("x")?.ToString() ?? "0");
-        int y = int.Parse(context.GetRouteValue("y")?.ToString() ?? "0");
-        await context.Response.WriteAsync($"The result of {x} + {y} is {x + y}");
-    });
+        changeHealthService.SetHealthy(healthy);
+    }
+    else
+    {
+        await context.Response.WriteAsync("Missing healthy query parameter");
+    }
 
-    endpoints.Map("/session", async context =>
-    {
-        var service = context.RequestServices.GetRequiredService<SessionSample>();
-        await service.SessionAsync(context);
-    });
+});
 
-    endpoints.MapGet("/", async context =>
+app.Map("/randr/{action?}", async context =>
+{
+    var service = context.RequestServices.GetRequiredService<RequestAndResponseSamples>();
+    string? action = context.GetRouteValue("action")?.ToString();
+    string method = context.Request.Method;
+    string result = (action, method) switch
     {
-        string content = """
+        (null, "GET") => service.GetRequestInformation(context.Request),
+        ("header", "GET") => service.GetHeaderInformation(context.Request),
+        ("add", "GET") => service.QueryParameters(context.Request),
+        ("content", "GET") => service.Content(context.Request),
+        ("form", "GET" or "POST") => service.Form(context.Request),
+        ("writecookie", "GET") => service.WriteCookie(context.Response),
+        ("readcookie", "GET") => service.ReadCookie(context.Request),
+        ("json", "GET") => service.GetJson(context.Response),
+        _ => string.Empty
+    } ?? throw new InvalidOperationException("result should not be null with the previous operation");
+
+    if (action is "json")
+    {
+        await context.Response.WriteAsync(result);
+    }
+    else
+    {
+        string doc = result.HtmlDocument("Request and Response Samples");
+        await context.Response.WriteAsync(doc);
+    }
+});
+
+app.Map("/add/{x:int}/{y:int}", async context =>
+{
+    int x = int.Parse(context.GetRouteValue("x")?.ToString() ?? "0");
+    int y = int.Parse(context.GetRouteValue("y")?.ToString() ?? "0");
+    await context.Response.WriteAsync($"The result of {x} + {y} is {x + y}");
+});
+
+app.Map("/session", async context =>
+{
+    var service = context.RequestServices.GetRequiredService<SessionSample>();
+    await service.SessionAsync(context);
+});
+
+app.MapGet("/", async context =>
+{
+    string content = """
             <ul>
               <li><a href="/hello.html">Static Files</a> - requires UseStaticFiles</li>
               <li><a href="/add/37/5">Route Constraints</a></li>
@@ -167,10 +162,9 @@ app.UseEndpoints(endpoints =>
               </li>
             </ul>
         """;
-        string html = content.HtmlDocument("Web Sample App");
+    string html = content.HtmlDocument("Web Sample App");
 
-        await context.Response.WriteAsync(html);
-    });
+    await context.Response.WriteAsync(html);
 });
 
 app.Run();

@@ -11,7 +11,13 @@ public class CustomHealthCheck : IHealthCheck
 
     public Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default)
     {
-        if (_healthSample.IsHealthy) return Task.FromResult(HealthCheckResult.Healthy("healthy"));
-        else return Task.FromResult(HealthCheckResult.Unhealthy("unhealthy"));
+        if (_healthSample.IsHealthy)
+        {
+            return Task.FromResult(HealthCheckResult.Healthy("healthy"));
+        }
+        else
+        {
+            return Task.FromResult(HealthCheckResult.Unhealthy("unhealthy"));
+        }
     }
 }
