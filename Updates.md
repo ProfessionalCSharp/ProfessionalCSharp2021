@@ -128,6 +128,64 @@ public static void TaskWithResultDemo()
 
 Thanks to [@ShervanN](https://github.com/ShervanN) for reporting this issue!
 
+Page 461, Using the Timer Class
+
+The code in the book contains too many braces.
+
+This code:
+
+```csharp
+private static void ThreadingTimer()
+{
+  void TimeAction(object? o) =>
+    Console.WriteLine($"System.Threading.Timer {DateTime.Now:T}");
+
+  using Timer t1 = new(
+    TimeAction,
+    null,
+    dueTime: TimeSpan.FromSeconds(2),
+    period: TimeSpan.FromSeconds(3)))
+  {
+    Task.Delay(15000).Wait();
+  }
+}
+```
+
+should be (remove the braces with the using declaration):
+
+```csharp
+private static void ThreadingTimer()
+{
+  void TimeAction(object? o) =>
+    Console.WriteLine($"System.Threading.Timer {DateTime.Now:T}");
+
+  using Timer t1 = new(
+    TimeAction,
+    null,
+    dueTime: TimeSpan.FromSeconds(2),
+    period: TimeSpan.FromSeconds(3));
+
+  Task.Delay(15000).Wait();
+}
+```
+
+With the new version, this code has been updated to top-level statements without the `ThreadingTimer` method (see the [current source code](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021/blob/main/2_Libs/Parallel/ParallelSamples/TimersSample/Program.cs)
+
+```csharp
+static void TimeAction(object? o) =>
+    Console.WriteLine($"System.Threading.Timer {DateTime.Now:T}");
+
+using Timer t1 = new(
+    TimeAction, 
+    null, 
+    dueTime: TimeSpan.FromSeconds(2),
+    period: TimeSpan.FromSeconds(3));
+
+await Task.Delay(15000);
+```
+
+Thanks to [@ShervanN](https://github.com/ShervanN) for reporting this issue!
+
 ## Chapter 20, Security
 
 Page 560, the command
