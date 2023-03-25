@@ -119,6 +119,7 @@ Additional articles and samples related to the book
 * [Upgrading an ASP.NET Core Web API Project to .NET 6 - Source Code](5_More/Services/APIServiceUpdate/)
 * [Creating a Windows Service with .NET 6 - Article](https://csharp.christiannagel.com/2022/03/22/windowsservice-2/)
 * [Creating a Windows Service with .NET 6 - Source Code](5_More/WindowsServices/)
+* [HTTP tools to debug Web APIs - Article](https://csharp.christiannagel.com/2023/03/21/httptools/)
 
 ### Windows Apps
 
