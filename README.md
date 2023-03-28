@@ -98,6 +98,7 @@ Additional articles and samples related to the book
 * [Synchronization Context - Article](https://csharp.christiannagel.com/2022/09/06/whats-the-synchronizationcontext-used-for/)
 * [Synchronization Context - Source Code](5_More/Tasks/SynchronizationContext)
 * [Primary Constructors - Source Code](5_More/Types/PrimaryConstructors)
+* [Primary Constructors - Article](https://csharp.christiannagel.com/2023/03/28/primaryctors/)
 
 #### The Libraries
 

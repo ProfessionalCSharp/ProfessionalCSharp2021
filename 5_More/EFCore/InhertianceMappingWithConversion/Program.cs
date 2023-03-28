@@ -9,6 +9,8 @@ using IHost app = builder.Build();
 var gameId1 = Guid.NewGuid();
 var gameId2 = Guid.NewGuid();
 
+
+
 var contextFactory = app.Services.GetRequiredService<IDbContextFactory<GamesContext>>();
 
 {
