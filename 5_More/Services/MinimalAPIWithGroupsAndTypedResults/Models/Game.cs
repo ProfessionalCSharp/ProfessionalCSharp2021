@@ -1,13 +1,5 @@
 ﻿namespace Codebreaker.Models;
 
-//public class GameTypes
-//{
-//    public const string Game6x4 = nameof(Game6x4);
-//    public const string Game8x5 = nameof(Game8x5);
-//    public const string Game5x5x4 = nameof(Game5x5x4);
-//    public const string Game6x4Simple = nameof(Game6x4Simple);
-//}
-
 public abstract record class Game(Guid GameId, GameType GameType, string PlayerName, int Holes, int MaxMoves);
 
 public record class Game<TField, TResult>(Guid GameId, GameType GameType, string PlayerName, int Holes, int MaxMoves)

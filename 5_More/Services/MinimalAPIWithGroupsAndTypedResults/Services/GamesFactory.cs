@@ -1,5 +1,6 @@
 ﻿using Codebreaker.Utilities;
 
+using static Codebreaker.Models.GameType;
 
 namespace Codebreaker.Services;
 
@@ -40,10 +41,10 @@ public class GamesFactory
 
         return gameType switch
         {
-            GameType.Game6x4Simple => Get6x4SimpleGame(gameType, playerName),
-            GameType.Game6x4 => Get6x4Game(gameType, playerName),
-            GameType.Game8x5 => Get8x5Game(gameType, playerName),
-            GameType.Game5x5x4 => Get5x5x4Game(gameType, playerName),
+            Game6x4Simple => Get6x4SimpleGame(gameType, playerName),
+            Game6x4 => Get6x4Game(gameType, playerName),
+            Game8x5 => Get8x5Game(gameType, playerName),
+            Game5x5x4 => Get5x5x4Game(gameType, playerName),
             _ => throw new InvalidGameException("Invalid game type") { HResult = 4000 }
         };
     }
