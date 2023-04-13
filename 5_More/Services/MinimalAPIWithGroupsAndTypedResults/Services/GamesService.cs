@@ -6,7 +6,7 @@ public interface IGamesService
 {
     Task<IEnumerable<Game>> GetGamesAsync();
     Task<Game?> GetGameAsync(Guid gameId);
-    Task<Game> CreateGameAsync(string gameType, string playerName);
+    Task<Game> CreateGameAsync(GameType gameType, string playerName);
     Task<SetMoveResponse> SetMoveAsync(SetMoveRequest moveRequest);
 }
 
@@ -21,7 +21,7 @@ public class GamesService : IGamesService
         _gamesRepository = gamesRepository;
     }
 
-    public Task<Game> CreateGameAsync(string gameType, string playerName)
+    public Task<Game> CreateGameAsync(GameType gameType, string playerName)
     {
         Game game = _gameFactory.CreateGame(gameType, playerName);
         _gamesRepository.AddGameAsync(game);

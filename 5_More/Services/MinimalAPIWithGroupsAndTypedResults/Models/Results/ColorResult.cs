@@ -2,9 +2,9 @@
 
 namespace Codebreaker.Models;
 
-public readonly record struct ColorResult(int Correct, int WrongPosition) : ISpanParsable<ColorResult>, ISpanFormattable
+public readonly record struct ColorResult(byte Correct, byte WrongPosition) : ISpanParsable<ColorResult>, ISpanFormattable
 {
-    public static ColorResult Parse(ReadOnlySpan<char> s, IFormatProvider? provider)
+    public static ColorResult Parse(ReadOnlySpan<char> s, IFormatProvider? provider = default)
     {
         if (TryParse(s, provider, out var result))
         {
@@ -16,7 +16,7 @@ public readonly record struct ColorResult(int Correct, int WrongPosition) : ISpa
         }
     }
 
-    public static ColorResult Parse(string s, IFormatProvider? provider) =>
+    public static ColorResult Parse(string s, IFormatProvider? provider = default) =>
         Parse(s.AsSpan(), provider);
 
     public static bool TryParse(ReadOnlySpan<char> s, IFormatProvider? provider, [MaybeNullWhen(false)] out ColorResult result)
@@ -24,7 +24,7 @@ public readonly record struct ColorResult(int Correct, int WrongPosition) : ISpa
         result = s switch
         {
             { Length: > 3 or < 3 } => default,
-            [ var correct, ':', var wrongpos ] => new ColorResult(correct - '0', wrongpos - '0'),          
+            [ var correct, ':', var wrongpos ] => new ColorResult((byte)(correct - '0'), (byte)(wrongpos - '0')),          
             _ => default,
         };
 
@@ -47,7 +47,7 @@ public readonly record struct ColorResult(int Correct, int WrongPosition) : ISpa
         }
     }
 
-    // If just IFormattable would be used - without ISpanFormattable
+    // If just IFormattable would be used - without ISpanFormattable^, this is the implementation
     // public string ToString(string? format, IFormatProvider? formatProvider = default) => 
     //    $"{Correct}:{WrongPosition}";
 

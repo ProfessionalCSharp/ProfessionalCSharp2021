@@ -2,9 +2,9 @@
 
 namespace Codebreaker.Models;
 
-public readonly record struct ShapeAndColorResult(int Correct, int WrongPosition, int ColorOrShape) : ISpanParsable<ShapeAndColorResult>, ISpanFormattable
+public readonly record struct ShapeAndColorResult(byte Correct, byte WrongPosition, byte ColorOrShape) : ISpanParsable<ShapeAndColorResult>, ISpanFormattable
 {
-    public static ShapeAndColorResult Parse(ReadOnlySpan<char> s, IFormatProvider? provider)
+    public static ShapeAndColorResult Parse(ReadOnlySpan<char> s, IFormatProvider? provider = default)
     {
         if (TryParse(s, provider, out var result))
         {
@@ -16,14 +16,14 @@ public readonly record struct ShapeAndColorResult(int Correct, int WrongPosition
         }
     }
 
-    public static ShapeAndColorResult Parse(string s, IFormatProvider? provider) => Parse(s.AsSpan(), provider);
+    public static ShapeAndColorResult Parse(string s, IFormatProvider? provider = default) => Parse(s.AsSpan(), provider);
 
     public static bool TryParse(ReadOnlySpan<char> s, IFormatProvider? provider, [MaybeNullWhen(false)] out ShapeAndColorResult result)
     {
         result = s switch
         {
             { Length: > 5 or < 5 } => default,
-            [ var x, ':', var y, ':', var z ] => new ShapeAndColorResult(x - '0', y - '0', z - '0'),
+            [ var x, ':', var y, ':', var z ] => new ShapeAndColorResult((byte)(x - '0'), (byte)(y - '0'), (byte)(z - '0')),
             _ => default,
         };
 

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Http.Json;
 
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -35,5 +36,18 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapGameEndpoints(app.Logger);
+
+SetMoveRequest req = new(Guid.NewGuid(), GameType.Game6x4, 1)
+{
+    ColorFields = new List<ColorField>
+    {
+        new("red"),
+        new("green"),
+        new("blue"),
+        new("blue")
+    }
+};
+string json = JsonSerializer.Serialize(req);
+
 
 app.Run();

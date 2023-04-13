@@ -1,18 +1,16 @@
-﻿using static Codebreaker.Models.GameTypes;
+﻿namespace Codebreaker.Models;
 
-namespace Codebreaker.Models;
+//public class GameTypes
+//{
+//    public const string Game6x4 = nameof(Game6x4);
+//    public const string Game8x5 = nameof(Game8x5);
+//    public const string Game5x5x4 = nameof(Game5x5x4);
+//    public const string Game6x4Simple = nameof(Game6x4Simple);
+//}
 
-public class GameTypes
-{
-    public const string Game6x4 = nameof(Game6x4);
-    public const string Game8x5 = nameof(Game8x5);
-    public const string Game5x5x4 = nameof(Game5x5x4);
-    public const string Game6x4Simple = nameof(Game6x4Simple);
-}
+public abstract record class Game(Guid GameId, GameType GameType, string PlayerName, int Holes, int MaxMoves);
 
-public abstract record class Game(Guid GameId, string GameType, string PlayerName, int Holes, int MaxMoves);
-
-public record class Game<TField, TResult>(Guid GameId, string GameType, string PlayerName, int Holes, int MaxMoves)
+public record class Game<TField, TResult>(Guid GameId, GameType GameType, string PlayerName, int Holes, int MaxMoves)
     : Game(GameId, GameType, PlayerName, Holes, MaxMoves)
     where TResult: IParsable<TResult>
 {
@@ -44,10 +42,10 @@ public static class GameExtensions
         // calculate result - TODO: based on the code list, this is just a dummy implementation returning sample values
         TResult result = game switch
         {
-            { GameType: Game6x4 } => TResult.Parse("2:0", default),
-            { GameType: Game8x5 } => TResult.Parse("1:2", default),
-            { GameType: Game5x5x4 } => TResult.Parse("1:1:0", default),
-            { GameType: Game6x4Simple } => TResult.Parse("0:1:1:2", default),
+            { GameType: GameType.Game6x4 } => TResult.Parse("2:0", default),
+            { GameType: GameType.Game8x5 } => TResult.Parse("1:2", default),
+            { GameType: GameType.Game5x5x4 } => TResult.Parse("1:1:0", default),
+            { GameType: GameType.Game6x4Simple } => TResult.Parse("0:1:1:2", default),
             _ => default,
         } ?? throw new InvalidOperationException();
 

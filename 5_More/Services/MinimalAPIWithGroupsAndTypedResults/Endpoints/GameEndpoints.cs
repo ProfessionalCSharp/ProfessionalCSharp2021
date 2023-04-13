@@ -40,7 +40,7 @@ public static class GameEndpoints
         });
 
         // Start a game - create a game object
-        group.MapPost("/", async Task<Results<Created<CreateGameResponse>, BadRequest<InvalidGameRequest>>> (CreateGameRequest request, IGamesService gamesService) =>
+        group.MapPost("/", async Task<Results<Created<CreateGameResponse>, BadRequest>> (CreateGameRequest request, IGamesService gamesService) =>
         {
             Game? game = null;
             try
@@ -51,8 +51,9 @@ public static class GameEndpoints
             {
                 logger.LogError("Game Type not found {gametype}", request.GameType);
 
-                InvalidGameRequest invalidRequest = new("Gametype does not exist, valid types:", new[] { GameTypes.Game6x4, GameTypes.Game8x5, GameTypes.Game5x5x4, GameTypes.Game6x4Simple });
-                return TypedResults.BadRequest(invalidRequest);
+                // InvalidGameRequest invalidRequest = new("Gametype does not exist, valid types:", new[] { GameTypes.Game6x4, GameTypes.Game8x5, GameTypes.Game5x5x4, GameTypes.Game6x4Simple });
+                // return TypedResults.BadRequest(invalidRequest);
+                return TypedResults.BadRequest();
             }
 
             CreateGameResponse createGameResponse = new(game.GameId, game.GameType, game.PlayerName);
