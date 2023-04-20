@@ -121,6 +121,8 @@ Additional articles and samples related to the book
 * [Creating a Windows Service with .NET 6 - Article](https://csharp.christiannagel.com/2022/03/22/windowsservice-2/)
 * [Creating a Windows Service with .NET 6 - Source Code](5_More/WindowsServices/)
 * [HTTP tools to debug Web APIs - Article](https://csharp.christiannagel.com/2023/03/21/httptools/)
+* [Web API Updates with .NET 8 - Source Code](5_More/Services/TodoAPI)
+* [Web API Updates with .NET 8 - Article](https://csharp.christiannagel.com/2023/04/19/api-dotnet8/)
 
 ### Windows Apps
 
