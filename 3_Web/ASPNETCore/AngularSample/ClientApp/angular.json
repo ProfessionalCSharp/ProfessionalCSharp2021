@@ -132,5 +132,8 @@
       }
     }
   },
-  "defaultProject": "AngularSample"
+  "defaultProject": "AngularSample",
+  "cli": {
+    "analytics": "fd540459-143b-4d53-a086-f483f83d1848"
+  }
 }
