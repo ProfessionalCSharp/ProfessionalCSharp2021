@@ -1,0 +1,45 @@
+﻿@hostname = localhost
+@port = 7261
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+
+## Get all running games
+
+GET https://{{host}}/games/
+
+### Create a new game
+
+@gameid = 623bea96-3ad0-4a5f-99d1-668b7d48c92d
+
+POST https://{{host}}/games
+Content-Type: {{contentType}}
+
+{
+  "gameType": "Game6x4",
+  "playerName": "Testplayer"
+}
+
+### Get a specific game
+
+GET https://{{host}}/games/{{gameid}}
+
+### Get all running games
+
+GET https://{{host}}/games
+
+### Set a move
+
+POST https://{{host}}/games/{{gameid}}/moves
+Content-Type: {{contentType}}
+
+{
+  "gameId": "{{gameid}}",
+  "gameType": "Game6x4",
+  "moveNumber": 1,
+  "colorFields":  [
+    { "color":"red" },
+    { "color": "blue" },
+    { "color": "green" },
+    { "color": "yellow" }      
+  ] 
+}
