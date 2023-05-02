@@ -99,6 +99,8 @@ Additional articles and samples related to the book
 * [Synchronization Context - Source Code](5_More/Tasks/SynchronizationContext)
 * [Primary Constructors - Source Code](5_More/Types/PrimaryConstructors)
 * [Primary Constructors - Article](https://csharp.christiannagel.com/2023/03/28/primaryctors/)
+* [IParsable, ISpanParsable Interfaces - Source Code](5_More/Services/GamesApiDotnet7/)
+* [IParsable, ISpanParsable Interfaces - Article](https://csharp.christiannagel.com/2023/04/14/iparsable/)
 
 #### The Libraries
 
@@ -123,6 +125,9 @@ Additional articles and samples related to the book
 * [HTTP tools to debug Web APIs - Article](https://csharp.christiannagel.com/2023/03/21/httptools/)
 * [Web API Updates with .NET 8 - Source Code](5_More/Services/TodoAPI)
 * [Web API Updates with .NET 8 - Article](https://csharp.christiannagel.com/2023/04/19/api-dotnet8/)
+* [Minimal API Updates with .NET 7 - .NET 6 version source code](5_More/Services/GamesApiDotnet6/)
+* [Minimal API Updates with .NET 7 - Source Code](5_More/Services/GamesApiDotnet7/)
+* [Minimal API Updates with .NET 7 - Article](https://csharp.christiannagel.com)
 
 ### Windows Apps
 
