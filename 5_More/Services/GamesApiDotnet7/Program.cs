@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Http.Json;
 
 using System.Text.Json;
@@ -14,6 +15,7 @@ builder.Services.Configure<Microsoft.AspNetCore.Mvc.JsonOptions>(options =>
 {
     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
 });
+
 builder.Services.Configure<JsonOptions>(options =>
 {
     options.SerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault;
@@ -23,7 +25,7 @@ builder.Services.Configure<JsonOptions>(options =>
 builder.Services.AddSingleton<IGamesRepository, InMemoryGamesRepository>();
 builder.Services.AddSingleton<GamesFactory>();
 builder.Services.AddTransient<IGamesService, GamesService>();
-
+Results<Ok, Created, Ok>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -36,18 +38,5 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapGameEndpoints(app.Logger);
-
-SetMoveRequest req = new(Guid.NewGuid(), GameType.Game6x4, 1)
-{
-    ColorFields = new List<ColorField>
-    {
-        new("red"),
-        new("green"),
-        new("blue"),
-        new("blue")
-    }
-};
-string json = JsonSerializer.Serialize(req);
-
 
 app.Run();

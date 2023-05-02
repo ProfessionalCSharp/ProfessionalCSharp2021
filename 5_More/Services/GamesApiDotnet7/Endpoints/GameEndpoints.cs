@@ -1,17 +1,17 @@
 ﻿using Codebreaker.Utilities;
 
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Codebreaker.Endpoints;
-
-// polymorphic hierarchy https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/polymorphism?pivots=dotnet-7-0
 
 public static class GameEndpoints
 {
     public static IEndpointRouteBuilder MapGameEndpoints(this IEndpointRouteBuilder routes, ILogger logger)
     {
         var group = routes.MapGroup("/games")
-            .WithTags(nameof(Game));
+            .WithTags("Gameplay")
+            .AddEndpointFilter<LoggingFilter>();
 
         group.MapGet("/", async (IGamesService gamesService) =>
         {
@@ -35,7 +35,7 @@ public static class GameEndpoints
         .WithSummary("Gets a game by the given id")
         .WithOpenApi(op =>
         {
-            op.Parameters[0].Description = "The id of the game to get";
+            op.Parameters[0].Description = "The game-id to request a game run";
             return op;
         });
 
@@ -46,18 +46,15 @@ public static class GameEndpoints
             try
             {
                 game = await gamesService.CreateGameAsync(request.GameType, request.PlayerName);
+
+                CreateGameResponse createGameResponse = new(game.GameId, game.GameType, game.PlayerName);
+                return TypedResults.Created($"/{game.GameId}", createGameResponse);
             }
             catch (InvalidGameException ex) when (ex.HResult == 4000)
             {
                 logger.LogError("Game Type not found {gametype}", request.GameType);
-
-                // InvalidGameRequest invalidRequest = new("Gametype does not exist, valid types:", new[] { GameTypes.Game6x4, GameTypes.Game8x5, GameTypes.Game5x5x4, GameTypes.Game6x4Simple });
-                // return TypedResults.BadRequest(invalidRequest);
                 return TypedResults.BadRequest();
             }
-
-            CreateGameResponse createGameResponse = new(game.GameId, game.GameType, game.PlayerName);
-            return TypedResults.Created($"/{game.GameId}", createGameResponse);
         })
         .WithName("CreateGame")
         .WithSummary("Creates and starts a game")
@@ -70,30 +67,16 @@ public static class GameEndpoints
         // Create a move for a game
         group.MapPost("/{gameId:guid}/moves", async Task<Results<Ok<SetMoveResponse>, BadRequest<string>, NotFound>> (Guid gameId, SetMoveRequest request, IGamesService gamesService) =>
         {
-            if (gameId != request.GameId)
-            {
-                return TypedResults.BadRequest("id does not match");
-            }
-            if (request.ColorFields == default && request.ShapeAndColorFields == default)
-            {
-                return TypedResults.BadRequest("Either fill ColorFields or ShapeAndColorFields");
-            }
-            try
-            {
-                SetMoveResponse response = await gamesService.SetMoveAsync(request);
-                return TypedResults.Ok(response);
-            }
-            catch (GameNotFoundException)
-            {
-                logger.LogError("Game {gameid} not found", request.GameId);
-                return TypedResults.NotFound();
-            }
+            SetMoveResponse response = await gamesService.SetMoveAsync(request);
+            return TypedResults.Ok(response);
         })
+        .AddEndpointFilter<GameMoveValidationFilter>()
+        .AddEndpointFilter<GameMoveExceptionFilter>()
         .WithName("SetMove")
         .WithSummary("Sets a move with a game")
         .WithOpenApi(op =>
         {
-            op.RequestBody.Description = "The move to set";
+            op.RequestBody.Description = "The game move consisting of values for every available hole";
             return op;
         });
 
