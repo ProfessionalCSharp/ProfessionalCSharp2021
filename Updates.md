@@ -84,6 +84,18 @@ static ServiceProvider GetServiceProvider()
 }
 ```
 
+Page 400, section *Using Scoped Services*
+
+The text
+
+*Let's start registering services with the local function `RegisterServices`.*
+
+Should be:
+
+*Let's start registering services with the method `UsingScoped`.*
+
+Thanks to [@ShervanN](https://github.com/ShervanN) for reporting this issue!
+
 ## Chapter 16, Diagnostics and Metrics
 
 Page 422, the code snippet in the book misses a variable name. The variable `httpClient` should be added:
