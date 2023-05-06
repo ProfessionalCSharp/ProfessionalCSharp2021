@@ -44,6 +44,12 @@ Instead of using Marshal.GetLastWin32Error, Marshal.GetLastPInvokeError can be u
 
 See chapter 18, *Files and Streams* for more information on JSON.
 
+## Networking
+
+ASP.NET Core 6 adds the `WebApplicationBuilder` and `WebApplication classes which abstracts the `Host` class. The code in the repo has been updated to use the `WebApplication` and `WebApplicationBuilder` classes.
+
+See chapter 19, "Networking" for more information on network programming.
+
 ## Security
 
 Sample code: **X509CertificateSample**
@@ -52,7 +58,7 @@ With .NET 6, the `Key` property of the `PublicKey` property is deprecated. The s
 
 See chapter 20, *Security* for more information on security.
 
-## Ef Core
+## EF Core
 
 New feature with EF Core 6:
 

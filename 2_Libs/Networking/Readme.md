@@ -22,7 +22,30 @@ This chapter contains the following code samples:
     * HttpClientSample (HTTP client using `HttpClient`)
     * WinAppHttpClient (HTTP client with UWP app where `HttpClient` supports HTTP 2.0) 
 
-## .NET 7 Update
+## .NET 6 Updates
+
+See [.NET 6 updates](../../Dotnet6Updates.md).
+
+New with ASP.NET Core are the `WebApplication` and `WebApplicationBuilder` classes. The code in the repo has been updated to use the `WebApplication` and `WebApplicationBuilder` classes (see page 542/543):
+
+```csharp
+using HttpServerSample;
+
+var builder = WebApplication.CreateBuilder(args);
+builder.WebHost.ConfigureKestrel(kestrelOptions =>
+{
+    kestrelOptions.AddServerHeader = true;
+    kestrelOptions.AllowResponseHeaderCompression = true;
+    kestrelOptions.Limits.Http2.MaxStreamsPerConnection = 10;
+    kestrelOptions.Limits.MaxConcurrentConnections = 20;
+    kestrelOptions.ConfigureHttpsDefaults(httpsConfig =>
+    {
+
+    });
+}).UseUrls("http://localhost:5020", "https://localhost:5021");
+```
+
+## .NET 7 Updates
 
 The HttpServerSample is changed to use **raw string literals**.
 
