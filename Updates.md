@@ -44,6 +44,24 @@ Page 190, the event name should be `NewCarCreated` instead of `NewCarInfo`:
 
 Thanks to [@DanielNikoofar](https://github.com/DanielNikoofar) for reporting this issue!
 
+Page 191, the method should be `CreateANewCar` instead of `NewCar()`, and the event `NewCarCreated` instead of `NewCarInfo` (also see page 190).
+
+```csharp
+CarDealer dealer = new();
+Consumer sebastian = new("Sebastian");
+dealer.NewCarCreated += sebastian.NewCarIsHere;
+dealer.CreateANewCar("Williams");
+Consumer max = new("Max");
+dealer.NewCarCreated += max.NewCarIsHere;
+dealer.CreateANewCar("Aston Martin");
+dealer.NewCarCreated -= sebastian.NewCarIsHere;
+dealer.CreateANewCar("Ferrari");
+```
+
+[See source code - EventsSample/Program.cs](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021/blob/main/1_CS/Delegates/EventsSample/Program.cs)
+
+Thanks to [@zpfdev](https://github.com/zpfdev)) for reporting this issue!
+
 ## Chapter 11, Tasks and Asynchronous Programming
 
 Page 296 shows this source code:
