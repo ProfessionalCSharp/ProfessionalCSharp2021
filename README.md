@@ -28,7 +28,7 @@ The *dotnet6* branch is used to give you the .NET 6 (LTS) version.
 
 ## Issues and Discussions
 
-If you find some problems with the source code, issues to compile and run the samples, please create an [issue](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021/issues). 
+If you find some problems with the source code, issues to compile and run the downloaded samples, please create an [issue](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021/issues). 
 
 If you have some questions about the code samples, or just want to drop a message, you're welcome to use [Discussions](https://github.com/ProfessionalCSharp/ProfessionalCSharp2021/discussions).
 
