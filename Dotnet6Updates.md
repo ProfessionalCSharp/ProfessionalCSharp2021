@@ -2,11 +2,11 @@
 
 ## Implicit Namespaces
 
-[Microsoft.Net.Sdk adds implicit namespaces](https://docs.microsoft.com/en-us/dotnet/core/compatibility/sdk/6.0/implicit-namespaces)
+[.NET 6 adds implicit usings](https://learn.microsoft.com/dotnet/core/project-sdk/overview#implicit-using-directives?WT.mc_id=DT-MVP-10160)
 
 ## Global Using Directive
 
-[global using directive](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-10.0/globalusingdirective)
+[global using directive](https://learn.microsoft.com/dotnet/csharp/language-reference/proposals/csharp-10.0/globalusingdirective?WT.mc_id=DT-MVP-10160)
 
 Chapter 2, StringSample
 
