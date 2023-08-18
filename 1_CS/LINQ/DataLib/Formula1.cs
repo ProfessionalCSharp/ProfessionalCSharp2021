@@ -34,13 +34,13 @@ public static class Formula1
         new("Jacques", "Villeneuve", "Canada", 163, 11, new int[] { 1997 }, new string[] { "Williams" }),
         new("Mika", "Hakkinen", "Finland", 161, 20, new int[] { 1998, 1999 }, new string[] { "McLaren" }),
         new("Michael", "Schumacher", "Germany", 306, 91, new int[] { 1994, 1995, 2000, 2001, 2002, 2003, 2004 }, new string[] { "Benetton", "Ferrari" }),
-        new("Fernando", "Alonso", "Spain", 359, 32, new int[] { 2005, 2006 }, new string[] { "Renault" }),
+        new("Fernando", "Alonso", "Spain", 370, 32, new int[] { 2005, 2006 }, new string[] { "Renault" }),
         new("Kimi", "Räikkönen", "Finland", 349, 21, new int[] { 2007 }, new string[] { "Ferrari" }),
         new("Jenson", "Button", "UK", 306, 16, new int[] { 2009 }, new string[] { "Brawn GP" }),
         new("Sebastian", "Vettel", "Germany", 299, 53, new int[] { 2010, 2011, 2012, 2013 }, new string[] { "Red Bull Racing" }),
         new("Nico", "Rosberg", "Germany", 206, 24, new int[] { 2016 }, new string[] { "Mercedes" }),
-        new("Lewis", "Hamilton", "UK", 314, 103, new int[] { 2008, 2014, 2015, 2017, 2018, 2019, 2020 }, new string[] { "McLaren", "Mercedes" }),
-        new("Max", "Verstappen", "Netherlands", 167, 37, new int[] { 2021, 2022 }, new string[] { "Red Bull Racing" })
+        new("Lewis", "Hamilton", "UK", 322, 103, new int[] { 2008, 2014, 2015, 2017, 2018, 2019, 2020 }, new string[] { "McLaren", "Mercedes" }),
+        new("Max", "Verstappen", "Netherlands", 175, 45, new int[] { 2021, 2022 }, new string[] { "Red Bull Racing" })
     };
 
     private static List<Team>? s_teams;
@@ -175,9 +175,9 @@ public static class Formula1
         new Racer("Juan Pablo", "Montoya", "Columbia", Starts: 94, Wins: 7),
         new Racer("Felipe", "Massa", "Brazil", Starts: 269, Wins: 11),
         new Racer("Mark", "Webber", "Australia", Starts: 215, Wins: 9),
-        new Racer("Daniel", "Ricciardo", "Australia", Starts: 232, Wins: 8),
-        new Racer("Valtteri", "Bottas", "Finland", Starts: 204, Wins: 10),
-        new Racer("Charles", "Leclerc", "Monaco", Starts: 106, Wins: 5),
-        new Racer("Sergio", "Perez", "Mexico", Starts: 239, Wins: 6),
+        new Racer("Daniel", "Ricciardo", "Australia", Starts: 234, Wins: 8),
+        new Racer("Valtteri", "Bottas", "Finland", Starts: 212, Wins: 10),
+        new Racer("Charles", "Leclerc", "Monaco", Starts: 115, Wins: 5),
+        new Racer("Sergio", "Perez", "Mexico", Starts: 248, Wins: 6),
     };
 }
