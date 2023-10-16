@@ -98,33 +98,33 @@ public sealed partial class DateSelectionPage : Page
 
         string selectedDates = string.Join(", ", currentDatesSelected.Select(d => d.ToString("d")));
 
-        // await new MessageDialog($"dates selected: {selectedDates}").ShowAsync();
         await ShowMessageAsync($"dates selected: {selectedDates}");
     }
 
     private async void OnDateChanged(CalendarDatePicker sender, CalendarDatePickerDateChangedEventArgs args)
     {
-        // await new MessageDialog($"date changed to {args.NewDate}").ShowAsync();
         await ShowMessageAsync($"date changed to: {args.NewDate}");
     }
 
     private async void OnDateChanged1(object sender, DatePickerValueChangedEventArgs e)
     {
-        // await new MessageDialog($"date changed to {e.NewDate}").ShowAsync();
         await ShowMessageAsync($"date changed to: {e.NewDate}");
     }
 
     private async void OnDatePicked(DatePickerFlyout sender, DatePickedEventArgs args)
     {
-        // await new MessageDialog($"date changed to {args.NewDate}").ShowAsync();
         await ShowMessageAsync($"date changed to: {args.NewDate}");
     }
 
     private async Task ShowMessageAsync(string message)
     {
-        MessageDialog dlg = new(message);
-        IntPtr hwnd = WindowNative.GetWindowHandle(this);
-        InitializeWithWindow.Initialize(dlg, hwnd);
+        ContentDialog dlg = new()
+        {
+            Title = "Message",
+            Content = message,
+            PrimaryButtonText = "OK",
+            XamlRoot = this.XamlRoot
+        };
         await dlg.ShowAsync();
     }
 }

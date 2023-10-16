@@ -47,6 +47,8 @@ public class BookDetailViewModel : EditableItemViewModel<Book>
         {
             if (EditItem is null) throw new InvalidOperationException();
 
+            await _dialogService.ShowMessageAsync("TEst save");
+
             await _itemsService.AddOrUpdateAsync(EditItem);
         }
         catch (Exception ex)
