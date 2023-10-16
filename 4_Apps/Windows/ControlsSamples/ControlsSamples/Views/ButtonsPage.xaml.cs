@@ -13,10 +13,13 @@ namespace ControlsSamples.Views
 
         private async void OnButtonClick(object sender, RoutedEventArgs e)
         {         
-            MessageDialog dlg = new("button 1 clicked");
-
-            IntPtr hwnd = WindowNative.GetWindowHandle(this);
-            InitializeWithWindow.Initialize(dlg, hwnd);
+            ContentDialog dlg = new()
+            {
+                Title = "Message",
+                Content = "button 1 clicked",
+                PrimaryButtonText = "OK",
+                XamlRoot = this.Content.XamlRoot
+            };
             await dlg.ShowAsync();
         }
     }

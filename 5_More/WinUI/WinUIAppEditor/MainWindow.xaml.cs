@@ -1,8 +1,10 @@
 ﻿using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 
 using System.Runtime.InteropServices;
 using System.Text;
 
+using Windows.Security.ExchangeActiveSyncProvisioning;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
@@ -50,8 +52,7 @@ public sealed partial class MainWindow : Window
         }
         catch (Exception ex)
         {
-            MessageDialog dlg = new(ex.Message, "Error");
-            await dlg.ShowAsync();
+            await ShowErrorAsync(ex.Message);
         }
     }
 
@@ -81,8 +82,7 @@ public sealed partial class MainWindow : Window
         }
         catch (Exception ex)
         {
-            MessageDialog dlg = new(ex.Message, "Error");
-            await dlg.ShowAsync();
+            await ShowErrorAsync(ex.Message);
         }
     }
 
@@ -116,8 +116,7 @@ public sealed partial class MainWindow : Window
         }
         catch (Exception ex)
         {
-            MessageDialog dlg = new(ex.Message, "Error");
-            await dlg.ShowAsync();
+            await ShowErrorAsync(ex.Message);
         }
     }
 
@@ -149,13 +148,24 @@ public sealed partial class MainWindow : Window
         }
         catch (Exception ex)
         {
-            MessageDialog dlg = new(ex.Message, "Error");
-            await dlg.ShowAsync();
+            await ShowErrorAsync(ex.Message);
         }
     }
 
     public void OnClose()
     {
         App.Current.Exit();
+    }
+
+    private async Task ShowErrorAsync(string message)
+    {
+        ContentDialog dlg = new()
+        {
+            Title = "Error",
+            Content = message,
+            PrimaryButtonText = "OK",
+            XamlRoot = this.Content.XamlRoot
+        };
+        await dlg.ShowAsync();
     }
 }
