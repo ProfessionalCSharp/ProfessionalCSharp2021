@@ -49,7 +49,7 @@ public sealed partial class MainWindow : Window
             picker.FileTypeFilter.Add(".txt");
             picker.FileTypeFilter.Add(".md");
 
-            // InitializeActiveWindow(picker);
+            InitializeActiveWindow(picker);
 
             StorageFile file = await picker.PickSingleFileAsync();
             if (file != null)
