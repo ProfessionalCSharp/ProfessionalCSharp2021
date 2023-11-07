@@ -24,9 +24,14 @@ public sealed partial class MainWindow : Window
 
         button2.Click += async (sender, e) =>
         {
-            MessageDialog dlg = new("button 2 clicked");
-            IntPtr hwnd = WindowNative.GetWindowHandle(this);
-            InitializeWithWindow.Initialize(dlg, hwnd);
+            ContentDialog dlg = new()
+            {
+                Title = "Message",
+                Content = "button 2 clicked",
+                PrimaryButtonText = "OK",
+                XamlRoot = this.Content.XamlRoot
+            };
+
             await dlg.ShowAsync();
         };
 
@@ -37,9 +42,13 @@ public sealed partial class MainWindow : Window
 
     private async void OnButtonClick(object sender, RoutedEventArgs e)
     {
-        MessageDialog dlg = new("button 1 clicked");
-        IntPtr hwnd = WindowNative.GetWindowHandle(this);
-        InitializeWithWindow.Initialize(dlg, hwnd);
+        ContentDialog dlg = new()
+        {
+            Title = "Message",
+            Content = "button 1 clicked",
+            PrimaryButtonText = "OK",
+            XamlRoot = this.Content.XamlRoot
+        };
         await dlg.ShowAsync();
     }
 }
