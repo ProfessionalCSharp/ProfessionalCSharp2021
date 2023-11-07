@@ -17,7 +17,7 @@
         if (_retrieved >= DateTime.Now.AddSeconds(-5) && _cachedData != null)
         {
             Console.WriteLine("data from the cache");
-            return await new ValueTask<IEnumerable<string>>(_cachedData);
+            return _cachedData;
         }
 
         Console.WriteLine("data from the service");
