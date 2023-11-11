@@ -1,11 +1,10 @@
 ﻿namespace DictionarySample;
 
-public class EmployeeIdException : Exception
+public class EmployeeIdException(string message) : Exception(message)
 {
-    public EmployeeIdException(string message) : base(message) { }
 }
 
-public struct EmployeeId : IEquatable<EmployeeId>
+public readonly struct EmployeeId : IEquatable<EmployeeId>
 {
     private readonly char _prefix;
     private readonly int _number;
@@ -34,7 +33,8 @@ public struct EmployeeId : IEquatable<EmployeeId>
 
     public override bool Equals(object? obj)
     {
-        if (obj == null) return false;
+        if (obj == null) 
+            return false;
         return Equals((EmployeeId)obj);
     }
 

@@ -18,7 +18,6 @@ Employee joey = new(idJoey, "Joey Logano", 96_000.00m);
 EmployeeId idKyleL = new ("C42");
 Employee kyleL = new (idKyleL, "Kyle Larson", 80_000.00m);
 
-
 Dictionary<EmployeeId, Employee> employees = new(31)
 {
     [idKyle] = kyle,
@@ -38,7 +37,8 @@ while (true)
     Console.Write("Enter employee id (X to exit)> ");
     string? userInput = Console.ReadLine();
     userInput = userInput?.ToUpper();
-    if (userInput == null || userInput == "X") break;
+    if (userInput == null || userInput == "X") 
+        break;
 
     try
     {

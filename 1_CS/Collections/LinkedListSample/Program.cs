@@ -24,9 +24,10 @@ foreach (var item in list)
     Console.WriteLine(item);
 }
 
-void IterateUsingNext(LinkedListNode<Document> start)
+static void IterateUsingNext(LinkedListNode<Document> start)
 {
-    if (start.Value is null) return;
+    if (start.Value is null) 
+        return;
     LinkedListNode<Document>? current = start;
     do
     {

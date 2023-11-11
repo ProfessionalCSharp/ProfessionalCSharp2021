@@ -2,10 +2,14 @@
 Racer emerson = new(13, "Emerson", "Fittipaldi", "Brazil", 14);
 Racer mario = new(16, "Mario", "Andretti", "USA", 12);
 
-List<Racer> racers = new(20) { graham, emerson, mario };
-
-racers.Add(new(24, "Michael", "Schumacher", "Germany", 91));
-racers.Add(new(27, "Mika", "Hakkinen", "Finland", 20));
+List<Racer> racers = new(20)
+{
+    graham,
+    emerson,
+    mario,
+    new(24, "Michael", "Schumacher", "Germany", 91),
+    new(27, "Mika", "Hakkinen", "Finland", 20)
+};
 
 racers.AddRange(new Racer[] {
                new(14, "Niki", "Lauda", "Austria", 25),
