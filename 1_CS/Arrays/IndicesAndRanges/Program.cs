@@ -1,6 +1,6 @@
 ﻿using IndicesAndRanges;
 
-int[] data = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+int[] data = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 // indices and the hat operator
 
@@ -24,7 +24,7 @@ ShowRange("first three", data[0..3]);
 ShowRange("fourth to sixth", data[3..6]);
 ShowRange("last three", data[^3..^0]);
 
-void ShowRange(string title, int[] data)
+static void ShowRange(string title, int[] data)
 {
     Console.WriteLine(title);
     Console.WriteLine(string.Join(" ", data));
@@ -40,7 +40,7 @@ Console.WriteLine(fullRange);
 
 // efficiently changing array content
 
-var slice1 = data[3..5];
+int[] slice1 = data[3..5];
 slice1[0] = 42;
 Console.WriteLine($"value in array didn't change: {data[3]}, value from slice: {slice1[0]}");
 

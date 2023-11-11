@@ -1,4 +1,6 @@
-﻿public static class BitArrayExtensions
+﻿namespace BitArraySample;
+
+public static class BitArrayExtensions
 {
     public static string FormatString(this BitArray bits)
     {
@@ -8,7 +10,7 @@
             sb.Append(bits[i] ? 1 : 0);
             if (i != 0 && i % 4 == 0)
             {
-                sb.Append("_");
+                sb.Append('_');
             }
         }
 

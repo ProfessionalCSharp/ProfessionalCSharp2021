@@ -1,4 +1,4 @@
-﻿namespace Wrox.ProCSharp.Arrays;
+﻿namespace SortingSample;
 
 public record Person(string FirstName, string LastName) : IComparable<Person>
 {

@@ -40,7 +40,7 @@ void ChangeValues(Span<int> span1, Span<int> span2)
 Span<int> CreateSlices(Span<int> span1)
 {
     Console.WriteLine(nameof(CreateSlices));
-    int[] arr2 = { 3, 5, 7, 9, 11, 13, 15 };
+    int[] arr2 = [3, 5, 7, 9, 11, 13, 15];
     Span<int> span2 = new(arr2);
     Span<int> span3 = new(arr2, start: 3, length: 3);
     Span<int> span4 = span1.Slice(start: 2, length: 4);
@@ -63,7 +63,7 @@ void DisplaySpan(string title, ReadOnlySpan<int> span)
 
 Span<int> IntroSpans()
 {
-    int[] arr1 = { 2, 4, 6, 8, 10, 12 };
+    int[] arr1 = [2, 4, 6, 8, 10, 12];
     Span<int> span1 = new(arr1);
     span1[1] = 11;
     Console.WriteLine($"arr1[1] is changed via span1[1]: {arr1[1]}");

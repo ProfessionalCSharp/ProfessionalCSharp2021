@@ -1,4 +1,5 @@
 ﻿namespace IndicesAndRanges;
+
 public class MyCollection
 {
     private readonly int[] _array = Enumerable.Range(1, 100).ToArray();
@@ -13,7 +14,7 @@ public class MyCollection
 
     public int[] Slice(int start, int length)
     {
-        var slice = new int[length];
+        int[] slice = new int[length];
         Array.Copy(_array, start, slice, 0, length);
         return slice;
     }

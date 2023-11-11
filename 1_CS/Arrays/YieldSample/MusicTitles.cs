@@ -1,8 +1,10 @@
-﻿public class MusicTitles
+﻿namespace YieldSample;
+
+public class MusicTitles
 {
-    private string[] _names = {
+    private readonly string[] _names = [
               "Tubular Bells", "Hergest Ridge",
-              "Ommadawn", "Platinum" };
+              "Ommadawn", "Platinum" ];
 
     public IEnumerator<string> GetEnumerator()
     {

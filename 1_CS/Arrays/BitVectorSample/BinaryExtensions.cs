@@ -1,4 +1,6 @@
-﻿public static class BinaryExtensions
+﻿namespace BitVectorSample;
+
+public static class BinaryExtensions
 {
     public static string AddSeparators(this string number) =>
         number.Length <= 4 ? number :
