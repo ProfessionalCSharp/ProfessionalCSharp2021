@@ -1,15 +1,9 @@
-﻿struct Currency
+﻿struct Currency(uint dollars, ushort cents)
 {
-    public uint Dollars;
-    public ushort Cents;
+    public uint Dollars = dollars;
+    public ushort Cents = cents;
 
-    public Currency(uint dollars, ushort cents)
-    {
-        Dollars = dollars;
-        Cents = cents;
-    }
-
-    public override string ToString() => $"${Dollars}.{Cents,2:00}";
+    public override readonly string ToString() => $"${Dollars}.{Cents,2:00}";
 
     public static string GetCurrencyUnit() => "Dollar";
 
@@ -26,9 +20,8 @@
     public static implicit operator float(Currency value) =>
       value.Dollars + (value.Cents / 100.0f);
 
-
     public static implicit operator Currency(uint value) =>
-      new Currency(value, 0);
+      new(value, 0);
 
     public static implicit operator uint(Currency value) =>
       value.Dollars;

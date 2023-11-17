@@ -5,13 +5,15 @@ using var host = Host
     .CreateDefaultBuilder(args)
     .ConfigureServices(services =>
     {
-        services.AddTransient<AliceRunner>();
-        services.AddTransient<BobRunner>();
+        services.AddScoped<AliceRunner>();
+        services.AddScoped<BobRunner>();
     })
     .Build();
 
-var alice = host.Services.GetRequiredService<AliceRunner>();
-var bob = host.Services.GetRequiredService<BobRunner>();
+using var scope = host.Services.CreateScope();
+
+var alice = scope.ServiceProvider.GetRequiredService<AliceRunner>();
+var bob = scope.ServiceProvider.GetRequiredService<BobRunner>();
 var keyAlice = alice.GetPublicKey();
 var keyBob = bob.GetPublicKey();
 (byte[] iv, byte[] encryptedData) = await alice.GetSecretMessageAsync(keyBob);

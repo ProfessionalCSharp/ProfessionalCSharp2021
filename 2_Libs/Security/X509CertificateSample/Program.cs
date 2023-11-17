@@ -1,19 +1,19 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.UserSecrets;
+﻿using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Reflection;
-using System.Security.Cryptography;
-using System.Security.Cryptography.X509Certificates;
 
 using var host = Host
     .CreateDefaultBuilder(args)
     .ConfigureServices(services =>
     {
-        services.AddSingleton<KeyVaultService>();
+        services.AddScoped<KeyVaultService>();
     }).Build();
 
-var service = host.Services.GetRequiredService<KeyVaultService>();
+using var scope = host.Services.CreateScope();
+
+var service = scope.ServiceProvider.GetRequiredService<KeyVaultService>();
 using var certificate = await service.GetCertificateAsync("AliceCert");
 
 ShowCertificate(certificate);

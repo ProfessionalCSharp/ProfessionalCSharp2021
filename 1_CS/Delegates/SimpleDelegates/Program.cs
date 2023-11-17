@@ -4,10 +4,10 @@ decimal d2 = d1 * d1;
 Console.WriteLine(d2);
 
 DoubleOp[] operations =
-{
+[
     MathOperations.MultiplyByTwo,
     MathOperations.Square
-};
+];
 
 for (int i = 0; i < operations.Length; i++)
 {
@@ -18,9 +18,7 @@ for (int i = 0; i < operations.Length; i++)
     Console.WriteLine();
 }
 
-void ProcessAndDisplayNumber(DoubleOp action, double value)
-{
+static void ProcessAndDisplayNumber(DoubleOp action, double value) => 
     Console.WriteLine($"Value is {value}, result of operation is {action(value)}");
-}
 
 delegate double DoubleOp(double x);

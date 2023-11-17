@@ -4,16 +4,13 @@
     throw new Exception("Error in One");
 }
 
-static void Two()
-{
-    Console.WriteLine("Two");
-}
+static void Two() => Console.WriteLine("Two");
 
 Action d1 = One;
 d1 += Two;
 
 Delegate[] delegates = d1.GetInvocationList();
-foreach (Action d in delegates)
+foreach (Action d in delegates.Cast<Action>())
 {
     try
     {

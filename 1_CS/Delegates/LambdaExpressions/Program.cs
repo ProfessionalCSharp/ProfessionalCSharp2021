@@ -49,11 +49,11 @@ void ClosureWithForEach()
     Console.WriteLine(nameof(ClosureWithForEach));
     var values = new List<int>() { 10, 20, 30 };
     var funcs = new List<Func<int>>();
-    foreach (var val in values)
+    foreach (int val in values)
     {
         funcs.Add(() => val);
     }
-    foreach (var f in funcs)
+    foreach (Func<int> f in funcs)
     {
         Console.WriteLine(f());
     }
