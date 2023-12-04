@@ -1,13 +1,7 @@
-﻿sealed class AliceRunner : IDisposable
+﻿sealed class AliceRunner(ILogger<AliceRunner> logger) : IDisposable
 {
-    private readonly ILogger _logger;
-    private readonly ECDsa _signAlgorithm;
-    public AliceRunner(ILogger<AliceRunner> logger)
-    {
-        _logger = logger;
-        _signAlgorithm = ECDsa.Create();
-        _logger.LogInformation($"Using this ECDsa class: {_signAlgorithm.GetType().Name}");
-    }
+    private readonly ILogger _logger = logger;
+    private readonly ECDsa _signAlgorithm = ECDsa.Create();
 
     public void Dispose() => _signAlgorithm.Dispose();
 
@@ -15,10 +9,11 @@
 
     public (byte[] Data, byte[] Sign) GetDocumentAndSignature()
     {
+        _logger.LogInformation($"Using this ECDsa class: {_signAlgorithm.GetType().Name}");
+
         byte[] aliceData = Encoding.UTF8.GetBytes("I'm Alice");
         byte[] aliceDataSignature = _signAlgorithm.SignData(aliceData, HashAlgorithmName.SHA512);
         return (aliceData, aliceDataSignature);
     }
-
 }
   

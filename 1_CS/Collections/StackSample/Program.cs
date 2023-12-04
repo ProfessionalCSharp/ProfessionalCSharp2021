@@ -1,4 +1,4 @@
-﻿Stack<char> alphabet = new();
+﻿Stack<char> alphabet = [];
 alphabet.Push('A');
 alphabet.Push('B');
 alphabet.Push('C');

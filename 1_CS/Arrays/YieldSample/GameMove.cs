@@ -1,7 +1,9 @@
-﻿public class GameMoves
+﻿namespace YieldSample;
+
+public class GameMoves
 {
-    private IEnumerator _cross;
-    private IEnumerator _circle;
+    private readonly IEnumerator _cross;
+    private readonly IEnumerator _circle;
 
     public GameMoves()
     {

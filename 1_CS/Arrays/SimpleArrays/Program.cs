@@ -8,11 +8,11 @@ CopyArrays();
 
 void CopyArrays()
 {
-    Person[] beatles = 
-        {
+    Person[] beatles =
+        [
             new ("John", "Lennon"),
             new ("Paul", "McCartney")
-        };
+        ];
 
     Person[] beatlesClone = (Person[])beatles.Clone();
 }
@@ -29,8 +29,8 @@ void ArrayClass()
         Console.WriteLine(intArray1.GetValue(i));
     }
 
-    int[] lengths = { 2, 3 };
-    int[] lowerBounds = { 1, 10 };
+    int[] lengths = [2, 3];
+    int[] lowerBounds = [1, 10];
     Array racers = Array.CreateInstance(typeof(Person), lengths, lowerBounds);
     racers.SetValue(new Person("Alain", "Prost"), 1, 10);
     racers.SetValue(new Person("Emerson", "Fittipaldi"), 1, 11);
@@ -48,11 +48,11 @@ void ArrayClass()
 void Jagged()
 {
     int[][] jagged =
-    {
-        new[] { 1, 2 },
-        new[] { 3, 4, 5, 6, 7, 8 },
-        new[] { 9, 10, 11 }
-    };
+    [
+        [1, 2],
+        [3, 4, 5, 6, 7, 8],
+        [9, 10, 11]
+    ];
 
     for (int row = 0; row < jagged.Length; row++)
     {
@@ -65,9 +65,9 @@ void Jagged()
     }
 
     // foreach version
-    foreach (var row in jagged)
+    foreach (int[] row in jagged)
     {
-        foreach (var item in row)
+        foreach (int item in row)
         {
             Console.WriteLine(item);
         }
@@ -108,10 +108,10 @@ void SimpleArrays()
     myPersons[1] = new("Michael", "Schumacher");
 
     Person[] myPersons2 =
-    {
+    [
         new("Ayrton", "Senna"),
         new("Michael", "Schumacher")
-    };
+    ];
 }
 
 public record Person(string FirstName, string LastName);

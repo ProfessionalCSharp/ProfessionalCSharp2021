@@ -1,6 +1,6 @@
-﻿HashSet<string> companyTeams = new() { "Ferrari", "McLaren", "Mercedes" };
-HashSet<string> traditionalTeams = new() { "Ferrari", "McLaren" };
-HashSet<string> privateTeams = new() { "Red Bull", "Lotus", "Toro Rosso", "Force India", "Sauber" };
+﻿HashSet<string> companyTeams = ["Ferrari", "McLaren", "Mercedes"];
+HashSet<string> traditionalTeams = ["Ferrari", "McLaren"];
+HashSet<string> privateTeams = ["Red Bull", "Lotus", "Toro Rosso", "Force India", "Sauber"];
 
 if (privateTeams.Add("Williams"))
     Console.WriteLine("Williams added");
@@ -29,7 +29,7 @@ allTeams.UnionWith(traditionalTeams);
 
 Console.WriteLine();
 Console.WriteLine("all teams");
-foreach (var team in allTeams)
+foreach (string team in allTeams)
 {
     Console.WriteLine(team);
 }
@@ -37,7 +37,7 @@ foreach (var team in allTeams)
 allTeams.ExceptWith(privateTeams);
 Console.WriteLine();
 Console.WriteLine("no private team left");
-foreach (var team in allTeams)
+foreach (string team in allTeams)
 {
     Console.WriteLine(team);
 }

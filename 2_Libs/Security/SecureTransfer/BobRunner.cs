@@ -1,12 +1,7 @@
-﻿sealed class BobRunner
+﻿sealed class BobRunner(ILogger<BobRunner> logger) : IDisposable
 {
-    private readonly ILogger _logger;
-    private readonly ECDiffieHellman _algorithm;
-    public BobRunner(ILogger<BobRunner> logger)
-    {
-        _logger = logger;
-        _algorithm = ECDiffieHellman.Create();
-    }
+    private readonly ILogger _logger = logger;
+    private readonly ECDiffieHellman _algorithm = ECDiffieHellman.Create();
 
     public void Dispose() => _algorithm.Dispose();
 

@@ -9,13 +9,13 @@ Console.ReadLine();
 
 void LinqDemo()
 {
-    ImmutableArray<string> arr = ImmutableArray.Create<string>("one", "two", "three", "four", "five");
-    var result = arr.Where(s => s.StartsWith("t"));
+    ImmutableArray<string> arr = ["one", "two", "three", "four", "five"];
+    var result = arr.Where(s => s.StartsWith('t'));
 }
 
 void UsingABuilder(ImmutableList<Account> immutableAccounts)
 {
-    ImmutableList<Account>.Builder builder = immutableAccounts.ToBuilder();
+    var builder = immutableAccounts.ToBuilder();
     for (int i = builder.Count - 1; i >= 0; i--)
     {
         Account a = builder[i];
@@ -32,14 +32,14 @@ void UsingABuilder(ImmutableList<Account> immutableAccounts)
 
 ImmutableList<Account> CreateImmutableList()
 {
-    List<Account> accounts = new() 
-    {
+    List<Account> accounts =
+    [
         new("Scrooge McDuck", 667377678765m),
         new("Donald Duck", -200m),
         new("Ludwig von Drake", 20000m)
-    };
+    ];
 
-    ImmutableList<Account> immutableAccounts = accounts.ToImmutableList();
+    ImmutableList<Account> immutableAccounts = [.. accounts];
 
     foreach (var account in immutableAccounts)
     {
@@ -53,7 +53,7 @@ ImmutableList<Account> CreateImmutableList()
 
 void SimpleArrayDemo()
 {
-    ImmutableArray<string> a1 = ImmutableArray.Create<string>();
+    ImmutableArray<string> a1 = [];
     ImmutableArray<string> a2 = a1.Add("Williams");
     ImmutableArray<string> a3 =
         a2.Add("Ferrari").Add("Mercedes").Add("Red Bull Racing");

@@ -1,6 +1,6 @@
 ﻿public class DocumentManager
 {
-    private readonly object _syncQueue = new object();
+    private readonly object _syncQueue = new();
 
     private readonly Queue<Document> _documentQueue = new();
 

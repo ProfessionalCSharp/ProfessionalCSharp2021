@@ -1,8 +1,6 @@
-﻿public class CarInfoEventArgs : EventArgs
+﻿public class CarInfoEventArgs(string car) : EventArgs
 {
-    public CarInfoEventArgs(string car) => Car = car;
-
-    public string Car { get; }
+    public string Car { get; } = car;
 }
 
 public class CarDealer

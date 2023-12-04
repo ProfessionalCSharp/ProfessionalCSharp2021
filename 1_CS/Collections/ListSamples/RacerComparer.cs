@@ -6,19 +6,18 @@
     Wins
 }
 
-public class RacerComparer : IComparer<Racer>
+public class RacerComparer(CompareType compareType) : IComparer<Racer>
 {
-    private CompareType _compareType;
-    public RacerComparer(CompareType compareType) =>
-      _compareType = compareType;
-
     public int Compare(Racer? x, Racer? y)
     {
-        if (x is null && y is null) return 0;
-        if (x is null) return -1;
-        if (y is null) return 1;
+        if (x is null && y is null) 
+            return 0;
+        if (x is null) 
+            return -1;
+        if (y is null) 
+            return 1;
 
-        int CompareCountry(Racer x, Racer y)
+        static int CompareCountry(Racer x, Racer y)
         {
             int result = string.Compare(x.Country, y.Country);
             if (result == 0)
@@ -28,7 +27,7 @@ public class RacerComparer : IComparer<Racer>
             return result;
         }
 
-        return _compareType switch
+        return compareType switch
             {
                 CompareType.FirstName => string.Compare(x.FirstName, y.FirstName),
                 CompareType.LastName => string.Compare(x.LastName, y.LastName),

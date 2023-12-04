@@ -1,4 +1,4 @@
-﻿namespace Wrox.ProCSharp.Arrays;
+﻿namespace SortingSample;
 
 class Program
 {
@@ -25,12 +25,12 @@ class Program
 
     static Person[] GetPersons()
     {
-        return new Person[] {
+        return [
                 new ("Damon", "Hill"),
                 new ("Niki", "Lauda"),
                 new ("Ayrton", "Senna"),
                 new ("Graham", "Hill")
-             };
+             ];
     }
 
     static void SortPersons(Person[] persons)
@@ -44,12 +44,12 @@ class Program
 
     static void SortNames()
     {
-        string[] names = {
+        string[] names = [
                    "Lady Gaga",
                    "Shakira",
                    "Beyonce",
                    "Ava Max"
-                 };
+                 ];
 
         Array.Sort(names);
 

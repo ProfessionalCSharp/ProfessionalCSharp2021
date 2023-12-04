@@ -1,6 +1,4 @@
-﻿using System.Collections.Specialized;
-
-// create a mask using the CreateMask method
+﻿// create a mask using the CreateMask method
 BitVector32 bits1 = new();
 int bit1 = BitVector32.CreateMask();
 int bit2 = BitVector32.CreateMask(bit1);
@@ -21,7 +19,7 @@ Console.WriteLine();
 
 int received = 0x_79ab_cdef;
 
-BitVector32 bits2 = new BitVector32(received);
+BitVector32 bits2 = new(received);
 Console.WriteLine(bits2);
 
 // sections: FF EEE DDD CCCC BBBBBBBB
