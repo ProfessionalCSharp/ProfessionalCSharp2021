@@ -1,8 +1,6 @@
-﻿public class BankRunner
+﻿public class BankRunner(BankContext bankContext)
 {
-    private readonly BankContext _bankContext;
-
-    public BankRunner(BankContext bankContext) => _bankContext = bankContext;
+    private readonly BankContext _bankContext = bankContext;
 
     public async Task CreateTheDatabaseAsync()
     {

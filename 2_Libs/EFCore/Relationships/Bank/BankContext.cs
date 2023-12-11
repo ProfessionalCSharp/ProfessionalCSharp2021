@@ -1,8 +1,5 @@
-﻿public class BankContext : DbContext
+﻿public class BankContext(DbContextOptions<BankContext> options) : DbContext(options)
 {
-    public BankContext(DbContextOptions<BankContext> options)
-        : base(options) {}
-
     public DbSet<Payment> Payments => Set<Payment>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

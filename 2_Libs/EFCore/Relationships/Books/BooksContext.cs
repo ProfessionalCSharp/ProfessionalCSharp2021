@@ -1,8 +1,5 @@
-﻿public class BooksContext : DbContext
+﻿public class BooksContext(DbContextOptions<BooksContext> options) : DbContext(options)
 {
-    public BooksContext(DbContextOptions<BooksContext> options)
-        : base(options) { }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.HasDefaultSchema("bk");

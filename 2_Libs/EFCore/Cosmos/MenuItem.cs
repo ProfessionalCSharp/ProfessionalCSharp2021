@@ -1,9 +1,7 @@
-﻿public class MenuItem
+﻿public class MenuItem(string text, Guid menuItemId = default)
 {
-    public MenuItem(string text, Guid menuItemId = default) => (Text, MenuItemId) = (text, menuItemId);
-
-    public Guid MenuItemId { get; set; }
-    public string Text { get; set; }
+    public Guid MenuItemId { get; set; } = menuItemId;
+    public string Text { get; set; } = text;
     public decimal? Price { get; set; }
 
     public override string ToString() => Text;

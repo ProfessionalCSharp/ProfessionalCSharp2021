@@ -1,8 +1,5 @@
-﻿public class MenusContext : DbContext
+﻿public class MenusContext(DbContextOptions<MenusContext> options) : DbContext(options)
 {
-    public MenusContext(DbContextOptions<MenusContext> options) 
-        : base(options) { }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.HasDefaultSchema("ms");

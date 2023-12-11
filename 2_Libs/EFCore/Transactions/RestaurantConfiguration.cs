@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿namespace TransactionsSamples;
 
 internal class RestaurantConfiguration : IEntityTypeConfiguration<Restaurant>
 {

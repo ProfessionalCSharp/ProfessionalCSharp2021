@@ -1,12 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
+﻿namespace ConfictHandling;
 
-public class Runner
+public class Runner(BooksContext booksContext)
 {
-    private readonly BooksContext _booksContext;
+    private readonly BooksContext _booksContext = booksContext;
     private string? _user;
     private Book? _selectedBook;
-    public Runner(BooksContext booksContext) => _booksContext = booksContext;
 
     public async Task CreateTheDatabaseAsync()
     {
@@ -41,7 +39,8 @@ public class Runner
 
     public async Task UpdateAsync()
     {
-        if (_selectedBook is null || _user is null) throw new InvalidOperationException("_selectedBook not set. Invoke PrepareUpdateAsync before UpdateAsync");
+        if (_selectedBook is null || _user is null) 
+            throw new InvalidOperationException("_selectedBook not set. Invoke PrepareUpdateAsync before UpdateAsync");
 
         try
         {
@@ -68,8 +67,8 @@ public class Runner
         }
     }
 
-    private void ShowChanges(int id, EntityEntry entity)
-    {
+    private static void ShowChanges(int id, EntityEntry entity)
+    { 
         static void ShowChange(PropertyEntry propertyEntry, int id) =>
           Console.WriteLine($"id: {id}, current: {propertyEntry.CurrentValue}, " +
             $"original: {propertyEntry.OriginalValue}, " +
@@ -82,7 +81,8 @@ public class Runner
     public async Task<string> GetUpdatedTitleAsyc(int id)
     {
         var book = await _booksContext.Books.FindAsync(id);
-        if (book is null) return string.Empty;
+        if (book is null) 
+            return string.Empty;
         return $"{book.Title} with id {book.BookId}";
     }
 }
@@ -91,7 +91,8 @@ internal static class Converter
 {
     public static string TimestampToString(this PropertyEntry entry)
     {
-        if (entry.CurrentValue is null) return string.Empty;
+        if (entry.CurrentValue is null) 
+            return string.Empty;
         byte[] data = (byte[])entry.CurrentValue;
         return BitConverter.ToString(data);
     }

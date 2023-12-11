@@ -1,12 +1,7 @@
-﻿public class Chapter
+﻿public class Chapter(string title, int chapterId = 0)
 {
-    public Chapter(string title, int chapterId = 0)
-    {
-        Title = title;
-        ChapterId = chapterId;
-    }
-    public int ChapterId { get; set; }
-    public string Title { get; set; }
+    public int ChapterId { get; set; } = chapterId;
+    public string Title { get; set; } = title;
     public int BookId { get; set; }
     public virtual Book? Book { get; set; }
 }
