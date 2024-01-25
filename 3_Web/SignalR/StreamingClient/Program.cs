@@ -27,4 +27,6 @@ await connection.StopAsync();
 
 Console.WriteLine("Completed");
 
+#pragma warning disable CA1050 // Declare types in namespaces: one-file sample
 public record SensorData(int Val1, int Val2, DateTime TimeStamp);
+#pragma warning restore CA1050 // Declare types in namespaces

@@ -9,36 +9,20 @@ using Microsoft.UI.Dispatching;
 
 namespace WindowsAppChatClient.ViewModels;
 
-public class ChatViewModel : ObservableObject
+public partial class ChatViewModel(IDialogService dialogService, UrlService urlService) : ObservableObject
 {
-    private readonly IDialogService _dialogService;
-    private readonly UrlService _urlService;
-    private readonly DispatcherQueue _dispatcherQueue;
-    public ChatViewModel(IDialogService dialogService, UrlService urlService)
-    {
-        _dialogService = dialogService;
-        _urlService = urlService;
-        _dispatcherQueue = DispatcherQueue.GetForCurrentThread();
-
-        ConnectCommand = new RelayCommand(OnConnect);
-        SendCommand = new RelayCommand(OnSendMessage);
-    }
+    private readonly IDialogService _dialogService = dialogService;
+    private readonly UrlService _urlService = urlService;
+    private readonly DispatcherQueue _dispatcherQueue = DispatcherQueue.GetForCurrentThread();
 
     public string? Name { get; set; }
     public string? Message { get; set; }
-    private string? _infoText;
-    public string? InfoText
-    {
-        get => _infoText;
-        set => SetProperty(ref _infoText, value);
-    }
 
+    [ObservableProperty]
+    private string? _infoText;
+
+    [ObservableProperty]
     private bool _showInfoBar;
-    public bool ShowInfoBar
-    {
-        get => _showInfoBar;
-        set => SetProperty(ref _showInfoBar, value);
-    }
 
     private void DisplayInfoBar(string text)
     {
@@ -46,15 +30,12 @@ public class ChatViewModel : ObservableObject
         ShowInfoBar = true;
     }
 
-    public ObservableCollection<string> Messages { get; } = new ObservableCollection<string>();
-
-    public RelayCommand SendCommand { get; }
-
-    public RelayCommand ConnectCommand { get; }
+    public ObservableCollection<string> Messages { get; } = [];
 
     private HubConnection? _hubConnection;
 
-    public async void OnConnect()
+    [RelayCommand]
+    internal async Task Connect()
     {
         await CloseConnectionAsync();
         _hubConnection = new HubConnectionBuilder()
@@ -82,7 +63,8 @@ public class ChatViewModel : ObservableObject
     private Task HubConnectionClosed(Exception? arg)
         => _dialogService.ShowMessageAsync("Hub connection closed");
 
-    public async void OnSendMessage()
+    [RelayCommand]
+    internal async Task Send()
     {
         if (_hubConnection is null) throw new InvalidOperationException("OnConnect needs to be invoked before OnSendMessage");
         try
