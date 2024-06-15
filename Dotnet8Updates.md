@@ -17,7 +17,6 @@ Instead of
 
 ```csharp
     ImmutableArray<string> arr = ImmutableArray.Create<string>("one", "two", "three", "four", "five");
-
 ```
 
 We can do this:
@@ -74,3 +73,8 @@ Or this (and use the compareType as parameter, access it when needed):
 public class RacerComparer(CompareType compareType) : IComparer<Racer>
 {
 ```
+
+## Chapter 24 - ASP.NET Core
+
+- Using primary constructors
+- `httpContext.Response.Headers.Append` instead of `httpContext.Response.Headers.Add` (which would throw on duplicates)
