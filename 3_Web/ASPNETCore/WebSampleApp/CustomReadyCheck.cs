@@ -4,14 +4,11 @@ using WebSampleApp.Services;
 
 namespace WebSampleApp;
 
-public class CustomReadyCheck : IHealthCheck
+public class CustomReadyCheck(HealthSample healthSample) : IHealthCheck
 {
-    private readonly HealthSample _healthSample;
-    public CustomReadyCheck(HealthSample healthSample) => _healthSample = healthSample;
-
     public Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default)
     {
-        if (_healthSample.IsReady)
+        if (healthSample.IsReady)
         {
             return Task.FromResult(HealthCheckResult.Healthy("healthy"));
         }
