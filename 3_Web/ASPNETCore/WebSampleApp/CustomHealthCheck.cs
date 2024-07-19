@@ -4,20 +4,11 @@ using WebSampleApp.Services;
 
 namespace WebSampleApp;
 
-public class CustomHealthCheck : IHealthCheck
+public class CustomHealthCheck(HealthSample healthSample) : IHealthCheck
 {
-    private readonly HealthSample _healthSample;
-    public CustomHealthCheck(HealthSample healthSample) => _healthSample = healthSample;
+    private readonly HealthSample _healthSample = healthSample;
 
     public Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default)
-    {
-        if (_healthSample.IsHealthy)
-        {
-            return Task.FromResult(HealthCheckResult.Healthy("healthy"));
-        }
-        else
-        {
-            return Task.FromResult(HealthCheckResult.Unhealthy("unhealthy"));
-        }
-    }
+        => _healthSample.IsHealthy ? Task.FromResult(HealthCheckResult.Healthy("healthy"))
+                                   : Task.FromResult(HealthCheckResult.Unhealthy("unhealthy"));
 }
