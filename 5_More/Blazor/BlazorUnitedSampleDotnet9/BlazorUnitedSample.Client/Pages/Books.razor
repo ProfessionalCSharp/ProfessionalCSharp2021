@@ -1,0 +1,51 @@
+﻿@page "/books"
+@rendermode InteractiveAuto
+@using BlazorUnitedSample.Models
+@using BlazorUnitedSample.Services
+@inject IBooksService BooksService
+
+<h1>Books</h1>
+
+<p>This component demonstrates showing books data.</p>
+
+<p>@RendererInfo.Name</p>
+<p>@RendererInfo.IsInteractive</p>
+
+@if (books == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Publisher</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var book in books)
+            {
+                <tr>
+                    <td>@book.Id</td>
+                    <td>@book.Title</td>
+                    <td>@book.Publisher</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private Book[]? books;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Simulate asynchronous loading to demonstrate streaming rendering
+        await Task.Delay(500);
+        books = (await BooksService.GetBooksAsync()).ToArray();
+
+    }
+}
