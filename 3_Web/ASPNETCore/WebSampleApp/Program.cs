@@ -23,7 +23,7 @@ var app = builder.Build();
 
 app.Use((context, next) =>
 {
-    context.Response.Headers.Add("CustomHeader1", "custom header value");
+    context.Response.Headers.Append("CustomHeader1", "custom header value");
     return next(context);
 });
 

@@ -1,15 +1,11 @@
 ﻿namespace WebSampleApp.Middleware;
 
-public class HeaderMiddleware
+public class HeaderMiddleware(RequestDelegate next)
 {
-    private readonly RequestDelegate _next;
-
-    public HeaderMiddleware(RequestDelegate next) => _next = next;
-
     public Task Invoke(HttpContext httpContext)
     {
-        httpContext.Response.Headers.Add("CustomHeader2", "custom header value");
-        return _next(httpContext);
+        httpContext.Response.Headers.Append("CustomHeader2", "custom header value");
+        return next(httpContext);
     }
 }
 

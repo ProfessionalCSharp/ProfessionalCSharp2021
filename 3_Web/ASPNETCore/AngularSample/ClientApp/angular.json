@@ -40,8 +40,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "1mb",
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -132,8 +132,5 @@
       }
     }
   },
-  "defaultProject": "AngularSample",
-  "cli": {
-    "analytics": "fd540459-143b-4d53-a086-f483f83d1848"
-  }
+  "defaultProject": "AngularSample"
 }
