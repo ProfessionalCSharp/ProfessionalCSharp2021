@@ -3,10 +3,6 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 
-using Windows.UI.Popups;
-
-using WinRT.Interop;
-
 namespace IntroXAML;
 
 /// <summary>
@@ -29,7 +25,7 @@ public sealed partial class MainWindow : Window
                 Title = "Message",
                 Content = "button 2 clicked",
                 PrimaryButtonText = "OK",
-                XamlRoot = this.Content.XamlRoot
+                XamlRoot = Content.XamlRoot
             };
 
             await dlg.ShowAsync();
@@ -47,7 +43,7 @@ public sealed partial class MainWindow : Window
             Title = "Message",
             Content = "button 1 clicked",
             PrimaryButtonText = "OK",
-            XamlRoot = this.Content.XamlRoot
+            XamlRoot = Content.XamlRoot
         };
         await dlg.ShowAsync();
     }
