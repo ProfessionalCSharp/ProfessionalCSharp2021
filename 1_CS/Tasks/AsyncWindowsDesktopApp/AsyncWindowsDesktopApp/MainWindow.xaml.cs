@@ -119,5 +119,5 @@ public sealed partial class MainWindow : Window
         }
     }
 
-    private string GetThread() => $"thread: {Thread.CurrentThread.ManagedThreadId}";   
+    private string GetThread() => $"thread: {Environment.CurrentManagedThreadId}";   
 }
