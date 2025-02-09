@@ -1,13 +1,7 @@
-﻿class Book : IEquatable<Book>
+﻿class Book(string title, string publisher) : IEquatable<Book>
 {
-    public Book(string title, string publisher)
-    {
-        Title = title;
-        Publisher = publisher;
-    }
-
-    public string Title { get; }
-    public string Publisher { get; }
+    public string Title { get; } = title;
+    public string Publisher { get; } = publisher;
 
     protected virtual Type EqualityContract { get; } = typeof(Book);
 

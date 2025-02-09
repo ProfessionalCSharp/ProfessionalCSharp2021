@@ -1,9 +1,9 @@
 ﻿public class PersonCollection
 {
-    private Person[] _people;
+    private readonly Person[] _people;
 
     public PersonCollection(params Person[] people) =>
-        _people = people.ToArray();
+        _people = [.. people];
 
     public Person this[int index]
     {
