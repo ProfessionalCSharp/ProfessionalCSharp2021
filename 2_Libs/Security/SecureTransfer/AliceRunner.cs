@@ -26,7 +26,7 @@
         aes.GenerateIV();
         using ICryptoTransform encryptor = aes.CreateEncryptor();
         using MemoryStream ms = new();
-        using (CryptoStream cs = new(ms, encryptor, CryptoStreamMode.Write))
+        using (CryptoStream cs = new(ms, encryptor, CryptoStreamMode.Write, leaveOpen: true))
         {
             await cs.WriteAsync(plainData.AsMemory());
         } // need to close the CryptoStream before using the MemoryStream

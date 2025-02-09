@@ -34,7 +34,7 @@ class KeyVaultService : IDisposable
         _vaultUri = configuration["VaultUri"] ?? throw new InvalidOperationException("VaultUri configuration missing");
         _logger = logger;
         _azureEventSourceListener = new AzureEventSourceListener((eventArgs, message) 
-            => _logger.Log(eventArgs.Level.ToLogLevel(), message), EventLevel.Verbose);
+            => _logger.Log(eventArgs.Level.ToLogLevel(), "{Message}", message), EventLevel.Verbose);
     }
 
     public void Dispose()

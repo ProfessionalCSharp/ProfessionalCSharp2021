@@ -8,17 +8,8 @@ using System.Text;
 
 namespace ASPNETCoreMVCSecurity.Controllers;
 
-public class HomeController : Controller
+public class HomeController(ILogger<HomeController> logger, IConfiguration configuration) : Controller
 {
-    private readonly ILogger<HomeController> _logger;
-    private readonly IConfiguration _settings;
-
-    public HomeController(ILogger<HomeController> logger, IConfiguration configuration)
-    {
-        _logger = logger;
-        _settings = configuration;
-    }
-
     public IActionResult Index() => View();
 
     public IActionResult Privacy() => View();
@@ -35,7 +26,7 @@ public class HomeController : Controller
 
     public IActionResult SqlSample(string id)
     {
-        string connectionString = _settings.GetConnectionString("InjectionConnection") ?? throw new InvalidOperationException("can't find InjectionConnection");
+        string connectionString = configuration.GetConnectionString("InjectionConnection") ?? throw new InvalidOperationException("can't find InjectionConnection");
         SqlConnection sqlConnection = new(connectionString);
         SqlCommand command = sqlConnection.CreateCommand();
 

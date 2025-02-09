@@ -9,7 +9,7 @@
 
     public (byte[] Data, byte[] Sign) GetDocumentAndSignature()
     {
-        _logger.LogInformation($"Using this ECDsa class: {_signAlgorithm.GetType().Name}");
+        _logger.LogInformation("Using this ECDsa class: {Type}", _signAlgorithm.GetType().Name);
 
         byte[] aliceData = Encoding.UTF8.GetBytes("I'm Alice");
         byte[] aliceDataSignature = _signAlgorithm.SignData(aliceData, HashAlgorithmName.SHA512);
