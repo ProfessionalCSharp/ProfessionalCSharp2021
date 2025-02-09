@@ -1,4 +1,4 @@
-﻿namespace SynchronizatonSamples;
+﻿namespace SynchronizationSamples;
 
 public class SharedState
 {

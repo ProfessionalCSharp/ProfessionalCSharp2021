@@ -1,4 +1,4 @@
-﻿using SynchronizatonSamples;
+﻿using SynchronizationSamples;
 
 int numTasks = 20;
 SharedState state = new();

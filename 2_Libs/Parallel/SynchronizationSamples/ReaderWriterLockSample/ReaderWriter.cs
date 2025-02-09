@@ -1,6 +1,6 @@
 ﻿sealed class ReaderWriter : IDisposable
 {
-    private List<int> _items = new() { 0, 1, 2, 3, 4, 5 };
+    private List<int> _items = [0, 1, 2, 3, 4, 5];
     private ReaderWriterLockSlim _rwl = new();
     private bool disposedValue;
 
@@ -24,7 +24,7 @@
 
     public void WriterMethod(object? writer)
     {
-        Console.WriteLine($"Startring writer {writer}");
+        Console.WriteLine($"Starting writer {writer}");
         try
         {
             while (!_rwl.TryEnterWriteLock(50))

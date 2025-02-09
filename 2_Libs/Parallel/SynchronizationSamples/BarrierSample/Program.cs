@@ -80,7 +80,7 @@ class Program
 
         for (int i = 0; i < loops; i++)
         {
-            List<string> data = new(coll[i]);
+            List<string> data = [.. coll[i]];
 
             int start = jobNumber * partitionSize;
             int end = start + partitionSize;

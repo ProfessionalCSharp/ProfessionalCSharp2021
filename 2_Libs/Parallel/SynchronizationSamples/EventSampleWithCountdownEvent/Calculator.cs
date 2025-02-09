@@ -6,7 +6,6 @@
 
     public Calculator(CountdownEvent ev) => _cEvent = ev;
 
-
     public void Calculation(int x, int y)
     {
         Console.WriteLine($"Task {Task.CurrentId} starts calculation");

@@ -10,7 +10,7 @@ for (int i = 0; i < taskCount; i++)
     mEvents[i] = new(false);
     waitHandles[i] = mEvents[i].WaitHandle;
     calcs[i] = new(mEvents[i]);
-    Task.Run(() => calcs[i1].Calculation(i1 + 1, i1 + 3));
+    _ = Task.Run(() => calcs[i1].Calculation(i1 + 1, i1 + 3));
 }
 
 for (int i = 0; i < taskCount; i++)

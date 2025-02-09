@@ -5,7 +5,7 @@ class Program
     static async Task Main()
     {
         await RunUseSemaphoreAsync();
-        await RunUseAsyncSempahoreAsync();
+        await RunUseAsyncSemaphoreAsync();
         Console.ReadLine();
     }
 
@@ -24,7 +24,7 @@ class Program
     static async Task RunUseSemaphoreAsync()
     {
         Console.WriteLine(nameof(RunUseSemaphoreAsync));
-        string[] messages = { "one", "two", "three", "four", "five", "six" };
+        string[] messages = ["one", "two", "three", "four", "five", "six"];
         Task[] tasks = new Task[messages.Length];
 
         for (int i = 0; i < messages.Length; i++)
@@ -41,9 +41,9 @@ class Program
         Console.WriteLine();
     }
 
-    static async Task RunUseAsyncSempahoreAsync()
+    static async Task RunUseAsyncSemaphoreAsync()
     {
-        Console.WriteLine(nameof(RunUseAsyncSempahoreAsync));
+        Console.WriteLine(nameof(RunUseAsyncSemaphoreAsync));
         string[] messages = { "one", "two", "three", "four", "five", "six" };
         Task[] tasks = new Task[messages.Length];
 
@@ -61,7 +61,7 @@ class Program
         Console.WriteLine();
     }
 
-    private static SemaphoreSlim s_asyncLock = new SemaphoreSlim(1);
+    private static SemaphoreSlim s_asyncLock = new(1);
     static async Task LockWithSemaphore(string title)
     {
         Console.WriteLine($"{title} waiting for lock");
@@ -78,7 +78,7 @@ class Program
         }
     }
 
-    private static AsyncSemaphore s_asyncSemaphore = new AsyncSemaphore();
+    private static AsyncSemaphore s_asyncSemaphore = new();
     static async Task UseAsyncSemaphore(string title)
     {
         using (await s_asyncSemaphore.WaitAsync())
