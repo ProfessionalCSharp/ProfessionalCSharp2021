@@ -22,8 +22,11 @@ public sealed partial class MainWindow : Window
     {
         int index = _laugh ? 0 : 1;
 
-        PathFigure figure = new() { StartPoint = _mouthPoints[index, 0] };
-        figure.Segments = new PathSegmentCollection();
+        PathFigure figure = new()
+        {
+            StartPoint = _mouthPoints[index, 0],
+            Segments = []
+        };
         QuadraticBezierSegment segment1 = new()
         {
             Point1 = _mouthPoints[index, 1],
@@ -31,8 +34,10 @@ public sealed partial class MainWindow : Window
         };
 
         figure.Segments.Add(segment1);
-        PathGeometry geometry = new();
-        geometry.Figures = new PathFigureCollection();
+        PathGeometry geometry = new()
+        {
+            Figures = []
+        };
         geometry.Figures.Add(figure);
 
         mouth.Data = geometry;
