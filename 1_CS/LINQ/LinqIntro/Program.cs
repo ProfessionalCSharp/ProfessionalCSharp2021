@@ -6,10 +6,10 @@ DeferredQuery();
 
 void DeferredQuery()
 {
-    List<string> names = new() { "Nino", "Alberto", "Juan", "Mike", "Phil" };
+    List<string> names = ["Nino", "Alberto", "Juan", "Mike", "Phil"];
 
     var namesWithJ = from n in names
-                     where n.StartsWith("J")
+                     where n.StartsWith('J')
                      orderby n
                      select n;
 
@@ -35,7 +35,7 @@ void DeferredQuery()
 
 void ExtensionMethods()
 {
-    List<Racer> champions = new(Formula1.GetChampions());
+    List<Racer> champions = [.. Formula1.GetChampions()];
     var brazilChampions =
         champions.Where(r => r.Country == "Brazil")
             .OrderByDescending(r => r.Wins)
