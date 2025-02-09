@@ -4,7 +4,7 @@ public sealed partial class BookDetailUserControl : UserControl
 {
     public BookDetailUserControl()
     {
-        this.InitializeComponent();
+        InitializeComponent();
     }
 
     public BookDetailViewModel ViewModel

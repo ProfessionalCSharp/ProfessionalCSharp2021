@@ -2,23 +2,18 @@
 
 namespace BooksLib.Models;
 
-public class Book : ObservableObject
+public class Book(string? title = null, string? publisher = null, int id = 0) : 
+    ObservableObject
 {
-    public Book(string? title = null, string? publisher = null, int id = 0)
-    {
-        BookId = id;
-        _title = title ?? string.Empty;
-        _publisher = publisher ?? string.Empty;
-    }
-    public int BookId { get; set; }
-    private string _title;
+    public int BookId { get; set; } = id;
+    private string _title = title ?? string.Empty;
 
     public string Title
     {
         get => _title;
         set => SetProperty(ref _title, value);
     }
-    private string _publisher;
+    private string _publisher = publisher ?? string.Empty;
     public string Publisher
     {
         get => _publisher;
