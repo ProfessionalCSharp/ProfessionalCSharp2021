@@ -6,7 +6,7 @@ namespace DataBindingSamples.Services;
 
 public class BooksService
 {
-    private readonly ObservableCollection<Book> _books = new();
+    private readonly ObservableCollection<Book> _books = [];
 
     public void RefreshBooks()
     {

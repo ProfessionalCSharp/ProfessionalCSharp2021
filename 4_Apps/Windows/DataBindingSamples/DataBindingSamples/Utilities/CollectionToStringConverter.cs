@@ -2,7 +2,7 @@
 
 namespace DataBindingSamples.Utilities;
 
-public class CollectionToStringConverter : IValueConverter
+public partial class CollectionToStringConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, string language)
     {

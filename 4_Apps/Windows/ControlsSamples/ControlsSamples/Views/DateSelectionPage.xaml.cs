@@ -4,9 +4,6 @@ using Microsoft.UI.Xaml.Controls;
 using System.Globalization;
 
 using Windows.UI;
-using Windows.UI.Popups;
-
-using WinRT.Interop;
 
 namespace ControlsSamples.Views;
 
@@ -60,7 +57,7 @@ public sealed partial class DateSelectionPage : Page
             var booking = bookings.SingleOrDefault(b => b.day.Date == item.Date.Date);
             if (booking.bookings > 0)
             {
-                List<Color> colors = new();
+                List<Color> colors = [];
                 for (int i = 0; i < booking.bookings; i++)
                 {
                     if (item.Date.DayOfWeek == DayOfWeek.Saturday || item.Date.DayOfWeek == DayOfWeek.Sunday)
@@ -80,8 +77,8 @@ public sealed partial class DateSelectionPage : Page
 
     private IEnumerable<(DateTimeOffset day, int bookings)> GetBookings()
     {
-        int[] bookingDays = { 2, 3, 5, 8, 12, 13, 18, 21, 23, 27 };
-        int[] bookingsPerDay = { 1, 4, 3, 6, 4, 5, 1, 3, 1, 1 };
+        int[] bookingDays = [2, 3, 5, 8, 12, 13, 18, 21, 23, 27];
+        int[] bookingsPerDay = [1, 4, 3, 6, 4, 5, 1, 3, 1, 1];
 
         for (int i = 0; i < 10; i++)
         {
@@ -89,7 +86,7 @@ public sealed partial class DateSelectionPage : Page
         }
     }
 
-    private readonly List<DateTimeOffset> currentDatesSelected = new();
+    private readonly List<DateTimeOffset> currentDatesSelected = [];
 
     private async void OnDatesChanged(CalendarView sender, CalendarViewSelectedDatesChangedEventArgs args)
     {

@@ -1,17 +1,9 @@
 ﻿namespace DataBindingSamples.Models;
 
-public class Book : ObservableObject
+public partial class Book(int id, string title, string publisher, params string[] authors) : ObservableObject
 {
-    public Book(int id, string title, string publisher, params string[] authors)
-    {
-        BookId = id;
-        _title = title;
-        _publisher = publisher;
-        Authors = authors;
-    }
-
-    public int BookId { get; }
-    private string _title;
+    public int BookId { get; } = id;
+    private string _title = title;
 
     public string Title
     {
@@ -19,13 +11,13 @@ public class Book : ObservableObject
         set => SetProperty(ref _title, value);
     }
 
-    private string _publisher;
+    private string _publisher = publisher;
     public string Publisher
     {
         get => _publisher;
         set => SetProperty(ref _publisher, value);
     }
-    public IEnumerable<string> Authors { get; }
+    public IEnumerable<string> Authors { get; } = authors;
 
     public override string ToString() => Title;
 }
