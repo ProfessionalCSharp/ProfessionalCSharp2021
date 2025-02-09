@@ -105,12 +105,12 @@ public sealed partial class MainWindow : Window
                 SuggestedStartLocation = PickerLocationId.DocumentsLibrary,
                 SuggestedFileName = "New Document"
             };
-            picker.FileTypeChoices.Add("Plain Text", new List<string>() { ".txt" });
+            picker.FileTypeChoices.Add("Plain Text", [".txt"]);
 
             InitializeActiveWindow(picker);
 
             StorageFile file = await picker.PickSaveFileAsync();
-            if (file != null)
+            if (file is not null)
             {
                 using StorageStreamTransaction tx = await file.OpenTransactedWriteAsync();
                 Stream stream = tx.Stream.AsStreamForWrite();
@@ -138,7 +138,7 @@ public sealed partial class MainWindow : Window
                 SuggestedStartLocation = PickerLocationId.DocumentsLibrary,
                 SuggestedFileName = "New Document"
             };
-            picker.FileTypeChoices.Add("Plain Text", new List<string>() { ".txt" });
+            picker.FileTypeChoices.Add("Plain Text", [".txt"]);
 
             InitializeActiveWindow(picker);
 

@@ -144,9 +144,9 @@ void UseWriter()
 public record Item(string Title, string Text, decimal Price);
 public record Category(string Title)
 {
-    public IList<Item> Items { get; init; } = new List<Item>();
+    public IList<Item> Items { get; init; } = [];
 }
 public record Card(string Title)
 {
-    public IList<Category> Categories { get; init; } = new List<Category>();
+    public IList<Category> Categories { get; init; } = [];
 }
