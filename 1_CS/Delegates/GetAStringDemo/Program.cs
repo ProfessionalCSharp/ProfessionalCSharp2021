@@ -1,5 +1,5 @@
 ﻿int x = 40;
-GetAString firstStringMethod = new GetAString(x.ToString);
+GetAString firstStringMethod = new(x.ToString);
 Console.WriteLine($"String is {firstStringMethod()}");
 // With firstStringMethod initialized to x.ToString(),
 // the above statement is equivalent to saying
