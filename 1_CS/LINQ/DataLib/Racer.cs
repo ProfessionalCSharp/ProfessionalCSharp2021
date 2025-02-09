@@ -3,7 +3,7 @@
 public record Racer(string FirstName, string LastName, string Country, int Starts, int Wins, IEnumerable<int> Years, IEnumerable<string> Cars) : IComparable<Racer>, IFormattable
 {
     public Racer(string FirstName, string LastName, string Country, int Starts, int Wins)
-        : this(FirstName, LastName, Country, Starts, Wins, new int[] { }, new string[] { })
+        : this(FirstName, LastName, Country, Starts, Wins, [], [])
     { }
 
     public override string ToString() => $"{FirstName} {LastName}";

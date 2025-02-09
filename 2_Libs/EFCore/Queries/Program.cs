@@ -30,5 +30,3 @@ await runner.UseCompiledQueryAsync();
 await runner.UseEFunctions("24");
 
 await runner.DeleteDatabaseAsync();
-
-

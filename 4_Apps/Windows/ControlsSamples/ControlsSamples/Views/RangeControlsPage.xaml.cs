@@ -13,8 +13,10 @@ public sealed partial class RangeControlsPage : Page
 
     private void ShowProgress()
     {
-        DispatcherTimer timer = new();
-        timer.Interval = TimeSpan.FromSeconds(1);
+        DispatcherTimer timer = new()
+        {
+            Interval = TimeSpan.FromSeconds(1)
+        };
         int i = 0;
         timer.Tick += (sender, e) =>
             progressBar1.Value = i++ % 100;

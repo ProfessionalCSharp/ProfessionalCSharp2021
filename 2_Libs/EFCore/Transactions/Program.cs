@@ -1,16 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-
-using var host = Host.CreateDefaultBuilder(args)
+﻿using var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((context, services) =>
     {
-        var connectionString = context.Configuration.GetConnectionString("MenusConnection");
-        services.AddDbContextFactory<MenusContext>(options =>
-        {
-            options.UseSqlServer(connectionString);
-        });
+        string connectionString = context.Configuration.GetConnectionString("MenusConnection") ?? throw new InvalidOperationException("Could not read MenusConnection");
+        services.AddDbContextFactory<MenusContext>(options => 
+            options.UseSqlServer(connectionString));
 
         services.AddScoped<Runner>();
     })

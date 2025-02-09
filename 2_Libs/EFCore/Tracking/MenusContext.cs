@@ -1,10 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-class MenusContext : DbContext
+class MenusContext(DbContextOptions<MenusContext> options) : DbContext(options)
 {
-    public MenusContext(DbContextOptions<MenusContext> options)
-        : base(options) {}
-
     public DbSet<MenuCard> MenuCards => Set<MenuCard>();
     public DbSet<MenuItem> MenusItems => Set<MenuItem>();
 

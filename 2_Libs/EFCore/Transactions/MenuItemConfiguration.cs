@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-using static ColumnNames;
+﻿namespace TransactionsSamples;
 
 internal class MenuItemConfiguration : IEntityTypeConfiguration<MenuItem>
 {

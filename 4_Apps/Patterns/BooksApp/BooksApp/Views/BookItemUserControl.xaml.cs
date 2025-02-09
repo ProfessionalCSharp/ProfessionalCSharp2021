@@ -1,8 +1,4 @@
-﻿using BooksLib.ViewModels;
-
-using Microsoft.UI.Input;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
+﻿using Microsoft.UI.Input;
 using Microsoft.UI.Xaml.Input;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -14,7 +10,7 @@ public sealed partial class BookItemUserControl : UserControl
 {
     public BookItemUserControl()
     {
-        this.InitializeComponent();
+        InitializeComponent();
     }
 
     public BookItemViewModel BookItemViewModel

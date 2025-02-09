@@ -1,10 +1,6 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 
-using Windows.UI.Popups;
-
-using WinRT.Interop;
-
 namespace ControlsSamples.Views
 {
     public sealed partial class ButtonsPage : Page
@@ -18,7 +14,7 @@ namespace ControlsSamples.Views
                 Title = "Message",
                 Content = "button 1 clicked",
                 PrimaryButtonText = "OK",
-                XamlRoot = this.Content.XamlRoot
+                XamlRoot = Content.XamlRoot
             };
             await dlg.ShowAsync();
         }

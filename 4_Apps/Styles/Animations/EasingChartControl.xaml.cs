@@ -16,24 +16,30 @@ public sealed partial class EasingChartControl : UserControl
     {
         canvas1.Children.Clear();
 
-        PathSegmentCollection pathSegments = new();
+        PathSegmentCollection pathSegments = [];
 
         for (double i = 0; i < 1; i += SamplingInterval)
         {
             double x = i * canvas1.Width;
             double y = easingFunction.Ease(i) * canvas1.Height;
 
-            LineSegment segment = new();
-            segment.Point = new Point(x, y);
+            LineSegment segment = new()
+            {
+                Point = new Point(x, y)
+            };
 
             pathSegments.Add(segment);
         }
 
-        XamlShapes.Path p = new();
-        p.Stroke = new SolidColorBrush(Colors.Black);
-        p.StrokeThickness = 3;
-        PathFigureCollection figures = new();
-        figures.Add(new PathFigure { Segments = pathSegments });
+        XamlShapes.Path p = new()
+        {
+            Stroke = new SolidColorBrush(Colors.Black),
+            StrokeThickness = 3
+        };
+        PathFigureCollection figures =
+        [
+            new PathFigure { Segments = pathSegments }
+        ];
         p.Data = new PathGeometry { Figures = figures };
         canvas1.Children.Add(p);
     }

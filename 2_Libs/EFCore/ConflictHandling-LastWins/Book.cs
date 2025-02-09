@@ -1,16 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿namespace ConflictHandling;
 
-public class Book
+public class Book(string title, string? publisher = default, int bookId = default)
 {
-    public Book(string title, string? publisher = default, int bookId = default)
-    {
-        Title = title;
-        Publisher = publisher;
-        BookId = bookId;
-    }
     [StringLength(50)]
-    public string Title { get; set; }
+    public string Title { get; set; } = title;
     [StringLength(30)]
-    public string? Publisher { get; set; }
-    public int BookId { get; set; }
+    public string? Publisher { get; set; } = publisher;
+    public int BookId { get; set; } = bookId;
 }

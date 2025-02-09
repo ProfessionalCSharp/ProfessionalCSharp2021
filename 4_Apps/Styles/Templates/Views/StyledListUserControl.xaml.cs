@@ -9,8 +9,7 @@ namespace Templates.Views
 {
     public sealed partial class StyledListUserControl : UserControl
     {
-        public ObservableCollection<Country> Countries { get; } =
-            new ObservableCollection<Country>();
+        public ObservableCollection<Country> Countries { get; } =[];
 
         public StyledListUserControl()
         {

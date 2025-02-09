@@ -1,10 +1,7 @@
-﻿public class MenuCard
+﻿public class MenuCard(string title, int menuCardId = default)
 {
-    public MenuCard(string title, int menuCardId = default) 
-        => (Title, MenuCardId) = (title, menuCardId);
-
-    public int MenuCardId { get; set; }
-    public string Title { get; set; }
+    public int MenuCardId { get; set; } = menuCardId;
+    public string Title { get; set; } = title;
     public ICollection<MenuItem> MenuItems { get; } = new List<MenuItem>();
     public override string ToString() => Title;
 }

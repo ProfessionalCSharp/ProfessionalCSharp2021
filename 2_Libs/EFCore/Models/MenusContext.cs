@@ -1,8 +1,5 @@
-﻿class MenusContext : DbContext
+﻿class MenusContext(DbContextOptions<MenusContext> options) : DbContext(options)
 {
-    public MenusContext(DbContextOptions<MenusContext> options)
-        : base(options) {}
-
     public DbSet<MenuCard> MenuCards => Set<MenuCard>();
     public DbSet<MenuItem> MenuItems => Set<MenuItem>();
     public DbSet<Restaurant> Restaurants => Set<Restaurant>();
@@ -47,7 +44,7 @@
             Price = 6.5M,
             IsDeleted = false,
             LastUpdated = now,
-            MenuCardId = card.MenuCardId,
+            card.MenuCardId,
             RestaurantId = restaurantId
         }).ToArray();
     }
@@ -57,9 +54,9 @@
         ChangeTracker.DetectChanges();
 
         foreach (var item in ChangeTracker.Entries<MenuItem>()
-            .Where(e => e.State == EntityState.Added
-            || e.State == EntityState.Modified
-            || e.State == EntityState.Deleted))
+            .Where(e => e.State is EntityState.Added
+            or EntityState.Modified
+            or EntityState.Deleted))
         {
             item.CurrentValues[LastUpdated] = DateTime.Now;
 

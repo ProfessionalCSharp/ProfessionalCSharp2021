@@ -1,13 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿namespace TransactionsSamples;
 
-using System.Transactions;
-
-class Runner
+class Runner(IDbContextFactory<MenusContext> menusContextFactory)
 {
-    private readonly IDbContextFactory<MenusContext> _menusContextFactory;
-
-    public Runner(IDbContextFactory<MenusContext> menusContextFactory) =>
-        _menusContextFactory = menusContextFactory;
+    private readonly IDbContextFactory<MenusContext> _menusContextFactory = menusContextFactory;
 
     public async Task CreateDatabaseAsync()
     {
@@ -58,7 +53,7 @@ class Runner
             var card = context.MenuCards
                 .OrderBy(mc => mc.MenuCardId)
                 .First();
-            MenuItem m1 = new MenuItem("added")
+            MenuItem m1 = new("added")
             {
                 MenuCardId = card.MenuCardId,
                 Price = 99.99m
@@ -133,7 +128,8 @@ class Runner
 
         using var scope = new TransactionScope(TransactionScopeOption.Required, TransactionScopeAsyncFlowOption.Enabled);
 
-        if (Transaction.Current is null) throw new InvalidOperationException("no ambient transaction available");
+        if (Transaction.Current is null) 
+            throw new InvalidOperationException("no ambient transaction available");
         Transaction.Current.TransactionCompleted += (sender, e) =>
         {
             var ti = e.Transaction?.TransactionInformation;

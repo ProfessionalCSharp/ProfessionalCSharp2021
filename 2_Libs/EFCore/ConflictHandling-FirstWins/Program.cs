@@ -1,16 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-
+﻿
 using var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((context, services) =>
     {
-        var connectionString = context.Configuration.GetConnectionString("BooksConnection");
-        services.AddDbContext<BooksContext>(options =>
-        {
-            options.UseSqlServer(connectionString);
-        });
+        string connectionString = context.Configuration.GetConnectionString("BooksConnection") ?? throw new InvalidOperationException("Could not read BooksConnection");
+        services.AddDbContext<BooksContext>(options => 
+            options.UseSqlServer(connectionString));
         services.AddScoped<Runner>();
     })
     .Build();

@@ -4,8 +4,8 @@ public sealed partial class MainWindow : Window
 {
     public MainWindow()
     {
-        this.InitializeComponent();
-        this.SizeChanged += OnSizeChanged;
+        InitializeComponent();
+        SizeChanged += OnSizeChanged;
         ViewModel = Ioc.Default.GetRequiredService<MainWindowViewModel>();
         ViewModel.SetNavigationFrame(MainFrame);
     }

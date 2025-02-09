@@ -1,9 +1,8 @@
 ﻿namespace GenericViewModels.ViewModels;
 
-public abstract class ItemViewModel<T> : ViewModelBase, IItemViewModel<T>
+public abstract class ItemViewModel<T>(T? item) : ViewModelBase, IItemViewModel<T>
 {
-    public ItemViewModel(T? item) => _item = item;
-    private T? _item;
+    private T? _item = item;
     public virtual T? Item
     {
         get => _item;

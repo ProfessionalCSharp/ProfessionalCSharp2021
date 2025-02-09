@@ -14,12 +14,16 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddGrpc();
 builder.Services.AddDbContext<IBookChapterService, BooksContext>(options =>
 {
-    string connectionString = builder.Configuration.GetConnectionString("BooksConnection");
-    if (connectionString is null) throw new InvalidOperationException("Configure the connection string");
+    string connectionString = builder.Configuration.GetConnectionString("BooksConnection") ?? throw new InvalidOperationException("Configure the connection string");
     options.UseSqlServer(connectionString);
 });
 
 var app = builder.Build();
+
+{
+    using var scope = app.Services.CreateScope();
+    await scope.ServiceProvider.GetRequiredService<BooksContext>().Database.EnsureCreatedAsync();
+}
 
 // Configure the HTTP request pipeline.
 app.MapGrpcService<BooksService>();

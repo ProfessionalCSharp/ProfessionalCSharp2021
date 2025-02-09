@@ -1,9 +1,9 @@
-﻿public class MenuItem
-{
-    public MenuItem(string text, Guid menuItemId = default) => (Text, MenuItemId) = (text, menuItemId);
+﻿namespace TransactionsSamples;
 
-    public Guid MenuItemId { get; set; }
-    public string Text { get; set; }
+public class MenuItem(string text, Guid menuItemId = default)
+{
+    public Guid MenuItemId { get; set; } = menuItemId;
+    public string Text { get; set; } = text;
     public decimal? Price { get; set; }
     public Guid MenuCardId { get; internal set; }
     private MenuCard? _menuCard;

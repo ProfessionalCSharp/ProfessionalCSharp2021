@@ -1,10 +1,6 @@
-﻿class Runner
+﻿class Runner(MenusContext menusContext)
 {
-    private readonly MenusContext _menusContext;
-    public Runner(MenusContext menusContext)
-    {
-        _menusContext = menusContext;
-    }
+    private readonly MenusContext _menusContext = menusContext;
 
     public Task CreateDatabaseAsync()
     {
@@ -14,7 +10,8 @@
     public async Task DeleteMenuItemsAsync(int id)
     {
         MenuItem? menuItem = await _menusContext.MenuItems.FindAsync(id);
-        if (menuItem is null) return;
+        if (menuItem is null) 
+            return;
 
         _menusContext.Remove(menuItem);
         int records = await _menusContext.SaveChangesAsync();

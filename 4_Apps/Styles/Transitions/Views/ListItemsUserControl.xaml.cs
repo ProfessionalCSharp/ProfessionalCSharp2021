@@ -17,7 +17,7 @@ public sealed partial class ListItemsUserControl : UserControl
     }
 
     private Rectangle CreateRectangle() =>
-      new Rectangle
+      new()
       {
           Width = 90,
           Height = 40,

@@ -4,7 +4,7 @@ using Microsoft.UI.Xaml.Controls;
 
 namespace DataBindingSamples.Utilities;
 
-public class BookTemplateSelector : DataTemplateSelector
+public partial class BookTemplateSelector : DataTemplateSelector
 {
     public DataTemplate? WroxTemplate { get; set; }
     public DataTemplate? DefaultTemplate { get; set; }
