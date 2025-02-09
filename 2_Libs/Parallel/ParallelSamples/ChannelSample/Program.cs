@@ -32,5 +32,4 @@ async Task UsingTheBoundedChannelAsync()
     Console.WriteLine();
 }
 
-
 public record SomeData(string Text, int Number);

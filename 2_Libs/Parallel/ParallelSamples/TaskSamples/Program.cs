@@ -3,14 +3,14 @@
 class Program
 {
     private static readonly Command[] s_commands =
-    {
-            new Command("-p", nameof(TasksUsingThreadPool), TasksUsingThreadPool),
-            new Command("-s", nameof(RunSynchronousTask), RunSynchronousTask),
-            new Command("-l", nameof(LongRunningTask), LongRunningTask),
-            new Command("-r", nameof(TaskWithResult), TaskWithResultDemo),
-            new Command("-c", nameof(ContinuationTasks), ContinuationTasks),
-            new Command("-pc", nameof(ParentAndChild), ParentAndChild),
-        };
+    [
+        new Command("-p", nameof(TasksUsingThreadPool), TasksUsingThreadPool),
+        new Command("-s", nameof(RunSynchronousTask), RunSynchronousTask),
+        new Command("-l", nameof(LongRunningTask), LongRunningTask),
+        new Command("-r", nameof(TaskWithResult), TaskWithResultDemo),
+        new Command("-c", nameof(ContinuationTasks), ContinuationTasks),
+        new Command("-pc", nameof(ParentAndChild), ParentAndChild),
+    ];
 
     static void Main(string[] args)
     {

@@ -17,7 +17,7 @@ public class StateObject
                 _state++;
                 if (_state != 6)
                 {
-                    Console.WriteLine($"Race condition occured after {loop} loops");
+                    Console.WriteLine($"Race condition occurred after {loop} loops");
                     // Trace.Fail($"race condition at {loop}");
                     return false;
                 }

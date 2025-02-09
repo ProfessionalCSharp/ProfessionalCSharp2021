@@ -1,3 +1,3 @@
 ﻿namespace ParallelSamples;
 
-public record Command(string Option, string Text, Action Action) { }
+public record class Command(string Option, string Text, Action Action);
