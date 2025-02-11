@@ -16,16 +16,15 @@ public sealed partial class VariableSizedWrapGridPage : Page
 
     protected override void OnNavigatedTo(NavigationEventArgs e)
     {
-        Random r = new();
-        Grid[] items =
-            Enumerable.Range(0, 30).Select(i =>
+        Grid[] items = [..
+            Enumerable.Range(1, 30).Select(i =>
             {
                 byte[] colorBytes = new byte[3];
-                r.NextBytes(colorBytes);
+                Random.Shared.NextBytes(colorBytes);
                 Rectangle rect = new()
                 {
-                    Height = r.Next(40, 150),
-                    Width = r.Next(40, 150),
+                    Height = Random.Shared.Next(40, 150),
+                    Width = Random.Shared.Next(40, 150),
                     Fill = new SolidColorBrush(new Color
                     {
                         R = colorBytes[0],
@@ -36,7 +35,7 @@ public sealed partial class VariableSizedWrapGridPage : Page
                 };
                 TextBlock textBlock = new()
                 {
-                    Text = (i + 1).ToString(),
+                    Text = i.ToString(),
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Center
                 };
@@ -44,7 +43,7 @@ public sealed partial class VariableSizedWrapGridPage : Page
                 grid.Children.Add(rect);
                 grid.Children.Add(textBlock);
                 return grid;
-            }).ToArray();
+            })];
 
         foreach (var item in items)
         {
