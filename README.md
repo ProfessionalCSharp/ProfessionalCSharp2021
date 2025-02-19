@@ -19,8 +19,9 @@ See the [WinUI.md](WinUI.md) for the requirements of building and running the Wi
 * See [updates](Updates.md) for issues in the book and updates. 
 * See [.NET 6 Updates](Dotnet6Updates.md) for changes with .NET 6 and C# 10.
 * See [.NET 7 Updates](Dotnet7Updates.md) for changes with .NET 7 and C# 11.
+* See [.NET 8 Updates](Dotnet8Updates.md) for changes with .NET 8 and C# 12.
 
-The *main* branch is the actual working branch with code samples updated to .NET 7 and C# 11. Every code sample should compile and run successfully (with the deadlock and race-conditions samples, *successfully* means that a deadlock and a race-condition occurs).
+The *main* branch is the actual working branch with code samples updated to .NET 8 and C# 12. Every code sample should compile and run successfully (with the deadlock and race-conditions samples, *successfully* means that a deadlock and a race-condition occurs).
 
 The *dotnet5* branch is used to show the samples how they appear in the printed book.
 
