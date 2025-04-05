@@ -1,3 +1,3 @@
 ﻿namespace DataLib;
 
-public record Championship(int Year, string First, string Second, string Third);
+public record class Championship(int Year, string First, string Second, string Third);

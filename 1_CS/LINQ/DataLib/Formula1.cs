@@ -139,8 +139,8 @@ public static class Formula1
         new(2020, "Lewis Hamilton", "Valtteri Bottas", "Max Verstappen"),
         new(2021, "Max Verstappen", "Lewis Hamilton", "Valtteri Bottas"),
         new(2022, "Max Verstappen", "Charles Leclerc","Sergio Perez"),
-        new Championship(2023, "Max Verstappen", "Sergio Perez", "Lewis Hamilton"),
-        new Championship(2024, "Max Verstappen", "Lando Norris", "Charles Leclerc")
+        new(2023, "Max Verstappen", "Sergio Perez", "Lewis Hamilton"),
+        new(2024, "Max Verstappen", "Lando Norris", "Charles Leclerc")
     ];
 
     private static List<Racer>? s_moreRacers;

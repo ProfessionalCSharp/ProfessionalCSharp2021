@@ -1,6 +1,6 @@
 ﻿namespace DataLib;
 
-public record Team
+public record class Team
 {
     public Team(string name, params int[] years)
     {

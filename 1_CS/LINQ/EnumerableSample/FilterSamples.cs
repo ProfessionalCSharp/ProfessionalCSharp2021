@@ -46,7 +46,7 @@ public class FilterSamples
     {
         Console.WriteLine("query with a type filter - OfType - only getting strings");
 
-        object[] data = { "one", 2, 3, "four", "five", 6 };
+        object[] data = ["one", 2, 3, "four", "five", 6];
         var query = data.OfType<string>();
 
         foreach (var s in query)
