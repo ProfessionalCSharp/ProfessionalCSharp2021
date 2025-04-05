@@ -141,12 +141,14 @@ void UseWriter()
     Console.WriteLine();
 }
 
-public record Item(string Title, string Text, decimal Price);
-public record Category(string Title)
+public record class Item(string Title, string Text, decimal Price);
+
+public record class Category(string Title)
 {
     public IList<Item> Items { get; init; } = [];
 }
-public record Card(string Title)
+
+public record class Card(string Title)
 {
     public IList<Category> Categories { get; init; } = [];
 }

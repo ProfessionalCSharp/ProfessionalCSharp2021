@@ -77,12 +77,14 @@ void CompressFileWithBrotli(string fileName, string compressedFileName)
 
 void DecompressFileWithBrotli(string fileName)
 {
+    // inputStream is closed by compressStream
     FileStream inputStream = File.OpenRead(fileName);
     using MemoryStream outputStream = new();
     using BrotliStream compressStream = new(inputStream, CompressionMode.Decompress);
 
     compressStream.CopyTo(outputStream);
     outputStream.Seek(0, SeekOrigin.Begin);
+    // outputStream is closed by the `using` block created before, thus the reader does not need to close it
     using StreamReader reader = new(outputStream, Encoding.UTF8, detectEncodingFromByteOrderMarks: true, bufferSize: 4096, leaveOpen: true);
 
     string result = reader.ReadToEnd();
