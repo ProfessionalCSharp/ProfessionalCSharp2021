@@ -1,6 +1,6 @@
 ﻿namespace BooksApp.Services;
 
-public class WinUIDialogService : IDialogService
+public class WinUIDialogService(Window window) : IDialogService
 {
     public async Task ShowMessageAsync(string message)
     {
@@ -8,7 +8,8 @@ public class WinUIDialogService : IDialogService
         {
             Title = "Message",
             Content = message,
-            PrimaryButtonText = "OK",   
+            PrimaryButtonText = "OK",
+            XamlRoot = window.Content.XamlRoot,
         };
         await dlg.ShowAsync();
     }

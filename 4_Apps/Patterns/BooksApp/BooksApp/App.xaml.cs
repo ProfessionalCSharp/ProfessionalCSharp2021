@@ -42,7 +42,11 @@ public partial class App : Application
                 .AddScoped<BookDetailViewModel>()
                 .AddScoped<MainWindowViewModel>()
                 .AddSingleton<IItemsService<Book>, BooksService>()
-                .AddSingleton<IDialogService, WinUIDialogService>()
+                .AddSingleton<IDialogService>(provider =>
+                {
+                    var window = _window ?? throw new InvalidOperationException("_window not set");
+                    return new WinUIDialogService(window);
+                })
                 .AddSingleton<INavigationService, WinUINavigationService>()
                 .AddSingleton<WinUIInitializeNavigationService>()
                 .AddLogging(builder =>

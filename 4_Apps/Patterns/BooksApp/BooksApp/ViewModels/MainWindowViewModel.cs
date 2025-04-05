@@ -1,6 +1,6 @@
 ﻿namespace BooksApp.ViewModels;
 
-public class MainWindowViewModel : ViewModelBase
+public class MainWindowViewModel(INavigationService navigationService, WinUIInitializeNavigationService initializeNavigationService) : ViewModelBase
 {
     private readonly Dictionary<string, Type> _pages = new()
     {
@@ -8,19 +8,11 @@ public class MainWindowViewModel : ViewModelBase
         [PageNames.BookDetailPage] = typeof(BookDetailPage)
     };
 
-    private readonly INavigationService _navigationService;
-    private readonly WinUIInitializeNavigationService _initializeNavigationService;
-    public MainWindowViewModel(INavigationService navigationService, WinUIInitializeNavigationService initializeNavigationService)
-    {
-        _navigationService = navigationService;
-        _initializeNavigationService = initializeNavigationService;
-    }
-
-    public void SetNavigationFrame(Frame frame) => _initializeNavigationService.Initialize(frame, _pages);
+    public void SetNavigationFrame(Frame frame) => initializeNavigationService.Initialize(frame, _pages);
 
     public void UseNavigation(bool navigation)
     {
-        _navigationService.UseNavigation = navigation;
+        navigationService.UseNavigation = navigation;
     }
 
     public void OnNavigationSelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
@@ -30,7 +22,7 @@ public class MainWindowViewModel : ViewModelBase
             switch (navigationItem.Tag)
             {
                 case "books":
-                    _navigationService.NavigateToAsync(PageNames.BooksPage);
+                    navigationService.NavigateToAsync(PageNames.BooksPage);
                     break;
                 default:
                     break;

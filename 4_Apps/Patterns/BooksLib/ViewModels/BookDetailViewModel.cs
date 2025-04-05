@@ -47,13 +47,13 @@ public class BookDetailViewModel : EditableItemViewModel<Book>
         {
             if (EditItem is null) throw new InvalidOperationException();
 
-            await _dialogService.ShowMessageAsync("TEst save");
+            await _dialogService.ShowMessageAsync("Test save");
 
             await _itemsService.AddOrUpdateAsync(EditItem);
         }
         catch (Exception ex)
         {
-            _logger.LogError("error {0} in {1}", ex.Message, nameof(OnSaveAsync));
+            _logger.LogError("error {message} in {method}", ex.Message, nameof(OnSaveAsync));
             await _dialogService.ShowMessageAsync("Error saving the data");
         }
     }
