@@ -40,7 +40,7 @@ public class Receiver
         bool completed = false;
         do
         {
-            _logger.LogInformation("Waiting to receivd data");
+            _logger.LogInformation("Waiting to receive data");
             UdpReceiveResult result = await client.ReceiveAsync();
             byte[] datagram = result.Buffer;
             string dataReceived = Encoding.UTF8.GetString(datagram);

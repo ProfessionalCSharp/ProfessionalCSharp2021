@@ -13,7 +13,6 @@ builder.WebHost.ConfigureKestrel(kestrelOptions =>
     });
 }).UseUrls("http://localhost:5020", "https://localhost:5021");
 
-
 builder.Services.AddScoped<GenerateHtml>();
 builder.Services.AddSingleton<Formula1>();
 

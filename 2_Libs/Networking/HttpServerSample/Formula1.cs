@@ -5,8 +5,8 @@ public class Formula1
     private List<Racer>? _racers;
     public IEnumerable<Racer> GetChampions() => _racers ??= InitializeRacers();
 
-    private static List<Racer> InitializeRacers() => new()
-    {
+    private static List<Racer> InitializeRacers() =>
+    [
         new("Nino", "Farina", "Italy", 33, 5, new[] { 1950 }, new[] { "Alfa Romeo" }),
         new("Alberto", "Ascari", "Italy", 32, 13, new[] { 1952, 1953 }, new[] { "Ferrari" }),
         new("Juan Manuel", "Fangio", "Argentina", 51, 24, new int[] { 1951, 1954, 1955, 1956, 1957 }, new string[] { "Alfa Romeo", "Maserati", "Mercedes", "Ferrari" }),
@@ -41,5 +41,5 @@ public class Formula1
         new("Sebastian", "Vettel", "Germany", 296, 53, new int[] { 2010, 2011, 2012, 2013 }, new string[] { "Red Bull Racing" }),
         new("Nico", "Rosberg", "Germany", 206, 24, new int[] { 2016 }, new string[] { "Mercedes" }),
         new("Max", "Verstappen", "Netherlands", 160, 33, new int[] { 2021, 2022 }, new string[] { "Red Bull Racing" }),
-    };
+    ];
 }

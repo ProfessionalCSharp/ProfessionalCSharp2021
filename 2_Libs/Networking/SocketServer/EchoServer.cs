@@ -13,17 +13,11 @@ class EchoServiceOptions
     public int Timeout { get; set; }
 }
 
-class EchoServer
+class EchoServer(IOptions<EchoServiceOptions> options, ILogger<EchoServer> logger)
 {
-    private readonly int _port;
-    private readonly ILogger _logger;
-    private readonly int _timeout;
-    public EchoServer(IOptions<EchoServiceOptions> options, ILogger<EchoServer> logger)
-    {
-        _port = options.Value.Port;
-        _timeout = options.Value.Timeout;
-        _logger = logger;
-    }
+    private readonly int _port = options.Value.Port;
+    private readonly ILogger _logger = logger;
+    private readonly int _timeout = options.Value.Timeout;
 
     public async Task StartListenerAsync(CancellationToken cancellationToken = default)
     {
