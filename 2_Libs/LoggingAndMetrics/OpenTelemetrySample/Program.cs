@@ -30,16 +30,17 @@ using var host = Host.CreateDefaultBuilder(args)
     })
     .ConfigureServices(services =>
     {
-        services.AddOpenTelemetryMetrics();
-        services.AddOpenTelemetryTracing(builder =>
-        {
-            builder.AddConsoleExporter()
-                .AddSource(Runner.SourceName)
-                .SetResourceBuilder(
-                    ResourceBuilder.CreateDefault()
-                        .AddService(serviceName: "OpenTelemetrySample", serviceVersion: "1.0.0"))
-                .AddHttpClientInstrumentation();
-        });
+        services.AddOpenTelemetry()
+            .WithMetrics()
+            .WithTracing(builder =>
+            {
+                builder.AddConsoleExporter()
+                    .AddSource(Runner.SourceName)
+                    .SetResourceBuilder(
+                        ResourceBuilder.CreateDefault()
+                            .AddService(serviceName: "OpenTelemetrySample", serviceVersion: "1.0.0"))
+                    .AddHttpClientInstrumentation();
+            });
         services.Configure<OpenTelemetryLoggerOptions>(options =>
         {
             options.IncludeScopes = true;

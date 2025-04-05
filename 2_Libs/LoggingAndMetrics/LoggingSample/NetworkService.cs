@@ -30,7 +30,7 @@ class NetworkService
             string result = await _httpClient.GetStringAsync(requestUri);
 
             Console.WriteLine($"{result[..50]}");
-            _logger.LogInformation(LoggingEvents.Networking, "NetworkRequestSampleAsync completed, received {lenght} characters", result.Length);
+            _logger.LogInformation(LoggingEvents.Networking, "NetworkRequestSampleAsync completed, received {length} characters", result.Length);
         }
         catch (HttpRequestException ex)
         {
