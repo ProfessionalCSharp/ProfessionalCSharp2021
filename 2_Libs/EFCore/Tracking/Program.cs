@@ -24,5 +24,6 @@ await runner.AddRecordsAsync();
 await runner.ObjectTrackingAsync();
 await runner.UpdateRecordsAsync();
 await runner.UpdateRecordUntrackedAsync();
+await runner.EfficientUpdateAsync();
 
 await runner.DeleteDatabaseAsync();

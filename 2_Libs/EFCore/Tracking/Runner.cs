@@ -67,7 +67,7 @@ class Runner(IDbContextFactory<MenusContext> menusContextFactory)
                         where m.Text.StartsWith("Con")
                         select m).FirstOrDefaultAsync();
         var m2 = await (from m in context.MenusItems
-                        where m.Text.Contains('(')
+                        where EF.Functions.Like(m.Text, "%(%")
                         select m).FirstOrDefaultAsync();
         if (object.ReferenceEquals(m1, m2))
         {
@@ -101,6 +101,30 @@ class Runner(IDbContextFactory<MenusContext> menusContextFactory)
         Console.WriteLine($"{records} updated");
         ShowState(context);
     }
+
+    public async Task EfficientUpdateAsync()
+    {
+        using var context = _menusContextFactory.CreateDbContext();
+        MenuItem? menu = await context.MenusItems
+          .AsNoTracking()
+          .Skip(1)
+          .FirstOrDefaultAsync();
+        if (menu is null)
+        {
+            Console.WriteLine("no menu available");
+            return;
+        }
+
+        ShowState(context);
+        menu.Price += 0.2m;
+        ShowState(context);
+        int records = await context.MenusItems.ExecuteUpdateAsync(
+            m => m.SetProperty(m => m.Price, menu.Price)
+        );
+        Console.WriteLine($"{records} updated");
+        ShowState(context);
+    }
+
 
     public async Task UpdateRecordUntrackedAsync()
     {
