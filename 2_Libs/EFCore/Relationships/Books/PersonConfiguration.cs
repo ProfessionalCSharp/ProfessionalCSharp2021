@@ -6,7 +6,7 @@ internal class PersonConfiguration : IEntityTypeConfiguration<Person>
     {
         builder.OwnsOne(p => p.BusinessAddress, addressbuilder =>
         {
-            addressbuilder.Property(a => a.LineTwo)
+            addressbuilder.Property(a => a.LineOne)
                 .HasColumnName("AddressLineOne")
                 .HasMaxLength(50);
             addressbuilder.Property(a => a.LineTwo)

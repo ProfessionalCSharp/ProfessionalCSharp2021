@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Relationships.Migrations.Books
+namespace Relationships.Migrations
 {
+    /// <inheritdoc />
     public partial class InitBooks : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.EnsureSchema(
@@ -37,7 +39,7 @@ namespace Relationships.Migrations.Books
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BusinessAddress_LineOne = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AddressLineOne = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     AddressLineTwo = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     BusinessAddress_Location_Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BusinessAddress_Location_City = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -104,6 +106,7 @@ namespace Relationships.Migrations.Books
                 column: "WrittenBooksBookId");
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

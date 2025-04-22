@@ -3,24 +3,27 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Relationships.Migrations.Books
+namespace Relationships.Migrations
 {
     [DbContext(typeof(BooksContext))]
-    partial class BooksContextModelSnapshot : ModelSnapshot
+    [Migration("20250422170925_InitBooks")]
+    partial class InitBooks
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("bk")
-                .HasAnnotation("ProductVersion", "6.0.3")
+                .HasAnnotation("ProductVersion", "8.0.15")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("Book", b =>
                 {
@@ -28,7 +31,7 @@ namespace Relationships.Migrations.Books
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookId"));
 
                     b.Property<string>("Publisher")
                         .HasMaxLength(30)
@@ -68,7 +71,7 @@ namespace Relationships.Migrations.Books
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PersonId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PersonId"));
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -106,7 +109,9 @@ namespace Relationships.Migrations.Books
                                 .HasColumnType("int");
 
                             b1.Property<string>("LineOne")
-                                .HasColumnType("nvarchar(max)");
+                                .HasMaxLength(50)
+                                .HasColumnType("nvarchar(50)")
+                                .HasColumnName("AddressLineOne");
 
                             b1.Property<string>("LineTwo")
                                 .HasMaxLength(50)
