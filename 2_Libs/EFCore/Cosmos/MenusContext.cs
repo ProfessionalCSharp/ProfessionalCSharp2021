@@ -1,15 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
-internal class MenusContext : DbContext
+internal class MenusContext(DbContextOptions<MenusContext> options, IOptions<RestaurantConfiguration> restaurantOptions) : DbContext(options)
 {
-    private readonly string _restaurantId;
-
-    public MenusContext(DbContextOptions<MenusContext> options, IOptions<RestaurantConfiguration> restaurantOptions)
-        : base(options) 
-    {
-        _restaurantId = restaurantOptions.Value.RestaurantId ?? throw new System.Exception("restaurantid required");
-    }
+    private readonly string _restaurantId = restaurantOptions.Value.RestaurantId ?? throw new System.Exception("restaurantid required");
 
     public DbSet<MenuCard> MenuCards => Set<MenuCard>();
 
