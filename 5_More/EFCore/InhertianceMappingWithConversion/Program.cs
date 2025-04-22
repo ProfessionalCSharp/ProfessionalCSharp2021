@@ -9,8 +9,6 @@ using IHost app = builder.Build();
 var gameId1 = Guid.NewGuid();
 var gameId2 = Guid.NewGuid();
 
-
-
 var contextFactory = app.Services.GetRequiredService<IDbContextFactory<GamesContext>>();
 
 {
@@ -33,24 +31,24 @@ var contextFactory = app.Services.GetRequiredService<IDbContextFactory<GamesCont
 
     MoveData<ColorField> moveData1 = new(gameId1, Guid.NewGuid(), 1)
     {
-        Fields = new List<ColorField>()
-        {
+        Fields =
+        [
             new("red"),
             new("blue"),
             new("green"),
             new("yellow")
-        }
+        ]
     };
 
     MoveData<ShapeAndColorField> moveData2 = new(gameId2, Guid.NewGuid(), 1)
     {   
-        Fields = new List<ShapeAndColorField>()
-        {
+        Fields =
+        [
             new("circle", "red"),
             new("square", "blue"),
             new("triangle", "green"),
             new("circle", "yellow"),
-        }
+        ]
     };
 
     GameData game1 = await context.Games.SingleAsync(g => g.GameId == gameId1);
