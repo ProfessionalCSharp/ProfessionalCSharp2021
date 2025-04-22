@@ -10,10 +10,8 @@ public abstract class Payment(string name, decimal amount, int paymentId = 0)
     public decimal Amount { get; set; } = amount;
 }
 
-public class CashPayment : Payment
+public class CashPayment(string name, decimal amount, int paymentId = 0) : Payment(name, amount, paymentId)
 {
-    public CashPayment(string name, decimal amount, int paymentId = 0)
-        : base(name, amount, paymentId) {  }
 }
 
 public class CreditcardPayment(string name, decimal amount, int paymentId = 0) : Payment(name, amount, paymentId)

@@ -1,10 +1,10 @@
-﻿public class Runner(BooksContext booksContext)
-{
-    private readonly BooksContext _booksContext = booksContext;
+﻿namespace LoadingRelatedData;
 
+public class Runner(BooksContext booksContext)
+{
     public async Task CreateTheDatabaseAsync()
     {
-        bool created = await _booksContext.Database.EnsureCreatedAsync();
+        bool created = await booksContext.Database.EnsureCreatedAsync();
         string creationInfo = created ? "created" : "exists";
         Console.WriteLine($"database {creationInfo}");
     }
@@ -12,7 +12,7 @@
     public async Task EagerLoadingAsync()
     {
         Console.WriteLine(nameof(EagerLoadingAsync));
-        var books = await _booksContext.Books
+        var books = await booksContext.Books
             .Where(b => b.Publisher == "pub1")
             .Include(b => b.Author)
             .ThenInclude(a => a!.Address)
@@ -28,11 +28,11 @@
     public async Task FilteredIncludeAsync()
     {
         Console.WriteLine(nameof(FilteredIncludeAsync));
-        var books = await _booksContext.Books
+        var books = await booksContext.Books
             .Where(b => b.Publisher == "pub2")
             .Include(b => b.Author)
             .ThenInclude(a => a!.Address)
-            .Include(b => b.Chapters!.Where(c => c.ChapterId > 5)) 
+            .Include(b => b.Chapters!.Where(c => c.ChapterId > 5))
             .ToListAsync();
         foreach (var book in books)
         {
@@ -47,7 +47,7 @@
         string? input = Console.ReadLine();
         if (input?.ToLower() == "y")
         {
-            bool deleted = await _booksContext.Database.EnsureDeletedAsync();
+            bool deleted = await booksContext.Database.EnsureDeletedAsync();
             string deletionInfo = deleted ? "deleted" : "not deleted";
             Console.WriteLine($"database {deletionInfo}");
         }
@@ -56,20 +56,22 @@
     public async Task ExplicitLoadingAsync()
     {
         Console.WriteLine(nameof(ExplicitLoadingAsync));
-        var books = await _booksContext.Books
+        var books = await booksContext.Books
             .Where(b => b.Publisher == "pub1")
             .ToListAsync();
 
         foreach (var book in books)
         {
             Console.WriteLine(book.Title);
-            var bookEntry = _booksContext.Entry(book);
+            var bookEntry = booksContext.Entry(book);
             await bookEntry.Reference(b => b.Author).LoadAsync();
             Console.WriteLine($"{book.Author?.FirstName} {book.Author?.LastName}");
 
-            if (book.Author is null) 
+            if (book.Author is null)
+            {
                 continue; // no author, fix CS8634 warning
-            await _booksContext.Entry(book.Author).Reference(a => a.Address).LoadAsync();
+            }
+            await booksContext.Entry(book.Author).Reference(a => a.Address).LoadAsync();
             Console.WriteLine($"{book.Author!.Address!.Country}");
 
             await bookEntry.Collection(b => b.Chapters).LoadAsync();
@@ -85,7 +87,7 @@
     public async Task LazyLoadingAsync()
     {
         Console.WriteLine(nameof(LazyLoadingAsync));
-        var books = await _booksContext.Books
+        var books = await booksContext.Books
             .Where(b => b.Publisher == "pub1")
             .ToListAsync();
 

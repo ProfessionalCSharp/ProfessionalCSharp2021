@@ -1,4 +1,6 @@
-﻿public class Book(string title, string? publisher = default, int bookId = default)
+﻿namespace LoadingRelatedData;
+
+public class Book(string title, string? publisher = default, int bookId = default)
 {
     [StringLength(50)]
     public string Title { get; set; } = title;

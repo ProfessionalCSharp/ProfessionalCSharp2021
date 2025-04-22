@@ -1,4 +1,6 @@
-﻿public class Person(string firstName, string lastName, int personId = 0)
+﻿namespace LoadingRelatedData;
+
+public class Person(string firstName, string lastName, int personId = 0)
 {
     public int PersonId { get; private set; } = personId;
 
