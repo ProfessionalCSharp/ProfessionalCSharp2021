@@ -20,6 +20,30 @@ public class Runner(OrdersContext ordersContext)
         Console.WriteLine();
     }
 
+    public async Task QueryJsonAsync()
+    {
+        var ordersWithMonitors = await ordersContext.Orders
+            .AsNoTracking()
+            .Where(o => o.Lines.Any(l => l.ProductName == "Monitor"))
+            .Select(o => new
+            {
+                o.Id,
+                o.CustomerName,
+                o.OrderDate,
+                MonitorLines = o.Lines.Where(l => l.ProductName == "Monitor")
+            })
+            .ToListAsync();
+
+        foreach (var order in ordersWithMonitors)
+        {
+            Console.WriteLine($"\nOrder {order.Id} - {order.CustomerName} on {order.OrderDate:d}");
+            foreach (var line in order.MonitorLines)
+            {
+                Console.WriteLine($"  Monitor - Quantity: {line.Quantity}, Price: ${line.UnitPrice}");
+            }
+        }
+    }
+
     public async Task DeleteDatabaseAsync()
     {
         Console.Write("Delete the database? (y|n) ");

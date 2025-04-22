@@ -20,6 +20,7 @@ using var host = builder.Build();
     await runner.CreateOrdersAsync();
 
     await runner.QueryOrdersAsync();
+    await runner.QueryJsonAsync();
 
     await runner.DeleteDatabaseAsync();
 }
