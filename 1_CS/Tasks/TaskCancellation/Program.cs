@@ -23,4 +23,4 @@ Task RunTaskAsync(CancellationToken cancellationToken) =>
                 cancellationToken.ThrowIfCancellationRequested();
             }
         }
-    });
+    }, cancellationToken);

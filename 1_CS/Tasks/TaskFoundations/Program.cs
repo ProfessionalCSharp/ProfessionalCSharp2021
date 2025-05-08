@@ -1,5 +1,4 @@
 ﻿using System.Net;
-using System.Threading;
 using System.Runtime.CompilerServices;
 
 record Command(string Option, string Text, Action Action);
@@ -7,7 +6,7 @@ record Command(string Option, string Text, Action Action);
 class Program
 {
     private static readonly Command[] commands =
-    {
+    [
         new("-async", nameof(CallerWithAsync), CallerWithAsync),
         new("-awaiter", nameof(CallerWithAwaiter), CallerWithAwaiter),
         new("-cont", nameof(CallerWithContinuationTask), CallerWithContinuationTask),
@@ -16,7 +15,7 @@ class Program
         new("-comb2", nameof(MultipleAsyncMethodsWithCombinators2), MultipleAsyncMethodsWithCombinators2),
         new("-val", nameof(UseValueTask), UseValueTask),
         new("-casync", nameof(ConvertingAsyncPattern), ConvertingAsyncPattern)
-    };
+    ];
 
     static void Main(string[] args)
     {
@@ -70,7 +69,7 @@ class Program
         Stream stream = response.GetResponseStream();
         using StreamReader reader = new(stream);
         string content = reader.ReadToEnd();
-        Console.WriteLine(content.Substring(0, 100));
+        Console.WriteLine(content[..100]);
 
 #pragma warning restore SYSLIB0014
     }
@@ -141,7 +140,7 @@ class Program
             return Greeting(name);
         });
 
-    private readonly static Dictionary<string, string> names = new();
+    private readonly static Dictionary<string, string> names = [];
 
     static async ValueTask<string> GreetingValueTaskAsync(string name)
     {
@@ -189,6 +188,6 @@ class Program
     {
         string taskInfo = Task.CurrentId == null ? "no task" : "task " + Task.CurrentId;
 
-        Console.WriteLine($"{info} in thread {Thread.CurrentThread.ManagedThreadId} and {taskInfo}");
+        Console.WriteLine($"{info} in thread {Environment.CurrentManagedThreadId} and {taskInfo}");
     }
 }
