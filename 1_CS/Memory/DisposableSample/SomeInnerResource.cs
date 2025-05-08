@@ -5,15 +5,15 @@
 
     public void Foo()
     {
-        if (disposedValue) throw new ObjectDisposedException(nameof(SomeInnerResource));
+        ObjectDisposedException.ThrowIf(isDisposed, this);
         Console.WriteLine($"{nameof(SomeInnerResource)}.{nameof(Foo)}");
     }
 
-    private bool disposedValue = false; // To detect redundant calls
+    private bool isDisposed = false; // To detect redundant calls
 
     protected virtual void Dispose(bool disposing)
     {
-        if (!disposedValue)
+        if (!isDisposed)
         {
             if (disposing)
             {
@@ -24,7 +24,7 @@
             Console.WriteLine("simulation to release native memory");
             // TODO: set large fields to null.
 
-            disposedValue = true;
+            isDisposed = true;
         }
     }
 
