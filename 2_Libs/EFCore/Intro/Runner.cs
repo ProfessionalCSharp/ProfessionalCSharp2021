@@ -1,10 +1,6 @@
-﻿public class Runner
+﻿public class Runner(BooksContext booksContext)
 {
-    private readonly BooksContext _booksContext;
-    public Runner(BooksContext booksContext)
-    {
-        _booksContext = booksContext;
-    }
+    private readonly BooksContext _booksContext = booksContext;
 
     public async Task CreateTheDatabaseAsync()
     {

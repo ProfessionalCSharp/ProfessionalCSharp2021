@@ -1,10 +1,14 @@
-﻿public class Restaurant
-{
-    public Restaurant(string name, Guid id = default) => (_name, _id) = (name, id);
+﻿namespace TransactionsSamples;
 
-    private Guid _id = default;
-    private string _name;
-    public string Name => _name;
+public class Restaurant(string name, Guid id = default)
+{
+#pragma warning disable IDE0032 // Use auto property - fields used in EF Core mapping
+    private readonly Guid _id = id;
+
+    private readonly string _name = name;
+    public string Name => 
+        _name;
+#pragma warning restore IDE0032 // Use auto property
 
     public override string ToString() => $"{Name}, {_id}";
 }

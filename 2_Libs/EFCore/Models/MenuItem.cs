@@ -1,9 +1,7 @@
-﻿public class MenuItem
+﻿public class MenuItem(string text, int menuItemId = default)
 {
-    public MenuItem(string text, int menuItemId = default) => (Text, MenuItemId) = (text, menuItemId);
-
-    public int MenuItemId { get; set; }
-    public string Text { get; set; }
+    public int MenuItemId { get; set; } = menuItemId;
+    public string Text { get; set; } = text;
     public decimal? Price { get; set; }
     private MenuCard? _menuCard;
     public MenuCard MenuCard

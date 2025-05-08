@@ -1,14 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿namespace ConflictHandling;
 
-public class Runner
+public class Runner(BooksContext booksContext)
 {
-    private readonly BooksContext _booksContext;
+    private readonly BooksContext _booksContext = booksContext;
     private string? _user;
     private Book? _selectedBook;
-    public Runner(BooksContext booksContext)
-    {
-        _booksContext = booksContext;
-    }
 
     public async Task CreateTheDatabaseAsync()
     {
@@ -43,7 +39,8 @@ public class Runner
 
     public async Task UpdateAsync()
     {
-        if (_selectedBook is null) throw new InvalidOperationException("_selectedBook not set. Invoke PrepareUpdateAsync before UpdateAsync");
+        if (_selectedBook is null) 
+            throw new InvalidOperationException("_selectedBook not set. Invoke PrepareUpdateAsync before UpdateAsync");
         _selectedBook.Title = $"Book updated from {_user}";
         int records = await _booksContext.SaveChangesAsync();
         if (records == 1)
@@ -55,7 +52,8 @@ public class Runner
     public async Task<string> GetUpdatedTitleAsyc(int id)
     {
         var book = await _booksContext.Books.FindAsync(id);
-        if (book is null) return String.Empty;
+        if (book is null) 
+            return string.Empty;
         return $"{book.Title} with id {book.BookId}";
     }
 }

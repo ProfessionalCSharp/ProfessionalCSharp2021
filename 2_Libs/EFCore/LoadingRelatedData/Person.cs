@@ -1,16 +1,9 @@
-﻿public class Person
+﻿public class Person(string firstName, string lastName, int personId = 0)
 {
-    public Person(string firstName, string lastName, int personId = 0)
-    {
-        FirstName = firstName;
-        LastName = lastName;
-        PersonId = personId;
-    }
+    public int PersonId { get; private set; } = personId;
 
-    public int PersonId { get; private set; }
-
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
+    public string FirstName { get; set; } = firstName;
+    public string LastName { get; set; } = lastName;
 
     public int AddressId { get; set; }
     [ForeignKey(nameof(AddressId))]

@@ -1,12 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-class Runner
+class Runner(IDbContextFactory<MenusContext> menusContextFactory)
 {
-    private readonly IDbContextFactory<MenusContext> _menusContextFactory;
-
-    public Runner(IDbContextFactory<MenusContext> menusContextFactory) =>
-        _menusContextFactory = menusContextFactory;
+    private readonly IDbContextFactory<MenusContext> _menusContextFactory = menusContextFactory;
 
     public async Task CreateDatabaseAsync()
     {
@@ -20,8 +17,8 @@ class Runner
         using var context = _menusContextFactory.CreateDbContext();
         MenuCard soupCard = new("Soups");
 
-        MenuItem[] soups = new[]
-        {
+        MenuItem[] soups =
+        [
             new MenuItem("Consommé Célestine (with shredded pancake)")
             {
                 Price = 4.8m,
@@ -37,7 +34,7 @@ class Runner
                 Price = 4.8m,
                 MenuCard = soupCard
             }
-        };
+        ];
 
         foreach (var soup in soups)
         {
@@ -70,7 +67,7 @@ class Runner
                         where m.Text.StartsWith("Con")
                         select m).FirstOrDefaultAsync();
         var m2 = await (from m in context.MenusItems
-                        where m.Text.Contains("(")
+                        where m.Text.Contains('(')
                         select m).FirstOrDefaultAsync();
         if (object.ReferenceEquals(m1, m2))
         {

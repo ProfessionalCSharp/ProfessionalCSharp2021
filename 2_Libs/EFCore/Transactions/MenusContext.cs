@@ -1,10 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿namespace TransactionsSamples;
 
-class MenusContext : DbContext
+class MenusContext(DbContextOptions<MenusContext> options) : DbContext(options)
 {
-    public MenusContext(DbContextOptions<MenusContext> options)
-        : base(options) {}
-
     public DbSet<MenuCard> MenuCards => Set<MenuCard>();
     public DbSet<MenuItem> MenuItems => Set<MenuItem>();
 
@@ -29,7 +26,7 @@ class MenusContext : DbContext
         modelBuilder.Entity<MenuItem>().HasData(menus);
     }
 
-    private IEnumerable<object> GetInitialMenuItems(dynamic card, Guid restaurantId) =>
+    private object[] GetInitialMenuItems(dynamic card, Guid restaurantId) =>
         Enumerable.Range(1, 20).Select(id => new
         {
             MenuItemId = Guid.NewGuid(),
@@ -37,7 +34,7 @@ class MenusContext : DbContext
             Price = 6.5M,
             IsDeleted = false,
             LastUpdated = DateTime.Now,
-            MenuCardId = card.MenuCardId,
+            card.MenuCardId,
             RestaurantId = restaurantId
         }).ToArray();
 }

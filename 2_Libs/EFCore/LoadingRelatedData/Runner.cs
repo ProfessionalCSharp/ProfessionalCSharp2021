@@ -1,8 +1,6 @@
-﻿public class Runner
+﻿public class Runner(BooksContext booksContext)
 {
-    private readonly BooksContext _booksContext;
-
-    public Runner(BooksContext booksContext) => _booksContext = booksContext;
+    private readonly BooksContext _booksContext = booksContext;
 
     public async Task CreateTheDatabaseAsync()
     {
@@ -69,7 +67,8 @@
             await bookEntry.Reference(b => b.Author).LoadAsync();
             Console.WriteLine($"{book.Author?.FirstName} {book.Author?.LastName}");
 
-            if (book.Author is null) continue; // no author, fix CS8634 warning
+            if (book.Author is null) 
+                continue; // no author, fix CS8634 warning
             await _booksContext.Entry(book.Author).Reference(a => a.Address).LoadAsync();
             Console.WriteLine($"{book.Author!.Address!.Country}");
 

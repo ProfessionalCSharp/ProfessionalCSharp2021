@@ -10,10 +10,7 @@ static class CompiledQueryExtensions
 
     public static IEnumerable<MenuItem> MenuItemsByText(this MenusContext menusContext, string text)
     {
-        if (s_menuItemsByText is null)
-        {
-            s_menuItemsByText = CompileMenusByTextQuery();
-        }
+        s_menuItemsByText ??= CompileMenusByTextQuery();
         return s_menuItemsByText(menusContext, text);
     }
 
@@ -24,10 +21,7 @@ static class CompiledQueryExtensions
 
     public static IAsyncEnumerable<MenuItem> MenuItemsByTextAsync(this MenusContext menusContext, string text)
     {
-        if (s_menuItemsByTextAsync is null)
-        {
-            s_menuItemsByTextAsync = CompileMenuItemsByTextAsyncQuery();
-        }
+        s_menuItemsByTextAsync ??= CompileMenuItemsByTextAsyncQuery();
         return s_menuItemsByTextAsync(menusContext, text);
     }
 }

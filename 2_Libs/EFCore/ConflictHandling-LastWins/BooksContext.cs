@@ -1,10 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿namespace ConflictHandling;
 
-public class BooksContext : DbContext
+public class BooksContext(DbContextOptions<BooksContext> options) : DbContext(options)
 {
-    public BooksContext(DbContextOptions<BooksContext> options)
-        : base(options) { }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         var sampleBooks = GetSampleBooks();
@@ -12,7 +9,7 @@ public class BooksContext : DbContext
         base.OnModelCreating(modelBuilder);
     }
 
-    private IEnumerable<Book> GetSampleBooks()
+    private Book[] GetSampleBooks()
         => Enumerable.Range(1, 100)
         .Select(id => new Book($"title {id}", "sample", id)).ToArray();
 

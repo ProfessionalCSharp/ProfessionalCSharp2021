@@ -1,12 +1,7 @@
-﻿public class MenuItem
+﻿public class MenuItem(string title, int menuItemId = 0)
 {
-    public MenuItem(string title, int menuItemId = 0)
-    {
-        Title = title;
-        MenuItemId = menuItemId;
-    }
-    public int MenuItemId { get; init; }
-    public string Title { get; set; }
+    public int MenuItemId { get; init; } = menuItemId;
+    public string Title { get; set; } = title;
     public string? Subtitle { get; set; }
     public decimal Price { get; set; }
     public MenuDetails? Details { get; set; }
