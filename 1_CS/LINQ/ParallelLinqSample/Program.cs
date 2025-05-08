@@ -88,7 +88,6 @@ class Program
     static IList<int> SampleData()
     {
         const int arraySize = 50_000_000;
-        var r = new Random();
-        return Enumerable.Range(0, arraySize).Select(x => r.Next(140)).ToList();
+        return [.. Enumerable.Range(0, arraySize).Select(x => Random.Shared.Next(140))];
     }
 }
