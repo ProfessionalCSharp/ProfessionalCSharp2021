@@ -2,15 +2,9 @@
 
 namespace MetricsSample;
 
-class Runner
+class Runner(NetworkService networkService, ILogger<Runner> logger)
 {
-    private readonly ILogger _logger;
-    private readonly NetworkService _networkSevice;
-    public Runner(NetworkService networkService, ILogger<Runner> logger)
-    {
-        _networkSevice = networkService;
-        _logger = logger;
-    }
+    private readonly ILogger _logger = logger;
 
     public async Task RunAsync()
     {
@@ -26,7 +20,7 @@ class Runner
                 try
                 {
                     Uri uri = new(url);
-                    await _networkSevice.NetworkRequestSampleAsync(uri);
+                    await networkService.NetworkRequestSampleAsync(uri);
                 }
                 catch (UriFormatException ex)
                 {

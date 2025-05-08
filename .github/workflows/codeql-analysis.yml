@@ -50,6 +50,7 @@ jobs:
             - '**/1_CS/Tasks/AsyncWindowsDesktopApp/**'
             - '**/2_Libs/Parallel/ParallelSamples/WindowsAppTimer/**'
             - '**/2_Libs/FilesAndStreams/WinUIAppEditor/**'
+            - '**/2_Libs/LoggingAndMetrics/WindowsAppAnalytics/**' 
             - '**/4_Apps/**'
             - '**/5_More/WinUI/**'
         # If you wish to specify custom queries, you can do so here or in a config file.
