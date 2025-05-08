@@ -10,17 +10,11 @@ class EchoClientOptions
     public int ServerPort { get; set; }
 }
 
-class EchoClient
+class EchoClient(IOptions<EchoClientOptions> options, ILogger<EchoClient> logger)
 {
-    private readonly string _hostname;
-    private readonly int _serverPort;
-    private readonly ILogger _logger;
-    public EchoClient(IOptions<EchoClientOptions> options, ILogger<EchoClient> logger)
-    {
-        _hostname = options.Value.Hostname ?? "localhost";
-        _serverPort = options.Value.ServerPort;
-        _logger = logger;
-    }
+    private readonly string _hostname = options.Value.Hostname ?? "localhost";
+    private readonly int _serverPort = options.Value.ServerPort;
+    private readonly ILogger _logger = logger;
 
     public async Task SendAndReceiveAsync(CancellationToken cancellationToken)
     {

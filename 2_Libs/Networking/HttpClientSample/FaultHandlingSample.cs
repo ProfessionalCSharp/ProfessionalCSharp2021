@@ -1,21 +1,14 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-class FaultHandlingSample
+class FaultHandlingSample(
+    IOptions<HttpClientSamplesOptions> options,
+    HttpClient httpClient,
+    ILogger<HttpClientSamples> logger)
 {
-    private readonly ILogger _logger;
-    private readonly HttpClient _httpClient;
-    private readonly string _url;
-
-    public FaultHandlingSample(
-        IOptions<HttpClientSamplesOptions> options,
-        HttpClient httpClient,
-        ILogger<HttpClientSamples> logger)
-    {
-        _logger = logger;
-        _url = options.Value.InvalidUrl ?? "localhost:5052";
-        _httpClient = httpClient;
-    }
+    private readonly ILogger _logger = logger;
+    private readonly HttpClient _httpClient = httpClient;
+    private readonly string _url = options.Value.InvalidUrl ?? "localhost:5052";
 
     public async Task RunAsync()
     {

@@ -9,23 +9,15 @@ public record HttpClientSamplesOptions
     public string? InvalidUrl { get; init; }
 }
 
-public class HttpClientSamples
+public class HttpClientSamples(
+    IOptions<HttpClientSamplesOptions> options,
+    HttpClient httpClient,
+    ILogger<HttpClientSamples> logger)
 {
-    private readonly ILogger _logger;
-    private readonly HttpClient _httpClient;
-    private readonly string _url;
-    private readonly string _invalidUrl;
-
-    public HttpClientSamples(
-        IOptions<HttpClientSamplesOptions> options, 
-        HttpClient httpClient, 
-        ILogger<HttpClientSamples> logger)
-    {
-        _url = options.Value.Url ?? "https://localhost:5020";
-        _invalidUrl = options.Value.InvalidUrl ?? "https://localhost1:5020";
-        _httpClient = httpClient;
-        _logger = logger;
-    }
+    private readonly ILogger _logger = logger;
+    private readonly HttpClient _httpClient = httpClient;
+    private readonly string _url = options.Value.Url ?? "https://localhost:5020";
+    private readonly string _invalidUrl = options.Value.InvalidUrl ?? "https://localhost1:5020";
 
     public async Task SimpleGetRequestAsync()
     {
@@ -106,7 +98,7 @@ public class HttpClientSamples
             HttpRequestMessage request2 = new(HttpMethod.Get, "/api/racers");
             request2.Version = new Version("1.1");
 
-            Stopwatch stopwatch = new Stopwatch();
+            Stopwatch stopwatch = new();
             stopwatch.Start();
             Task<HttpResponseMessage> t1 = _httpClient.SendAsync(request1);
             Task<HttpResponseMessage> t2 = _httpClient.SendAsync(request2); ;

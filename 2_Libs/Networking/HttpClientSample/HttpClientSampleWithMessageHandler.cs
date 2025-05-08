@@ -1,16 +1,11 @@
 ﻿using Microsoft.Extensions.Logging;
 
-public class HttpClientSampleWithMessageHandler
+public class HttpClientSampleWithMessageHandler(
+    HttpClient httpClient,
+    ILogger<HttpClientSampleWithMessageHandler> logger)
 {
-    private readonly HttpClient _httpClient;
-    private readonly ILogger _logger;
-    public HttpClientSampleWithMessageHandler(
-        HttpClient httpClient, 
-        ILogger<HttpClientSampleWithMessageHandler> logger)
-    {
-        _httpClient = httpClient;
-        _logger = logger;
-    }
+    private readonly HttpClient _httpClient = httpClient;
+    private readonly ILogger _logger = logger;
 
     public async Task UseMessageHandlerAsync()
     {

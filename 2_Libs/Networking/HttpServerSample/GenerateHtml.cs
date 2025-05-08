@@ -56,7 +56,7 @@ public class GenerateHtml
 
     private IEnumerable<string> GetHeaderInfo(IHeaderDictionary headers)
     {
-        List<(string Key, string? Value)> values = new();
+        List<(string Key, string? Value)> values = [];
         var keys = headers.Keys;
         foreach (var key in keys)
         {

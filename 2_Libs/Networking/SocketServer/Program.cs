@@ -11,7 +11,9 @@ using var host = Host.CreateDefaultBuilder(args)
     })
     .Build();
 
-var logger = host.Services.GetRequiredService<ILoggerFactory>().CreateLogger("EchoServer");
+var logger = host.Services
+    .GetRequiredService<ILoggerFactory>()
+    .CreateLogger("EchoServer");
 
 CancellationTokenSource cancellationTokenSource = new();
 

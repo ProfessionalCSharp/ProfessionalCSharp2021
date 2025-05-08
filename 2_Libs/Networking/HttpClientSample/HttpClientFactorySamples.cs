@@ -1,14 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
 
-public class HttpClientFactorySamples
+public class HttpClientFactorySamples(
+    IHttpClientFactory httpClientFactory,
+    ILogger<HttpClientFactorySamples> logger)
 {
-    private readonly HttpClient _httpClient;
-    private readonly ILogger _logger;
-    public HttpClientFactorySamples(
-        IHttpClientFactory httpClientFactory,
-        ILogger<HttpClientFactorySamples> logger)
-    {
-        _httpClient = httpClientFactory.CreateClient("cni");
-        _logger = logger;
-    }
+    private readonly HttpClient _httpClient = httpClientFactory.CreateClient("cni");
+    private readonly ILogger _logger = logger;
 }
