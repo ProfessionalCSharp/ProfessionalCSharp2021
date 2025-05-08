@@ -1,13 +1,8 @@
 ﻿namespace DISample;
 
-public class GreetingService : IGreetingService
+public class GreetingService(IOptions<GreetingServiceOptions> options) : IGreetingService
 {
-    public GreetingService(IOptions<GreetingServiceOptions> options)
-    {
-        _from = options.Value.From;
-    }
-
-    private string? _from;
+    private string? _from = options.Value.From;
 
     public string Greet(string name) => $"Hello, {name}! Greetings from {_from}";
 }

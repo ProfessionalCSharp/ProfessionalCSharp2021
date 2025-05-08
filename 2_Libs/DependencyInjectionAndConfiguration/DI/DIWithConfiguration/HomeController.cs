@@ -1,12 +1,7 @@
 ﻿namespace DISample;
 
-public class HomeController
+public class HomeController(IGreetingService greetingService)
 {
-    private readonly IGreetingService _greetingService;
-    public HomeController(IGreetingService greetingService)
-    {
-        _greetingService = greetingService;
-    }
     public string Hello(string name) =>
-        _greetingService.Greet(name);
+        greetingService.Greet(name);
 }

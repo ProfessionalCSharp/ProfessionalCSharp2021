@@ -5,7 +5,8 @@ public sealed class ControllerX : IDisposable
     private readonly IServiceA _serviceA;
     private readonly IServiceB _serviceB;
     private readonly int _n;
-    private int _countm = 0;
+    private int _countM = 0;
+
     public ControllerX(IServiceA serviceA, IServiceB serviceB, INumberService numberService)
     {
         _n = numberService.GetNumber();
@@ -16,7 +17,7 @@ public sealed class ControllerX : IDisposable
 
     public void M()
     {
-        Console.WriteLine($"invoked {nameof(M)} for the {++_countm}. time");
+        Console.WriteLine($"invoked {nameof(M)} for the {++_countM}. time");
         _serviceA.A();
         _serviceB.B();
     }
