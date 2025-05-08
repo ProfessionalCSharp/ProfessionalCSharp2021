@@ -127,7 +127,9 @@ Additional articles and samples related to the book
 * [Web API Updates with .NET 8 - Article](https://csharp.christiannagel.com/2023/04/19/api-dotnet8/)
 * [Minimal API Updates with .NET 7 - .NET 6 version source code](5_More/Services/GamesApiDotnet6/)
 * [Minimal API Updates with .NET 7 - Source Code](5_More/Services/GamesApiDotnet7/)
-* [Minimal API Updates with .NET 7 - Article](https://csharp.christiannagel.com)
+* [Minimal API Updates with .NET 7 - Article](https://csharp.christiannagel.com/2023/05/03/minimal-api-growing-with-net-7/)
+* [Starting .NET Aspire with existing API - Source Code](5_More/Aspire/StartingAspireWithExistingAPI/)
+* [Starting .NET Aspire with existing API - Article](https://csharp.christiannagel.com/2025/05/08/why-dotnet-aspire/)
 
 ### Windows Apps
 
