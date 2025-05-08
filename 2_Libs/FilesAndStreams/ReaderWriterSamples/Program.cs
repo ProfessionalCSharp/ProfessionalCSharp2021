@@ -3,7 +3,7 @@
 ReadFileUsingReader("./Program.cs");
 Console.WriteLine();
 string textFile = Path.ChangeExtension(Path.Combine(Path.GetTempPath(), Path.GetRandomFileName()), "txt");
-WriteFileUsingWriter(textFile, new string[] { "one", "two" });
+WriteFileUsingWriter(textFile, ["one", "two"]);
 Console.WriteLine($"Written temp file {textFile}");
 
 string binFile = Path.ChangeExtension(Path.Combine(Path.GetTempPath(), Path.GetRandomFileName()), "bin");
