@@ -2,14 +2,9 @@
 
 public record Size(int Width, int Height);
 
-public abstract class Shape
+public abstract class Shape(ILogger logger)
 {
-    public Shape(ILogger logger)
-    {
-        Logger = logger;
-    }
-
-    protected ILogger Logger { get; }
+    protected ILogger Logger { get; } = logger;
     public Position? Position { get; init; }
     public Size? Size { get; init; }
 

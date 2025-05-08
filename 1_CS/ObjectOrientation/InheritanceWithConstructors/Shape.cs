@@ -35,16 +35,10 @@ public class Size
     public override string ToString() => $"Width: {Width}, Height: {Height}";
 }
 
-public abstract class Shape
+public abstract class Shape(int x, int y, int width, int height)
 {
-    public Shape(int x, int y, int width, int height)
-    {
-        Position = new Position(x, y);
-        Size = new Size(width, height);
-    }
-
-    public Position Position { get; }
-    public virtual Size Size { get; }
+    public Position Position { get; } = new Position(x, y);
+    public virtual Size Size { get; } = new Size(width, height);
 
     public void Draw() => DisplayShape();
 

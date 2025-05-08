@@ -7,7 +7,7 @@ void SortWithIComparable()
     Person p2 = new("Graham", "Hill");
     Person p3 = new("Damon", "Hill");
 
-    Person[] people = { p1, p2, p3 };
+    Person[] people = [p1, p2, p3];
     Array.Sort(people);
     foreach (var p in people)
     {

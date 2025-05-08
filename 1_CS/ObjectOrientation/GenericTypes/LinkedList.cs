@@ -15,7 +15,6 @@ public class LinkedList<T> : IEnumerable<T>
         else
         {
             newNode.Prev = Last;
-            LinkedListNode<T> previous = Last;
             Last.Next = newNode;
             Last = newNode;
         }

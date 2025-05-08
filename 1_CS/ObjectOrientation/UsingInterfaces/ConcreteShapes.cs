@@ -1,17 +1,13 @@
-﻿public class Rectangle : Shape
+﻿public class Rectangle(ILogger logger) : Shape(logger)
 {
-    public Rectangle(ILogger logger) : base(logger) {  }
-
     protected override void DisplayShape()
     {
         Logger.Log($"Rectangle at position {Position} with size {Size}");
     }
 }
 
-public class Ellipse : Shape
+public class Ellipse(ILogger logger) : Shape(logger)
 {
-    public Ellipse(ILogger logger) : base(logger) { }
-
     protected override void DisplayShape()
     {
         Logger.Log($"Ellipse at position {Position} with size {Size}");
