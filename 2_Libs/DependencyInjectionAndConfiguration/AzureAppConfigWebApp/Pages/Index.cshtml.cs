@@ -1,15 +1,7 @@
 ﻿namespace AzureAppConfigWebApp.Pages;
-public class IndexModel : PageModel
+public class IndexModel(IOptionsSnapshot<IndexAppSettings> options, ILogger<IndexModel> logger, IConfiguration configuration) : PageModel
 {
-    private readonly ILogger<IndexModel> _logger;
-
-    public IndexModel(IOptionsSnapshot<IndexAppSettings> options, ILogger<IndexModel> logger, IConfiguration configuration)
-    {
-        _logger = logger;
-        Config1 = options.Value.Config1 ?? "no value";
-    }
-
-    public string Config1 { get; }
+    public string Config1 { get; } = options.Value.Config1 ?? "no value";
 
     public void OnGet()
     {

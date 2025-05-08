@@ -1,4 +1,5 @@
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Configuration.AddAzureAppConfiguration(options =>
 {
     var endpoint = builder.Configuration["AppConfigEndpoint"] ?? throw new InvalidOperationException("AppConfigEndpoint not configured");
@@ -11,7 +12,7 @@ builder.Configuration.AddAzureAppConfiguration(options =>
         {
             refresh.Register("AppConfigurationSample:Settings:Sentinel",
                 refreshAll: true)
-            .SetCacheExpiration(TimeSpan.FromMinutes(5));
+            .SetRefreshInterval(TimeSpan.FromMinutes(5));
         })
         .ConfigureKeyVault(kv =>
         {
