@@ -1,6 +1,4 @@
-﻿using System;
-
-[Flags]
+﻿[Flags]
 public enum DaysOfWeek
 {
     Monday = 0x1,
