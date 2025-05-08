@@ -45,17 +45,16 @@ jobs:
       uses: github/codeql-action/init@v3
       with:
         languages: ${{ matrix.language }}
-        config: |
-          paths-ignore:
-            - '**/1_CS/Tasks/AsyncWindowsDesktopApp/**'
-            - '**/1_CS/Tasks/AsyncSamples.sln' 
-            - '**/2_Libs/Parallel/ParallelSamples/WindowsAppTimer/**'
-            - '**/2_Libs/Parallel/ParallelSamples/ParallelSamples.sln'
-            - '**/2_Libs/FilesAndStreams/WinUIAppEditor/**'
-            - '**/2_Libs/FilesAndStreams/FilesAndStreams.sln'
-            - '**/2_Libs/LoggingAndMetrics/WindowsAppAnalytics/**' 
-            - '**/4_Apps/**'
-            - '**/5_More/WinUI/**'
+        exclude: |
+          '**/1_CS/Tasks/AsyncWindowsDesktopApp/**'
+          '**/1_CS/Tasks/AsyncSamples.sln' 
+          '**/2_Libs/Parallel/ParallelSamples/WindowsAppTimer/**'
+          '**/2_Libs/Parallel/ParallelSamples/ParallelSamples.sln'
+          '**/2_Libs/FilesAndStreams/WinUIAppEditor/**'
+          '**/2_Libs/FilesAndStreams/FilesAndStreams.sln'
+          '**/2_Libs/LoggingAndMetrics/WindowsAppAnalytics/**' 
+          '**/4_Apps/**'
+          '**/5_More/WinUI/**'
         # If you wish to specify custom queries, you can do so here or in a config file.
         # By default, queries listed here will override any specified in a config file.
         # Prefix the list here with "+" to use these queries and those in the config file.
