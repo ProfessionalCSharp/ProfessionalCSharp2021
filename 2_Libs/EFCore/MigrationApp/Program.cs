@@ -1,10 +1,9 @@
-﻿using var host = Host.CreateDefaultBuilder(args)
-    .ConfigureServices((context, services) =>
-    {
-        var connectionString = context.Configuration.GetConnectionString("BooksConnection");
-        services.AddDbContext<BooksContext>();
-    })
-    .Build();
+﻿var builder = Host.CreateApplicationBuilder(args);
+
+var connectionString = builder.Configuration.GetConnectionString("BooksConnection");
+builder.Services.AddDbContext<BooksContext>();
+
+var host = builder.Build();
 
 await using var scope = host.Services.CreateAsyncScope();
 var context = scope.ServiceProvider.GetRequiredService<BooksContext>();
