@@ -4,17 +4,17 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TemporalTableSample;
 
-using var host = Host.CreateDefaultBuilder(args)
-    .ConfigureServices((context, services) =>
-    {
-        var connectionString = context.Configuration.GetConnectionString("BooksConnection");
-        services.AddDbContext<BooksContext>(options =>
-        {
-            options.UseSqlServer(connectionString);
-        });
-        services.AddScoped<Runner>();
-    })
-    .Build();
+var builder = Host.CreateApplicationBuilder(args);
+
+builder.Services.AddDbContext<BooksContext>(options =>
+{
+    var connectionString = builder.Configuration.GetConnectionString("BooksConnection");
+    options.UseSqlServer(connectionString);
+    options.EnableSensitiveDataLogging();
+});
+builder.Services.AddScoped<Runner>();
+
+using var host = builder.Build();
 
 using var scope = host.Services.CreateScope();
 var runner = scope.ServiceProvider.GetRequiredService<Runner>();

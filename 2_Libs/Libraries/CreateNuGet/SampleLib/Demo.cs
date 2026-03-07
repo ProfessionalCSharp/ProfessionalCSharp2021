@@ -11,6 +11,8 @@ public class Demo
     private readonly static string s_info = ".NET 6.0";
 #elif NET7_0
     private readonly static string s_info = ".NET 7.0";
+#elif NET8_0
+    private readonly static string s_info = ".NET 8.0";
 #else
     private readonly static string s_info = "Unknown";
 #endif

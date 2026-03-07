@@ -4,27 +4,26 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-using var host = Host.CreateDefaultBuilder(args)
-    .ConfigureServices((context, services) =>
-    {
-        var connectionString = context.Configuration.GetConnectionString("BooksConnection");
-        services.AddDbContext<BooksContext>(options =>
-        {
-            options.UseSqlServer(connectionString);
-        });
-        services.AddDbContext<BankContext>(options =>
-        {
-            options.UseSqlServer(connectionString);
-        });
-        services.AddDbContext<MenusContext>(options =>
-        {
-            options.UseSqlServer(connectionString);
-        });
-        services.AddScoped<BooksRunner>();
-        services.AddScoped<BankRunner>();
-        services.AddScoped<MenusRunner>();
-    })
-    .Build();
+var builder = Host.CreateApplicationBuilder(args);
+
+var connectionString = builder.Configuration.GetConnectionString("BooksConnection");
+builder.Services.AddDbContext<BooksContext>(options =>
+{
+    options.UseSqlServer(connectionString);
+});
+builder.Services.AddDbContext<BankContext>(options =>
+{
+    options.UseSqlServer(connectionString);
+});
+builder.Services.AddDbContext<MenusContext>(options =>
+{
+    options.UseSqlServer(connectionString);
+});
+builder.Services.AddScoped<BooksRunner>();
+builder.Services.AddScoped<BankRunner>();
+builder.Services.AddScoped<MenusRunner>();
+
+var host = builder.Build();
 
 using (var scope = host.Services.CreateScope())
 {

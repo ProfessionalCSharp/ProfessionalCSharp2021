@@ -1,0 +1,1845 @@
+{
+  "settings": {
+    "components": {
+      "code": true,
+      "binaries": false
+    },
+    "targetId": "net10.0",
+    "targetDisplayName": ".NETCoreApp,Version=v10.0"
+  },
+  "analysisStartTime": "2026-03-07T14:17:05.9235705Z",
+  "analysisEndTime": "2026-03-07T14:17:09.9314621Z",
+  "privacyModeHelpUrl": "https://go.microsoft.com/fwlink/?linkid=2270980",
+  "stats": {
+    "summary": {
+      "projects": 13,
+      "issues": 3,
+      "incidents": 61,
+      "effort": 61
+    },
+    "charts": {
+      "severity": {
+        "Mandatory": 14,
+        "Optional": 0,
+        "Potential": 47,
+        "Information": 0
+      },
+      "category": {
+        "NuGet": 47,
+        "Project": 13,
+        "Api": 1
+      }
+    }
+  },
+  "projects": [
+    {
+      "path": "BooksLib\\BooksLib.csproj",
+      "startingProject": true,
+      "issues": 2,
+      "storyPoints": 3,
+      "properties": {
+        "appName": "BooksLib",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "net9.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 7,
+        "numberOfCodeFiles": 7,
+        "linesTotal": 225,
+        "linesOfCode": 225,
+        "totalApiScanned": 245,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "29252c45-b57f-4540-8ec6-b700a5aaedf3",
+          "ruleId": "NuGet.0002",
+          "projectPath": "BooksLib\\BooksLib.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3",
+              "protected": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3"
+            },
+            "kind": "File",
+            "path": "BooksLib\\BooksLib.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3",
+            "label": "Microsoft.EntityFrameworkCore 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "d33b7010-bc93-4f29-97a7-8c4eff265982",
+          "ruleId": "NuGet.0002",
+          "projectPath": "BooksLib\\BooksLib.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3",
+              "protected": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3"
+            },
+            "kind": "File",
+            "path": "BooksLib\\BooksLib.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3",
+            "label": "Microsoft.EntityFrameworkCore.SqlServer 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore.SqlServer",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "3f403e14-9f9f-4d43-a67c-b886447a8a15",
+          "ruleId": "Project.0002",
+          "projectPath": "BooksLib\\BooksLib.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net9.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net9.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "BooksLib\\BooksLib.csproj",
+            "snippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net9.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "ConflictHandling-FirstWins\\ConflictHandling-FirstWins.csproj",
+      "startingProject": true,
+      "issues": 2,
+      "storyPoints": 5,
+      "properties": {
+        "appName": "ConflictHandling-FirstWins",
+        "projectKind": "DotNetCoreApp",
+        "frameworks": [
+          "net9.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 5,
+        "numberOfCodeFiles": 5,
+        "linesTotal": 176,
+        "linesOfCode": 176,
+        "totalApiScanned": 256,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "d2744bc6-d3bd-4b82-ae75-20f7f6472153",
+          "ruleId": "NuGet.0002",
+          "projectPath": "ConflictHandling-FirstWins\\ConflictHandling-FirstWins.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3",
+              "protected": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3"
+            },
+            "kind": "File",
+            "path": "ConflictHandling-FirstWins\\ConflictHandling-FirstWins.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3",
+            "label": "Microsoft.EntityFrameworkCore 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "65377b7b-6bbe-4ae9-aee8-f3511a03ff65",
+          "ruleId": "NuGet.0002",
+          "projectPath": "ConflictHandling-FirstWins\\ConflictHandling-FirstWins.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3",
+              "protected": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3"
+            },
+            "kind": "File",
+            "path": "ConflictHandling-FirstWins\\ConflictHandling-FirstWins.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3",
+            "label": "Microsoft.EntityFrameworkCore.Design 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore.Design",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "821deec6-2869-45e4-9ffb-e1d3bd5cb6ee",
+          "ruleId": "NuGet.0002",
+          "projectPath": "ConflictHandling-FirstWins\\ConflictHandling-FirstWins.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3",
+              "protected": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3"
+            },
+            "kind": "File",
+            "path": "ConflictHandling-FirstWins\\ConflictHandling-FirstWins.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3",
+            "label": "Microsoft.EntityFrameworkCore.SqlServer 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore.SqlServer",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "11ba291f-d2b0-4f60-9e9b-6412f100ba89",
+          "ruleId": "NuGet.0002",
+          "projectPath": "ConflictHandling-FirstWins\\ConflictHandling-FirstWins.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3",
+              "protected": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3"
+            },
+            "kind": "File",
+            "path": "ConflictHandling-FirstWins\\ConflictHandling-FirstWins.csproj",
+            "snippet": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3",
+            "protectedSnippet": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3",
+            "label": "Microsoft.Extensions.Hosting 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.Extensions.Hosting",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "9a6e58bf-ca8a-4c57-8480-e86869a287a8",
+          "ruleId": "Project.0002",
+          "projectPath": "ConflictHandling-FirstWins\\ConflictHandling-FirstWins.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net9.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net9.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "ConflictHandling-FirstWins\\ConflictHandling-FirstWins.csproj",
+            "snippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net9.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "ConflictHandling-LastWins\\ConflictHandling-LastWins.csproj",
+      "startingProject": true,
+      "issues": 2,
+      "storyPoints": 5,
+      "properties": {
+        "appName": "ConflictHandling-LastWins",
+        "projectKind": "DotNetCoreApp",
+        "frameworks": [
+          "net9.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 5,
+        "numberOfCodeFiles": 5,
+        "linesTotal": 129,
+        "linesOfCode": 129,
+        "totalApiScanned": 191,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "422b9ad2-c47c-47f2-94bb-61cf92bbf037",
+          "ruleId": "NuGet.0002",
+          "projectPath": "ConflictHandling-LastWins\\ConflictHandling-LastWins.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3",
+              "protected": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3"
+            },
+            "kind": "File",
+            "path": "ConflictHandling-LastWins\\ConflictHandling-LastWins.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3",
+            "label": "Microsoft.EntityFrameworkCore 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "bd6261c7-9b3b-4411-ae54-a750857522d0",
+          "ruleId": "NuGet.0002",
+          "projectPath": "ConflictHandling-LastWins\\ConflictHandling-LastWins.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3",
+              "protected": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3"
+            },
+            "kind": "File",
+            "path": "ConflictHandling-LastWins\\ConflictHandling-LastWins.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3",
+            "label": "Microsoft.EntityFrameworkCore.Design 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore.Design",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "4c947350-fa18-4bfc-a1c2-8c8165733cfb",
+          "ruleId": "NuGet.0002",
+          "projectPath": "ConflictHandling-LastWins\\ConflictHandling-LastWins.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3",
+              "protected": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3"
+            },
+            "kind": "File",
+            "path": "ConflictHandling-LastWins\\ConflictHandling-LastWins.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3",
+            "label": "Microsoft.EntityFrameworkCore.SqlServer 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore.SqlServer",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "dabe7a5e-80eb-4fe4-b212-8916515561c0",
+          "ruleId": "NuGet.0002",
+          "projectPath": "ConflictHandling-LastWins\\ConflictHandling-LastWins.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3",
+              "protected": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3"
+            },
+            "kind": "File",
+            "path": "ConflictHandling-LastWins\\ConflictHandling-LastWins.csproj",
+            "snippet": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3",
+            "protectedSnippet": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3",
+            "label": "Microsoft.Extensions.Hosting 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.Extensions.Hosting",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "1c5a354b-8dd3-451d-89da-f4a8c7c92ead",
+          "ruleId": "Project.0002",
+          "projectPath": "ConflictHandling-LastWins\\ConflictHandling-LastWins.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net9.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net9.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "ConflictHandling-LastWins\\ConflictHandling-LastWins.csproj",
+            "snippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net9.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "Cosmos\\Cosmos.csproj",
+      "startingProject": true,
+      "issues": 3,
+      "storyPoints": 7,
+      "properties": {
+        "appName": "Cosmos",
+        "projectKind": "DotNetCoreApp",
+        "frameworks": [
+          "net9.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 6,
+        "numberOfCodeFiles": 6,
+        "linesTotal": 165,
+        "linesOfCode": 165,
+        "totalApiScanned": 252,
+        "minLinesOfCodeToChange": 1,
+        "maxLinesOfCodeToChange": 1
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "66ce60e6-bc79-4272-bf01-9c0fc28cde54",
+          "ruleId": "NuGet.0002",
+          "projectPath": "Cosmos\\Cosmos.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3",
+              "protected": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3"
+            },
+            "kind": "File",
+            "path": "Cosmos\\Cosmos.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3",
+            "label": "Microsoft.EntityFrameworkCore 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "9eb481a2-05a3-4692-ad32-a9a9f76d9e09",
+          "ruleId": "NuGet.0002",
+          "projectPath": "Cosmos\\Cosmos.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore.Cosmos, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Cosmos, and replace with new package Microsoft.EntityFrameworkCore.Cosmos 10.0.3",
+              "protected": "Microsoft.EntityFrameworkCore.Cosmos, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Cosmos, and replace with new package Microsoft.EntityFrameworkCore.Cosmos 10.0.3"
+            },
+            "kind": "File",
+            "path": "Cosmos\\Cosmos.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore.Cosmos, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Cosmos, and replace with new package Microsoft.EntityFrameworkCore.Cosmos 10.0.3",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore.Cosmos, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Cosmos, and replace with new package Microsoft.EntityFrameworkCore.Cosmos 10.0.3",
+            "label": "Microsoft.EntityFrameworkCore.Cosmos 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore.Cosmos",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "0e6aaf45-6d9c-41a3-a74a-1f73499887c3",
+          "ruleId": "NuGet.0002",
+          "projectPath": "Cosmos\\Cosmos.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3",
+              "protected": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3"
+            },
+            "kind": "File",
+            "path": "Cosmos\\Cosmos.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3",
+            "label": "Microsoft.EntityFrameworkCore.Design 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore.Design",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "6e5f7aa7-5367-450e-aa2d-de795568ab71",
+          "ruleId": "NuGet.0002",
+          "projectPath": "Cosmos\\Cosmos.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Extensions.Configuration.UserSecrets, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Configuration.UserSecrets, and replace with new package Microsoft.Extensions.Configuration.UserSecrets 10.0.3",
+              "protected": "Microsoft.Extensions.Configuration.UserSecrets, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Configuration.UserSecrets, and replace with new package Microsoft.Extensions.Configuration.UserSecrets 10.0.3"
+            },
+            "kind": "File",
+            "path": "Cosmos\\Cosmos.csproj",
+            "snippet": "Microsoft.Extensions.Configuration.UserSecrets, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Configuration.UserSecrets, and replace with new package Microsoft.Extensions.Configuration.UserSecrets 10.0.3",
+            "protectedSnippet": "Microsoft.Extensions.Configuration.UserSecrets, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Configuration.UserSecrets, and replace with new package Microsoft.Extensions.Configuration.UserSecrets 10.0.3",
+            "label": "Microsoft.Extensions.Configuration.UserSecrets 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.Extensions.Configuration.UserSecrets",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "e990cdb1-c021-4656-b037-ae022a768cc7",
+          "ruleId": "NuGet.0002",
+          "projectPath": "Cosmos\\Cosmos.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3",
+              "protected": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3"
+            },
+            "kind": "File",
+            "path": "Cosmos\\Cosmos.csproj",
+            "snippet": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3",
+            "protectedSnippet": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3",
+            "label": "Microsoft.Extensions.Hosting 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.Extensions.Hosting",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "cbe8aee1-a451-4ea3-b441-b9beb27cdbaa",
+          "ruleId": "Project.0002",
+          "projectPath": "Cosmos\\Cosmos.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net9.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net9.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "Cosmos\\Cosmos.csproj",
+            "snippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net9.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        },
+        {
+          "incidentId": "8de7c1dc-f46b-40d7-8ff2-e366c04408bc",
+          "ruleId": "Api.0001",
+          "description": "Breaking change: DynamicallyAccessedMembers annotation removed from trim-unsafe configuration APIs ",
+          "projectPath": "Cosmos\\Cosmos.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "services.Configure\u003CRestaurantConfiguration\u003E(restaurantSettings);",
+              "protected": "M:Microsoft.Extensions.DependencyInjection.OptionsConfigurationServiceCollectionExtensions.Configure\u0060\u00601(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)"
+            },
+            "kind": "File",
+            "path": "Cosmos\\Program.cs",
+            "snippet": "services.Configure\u003CRestaurantConfiguration\u003E(restaurantSettings);",
+            "protectedSnippet": "M:Microsoft.Extensions.DependencyInjection.OptionsConfigurationServiceCollectionExtensions.Configure\u0060\u00601(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)",
+            "label": "M:Microsoft.Extensions.DependencyInjection.OptionsConfigurationServiceCollectionExtensions.Configure\u0060\u00601(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/extensions/10.0/dynamically-accessed-members-configuration.md",
+                "isCustom": false
+              }
+            ],
+            "line": 11,
+            "column": 8
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "Intro\\Intro.csproj",
+      "startingProject": true,
+      "issues": 2,
+      "storyPoints": 5,
+      "properties": {
+        "appName": "Intro",
+        "projectKind": "DotNetCoreApp",
+        "frameworks": [
+          "net9.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 4,
+        "numberOfCodeFiles": 4,
+        "linesTotal": 176,
+        "linesOfCode": 176,
+        "totalApiScanned": 214,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "b297782b-d258-4d14-ba76-cca21d96cd76",
+          "ruleId": "NuGet.0002",
+          "projectPath": "Intro\\Intro.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3",
+              "protected": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3"
+            },
+            "kind": "File",
+            "path": "Intro\\Intro.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3",
+            "label": "Microsoft.EntityFrameworkCore 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "b34a6273-ac60-4025-9739-58380d7156a1",
+          "ruleId": "NuGet.0002",
+          "projectPath": "Intro\\Intro.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3",
+              "protected": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3"
+            },
+            "kind": "File",
+            "path": "Intro\\Intro.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3",
+            "label": "Microsoft.EntityFrameworkCore.Design 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore.Design",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "9d5f5194-9edd-4f97-b5dc-cacb3d49a25a",
+          "ruleId": "NuGet.0002",
+          "projectPath": "Intro\\Intro.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3",
+              "protected": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3"
+            },
+            "kind": "File",
+            "path": "Intro\\Intro.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3",
+            "label": "Microsoft.EntityFrameworkCore.SqlServer 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore.SqlServer",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "22564190-9673-4439-9068-e8df2662e765",
+          "ruleId": "NuGet.0002",
+          "projectPath": "Intro\\Intro.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3",
+              "protected": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3"
+            },
+            "kind": "File",
+            "path": "Intro\\Intro.csproj",
+            "snippet": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3",
+            "protectedSnippet": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3",
+            "label": "Microsoft.Extensions.Hosting 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.Extensions.Hosting",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "1b4f755d-c1d7-43ea-a275-6d0dbc280613",
+          "ruleId": "Project.0002",
+          "projectPath": "Intro\\Intro.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net9.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net9.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "Intro\\Intro.csproj",
+            "snippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net9.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "LoadingRelatedData\\LoadingRelatedData.csproj",
+      "startingProject": true,
+      "issues": 2,
+      "storyPoints": 6,
+      "properties": {
+        "appName": "LoadingRelatedData",
+        "projectKind": "DotNetCoreApp",
+        "frameworks": [
+          "net9.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 8,
+        "numberOfCodeFiles": 8,
+        "linesTotal": 250,
+        "linesOfCode": 250,
+        "totalApiScanned": 421,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "f9d97b3d-c80e-46d3-9fef-caf65299e182",
+          "ruleId": "NuGet.0002",
+          "projectPath": "LoadingRelatedData\\LoadingRelatedData.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3",
+              "protected": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3"
+            },
+            "kind": "File",
+            "path": "LoadingRelatedData\\LoadingRelatedData.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3",
+            "label": "Microsoft.EntityFrameworkCore 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "38408133-e144-4532-ba10-0299aa181b97",
+          "ruleId": "NuGet.0002",
+          "projectPath": "LoadingRelatedData\\LoadingRelatedData.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3",
+              "protected": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3"
+            },
+            "kind": "File",
+            "path": "LoadingRelatedData\\LoadingRelatedData.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3",
+            "label": "Microsoft.EntityFrameworkCore.Design 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore.Design",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "4d13faf6-4aa2-4e59-a106-d72c0c63d1d4",
+          "ruleId": "NuGet.0002",
+          "projectPath": "LoadingRelatedData\\LoadingRelatedData.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore.Proxies, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Proxies, and replace with new package Microsoft.EntityFrameworkCore.Proxies 10.0.3",
+              "protected": "Microsoft.EntityFrameworkCore.Proxies, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Proxies, and replace with new package Microsoft.EntityFrameworkCore.Proxies 10.0.3"
+            },
+            "kind": "File",
+            "path": "LoadingRelatedData\\LoadingRelatedData.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore.Proxies, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Proxies, and replace with new package Microsoft.EntityFrameworkCore.Proxies 10.0.3",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore.Proxies, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Proxies, and replace with new package Microsoft.EntityFrameworkCore.Proxies 10.0.3",
+            "label": "Microsoft.EntityFrameworkCore.Proxies 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore.Proxies",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "4fbaee93-b00d-44c9-855c-c695e80f6625",
+          "ruleId": "NuGet.0002",
+          "projectPath": "LoadingRelatedData\\LoadingRelatedData.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3",
+              "protected": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3"
+            },
+            "kind": "File",
+            "path": "LoadingRelatedData\\LoadingRelatedData.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3",
+            "label": "Microsoft.EntityFrameworkCore.SqlServer 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore.SqlServer",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "0ef03ae8-0486-4628-a3de-748af0d47b11",
+          "ruleId": "NuGet.0002",
+          "projectPath": "LoadingRelatedData\\LoadingRelatedData.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3",
+              "protected": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3"
+            },
+            "kind": "File",
+            "path": "LoadingRelatedData\\LoadingRelatedData.csproj",
+            "snippet": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3",
+            "protectedSnippet": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3",
+            "label": "Microsoft.Extensions.Hosting 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.Extensions.Hosting",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "44959e92-a3a2-470a-9cee-651381be6415",
+          "ruleId": "Project.0002",
+          "projectPath": "LoadingRelatedData\\LoadingRelatedData.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net9.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net9.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "LoadingRelatedData\\LoadingRelatedData.csproj",
+            "snippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net9.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "MigrationApp\\MigrationApp.csproj",
+      "startingProject": true,
+      "issues": 2,
+      "storyPoints": 3,
+      "properties": {
+        "appName": "MigrationApp",
+        "projectKind": "DotNetCoreApp",
+        "frameworks": [
+          "net9.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 3,
+        "numberOfCodeFiles": 3,
+        "linesTotal": 38,
+        "linesOfCode": 38,
+        "totalApiScanned": 45,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "c352cf64-934a-449e-8fce-f48e5930da35",
+          "ruleId": "NuGet.0002",
+          "projectPath": "MigrationApp\\MigrationApp.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3",
+              "protected": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3"
+            },
+            "kind": "File",
+            "path": "MigrationApp\\MigrationApp.csproj",
+            "snippet": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3",
+            "protectedSnippet": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3",
+            "label": "Microsoft.Extensions.Hosting 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.Extensions.Hosting",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "8732fee9-7814-4182-ac72-e394d3134d13",
+          "ruleId": "NuGet.0002",
+          "projectPath": "MigrationApp\\MigrationApp.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3",
+              "protected": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3"
+            },
+            "kind": "File",
+            "path": "MigrationApp\\MigrationApp.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3",
+            "label": "Microsoft.EntityFrameworkCore.Design 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore.Design",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "b77673d8-949e-4064-b422-d200a154a06e",
+          "ruleId": "Project.0002",
+          "projectPath": "MigrationApp\\MigrationApp.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net9.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net9.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "MigrationApp\\MigrationApp.csproj",
+            "snippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net9.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "Models\\Models.csproj",
+      "startingProject": true,
+      "issues": 2,
+      "storyPoints": 5,
+      "properties": {
+        "appName": "Models",
+        "projectKind": "DotNetCoreApp",
+        "frameworks": [
+          "net9.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 10,
+        "numberOfCodeFiles": 10,
+        "linesTotal": 246,
+        "linesOfCode": 246,
+        "totalApiScanned": 358,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "96768bb8-3711-45aa-a26f-e30a8d04348f",
+          "ruleId": "NuGet.0002",
+          "projectPath": "Models\\Models.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3",
+              "protected": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3"
+            },
+            "kind": "File",
+            "path": "Models\\Models.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3",
+            "label": "Microsoft.EntityFrameworkCore 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "31326430-0d35-4bb9-9b8f-c8112e437b86",
+          "ruleId": "NuGet.0002",
+          "projectPath": "Models\\Models.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3",
+              "protected": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3"
+            },
+            "kind": "File",
+            "path": "Models\\Models.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3",
+            "label": "Microsoft.EntityFrameworkCore.Design 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore.Design",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "64226b55-29dc-4ffd-a4fa-914527fadc39",
+          "ruleId": "NuGet.0002",
+          "projectPath": "Models\\Models.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3",
+              "protected": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3"
+            },
+            "kind": "File",
+            "path": "Models\\Models.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3",
+            "label": "Microsoft.EntityFrameworkCore.SqlServer 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore.SqlServer",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "6d77586b-bf19-43aa-9e1a-1f4aa3b73a95",
+          "ruleId": "NuGet.0002",
+          "projectPath": "Models\\Models.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3",
+              "protected": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3"
+            },
+            "kind": "File",
+            "path": "Models\\Models.csproj",
+            "snippet": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3",
+            "protectedSnippet": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3",
+            "label": "Microsoft.Extensions.Hosting 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.Extensions.Hosting",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "879fc3c3-01f4-441e-ac34-290d1a8036bb",
+          "ruleId": "Project.0002",
+          "projectPath": "Models\\Models.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net9.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net9.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "Models\\Models.csproj",
+            "snippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net9.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "Queries\\Queries.csproj",
+      "startingProject": true,
+      "issues": 2,
+      "storyPoints": 4,
+      "properties": {
+        "appName": "Queries",
+        "projectKind": "DotNetCoreApp",
+        "frameworks": [
+          "net9.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 11,
+        "numberOfCodeFiles": 11,
+        "linesTotal": 382,
+        "linesOfCode": 382,
+        "totalApiScanned": 573,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "b7c15505-31d5-405a-b066-ff6005723a4c",
+          "ruleId": "NuGet.0002",
+          "projectPath": "Queries\\Queries.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3",
+              "protected": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3"
+            },
+            "kind": "File",
+            "path": "Queries\\Queries.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3",
+            "label": "Microsoft.EntityFrameworkCore 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "18bde5f6-5638-4657-aec7-8eba3167ae34",
+          "ruleId": "NuGet.0002",
+          "projectPath": "Queries\\Queries.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3",
+              "protected": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3"
+            },
+            "kind": "File",
+            "path": "Queries\\Queries.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3",
+            "label": "Microsoft.EntityFrameworkCore.SqlServer 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore.SqlServer",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "eb1ef60a-f00f-4c9d-981e-7cc52d3cc0a9",
+          "ruleId": "NuGet.0002",
+          "projectPath": "Queries\\Queries.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3",
+              "protected": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3"
+            },
+            "kind": "File",
+            "path": "Queries\\Queries.csproj",
+            "snippet": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3",
+            "protectedSnippet": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3",
+            "label": "Microsoft.Extensions.Hosting 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.Extensions.Hosting",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "a49209b7-ecf4-4811-838f-8ca2491a2d35",
+          "ruleId": "Project.0002",
+          "projectPath": "Queries\\Queries.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net9.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net9.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "Queries\\Queries.csproj",
+            "snippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net9.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "Relationships\\Relationships.csproj",
+      "startingProject": true,
+      "issues": 2,
+      "storyPoints": 5,
+      "properties": {
+        "appName": "Relationships",
+        "projectKind": "DotNetCoreApp",
+        "frameworks": [
+          "net9.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 23,
+        "numberOfCodeFiles": 23,
+        "linesTotal": 1318,
+        "linesOfCode": 1318,
+        "totalApiScanned": 1656,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "0a366b02-afc8-40f7-9aef-d893a65a4802",
+          "ruleId": "NuGet.0002",
+          "projectPath": "Relationships\\Relationships.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3",
+              "protected": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3"
+            },
+            "kind": "File",
+            "path": "Relationships\\Relationships.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3",
+            "label": "Microsoft.EntityFrameworkCore 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "f201e9de-742f-4b2c-a8c7-472278313085",
+          "ruleId": "NuGet.0002",
+          "projectPath": "Relationships\\Relationships.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3",
+              "protected": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3"
+            },
+            "kind": "File",
+            "path": "Relationships\\Relationships.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3",
+            "label": "Microsoft.EntityFrameworkCore.Design 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore.Design",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "3b419359-90ef-42de-99ea-a986c85ad1a3",
+          "ruleId": "NuGet.0002",
+          "projectPath": "Relationships\\Relationships.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3",
+              "protected": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3"
+            },
+            "kind": "File",
+            "path": "Relationships\\Relationships.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3",
+            "label": "Microsoft.EntityFrameworkCore.SqlServer 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore.SqlServer",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "565ec673-6f51-49d9-abd5-c8896a53c7f9",
+          "ruleId": "NuGet.0002",
+          "projectPath": "Relationships\\Relationships.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3",
+              "protected": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3"
+            },
+            "kind": "File",
+            "path": "Relationships\\Relationships.csproj",
+            "snippet": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3",
+            "protectedSnippet": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3",
+            "label": "Microsoft.Extensions.Hosting 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.Extensions.Hosting",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "3861c8f0-a99b-4f0f-ac1a-efe907518540",
+          "ruleId": "Project.0002",
+          "projectPath": "Relationships\\Relationships.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net9.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net9.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "Relationships\\Relationships.csproj",
+            "snippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net9.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "ScaffoldSample\\ScaffoldSample.csproj",
+      "startingProject": true,
+      "issues": 2,
+      "storyPoints": 3,
+      "properties": {
+        "appName": "ScaffoldSample",
+        "projectKind": "DotNetCoreApp",
+        "frameworks": [
+          "net9.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 5,
+        "numberOfCodeFiles": 5,
+        "linesTotal": 145,
+        "linesOfCode": 145,
+        "totalApiScanned": 169,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "6a6df928-57c6-430d-89e8-755d6f3879aa",
+          "ruleId": "NuGet.0002",
+          "projectPath": "ScaffoldSample\\ScaffoldSample.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3",
+              "protected": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3"
+            },
+            "kind": "File",
+            "path": "ScaffoldSample\\ScaffoldSample.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3",
+            "label": "Microsoft.EntityFrameworkCore.Design 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore.Design",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "3616603b-1d9e-466d-974a-9068e902a36b",
+          "ruleId": "NuGet.0002",
+          "projectPath": "ScaffoldSample\\ScaffoldSample.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3",
+              "protected": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3"
+            },
+            "kind": "File",
+            "path": "ScaffoldSample\\ScaffoldSample.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3",
+            "label": "Microsoft.EntityFrameworkCore.SqlServer 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore.SqlServer",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "7a8ea949-c231-492c-8374-00984a9ad2e8",
+          "ruleId": "Project.0002",
+          "projectPath": "ScaffoldSample\\ScaffoldSample.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net9.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net9.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "ScaffoldSample\\ScaffoldSample.csproj",
+            "snippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net9.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "Tracking\\Tracking.csproj",
+      "startingProject": true,
+      "issues": 2,
+      "storyPoints": 5,
+      "properties": {
+        "appName": "Tracking",
+        "projectKind": "DotNetCoreApp",
+        "frameworks": [
+          "net9.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 10,
+        "numberOfCodeFiles": 10,
+        "linesTotal": 375,
+        "linesOfCode": 375,
+        "totalApiScanned": 433,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "81388a64-45d7-4a44-85b3-3b83be385125",
+          "ruleId": "NuGet.0002",
+          "projectPath": "Tracking\\Tracking.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3",
+              "protected": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3"
+            },
+            "kind": "File",
+            "path": "Tracking\\Tracking.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3",
+            "label": "Microsoft.EntityFrameworkCore 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "1d0b6210-1616-4d04-a21d-d9835cef6cab",
+          "ruleId": "NuGet.0002",
+          "projectPath": "Tracking\\Tracking.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3",
+              "protected": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3"
+            },
+            "kind": "File",
+            "path": "Tracking\\Tracking.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3",
+            "label": "Microsoft.EntityFrameworkCore.Design 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore.Design",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "bee92939-0c06-482f-9abd-079cf28bcbd2",
+          "ruleId": "NuGet.0002",
+          "projectPath": "Tracking\\Tracking.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3",
+              "protected": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3"
+            },
+            "kind": "File",
+            "path": "Tracking\\Tracking.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3",
+            "label": "Microsoft.EntityFrameworkCore.SqlServer 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore.SqlServer",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "555f56f6-2f07-4c71-9e6a-ce8f4cc38ac7",
+          "ruleId": "NuGet.0002",
+          "projectPath": "Tracking\\Tracking.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3",
+              "protected": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3"
+            },
+            "kind": "File",
+            "path": "Tracking\\Tracking.csproj",
+            "snippet": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3",
+            "protectedSnippet": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3",
+            "label": "Microsoft.Extensions.Hosting 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.Extensions.Hosting",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "2c48842d-fe92-4c8e-b604-4d4604b1654a",
+          "ruleId": "Project.0002",
+          "projectPath": "Tracking\\Tracking.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net9.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net9.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "Tracking\\Tracking.csproj",
+            "snippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net9.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "Transactions\\Transactions.csproj",
+      "startingProject": true,
+      "issues": 2,
+      "storyPoints": 5,
+      "properties": {
+        "appName": "Transactions",
+        "projectKind": "DotNetCoreApp",
+        "frameworks": [
+          "net9.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 11,
+        "numberOfCodeFiles": 11,
+        "linesTotal": 368,
+        "linesOfCode": 368,
+        "totalApiScanned": 530,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "956b2859-281d-49a6-b586-4a215a294dba",
+          "ruleId": "NuGet.0002",
+          "projectPath": "Transactions\\Transactions.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3",
+              "protected": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3"
+            },
+            "kind": "File",
+            "path": "Transactions\\Transactions.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.3",
+            "label": "Microsoft.EntityFrameworkCore 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "57dab2de-8b32-4f96-8211-890fb2f52795",
+          "ruleId": "NuGet.0002",
+          "projectPath": "Transactions\\Transactions.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3",
+              "protected": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3"
+            },
+            "kind": "File",
+            "path": "Transactions\\Transactions.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore.Design, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.3",
+            "label": "Microsoft.EntityFrameworkCore.Design 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore.Design",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "5011ec75-4f8f-417f-b77a-0308a60f5759",
+          "ruleId": "NuGet.0002",
+          "projectPath": "Transactions\\Transactions.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3",
+              "protected": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3"
+            },
+            "kind": "File",
+            "path": "Transactions\\Transactions.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore.SqlServer, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.3",
+            "label": "Microsoft.EntityFrameworkCore.SqlServer 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore.SqlServer",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "6e48bdee-f517-41dd-a7fe-519762786d5a",
+          "ruleId": "NuGet.0002",
+          "projectPath": "Transactions\\Transactions.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3",
+              "protected": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3"
+            },
+            "kind": "File",
+            "path": "Transactions\\Transactions.csproj",
+            "snippet": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3",
+            "protectedSnippet": "Microsoft.Extensions.Hosting, 9.0.9\n\nRecommendation:\n\nRemove Microsoft.Extensions.Hosting, and replace with new package Microsoft.Extensions.Hosting 10.0.3",
+            "label": "Microsoft.Extensions.Hosting 9.0.9",
+            "properties": {
+              "PackageId": "Microsoft.Extensions.Hosting",
+              "PackageVersion": "9.0.9",
+              "PackageNewVersion": "10.0.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "354ce2c4-d6a6-4d5a-aa5e-ba470e1de6d1",
+          "ruleId": "Project.0002",
+          "projectPath": "Transactions\\Transactions.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net9.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net9.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "Transactions\\Transactions.csproj",
+            "snippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net9.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    }
+  ],
+  "rules": {
+    "NuGet.0002": {
+      "id": "NuGet.0002",
+      "isFeature": false,
+      "description": "NuGet package upgrade is recommended for selected target framework.\n\nStandard .NET packages are recommended to have versions matching version of .NET that project targets.\n\nSome other packages also are known to work better for selected target frameworks.",
+      "label": "NuGet package upgrade is recommended",
+      "severity": "Potential",
+      "effort": 1,
+      "links": [
+        {
+          "url": "https://go.microsoft.com/fwlink/?linkid=2262530",
+          "isCustom": false
+        }
+      ]
+    },
+    "Project.0002": {
+      "id": "Project.0002",
+      "isFeature": false,
+      "description": "Project\u0027s target framework(s) needs to be changed to the new target framework that you selected for this upgrade.\n\nDuring upgrade target framework will be adjusted to corresponding platform when applicable. In some cases project would result in multiple target frameworks after the upgrade if it was using features that now have their own platforms in modern .NET frameworks (windows, iOS, Android etc).",
+      "label": "Project\u0027s target framework(s) needs to be changed",
+      "severity": "Mandatory",
+      "effort": 1,
+      "links": [
+        {
+          "title": "Overview of porting from .NET Framework to .NET",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2265227",
+          "isCustom": false
+        },
+        {
+          "title": ".NET project SDKs",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2265226",
+          "isCustom": false
+        }
+      ]
+    },
+    "Api.0001": {
+      "id": "Api.0001",
+      "isFeature": false,
+      "description": "API is binary incompatible for selected .NET version: affects existing binaries, often requiring recompilation, because the API has changed in a way that prevents older binaries from loading or executing.",
+      "label": "Binary incompatible for selected .NET version",
+      "severity": "Mandatory",
+      "effort": 1,
+      "links": [
+        {
+          "title": "Breaking changes in .NET",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2262679",
+          "isCustom": false
+        }
+      ]
+    }
+  }
+}

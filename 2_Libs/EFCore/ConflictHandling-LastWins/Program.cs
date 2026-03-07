@@ -1,15 +1,14 @@
 ﻿
-using var host = Host.CreateDefaultBuilder(args)
-    .ConfigureServices((context, services) =>
-    {
-        string connectionString = context.Configuration.GetConnectionString("BooksConnection") ?? throw new InvalidOperationException("Could not read BooksConnection");
-        services.AddDbContext<BooksContext>(options =>
-        {
-            options.UseSqlServer(connectionString);
-        });
-        services.AddScoped<Runner>();
-    })
-    .Build();
+var builder = Host.CreateApplicationBuilder(args);
+
+string connectionString = builder.Configuration.GetConnectionString("BooksConnection") ?? throw new InvalidOperationException("Could not read BooksConnection");
+builder.Services.AddDbContext<BooksContext>(options =>
+{
+    options.UseSqlServer(connectionString);
+});
+builder.Services.AddScoped<Runner>();
+
+var host = builder.Build();
 
 await using (var scope = host.Services.CreateAsyncScope())
 {

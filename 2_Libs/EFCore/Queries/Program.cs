@@ -3,17 +3,16 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-using var host = Host.CreateDefaultBuilder(args)
-    .ConfigureServices((context, services) =>
-    {
-        var connectionString = context.Configuration.GetConnectionString("MenusConnection");
-        services.AddDbContext<MenusContext>(options =>
-        {
-            options.UseSqlServer(connectionString);
-        });
-        services.AddScoped<Runner>();
-    })
-    .Build();
+var builder = Host.CreateApplicationBuilder(args);
+
+var connectionString = builder.Configuration.GetConnectionString("MenusConnection");
+builder.Services.AddDbContext<MenusContext>(options =>
+{
+    options.UseSqlServer(connectionString);
+});
+builder.Services.AddScoped<Runner>();
+
+var host = builder.Build();
 
 using var scope = host.Services.CreateScope();
 var runner = scope.ServiceProvider.GetRequiredService<Runner>();

@@ -1,15 +1,13 @@
 ﻿using Codebreaker.Models;
 
 var builder = Host.CreateApplicationBuilder(args);
-builder.Services.AddDbContextFactory<GamesContext>(options 
-    => options.UseSqlServer(builder.Configuration.GetConnectionString("GamesConnection")));
+builder.Services.AddDbContextFactory<GamesContext>(options => 
+    options.UseSqlServer(builder.Configuration.GetConnectionString("GamesConnection")));
 
 using IHost app = builder.Build();
 
 var gameId1 = Guid.NewGuid();
 var gameId2 = Guid.NewGuid();
-
-
 
 var contextFactory = app.Services.GetRequiredService<IDbContextFactory<GamesContext>>();
 
@@ -33,30 +31,28 @@ var contextFactory = app.Services.GetRequiredService<IDbContextFactory<GamesCont
 
     MoveData<ColorField> moveData1 = new(gameId1, Guid.NewGuid(), 1)
     {
-        Fields = new List<ColorField>()
-        {
+        Fields = [
             new("red"),
             new("blue"),
             new("green"),
             new("yellow")
-        }
+        ]
     };
 
     MoveData<ShapeAndColorField> moveData2 = new(gameId2, Guid.NewGuid(), 1)
-    {   
-        Fields = new List<ShapeAndColorField>()
-        {
+    {
+        Fields = [
             new("circle", "red"),
             new("square", "blue"),
             new("triangle", "green"),
             new("circle", "yellow"),
-        }
+        ]
     };
 
-    GameData game1 = await context.Games.SingleAsync(g => g.GameId == gameId1);
+    GameData game1 = await context.Games.FindAsync(gameId1) ?? throw new InvalidOperationException("gameId1 not found");  
     game1.Moves.Add(moveData1);
 
-    GameData game2 = await context.Games.SingleAsync(g => g.GameId == gameId2);
+    GameData game2 = await context.Games.FindAsync(gameId2) ?? throw new InvalidOperationException("gameId2 not found");
     game2.Moves.Add(moveData2);
 
     await context.SaveChangesAsync();   

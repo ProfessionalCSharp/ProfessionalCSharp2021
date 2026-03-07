@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Sdk Name="Aspire.AppHost.Sdk" Version="9.1.0" />
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsAspireHost>True</IsAspireHost>
+    <UserSecretsId>ea85f626-a1c4-49d6-96d2-ecc1aadb9a18</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MultipleProvidersWithAspire.ApiService\MultipleProvidersWithAspire.ApiService.csproj" />
+    <ProjectReference Include="..\MultipleProvidersWithAspire.Web\MultipleProvidersWithAspire.Web.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.1.0" />
+    <PackageReference Include="Aspire.Hosting.Oracle" Version="9.1.0" />
+    <PackageReference Include="Aspire.Hosting.SqlServer" Version="9.1.0" />
+  </ItemGroup>
+
+</Project>

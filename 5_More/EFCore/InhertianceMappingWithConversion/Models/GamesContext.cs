@@ -1,12 +1,7 @@
 ﻿namespace Codebreaker.Models;
 
-internal class GamesContext : DbContext
+internal class GamesContext(DbContextOptions<GamesContext> context) : DbContext(context)
 {
-    public GamesContext(DbContextOptions<GamesContext> context)
-        : base(context)
-    {
-    }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.HasDefaultSchema("Codebreaker");
@@ -77,19 +72,16 @@ internal class GamesContext : DbContext
     public DbSet<GameData> Games { get; set; }
 }
 
-
 public static class MappingExtensions
 {
     public static ICollection<T> ToFieldCollection<T>(this string fields)
         where T : IParsable<T>
     {
-        return fields.Split(':')
-            .Select(field => T.Parse(field, default))
-            .ToList();
+        return [.. fields.Split(':').Select(field => T.Parse(field, default))];
     }
 
     public static string ToFieldString<T>(this ICollection<T> fields)
     {
-        return string.Join(':', fields.Select(field => field.ToString()));
+        return string.Join(':', fields.Select(field => field?.ToString()));
     }
 }
