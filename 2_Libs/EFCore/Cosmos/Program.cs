@@ -9,7 +9,8 @@ using var host = Host.CreateDefaultBuilder(args)
         var connectionString = context.Configuration.GetConnectionString("MenusConnection") ?? throw new InvalidOperationException("MenusConnection not configured");
         var restaurantSettings = context.Configuration.GetSection("RestaurantConfiguration");
 
-        services.Configure<RestaurantConfiguration>(restaurantSettings);
+        services.Configure<RestaurantConfiguration>(options => 
+            restaurantSettings.Bind(options));
         services.AddDbContext<MenusContext>(options =>
         {
             options.UseCosmos(connectionString, "ProCSharpMenus1");
