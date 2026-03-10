@@ -1,4 +1,4 @@
-﻿namespace ConfictHandling;
+﻿namespace ConflictHandling;
 
 public class BooksContext(DbContextOptions<BooksContext> options) : DbContext(options)
 {
@@ -14,8 +14,7 @@ public class BooksContext(DbContextOptions<BooksContext> options) : DbContext(op
     }
 
     private static IEnumerable<Book> GetSampleBooks()
-        => Enumerable.Range(1, 100)
-        .Select(id => new Book($"title {id}", "sample", id)).ToArray();
+        => [.. Enumerable.Range(1, 100).Select(id => new Book($"title {id}", "sample", id))];
 
     public DbSet<Book> Books => Set<Book>();
 }

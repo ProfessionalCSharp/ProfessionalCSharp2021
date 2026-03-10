@@ -1,4 +1,4 @@
-﻿namespace ConfictHandling;
+﻿namespace ConflictHandling;
 
 public class Runner(BooksContext booksContext)
 {

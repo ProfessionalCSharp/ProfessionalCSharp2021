@@ -37,7 +37,7 @@
     private IEnumerable<dynamic> GetInitialMenus(dynamic card, Guid restaurantId)
     {
         DateTime now = DateTime.Now;
-        return Enumerable.Range(1, 20).Select(id => new
+        return [.. Enumerable.Range(1, 20).Select(id => new
         {
             MenuItemId = id,
             Text = $"menu {id}",
@@ -46,7 +46,7 @@
             LastUpdated = now,
             card.MenuCardId,
             RestaurantId = restaurantId
-        }).ToArray();
+        })];
     }
 
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

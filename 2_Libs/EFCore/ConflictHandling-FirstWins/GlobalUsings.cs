@@ -1,4 +1,4 @@
-﻿global using ConfictHandling;
+﻿global using ConflictHandling;
 
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore.ChangeTracking;

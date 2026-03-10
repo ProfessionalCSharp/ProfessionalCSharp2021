@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-namespace ConfictHandling;
+namespace ConflictHandling;
 
 public class Book(string title, string? publisher = default, int bookId = default)
 {
