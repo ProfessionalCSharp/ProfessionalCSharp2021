@@ -11,8 +11,5 @@
     [Parameter]
     public int Incrementor { get; set; } = 1;
 
-    private void IncrementCount()
-    {
-        CounterService.Counter += Incrementor;
-    }
+    private void IncrementCount() => CounterService.Counter += Incrementor;
 }

@@ -34,8 +34,5 @@
     private BookEditModel bookEditModel = new();
     private string validText = string.Empty;
 
-    private void HandleValidSubmit(EditContext context)
-    {
-        validText = "Input is valid, ready to send it to the server";
-    }
+    private void HandleValidSubmit(EditContext context) => validText = "Input is valid, ready to send it to the server";
 }
