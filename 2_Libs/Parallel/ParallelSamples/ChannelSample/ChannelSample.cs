@@ -26,23 +26,18 @@ class ChannelSample
     public static Task ReadSomeDataAsync(ChannelReader<SomeData> reader) =>
         Task.Run(async () =>
         {
-            try
+            Random r = new();
+            Console.WriteLine("Start reading...");
+
+            await foreach (var data in reader.ReadAllAsync())
             {
-                Console.WriteLine("Start reading...");
-                Random r = new();
-                while (true)
-                {
-                    await Task.Delay(r.Next(80));
-                    var data = await reader.ReadAsync();
-                    Console.WriteLine($"read: {data.Text}, available items: {reader.Count}");
-                }
+                await Task.Delay(r.Next(80));
+                Console.WriteLine($"read: {data.Text}, available items: {reader.Count}");
             }
-            catch (ChannelClosedException)
-            {
-                Console.WriteLine("channel closed");
-            }
+
+            Console.WriteLine("channel closed");
         });
-    
+
 
     public static Task WriteSomeDataAsync(ChannelWriter<SomeData> writer) =>
         Task.Run(async () =>
@@ -57,25 +52,20 @@ class ChannelSample
             }
             writer.Complete();
             Console.WriteLine("Writing completed");
-        });    
+        });
 
-    public static Task ReadSomeDataUsingAsyncStreams(ChannelReader<SomeData> reader) =>    
+    public static Task ReadSomeDataUsingAsyncStreams(ChannelReader<SomeData> reader) =>
         Task.Run(async () =>
         {
-            try
-            {
-                Console.WriteLine("Start reading...");
-                Random r = new();
-                await foreach (var data in reader.ReadAllAsync())
-                {
-                    await Task.Delay(r.Next(80));
-                    Console.WriteLine($"read: {data.Text} available items: {reader.Count}");
-                }
+            Random r = new();
+            Console.WriteLine("Start reading...");
 
-            }
-            catch (ChannelClosedException)
+            await foreach (var data in reader.ReadAllAsync())
             {
-                Console.WriteLine("channel closed");
+                await Task.Delay(r.Next(80));
+                Console.WriteLine($"read: {data.Text} available items: {reader.Count}");
             }
-        });   
+
+            Console.WriteLine("channel closed");
+        });
 }
