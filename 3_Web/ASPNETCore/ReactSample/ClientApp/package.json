@@ -14,7 +14,7 @@
     "react-router-dom": "^6.30.4",
     "react-scripts": "^5.0.1",
     "reactstrap": "^9.1.9",
-    "rimraf": "^5.0.0",
+    "rimraf": "^6.1.4",
     "web-vitals": "^3.3.1",
     "workbox-background-sync": "^6.5.4",
     "workbox-broadcast-update": "^6.5.4",
